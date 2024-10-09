@@ -1,4 +1,4 @@
-package PHAT;
+
 public class Phieuphat {
     private String Mapp;
     private String Madg;
