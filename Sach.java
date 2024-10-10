@@ -1,6 +1,7 @@
 import java.util.Scanner;
+
 public class Sach {
-// các thuộc tính
+    // các thuộc tính
     private String masach;
     private String tensach;
     private String manxb;
@@ -10,10 +11,13 @@ public class Sach {
     private int soluong;
     private String theloai;
     private String tinhtrang;
-// các hàm thiết lập
-    public Sach() {}
-    public Sach(String masach, String tensach, String manxb, String matg, int namxb, int dongia, int soluong, String theloai, String tinhtrang) 
-    {
+
+    // các hàm thiết lập
+    public Sach() {
+    }
+
+    public Sach(String masach, String tensach, String manxb, String matg, int namxb, int dongia, int soluong,
+            String theloai, String tinhtrang) {
         this.masach = masach;
         this.tensach = tensach;
         this.manxb = manxb;
@@ -23,9 +27,9 @@ public class Sach {
         this.soluong = soluong;
         this.theloai = theloai;
         this.tinhtrang = tinhtrang;
-    }   
-    public Sach(Sach s1) 
-    {
+    }
+
+    public Sach(Sach s1) {
         this.masach = s1.masach;
         this.tensach = s1.tensach;
         this.manxb = s1.manxb;
@@ -36,63 +40,83 @@ public class Sach {
         this.theloai = s1.theloai;
         this.tinhtrang = s1.tinhtrang;
     }
-// Các hàm get giá trị
-    public String getMaSach(){
+
+    // Các hàm get giá trị
+    public String getMaSach() {
         return masach;
     }
-    public String getTenSach(){
+
+    public String getTenSach() {
         return tensach;
     }
-    public String getMaNXB(){
+
+    public String getMaNXB() {
         return manxb;
     }
-    public String getMaTG(){
+
+    public String getMaTG() {
         return matg;
     }
-    public int getNamXB(){
+
+    public int getNamXB() {
         return namxb;
     }
-    public int getDonGia(){
+
+    public int getDonGia() {
         return dongia;
     }
-    public int getSoLuong(){
+
+    public int getSoLuong() {
         return soluong;
     }
-    public String getTheLoai(){
+
+    public String getTheLoai() {
         return theloai;
     }
-    public String getTinhTrang(){
+
+    public String getTinhTrang() {
         return tinhtrang;
     }
-// Các hàm set giá trị 
-    public void getMaSach(String masach){
+
+    // Các hàm set giá trị
+    public void setMaSach(String masach) {
         this.masach = masach;
     }
-    public void getTenSach(String tensach){
+
+    public void setTenSach(String tensach) {
         this.tensach = tensach;
     }
-    public void getMaNXB(String manxb){
+
+    public void setMaNXB(String manxb) {
         this.manxb = manxb;
     }
-    public void getMaTG(String matg){
+
+    public void setMaTG(String matg) {
         this.matg = matg;
     }
-    public void getNamXB(int namxb){
+
+    public void setNamXB(int namxb) {
         this.namxb = namxb;
     }
-    public void getDonGia(int dongia){
+
+    public void setDonGia(int dongia) {
         this.dongia = dongia;
     }
-    public void getSoLuong(int soluong){
+
+    public void setSoLuong(int soluong) {
         this.soluong = soluong;
     }
-    public void getTheLoai(String theloai){
+
+    public void setTheLoai(String theloai) {
         this.theloai = theloai;
     }
-    public void getTinhTrang(String tinhtrang){
+
+    public void setTinhTrang(String tinhtrang) {
         this.tinhtrang = tinhtrang;
     }
+
     Scanner in = new Scanner(System.in);
+
     public void nhap() {
         masach = in.nextLine();
         tensach = in.nextLine();
@@ -104,24 +128,17 @@ public class Sach {
         theloai = in.nextLine();
         tinhtrang = in.nextLine();
     }
+
     public void xuat() {
         System.out.println("<===== Thong tin sach =====>");
-        System.out.printf("%-25s%s\n","Ma sach:", masach);
-        System.out.printf("%-25s%s\n","Ten sach:", tensach);
-        System.out.printf("%-25s%s\n","Ma nha xuat ban:", manxb);
-        System.out.printf("%-25s%s\n","Ma tac gia:", matg);
-        System.out.printf("%-25s%d\n","Nam xuat ban:", namxb);
-        System.out.printf("%-25s%d\n","Don gia:", dongia);
-        System.out.printf("%-25s%d\n","So luong:", soluong);
-        System.out.printf("%-25s%s\n","The loai:", theloai);
-        System.out.printf("%-25s%s\n","Tinh trang sach:", tinhtrang);
-    }
-
-    public static void main(String[] args) {
-        Sach s1 = new SachHocThuat("123", "Giai tich 1", "121", "111", 2017, 25000, 2, "Sach giao khoa", "new", "Toan hoc", "Dai hoc");
-        // Sach s2 = new Sach();
-        // s2.nhap();
-        // s1.xuat();
-        s1.xuat();
+        System.out.printf("%-25s%s\n", "Ma sach:", masach);
+        System.out.printf("%-25s%s\n", "Ten sach:", tensach);
+        System.out.printf("%-25s%s\n", "Ma nha xuat ban:", manxb);
+        System.out.printf("%-25s%s\n", "Ma tac gia:", matg);
+        System.out.printf("%-25s%d\n", "Nam xuat ban:", namxb);
+        System.out.printf("%-25s%d\n", "Don gia:", dongia);
+        System.out.printf("%-25s%d\n", "So luong:", soluong);
+        System.out.printf("%-25s%s\n", "The loai:", theloai);
+        System.out.printf("%-25s%s\n", "Tinh trang sach:", tinhtrang);
     }
 }
