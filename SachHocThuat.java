@@ -17,4 +17,19 @@ public class SachHocThuat extends Sach {
         this.linhvuc = sht1.linhvuc;
         this.trinhdohv = sht1.trinhdohv;
     }
+
+    @Override
+    public void nhap() {
+        super.nhap();
+        linhvuc = in.nextLine();
+        trinhdohv = in.nextLine();
+    }
+
+    @Override
+    public void xuat() {
+        super.xuat();
+        System.out.printf("%-25s%s\n","Linh vuc chuyen nganh:", linhvuc);
+        System.out.printf("%-25s%s\n","Trinh do hoc van:", trinhdohv);
+    }
+
 }

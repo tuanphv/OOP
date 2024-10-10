@@ -1,6 +1,4 @@
-/**
- * Sach
- */
+import java.util.Scanner;
 public class Sach {
 // các thuộc tính
     private String masach;
@@ -93,5 +91,37 @@ public class Sach {
     }
     public void getTinhTrang(String tinhtrang){
         this.tinhtrang = tinhtrang;
+    }
+    Scanner in = new Scanner(System.in);
+    public void nhap() {
+        masach = in.nextLine();
+        tensach = in.nextLine();
+        manxb = in.nextLine();
+        matg = in.nextLine();
+        namxb = Integer.parseInt(in.nextLine());
+        dongia = Integer.parseInt(in.nextLine());
+        soluong = Integer.parseInt(in.nextLine());
+        theloai = in.nextLine();
+        tinhtrang = in.nextLine();
+    }
+    public void xuat() {
+        System.out.println("<===== Thong tin sach =====>");
+        System.out.printf("%-25s%s\n","Ma sach:", masach);
+        System.out.printf("%-25s%s\n","Ten sach:", tensach);
+        System.out.printf("%-25s%s\n","Ma nha xuat ban:", manxb);
+        System.out.printf("%-25s%s\n","Ma tac gia:", matg);
+        System.out.printf("%-25s%d\n","Nam xuat ban:", namxb);
+        System.out.printf("%-25s%d\n","Don gia:", dongia);
+        System.out.printf("%-25s%d\n","So luong:", soluong);
+        System.out.printf("%-25s%s\n","The loai:", theloai);
+        System.out.printf("%-25s%s\n","Tinh trang sach:", tinhtrang);
+    }
+
+    public static void main(String[] args) {
+        Sach s1 = new SachHocThuat("123", "Giai tich 1", "121", "111", 2017, 25000, 2, "Sach giao khoa", "new", "Toan hoc", "Dai hoc");
+        // Sach s2 = new Sach();
+        // s2.nhap();
+        // s1.xuat();
+        s1.xuat();
     }
 }

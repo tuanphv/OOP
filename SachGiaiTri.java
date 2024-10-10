@@ -14,4 +14,17 @@ public class SachGiaiTri extends Sach{
         super((Sach) sgt1);
         this.dotuoi = sgt1.dotuoi;
     }
+
+    @Override
+    public void nhap() {
+        super.nhap();
+        dotuoi = Integer.parseInt(in.nextLine());
+    }
+
+    @Override
+    public void xuat() {
+        super.xuat();
+        System.out.printf("%-25s%d\n","Do tuoi phu hop:", dotuoi);
+    }
+
 }
