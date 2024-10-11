@@ -2,21 +2,21 @@ package PHAT;
 
 import java.util.Scanner;
 
-public class CHITIETPHAT {
+public class Chitietphat {
     private String Mapp;
     private String Masach;
     private String Maqd;
     private Double Tienphat;
 
-    public CHITIETPHAT() {}
+    public Chitietphat() {}
 
-    public CHITIETPHAT(String mapp, String masach, String maqd, Double tienphat) {
+    public Chitietphat(String mapp, String masach, String maqd, Double tienphat) {
         this.Mapp = mapp;
         this.Masach = masach;
         this.Maqd = maqd;
         this.Tienphat = tienphat;
     }
-      public CHITIETPHAT(CHITIETPHAT s1) {
+      public Chitietphat(Chitietphat s1) {
         this.Mapp = s1.Mapp;
         this.Masach = s1.Masach;
         this.Maqd = s1.Maqd;
