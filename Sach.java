@@ -2,143 +2,143 @@ import java.util.Scanner;
 
 public class Sach {
     // các thuộc tính
-    private String masach;
-    private String tensach;
-    private String manxb;
-    private String matg;
-    private int namxb;
-    private int dongia;
-    private int soluong;
-    private String theloai;
-    private String tinhtrang;
+    private String maSach;
+    private String tenSach;
+    private String maNXB;
+    private String maTG;
+    private int namXB;
+    private int donGia;
+    private int soLuong;
+    private String theLoai;
+    private String tinhTrang;
 
     // các hàm thiết lập
     public Sach() {
     }
 
-    public Sach(String masach, String tensach, String manxb, String matg, int namxb, int dongia, int soluong,
-            String theloai, String tinhtrang) {
-        this.masach = masach;
-        this.tensach = tensach;
-        this.manxb = manxb;
-        this.matg = matg;
-        this.namxb = namxb;
-        this.dongia = dongia;
-        this.soluong = soluong;
-        this.theloai = theloai;
-        this.tinhtrang = tinhtrang;
+    public Sach(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong,
+            String theLoai, String tinhTrang) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+        this.maNXB = maNXB;
+        this.maTG = maTG;
+        this.namXB = namXB;
+        this.donGia = donGia;
+        this.soLuong = soLuong;
+        this.theLoai = theLoai;
+        this.tinhTrang = tinhTrang;
     }
 
     public Sach(Sach s1) {
-        this.masach = s1.masach;
-        this.tensach = s1.tensach;
-        this.manxb = s1.manxb;
-        this.matg = s1.matg;
-        this.namxb = s1.namxb;
-        this.dongia = s1.dongia;
-        this.soluong = s1.soluong;
-        this.theloai = s1.theloai;
-        this.tinhtrang = s1.tinhtrang;
+        this.maSach = s1.maSach;
+        this.tenSach = s1.tenSach;
+        this.maNXB = s1.maNXB;
+        this.maTG = s1.maTG;
+        this.namXB = s1.namXB;
+        this.donGia = s1.donGia;
+        this.soLuong = s1.soLuong;
+        this.theLoai = s1.theLoai;
+        this.tinhTrang = s1.tinhTrang;
     }
 
     // Các hàm get giá trị
     public String getMaSach() {
-        return masach;
+        return maSach;
     }
 
     public String getTenSach() {
-        return tensach;
+        return tenSach;
     }
 
     public String getMaNXB() {
-        return manxb;
+        return maNXB;
     }
 
     public String getMaTG() {
-        return matg;
+        return maTG;
     }
 
     public int getNamXB() {
-        return namxb;
+        return namXB;
     }
 
     public int getDonGia() {
-        return dongia;
+        return donGia;
     }
 
     public int getSoLuong() {
-        return soluong;
+        return soLuong;
     }
 
     public String getTheLoai() {
-        return theloai;
+        return theLoai;
     }
 
     public String getTinhTrang() {
-        return tinhtrang;
+        return tinhTrang;
     }
 
     // Các hàm set giá trị
-    public void setMaSach(String masach) {
-        this.masach = masach;
+    public void setMaSach(String maSach) {
+        this.maSach = maSach;
     }
 
-    public void setTenSach(String tensach) {
-        this.tensach = tensach;
+    public void setTenSach(String tenSach) {
+        this.tenSach = tenSach;
     }
 
-    public void setMaNXB(String manxb) {
-        this.manxb = manxb;
+    public void setMaNXB(String maNXB) {
+        this.maNXB = maNXB;
     }
 
-    public void setMaTG(String matg) {
-        this.matg = matg;
+    public void setMaTG(String maTG) {
+        this.maTG = maTG;
     }
 
-    public void setNamXB(int namxb) {
-        this.namxb = namxb;
+    public void setNamXB(int namXB) {
+        this.namXB = namXB;
     }
 
-    public void setDonGia(int dongia) {
-        this.dongia = dongia;
+    public void setDonGia(int donGia) {
+        this.donGia = donGia;
     }
 
-    public void setSoLuong(int soluong) {
-        this.soluong = soluong;
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
-    public void setTheLoai(String theloai) {
-        this.theloai = theloai;
+    public void setTheLoai(String theLoai) {
+        this.theLoai = theLoai;
     }
 
-    public void setTinhTrang(String tinhtrang) {
-        this.tinhtrang = tinhtrang;
+    public void setTinhTrang(String tinhTrang) {
+        this.tinhTrang = tinhTrang;
     }
 
     Scanner in = new Scanner(System.in);
 
     public void nhap() {
-        masach = in.nextLine();
-        tensach = in.nextLine();
-        manxb = in.nextLine();
-        matg = in.nextLine();
-        namxb = Integer.parseInt(in.nextLine());
-        dongia = Integer.parseInt(in.nextLine());
-        soluong = Integer.parseInt(in.nextLine());
-        theloai = in.nextLine();
-        tinhtrang = in.nextLine();
+        maSach = in.nextLine();
+        tenSach = in.nextLine();
+        maNXB = in.nextLine();
+        maTG = in.nextLine();
+        namXB = Integer.parseInt(in.nextLine());
+        donGia = Integer.parseInt(in.nextLine());
+        soLuong = Integer.parseInt(in.nextLine());
+        theLoai = in.nextLine();
+        tinhTrang = in.nextLine();
     }
 
     public void xuat() {
         System.out.println("<===== Thong tin sach =====>");
-        System.out.printf("%-25s%s\n", "Ma sach:", masach);
-        System.out.printf("%-25s%s\n", "Ten sach:", tensach);
-        System.out.printf("%-25s%s\n", "Ma nha xuat ban:", manxb);
-        System.out.printf("%-25s%s\n", "Ma tac gia:", matg);
-        System.out.printf("%-25s%d\n", "Nam xuat ban:", namxb);
-        System.out.printf("%-25s%d\n", "Don gia:", dongia);
-        System.out.printf("%-25s%d\n", "So luong:", soluong);
-        System.out.printf("%-25s%s\n", "The loai:", theloai);
-        System.out.printf("%-25s%s\n", "Tinh trang sach:", tinhtrang);
+        System.out.printf("%-25s%s\n", "Ma sach:", maSach);
+        System.out.printf("%-25s%s\n", "Ten sach:", tenSach);
+        System.out.printf("%-25s%s\n", "Ma nha xuat ban:", maNXB);
+        System.out.printf("%-25s%s\n", "Ma tac gia:", maTG);
+        System.out.printf("%-25s%d\n", "Nam xuat ban:", namXB);
+        System.out.printf("%-25s%d\n", "Don gia:", donGia);
+        System.out.printf("%-25s%d\n", "So luong:", soLuong);
+        System.out.printf("%-25s%s\n", "The loai:", theLoai);
+        System.out.printf("%-25s%s\n", "Tinh trang sach:", tinhTrang);
     }
 }

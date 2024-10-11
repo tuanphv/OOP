@@ -1,30 +1,38 @@
-public class SachGiaiTri extends Sach{
-    private int dotuoi;
+public class SachGiaiTri extends Sach {
+    private int doTuoi;
 
-    public SachGiaiTri() {}
-
-    public SachGiaiTri(String masach, String tensach, String manxb, String matg, int namxb, int dongia, int soluong, String theloai, String tinhtrang, int dotuoi)
-    {
-        super(masach, tensach, manxb, matg, namxb, dongia, soluong, theloai, tinhtrang);
-        this.dotuoi = dotuoi;
+    public SachGiaiTri() {
     }
 
-    public SachGiaiTri(SachGiaiTri sgt1) 
-    {
+    public SachGiaiTri(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong,
+            String theLoai, String tinhTrang, int doTuoi) {
+        super(maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong, theLoai, tinhTrang);
+        this.doTuoi = doTuoi;
+    }
+
+    public SachGiaiTri(SachGiaiTri sgt1) {
         super((Sach) sgt1);
-        this.dotuoi = sgt1.dotuoi;
+        this.doTuoi = sgt1.doTuoi;
+    }
+
+    public int getDoTuoi() {
+        return doTuoi;
+    }
+
+    public void setDoTuoi(int doTuoi) {
+        this.doTuoi = doTuoi;
     }
 
     @Override
     public void nhap() {
         super.nhap();
-        dotuoi = Integer.parseInt(in.nextLine());
+        doTuoi = Integer.parseInt(in.nextLine());
     }
 
     @Override
     public void xuat() {
         super.xuat();
-        System.out.printf("%-25s%d\n","Do tuoi phu hop:", dotuoi);
+        System.out.printf("%-25s%d\n", "Do tuoi phu hop:", doTuoi);
     }
 
 }
