@@ -1,5 +1,3 @@
-package PHAT;
-
 import java.util.Scanner;
 
 public class Quydinhphat {
@@ -7,7 +5,8 @@ public class Quydinhphat {
     private String Noidung;
     private Double Mucphat;
 
-    public Quydinhphat() {}
+    public Quydinhphat() {
+    }
 
     public Quydinhphat(String maqd, String noidung, Double mucphat) {
         this.Maqd = maqd;
@@ -21,13 +20,29 @@ public class Quydinhphat {
         this.Mucphat = s1.Mucphat;
     }
 
-    public String getMaqd() { return Maqd; }
-    public String getNoidung() { return Noidung; }
-    public Double getMucphat() { return Mucphat; }
+    public String getMaqd() {
+        return Maqd;
+    }
 
-    public void setMaqd(String maqd) { this.Maqd = maqd; }
-    public void setNoidung(String noidung) { this.Noidung = noidung; }
-    public void setMucphat(Double mucphat) { this.Mucphat = mucphat; }
+    public String getNoidung() {
+        return Noidung;
+    }
+
+    public Double getMucphat() {
+        return Mucphat;
+    }
+
+    public void setMaqd(String maqd) {
+        this.Maqd = maqd;
+    }
+
+    public void setNoidung(String noidung) {
+        this.Noidung = noidung;
+    }
+
+    public void setMucphat(Double mucphat) {
+        this.Mucphat = mucphat;
+    }
 
     public void Nhap() {
         Scanner scanner = new Scanner(System.in);
@@ -37,6 +52,7 @@ public class Quydinhphat {
         this.Noidung = scanner.nextLine();
         System.out.print("Nhập mức phạt: ");
         this.Mucphat = scanner.nextDouble();
+        scanner.close();
     }
 
     public void Xuat() {

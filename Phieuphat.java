@@ -1,5 +1,3 @@
-package PHAT;
-
 import java.util.Scanner;
 
 public class Phieuphat {
@@ -8,7 +6,8 @@ public class Phieuphat {
     private String Manv;
     private Double Tongphat;
 
-    public Phieuphat() {}
+    public Phieuphat() {
+    }
 
     public Phieuphat(String mapp, String madg, String manv, Double tongphat) {
         this.Mapp = mapp;
@@ -16,21 +15,45 @@ public class Phieuphat {
         this.Manv = manv;
         this.Tongphat = tongphat;
     }
+
     public Phieuphat(Phieuphat s1) {
         this.Mapp = s1.Mapp;
         this.Madg = s1.Madg;
         this.Manv = s1.Manv;
         this.Tongphat = s1.Tongphat;
     }
-    public String getMapp() { return Mapp; }
-    public String getMadg() { return Madg; }
-    public String getManv() { return Manv; }
-    public Double getTongphat() { return Tongphat; }
 
-    public void setMapp(String mapp) { this.Mapp = mapp; }
-    public void setMadg(String madg) { this.Madg = madg; }
-    public void setManv(String manv) { this.Manv = manv; }
-    public void setTongphat(Double tongphat) { this.Tongphat = tongphat; }
+    public String getMapp() {
+        return Mapp;
+    }
+
+    public String getMadg() {
+        return Madg;
+    }
+
+    public String getManv() {
+        return Manv;
+    }
+
+    public Double getTongphat() {
+        return Tongphat;
+    }
+
+    public void setMapp(String mapp) {
+        this.Mapp = mapp;
+    }
+
+    public void setMadg(String madg) {
+        this.Madg = madg;
+    }
+
+    public void setManv(String manv) {
+        this.Manv = manv;
+    }
+
+    public void setTongphat(Double tongphat) {
+        this.Tongphat = tongphat;
+    }
 
     public void Nhap() {
         Scanner scanner = new Scanner(System.in);
@@ -42,6 +65,7 @@ public class Phieuphat {
         this.Manv = scanner.nextLine();
         System.out.print("Nhập tổng phạt: ");
         this.Tongphat = scanner.nextDouble();
+        scanner.close();
     }
 
     public void Xuat() {
