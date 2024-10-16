@@ -15,6 +15,11 @@ public class SachGiaiTri extends Sach {
         this.doTuoi = sgt1.doTuoi;
     }
 
+    public SachGiaiTri(Sach s1, int doTuoi) {
+        super(s1);
+        this.doTuoi = doTuoi;
+    }
+
     public int getDoTuoi() {
         return doTuoi;
     }
@@ -33,6 +38,11 @@ public class SachGiaiTri extends Sach {
     public void xuat() {
         super.xuat();
         System.out.printf("%-25s%d\n", "Do tuoi phu hop:", doTuoi);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + doTuoi + "";
     }
 
 }

@@ -10,14 +10,14 @@ public class Sach {
     private int donGia;
     private int soLuong;
     private String theLoai;
-    private String tinhTrang;
+    private String trangThai;
 
     // các hàm thiết lập
     public Sach() {
     }
 
     public Sach(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong,
-            String theLoai, String tinhTrang) {
+            String theLoai, String trangThai) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.maNXB = maNXB;
@@ -26,7 +26,7 @@ public class Sach {
         this.donGia = donGia;
         this.soLuong = soLuong;
         this.theLoai = theLoai;
-        this.tinhTrang = tinhTrang;
+        this.trangThai = trangThai;
     }
 
     public Sach(Sach s1) {
@@ -38,7 +38,7 @@ public class Sach {
         this.donGia = s1.donGia;
         this.soLuong = s1.soLuong;
         this.theLoai = s1.theLoai;
-        this.tinhTrang = s1.tinhTrang;
+        this.trangThai = s1.trangThai;
     }
 
     // Các hàm get giá trị
@@ -74,8 +74,8 @@ public class Sach {
         return theLoai;
     }
 
-    public String getTinhTrang() {
-        return tinhTrang;
+    public String getTrangThai() {
+        return trangThai;
     }
 
     // Các hàm set giá trị
@@ -111,8 +111,8 @@ public class Sach {
         this.theLoai = theLoai;
     }
 
-    public void setTinhTrang(String tinhTrang) {
-        this.tinhTrang = tinhTrang;
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
 
     Scanner in = new Scanner(System.in);
@@ -126,7 +126,7 @@ public class Sach {
         donGia = Integer.parseInt(in.nextLine());
         soLuong = Integer.parseInt(in.nextLine());
         theLoai = in.nextLine();
-        tinhTrang = in.nextLine();
+        trangThai = in.nextLine();
     }
 
     public void xuat() {
@@ -139,6 +139,12 @@ public class Sach {
         System.out.printf("%-25s%d\n", "Don gia:", donGia);
         System.out.printf("%-25s%d\n", "So luong:", soLuong);
         System.out.printf("%-25s%s\n", "The loai:", theLoai);
-        System.out.printf("%-25s%s\n", "Tinh trang sach:", tinhTrang);
+        System.out.printf("%-25s%s\n", "Tinh trang sach:", trangThai);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-10s%-35s%-10s%-12s%-8d%-9d%-10d%-20s%-12s", maSach, tenSach, maNXB, maTG, namXB, donGia,
+                soLuong, theLoai, trangThai);
     }
 }

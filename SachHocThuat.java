@@ -48,4 +48,8 @@ public class SachHocThuat extends Sach {
         System.out.printf("%-25s%s\n", "Trinh do hoc van:", trinhDoHV);
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s%-10s%s", super.toString(), linhVuc, trinhDoHV);
+    }
 }
