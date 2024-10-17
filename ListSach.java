@@ -2,17 +2,17 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class ListSach {
-    Sach[] sachList;
+    Sach[] sachList = new Sach[0];
 
     public ListSach() {
     }
 
     public ListSach(Sach[] l1) {
-        this.sachList = Arrays.copyOf(l1, l1.length);
+        this.sachList = l1;
     }
 
     public ListSach(ListSach l1) {
-        this.sachList = Arrays.copyOf(l1.sachList, l1.sachList.length);
+        this.sachList = l1.sachList;
     }
 
     public int findIndexById(String maSach) {
@@ -31,11 +31,13 @@ public class ListSach {
         int n = Integer.parseInt(in.nextLine());
         sachList = new Sach[n];
         for (int i = 0; i < n; i++) {
-            sachList[i].nhap();
-            while (findIndexById(sachList[i].getMaSach()) != -1) {
-                System.out.println("Da co sach vui long nhap lai!");
-                sachList[i].nhap();
+            Sach s = new Sach();
+            s.nhap();
+            while (findIndexById(s.getMaSach()) != -1) {
+                System.out.println("Da co sach. Vui long nhap lai!");
+                s.nhap();
             }
+            sachList[i] = s;
         }
     }
 
@@ -77,8 +79,6 @@ public class ListSach {
     }
 
     public void addSach(Sach s1) {
-        if (sachList == null)
-            sachList = new Sach[0];
         int index = findIndexById(s1.getMaSach());
         if (index == -1) {
             int n = sachList.length;
