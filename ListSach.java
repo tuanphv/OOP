@@ -15,7 +15,7 @@ public class ListSach {
         this.sachList = l1.sachList;
     }
 
-    public int findIndexById(String maSach) {
+    public int timTheoMaSach(String maSach) {
         int n = sachList.length;
         for (int i = 0; i < n; i++) {
             if (sachList[i].getMaSach().equals(maSach))
@@ -33,7 +33,7 @@ public class ListSach {
         for (int i = 0; i < n; i++) {
             Sach s = new Sach();
             s.nhap();
-            while (findIndexById(s.getMaSach()) != -1) {
+            while (timTheoMaSach(s.getMaSach()) != -1) {
                 System.out.println("Da co sach. Vui long nhap lai!");
                 s.nhap();
             }
@@ -43,7 +43,7 @@ public class ListSach {
 
     public void xuat() {
         System.out.println("\nTat ca sach");
-        System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%s\n",
+        System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s\n",
                 "Ma sach",
                 "Ten sach",
                 "Ma NXB",
@@ -51,8 +51,7 @@ public class ListSach {
                 "Nam XB",
                 "Don gia",
                 "So luong",
-                "The loai",
-                "Trang thai");
+                "The loai");
         for (Sach x : sachList) {
             Sach s1 = new Sach(x);
             System.out.println(s1);
@@ -61,48 +60,60 @@ public class ListSach {
 
     public void xuatTheoLoai() {
         System.out.println("\nSach giai tri:");
-        System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%-12s%s\n",
-                "Ma sach", "Ten sach", "Ma NXB", "Ma tac gia", "Nam XB", "Don gia", "So luong", "The loai",
-                "Trang thai", "Do tuoi");
+        System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%s\n",
+                "Ma sach", "Ten sach", "Ma NXB", "Ma tac gia", "Nam XB", "Don gia", "So luong", "The loai", "Do tuoi");
         for (Sach x : sachList) {
             if (x instanceof SachGiaiTri)
                 System.out.println(x);
         }
         System.out.println("\nSach hoc thuat:");
-        System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%-12s%-10s%s\n",
+        System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%-20s%s\n",
                 "Ma sach", "Ten sach", "Ma NXB", "Ma tac gia", "Nam XB", "Don gia", "So luong", "The loai",
-                "Trang thai", "Linh vuc", "Trinh do");
+                "Linh vuc nghien cuu", "Trinh do");
         for (Sach x : sachList) {
             if (x instanceof SachHocThuat)
                 System.out.println(x);
         }
     }
 
-    public void addSach(Sach s1) {
-        int index = findIndexById(s1.getMaSach());
+    public void themSach(Sach s1) {
+        int index = timTheoMaSach(s1.getMaSach());
         if (index == -1) {
             int n = sachList.length;
             sachList = Arrays.copyOf(sachList, n + 1);
             sachList[n] = s1;
         } else {
             System.out.println("Da co sach trong thu vien");
-            if (s1 == sachList[index])
-                sachList[index].setSoLuong(s1.getSoLuong() + sachList[index].getSoLuong());
-            else
-                System.out.println("Thong tin sach sai!");
         }
     }
 
-    public void updateSach(Sach s1) {
+    public void themSoLuongSach(String maSach, int soLuong) {
+        int index = timTheoMaSach(maSach);
+        if (index != -1)
+            sachList[index].setSoLuong(sachList[index].getSoLuong() + soLuong);
+        else
+            System.out.println("Ma sach sai!");
     }
 
-    public void deleteSach(Sach s1) {
-        int index = findIndexById(s1.getMaSach());
+    public void suaSach(Sach s1) {
+        int index = timTheoMaSach(s1.getMaSach());
+        sachList[index].setTenSach(s1.getTenSach());
+        sachList[index].setMaNXB(s1.getMaNXB());
+        sachList[index].setMaTG(s1.getMaTG());
+        sachList[index].setNamXB(s1.getNamXB());
+        sachList[index].setDonGia(s1.getDonGia());
+        sachList[index].setSoLuong(s1.getSoLuong());
+        sachList[index].setTheLoai(s1.getTheLoai());
+    }
+
+    public void xoaSach(Sach s1) {
+        int index = timTheoMaSach(s1.getMaSach());
         if (index == -1)
             System.out.println("Khong tim thay sach!");
         else {
-            System.arraycopy(sachList, index + 1, sachList, index, sachList.length - index - 1);
-            sachList = Arrays.copyOf(sachList, sachList.length - 1);
+            int len = sachList.length;
+            System.arraycopy(sachList, index + 1, sachList, index, len - index - 1);
+            sachList = Arrays.copyOf(sachList, len - 1);
         }
     }
 }

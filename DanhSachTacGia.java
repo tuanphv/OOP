@@ -25,7 +25,7 @@ public class DanhSachTacGia {
         for (int i = len; i < n + len; i++) {
             TacGia tg = new TacGia();
             tg.nhap();
-            while (findIndexById(tg.getMaTG()) != -1) {
+            while (timTheoMaTG(tg.getMaTG()) != -1) {
                 System.out.println("Da co thong tin tac gia. Vui long nhap lai!");
                 tg.nhap();
             }
@@ -42,11 +42,33 @@ public class DanhSachTacGia {
         }
     }
 
-    public int findIndexById(String ma) {
+    public int timTheoMaTG(String ma) {
         int n = DSTG.length;
         for (int i = 0; i < n; i++)
             if (DSTG[i].getMaTG().equals(ma))
                 return i;
         return -1;
+    }
+
+    public void themTacGia(TacGia tg) {
+        int index = timTheoMaTG(tg.getMaTG());
+        if (index == -1) {
+            int len = DSTG.length;
+            DSTG = Arrays.copyOf(DSTG, len + 1);
+            DSTG[len] = tg;
+        } else {
+            System.out.println("Thong tin tac gia da ton tai");
+        }
+    }
+
+    public void xoaTacGia(TacGia tg) {
+        int index = timTheoMaTG(tg.getMaTG());
+        if (index == -1)
+            System.out.println("Khong tim thay tac gia");
+        else {
+            int len = DSTG.length;
+            System.arraycopy(DSTG, index + 1, DSTG, index, len - index - 1);
+            DSTG = Arrays.copyOf(DSTG, len - 1);
+        }
     }
 }

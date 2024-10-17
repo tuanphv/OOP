@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Sach {
-    // các thuộc tính
     private String maSach;
     private String tenSach;
     private String maNXB;
@@ -10,14 +9,12 @@ public class Sach {
     private int donGia;
     private int soLuong;
     private String theLoai;
-    private String trangThai;
 
-    // các hàm thiết lập
     public Sach() {
     }
 
     public Sach(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong,
-            String theLoai, String trangThai) {
+            String theLoai) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.maNXB = maNXB;
@@ -26,7 +23,6 @@ public class Sach {
         this.donGia = donGia;
         this.soLuong = soLuong;
         this.theLoai = theLoai;
-        this.trangThai = trangThai;
     }
 
     public Sach(Sach s1) {
@@ -38,10 +34,8 @@ public class Sach {
         this.donGia = s1.donGia;
         this.soLuong = s1.soLuong;
         this.theLoai = s1.theLoai;
-        this.trangThai = s1.trangThai;
     }
 
-    // Các hàm get giá trị
     public String getMaSach() {
         return maSach;
     }
@@ -74,11 +68,6 @@ public class Sach {
         return theLoai;
     }
 
-    public String getTrangThai() {
-        return trangThai;
-    }
-
-    // Các hàm set giá trị
     public void setMaSach(String maSach) {
         this.maSach = maSach;
     }
@@ -111,22 +100,26 @@ public class Sach {
         this.theLoai = theLoai;
     }
 
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
-
     Scanner in = new Scanner(System.in);
 
     public void nhap() {
+        System.out.println("Nhap thoong tin sach");
+        System.out.print("Ma sach: ");
         maSach = in.nextLine();
+        System.out.print("Ten sach: ");
         tenSach = in.nextLine();
+        System.out.print("Ma nha xuat ban: ");
         maNXB = in.nextLine();
+        System.out.print("Ma tac gia: ");
         maTG = in.nextLine();
+        System.out.print("Nam xuat ban: ");
         namXB = Integer.parseInt(in.nextLine());
+        System.out.print("Don gia: ");
         donGia = Integer.parseInt(in.nextLine());
+        System.out.print("So luong sach: ");
         soLuong = Integer.parseInt(in.nextLine());
+        System.out.print("The loai");
         theLoai = in.nextLine();
-        trangThai = in.nextLine();
     }
 
     public void xuat() {
@@ -139,12 +132,11 @@ public class Sach {
         System.out.printf("%-25s%d\n", "Don gia:", donGia);
         System.out.printf("%-25s%d\n", "So luong:", soLuong);
         System.out.printf("%-25s%s\n", "The loai:", theLoai);
-        System.out.printf("%-25s%s\n", "Tinh trang sach:", trangThai);
     }
 
     @Override
     public String toString() {
-        return String.format("%-10s%-35s%-10s%-12s%-8d%-9d%-10d%-20s%-12s", maSach, tenSach, maNXB, maTG, namXB, donGia,
-                soLuong, theLoai, trangThai);
+        return String.format("%-10s%-35s%-10s%-12s%-8d%-9d%-10d%-20s", maSach, tenSach, maNXB, maTG, namXB, donGia,
+                soLuong, theLoai);
     }
 }

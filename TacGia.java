@@ -58,13 +58,14 @@ public class TacGia {
 
     public void nhap() {
         Scanner nhap = new Scanner(System.in);
-        System.out.print("Nhap ma tac gia: ");
+        System.out.println("Nhap thong tin tac gia");
+        System.out.print("Ma tac gia: ");
         maTG = nhap.nextLine();
-        System.out.print("Nhap ten tac gia: ");
+        System.out.print("Ho ten: ");
         tenTG = nhap.nextLine();
-        System.out.print("Nhap nam sinh tac gia: ");
+        System.out.print("Nam sinh: ");
         namSinhTG = nhap.nextLine();
-        System.out.print("Nhap quoc gia tac gia: ");
+        System.out.print("Quoc gia: ");
         quocGiaTG = nhap.nextLine();
         nhap.close();
     }
