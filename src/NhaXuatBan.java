@@ -68,7 +68,7 @@ public class NhaXuatBan {
         diaChiNXB= nhap.nextLine();
         System.out.print("Nhap email nha xuat ban: ");
         emailNXB= nhap.nextLine();
-
+        nhap.close();
     }
 
     public void xuat(){

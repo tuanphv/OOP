@@ -124,14 +124,14 @@ public class Sach {
 
     public void xuat() {
         System.out.println("<===== Thong tin sach =====>");
-        System.out.printf("%-25s%s\n", "Ma sach:", maSach);
-        System.out.printf("%-25s%s\n", "Ten sach:", tenSach);
-        System.out.printf("%-25s%s\n", "Ma nha xuat ban:", maNXB);
-        System.out.printf("%-25s%s\n", "Ma tac gia:", maTG);
-        System.out.printf("%-25s%d\n", "Nam xuat ban:", namXB);
-        System.out.printf("%-25s%d\n", "Don gia:", donGia);
-        System.out.printf("%-25s%d\n", "So luong:", soLuong);
-        System.out.printf("%-25s%s\n", "The loai:", theLoai);
+        System.out.printf("%-20s%s\n", "Ma sach:", maSach);
+        System.out.printf("%-20s%s\n", "Ten sach:", tenSach);
+        System.out.printf("%-20s%s\n", "Ma nha xuat ban:", maNXB);
+        System.out.printf("%-20s%s\n", "Ma tac gia:", maTG);
+        System.out.printf("%-20s%d\n", "Nam xuat ban:", namXB);
+        System.out.printf("%-20s%d\n", "Don gia:", donGia);
+        System.out.printf("%-20s%d\n", "So luong:", soLuong);
+        System.out.printf("%-20s%s\n", "The loai:", theLoai);
     }
 
     @Override

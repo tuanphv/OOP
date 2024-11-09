@@ -71,6 +71,7 @@ public class DocGia {
         emailDG= nhap.nextLine();
         System.out.print("Nhap sach da muon: ");
         sachDaMuon= nhap.nextLine();
+        nhap.close();
     }
 
     public void xuat(){
