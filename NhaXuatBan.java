@@ -1,14 +1,16 @@
 import java.util.Scanner;
 public class NhaXuatBan {
     private String maNXB;
+    private String tenNXB;
     private String namThanhLap;
     private String quocGia;
     private String diaChiNXB;
     private String emailNXB;
     public NhaXuatBan(){}
 
-    public NhaXuatBan(String maNXB,String namThanhLap,String quocGia,String diaChiNXB,String emailNXB){
+    public NhaXuatBan(String maNXB,String tenNXB,String namThanhLap,String quocGia,String diaChiNXB,String emailNXB){
         this.maNXB=maNXB;
+        this.tenNXB=tenNXB;
         this.namThanhLap=namThanhLap;
         this.quocGia=quocGia;
         this.diaChiNXB=diaChiNXB;
@@ -17,6 +19,7 @@ public class NhaXuatBan {
     }
     public NhaXuatBan(NhaXuatBan nxb1){
         this.maNXB=nxb1.maNXB;
+        this.tenNXB=nxb1.tenNXB;
         this.namThanhLap=nxb1.namThanhLap;
         this.quocGia=nxb1.quocGia;
         this.diaChiNXB=nxb1.diaChiNXB;
@@ -25,6 +28,9 @@ public class NhaXuatBan {
 
     public String getmaNXB(){
         return maNXB;
+    }
+    public String gettenNXB(){
+        return tenNXB;
     }
     public String getnamThanhLap(){
         return namThanhLap;
@@ -43,6 +49,9 @@ public class NhaXuatBan {
     public void setmaNXB(String maNXB){
         this.maNXB=maNXB;
     }
+    public void setteNXB(String tenNXB){
+        this.tenNXB=tenNXB;
+    }
     public void setnamThanhLap(String namThanhLap){
         this.namThanhLap=namThanhLap;
     }
@@ -60,6 +69,8 @@ public class NhaXuatBan {
         Scanner nhap= new Scanner(System.in);
         System.out.print("Nhap ma nha xuat ban: ");
         maNXB= nhap.nextLine();
+        System.out.print("Nhap ten nha xuat ban: ");
+        tenNXB= nhap.nextLine();
         System.out.print("Nhap nam thanh lap: ");
         namThanhLap= nhap.nextLine();
         System.out.print("Nhap quoc gia: ");
@@ -73,9 +84,15 @@ public class NhaXuatBan {
 
     public void xuat(){
         System.out.println("Ma nha xuat ban: " + maNXB );
+        System.out.println("Ten nha xuat ban: " + tenNXB );
         System.out.println("Nam thanh lap: " + namThanhLap );
         System.out.println("Quoc gia: " + quocGia);
         System.out.println("Dia chi nha xuat ban: " + diaChiNXB );
         System.out.println("Email nha xuat ban: " + emailNXB );
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-15s%-15s%-15s%-15s%-15s%-15s", maNXB, tenNXB, namThanhLap, quocGia, diaChiNXB,emailNXB);
     }
 }
