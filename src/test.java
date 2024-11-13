@@ -9,6 +9,7 @@ public class test {
         ListSach l2 = new ListSach(l1);
         l1.xuat();
         l1.xoaSach(s2);
+        
         l1.xuat();
         l2.xuatTheoLoai();
     }

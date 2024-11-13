@@ -37,7 +37,7 @@ public class SachGiaiTri extends Sach {
     @Override
     public void xuat() {
         super.xuat();
-        System.out.printf("%-25s%d\n", "Do tuoi phu hop:", doTuoi);
+        System.out.printf("%-20s%d\n", "Do tuoi phu hop:", doTuoi);
     }
 
     @Override

@@ -52,8 +52,8 @@ public class SachHocThuat extends Sach {
     @Override
     public void xuat() {
         super.xuat();
-        System.out.printf("%-25s%s\n", "Linh vuc nghien cuu:", linhVucNC);
-        System.out.printf("%-25s%s\n", "Trinh do hoc van:", trinhDoHV);
+        System.out.printf("%-20s%s\n", "Linh vuc nghien cuu:", linhVucNC);
+        System.out.printf("%-20s%s\n", "Trinh do hoc van:", trinhDoHV);
     }
 
     @Override
