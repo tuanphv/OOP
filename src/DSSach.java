@@ -154,6 +154,18 @@ public class DSSach implements IList<Sach> {
             sachList = Arrays.copyOf(sachList, len - 1);
         }
     }
+
+    public Sach get(String maSach) {
+        int index = indexOf(maSach);
+        if (index == -1)
+            return null;
+        return sachList[index];
+    }
+
+    public boolean isEmpty() {
+        return sachList.length == 0;
+    }
+    
     public Sach[] timTheoMaTacGia(String maTacGia) {
         Sach[] result = new Sach[0];
         for (Sach s : sachList) {
