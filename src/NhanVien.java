@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class NhanVien{
+public class NhanVien {
     private String maNV;
     private String tenNV;
     private String chucVu;

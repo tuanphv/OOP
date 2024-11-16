@@ -1,0 +1,3 @@
+1, S001, Toan cao cap, NXBGD, TG001, 2009, 25000, 2, Sach giao khoa, Toan hoc, Dai hoc
+123, Giai tich 1, 121, 111, 2017, 25000, 2, Sach giao khoa
+0, 111, Giai tich 1, 121, 111, 2017, 25000, 2, Sach giao khoa, 10

@@ -1,6 +1,9 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Sach {
+public class Sach{
     private String maSach;
     private String tenSach;
     private String maNXB;
@@ -126,7 +129,7 @@ public class Sach {
         System.out.println("<===== Thong tin sach =====>");
         System.out.printf("%-20s%s\n", "Ma sach:", maSach);
         System.out.printf("%-20s%s\n", "Ten sach:", tenSach);
-        System.out.printf("%-20s%s\n", "Ma nha xuat ban:", maNXB);
+        System.out.printf("%-20s%s\n", "Ma nha xuat ban:", maNXB); 
         System.out.printf("%-20s%s\n", "Ma tac gia:", maTG);
         System.out.printf("%-20s%d\n", "Nam xuat ban:", namXB);
         System.out.printf("%-20s%d\n", "Don gia:", donGia);
@@ -134,9 +137,23 @@ public class Sach {
         System.out.printf("%-20s%s\n", "The loai:", theLoai);
     }
 
+    public void ghiFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/sach.txt", true));
+            writer.write(this.toFile());
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     @Override
     public String toString() {
         return String.format("%-10s%-35s%-10s%-12s%-8d%-9d%-10d%-20s", maSach, tenSach, maNXB, maTG, namXB, donGia,
                 soLuong, theLoai);
+    }
+
+    public String toFile() {
+        return String.format("%s, %s, %s, %s, %d, %d, %d, %s", maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong, theLoai);
     }
 }

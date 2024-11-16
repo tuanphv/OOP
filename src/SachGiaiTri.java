@@ -41,8 +41,17 @@ public class SachGiaiTri extends Sach {
     }
 
     @Override
+    public void ghiFile() {
+        super.ghiFile();
+    }
+
+    @Override
     public String toString() {
         return super.toString() + doTuoi + "";
     }
 
+    @Override
+    public String toFile() {
+        return "0, " + super.toFile() + ", " + doTuoi;
+    }
 }

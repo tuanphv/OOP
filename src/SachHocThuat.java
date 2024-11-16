@@ -57,7 +57,17 @@ public class SachHocThuat extends Sach {
     }
 
     @Override
+    public void ghiFile() {
+        super.ghiFile();
+    }
+
+    @Override
     public String toString() {
         return String.format("%s%-20s%s", super.toString(), linhVucNC, trinhDoHV);
+    }
+
+    @Override
+    public String toFile() {
+        return "1, " + super.toFile() + ", " + linhVucNC + ", " + trinhDoHV;
     }
 }

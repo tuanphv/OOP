@@ -1,21 +1,23 @@
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class ListSach {
+public class DSSach implements IList<Sach> {
+    Scanner in = new Scanner(System.in);
     Sach[] sachList = new Sach[0];
 
-    public ListSach() {
+    public DSSach() {
     }
 
-    public ListSach(Sach[] l1) {
+    public DSSach(Sach[] l1) {
         this.sachList = l1;
     }
 
-    public ListSach(ListSach l1) {
+    public DSSach(DSSach l1) {
         this.sachList = l1.sachList;
     }
 
-    public int timTheoMaSach(String maSach) {
+    public int indexOf(String maSach) {
         int n = sachList.length;
         for (int i = 0; i < n; i++) {
             if (sachList[i].getMaSach().equals(maSach))
@@ -23,8 +25,47 @@ public class ListSach {
         }
         return -1;
     }
-
-    Scanner in = new Scanner(System.in);
+    public void docFile() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("./lib/sach.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] s = line.split(", ");
+                switch (s[0]) {
+                    case "0":
+                        SachGiaiTri sgt = new SachGiaiTri(s[1], s[2], s[3], s[4], Integer.parseInt(s[5]), Integer.parseInt(s[6]), Integer.parseInt(s[7]), s[8], Integer.parseInt(s[9]));
+                        add(sgt);
+                        break;                        
+                    case "1":
+                        SachHocThuat sht = new SachHocThuat(s[1], s[2], s[3], s[4], Integer.parseInt(s[5]), Integer.parseInt(s[6]), Integer.parseInt(s[7]), s[8], s[9], s[10]);
+                        add(sht);
+                        break;
+                    default:
+                        System.out.println("Loi doc file");
+                        break;
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Loi doc file " + e.getMessage());
+        } finally {
+            System.out.println("Doc file thanh cong");
+        }
+    }
+    public void ghiFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/sach.txt"));
+            for (Sach s : sachList) {
+                writer.write(s.toFile());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Loi ghi file " + e.getMessage());
+        } finally {
+            System.out.println("Ghi file thanh cong");
+        }
+    }
 
     public void nhap() {
         System.out.println("Nhap n:");
@@ -48,7 +89,7 @@ public class ListSach {
                     break;
             }
             s.nhap();
-            while (timTheoMaSach(s.getMaSach()) != -1) {
+            while (indexOf(s.getMaSach()) != -1) {
                 System.out.println("Da co sach. Vui long nhap lai!");
                 s.nhap();
             }
@@ -81,8 +122,8 @@ public class ListSach {
         }
     }
 
-    public void themSach(Sach s1) {
-        int index = timTheoMaSach(s1.getMaSach());
+    public void add(Sach s1) {
+        int index = indexOf(s1.getMaSach());
         if (index == -1) {
             int n = sachList.length;
             sachList = Arrays.copyOf(sachList, n + 1);
@@ -92,16 +133,8 @@ public class ListSach {
         }
     }
 
-    public void themSoLuongSach(String maSach, int soLuong) {
-        int index = timTheoMaSach(maSach);
-        if (index != -1)
-            sachList[index].setSoLuong(sachList[index].getSoLuong() + soLuong);
-        else
-            System.out.println("Ma sach sai!");
-    }
-
     public void suaSach(Sach s1) {
-        int index = timTheoMaSach(s1.getMaSach());
+        int index = indexOf(s1.getMaSach());
         sachList[index].setTenSach(s1.getTenSach());
         sachList[index].setMaNXB(s1.getMaNXB());
         sachList[index].setMaTG(s1.getMaTG());
@@ -111,8 +144,8 @@ public class ListSach {
         sachList[index].setTheLoai(s1.getTheLoai());
     }
 
-    public void xoaSach(Sach s1) {
-        int index = timTheoMaSach(s1.getMaSach());
+    public void remove(Sach s1) {
+        int index = indexOf(s1.getMaSach());
         if (index == -1)
             System.out.println("Khong tim thay sach!");
         else {

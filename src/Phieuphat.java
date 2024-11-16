@@ -55,7 +55,7 @@ public class Phieuphat {
         this.Tongphat = tongphat;
     }
 
-    public void Nhap() {
+    public void nhap() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập mã phiếu phạt: ");
         this.Mapp = scanner.nextLine();
@@ -68,7 +68,7 @@ public class Phieuphat {
         scanner.close();
     }
 
-    public void Xuat() {
+    public void xuat() {
         System.out.println("Mã phiếu phạt: " + Mapp);
         System.out.println("Mã độc giả: " + Madg);
         System.out.println("Mã nhân viên: " + Manv);
