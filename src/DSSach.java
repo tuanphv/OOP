@@ -4,23 +4,19 @@ import java.util.Scanner;
 
 public class DSSach implements IList<Sach> {
     Scanner in = new Scanner(System.in);
-    Sach[] sachList = new Sach[0];
+    static Sach[] list = new Sach[0];
 
     public DSSach() {
     }
 
     public DSSach(Sach[] l1) {
-        this.sachList = l1;
-    }
-
-    public DSSach(DSSach l1) {
-        this.sachList = l1.sachList;
+        list = l1;
     }
 
     public int indexOf(String maSach) {
-        int n = sachList.length;
+        int n = list.length;
         for (int i = 0; i < n; i++) {
-            if (sachList[i].getMaSach().equals(maSach))
+            if (list[i].getMaSach().equals(maSach))
                 return i;
         }
         return -1;
@@ -55,7 +51,7 @@ public class DSSach implements IList<Sach> {
     public void ghiFile() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/sach.txt"));
-            for (Sach s : sachList) {
+            for (Sach s : list) {
                 writer.write(s.toFile());
                 writer.newLine();
             }
@@ -70,7 +66,7 @@ public class DSSach implements IList<Sach> {
     public void nhap() {
         System.out.println("Nhap n:");
         int n = Integer.parseInt(in.nextLine());
-        sachList = new Sach[n];
+        list = new Sach[n];
         for (int i = 0; i < n; i++) {
             int chon;
             Sach s = new Sach();
@@ -93,13 +89,13 @@ public class DSSach implements IList<Sach> {
                 System.out.println("Da co sach. Vui long nhap lai!");
                 s.nhap();
             }
-            sachList[i] = s;
+            list[i] = s;
         }
     }
 
     public void xuat() {
         System.out.println("\nTat ca sach");
-        for (Sach x : sachList) {
+        for (Sach x : list) {
             x.xuat();
         }
     }
@@ -108,7 +104,7 @@ public class DSSach implements IList<Sach> {
         System.out.println("\nSach giai tri:");
         System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%s\n",
                 "Ma sach", "Ten sach", "Ma NXB", "Ma tac gia", "Nam XB", "Don gia", "So luong", "The loai", "Do tuoi");
-        for (Sach x : sachList) {
+        for (Sach x : list) {
             if (x instanceof SachGiaiTri)
                 System.out.println(x);
         }
@@ -116,7 +112,7 @@ public class DSSach implements IList<Sach> {
         System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%-20s%s\n",
                 "Ma sach", "Ten sach", "Ma NXB", "Ma tac gia", "Nam XB", "Don gia", "So luong", "The loai",
                 "Linh vuc nghien cuu", "Trinh do");
-        for (Sach x : sachList) {
+        for (Sach x : list) {
             if (x instanceof SachHocThuat)
                 System.out.println(x);
         }
@@ -125,9 +121,9 @@ public class DSSach implements IList<Sach> {
     public void add(Sach s1) {
         int index = indexOf(s1.getMaSach());
         if (index == -1) {
-            int n = sachList.length;
-            sachList = Arrays.copyOf(sachList, n + 1);
-            sachList[n] = s1;
+            int n = list.length;
+            list = Arrays.copyOf(list, n + 1);
+            list[n] = s1;
         } else {
             System.out.println("Da co sach trong thu vien");
         }
@@ -135,13 +131,13 @@ public class DSSach implements IList<Sach> {
 
     public void suaSach(Sach s1) {
         int index = indexOf(s1.getMaSach());
-        sachList[index].setTenSach(s1.getTenSach());
-        sachList[index].setMaNXB(s1.getMaNXB());
-        sachList[index].setMaTG(s1.getMaTG());
-        sachList[index].setNamXB(s1.getNamXB());
-        sachList[index].setDonGia(s1.getDonGia());
-        sachList[index].setSoLuong(s1.getSoLuong());
-        sachList[index].setTheLoai(s1.getTheLoai());
+        list[index].setTenSach(s1.getTenSach());
+        list[index].setMaNXB(s1.getMaNXB());
+        list[index].setMaTG(s1.getMaTG());
+        list[index].setNamXB(s1.getNamXB());
+        list[index].setDonGia(s1.getDonGia());
+        list[index].setSoLuong(s1.getSoLuong());
+        list[index].setTheLoai(s1.getTheLoai());
     }
 
     public void remove(Sach s1) {
@@ -149,9 +145,9 @@ public class DSSach implements IList<Sach> {
         if (index == -1)
             System.out.println("Khong tim thay sach!");
         else {
-            int len = sachList.length;
-            System.arraycopy(sachList, index + 1, sachList, index, len - index - 1);
-            sachList = Arrays.copyOf(sachList, len - 1);
+            int len = list.length;
+            System.arraycopy(list, index + 1, list, index, len - index - 1);
+            list = Arrays.copyOf(list, len - 1);
         }
     }
 
@@ -159,16 +155,16 @@ public class DSSach implements IList<Sach> {
         int index = indexOf(maSach);
         if (index == -1)
             return null;
-        return sachList[index];
+        return list[index];
     }
 
     public boolean isEmpty() {
-        return sachList.length == 0;
+        return list.length == 0;
     }
     
     public Sach[] timTheoMaTacGia(String maTacGia) {
         Sach[] result = new Sach[0];
-        for (Sach s : sachList) {
+        for (Sach s : list) {
             if (s.getMaTG().equals(maTacGia)) {
                 result = Arrays.copyOf(result, result.length + 1);
                 result[result.length - 1] = s;
@@ -178,7 +174,7 @@ public class DSSach implements IList<Sach> {
     }
     public Sach[] timTheoNamXB(int namXB) {
         Sach[] result = new Sach[0];
-        for (Sach s : sachList) {
+        for (Sach s : list) {
             if (s.getNamXB() == namXB) {
                 result = Arrays.copyOf(result, result.length + 1);
                 result[result.length - 1] = s;
@@ -188,7 +184,7 @@ public class DSSach implements IList<Sach> {
     }
     public Sach[] timTheoTheLoai(String theLoai) {
         Sach[] result = new Sach[0];
-        for (Sach s : sachList) {
+        for (Sach s : list) {
             if (s.getTheLoai().equals(theLoai)) {
                 result = Arrays.copyOf(result, result.length + 1);
                 result[result.length - 1] = s;
@@ -198,7 +194,7 @@ public class DSSach implements IList<Sach> {
     }
     public Sach[] timTheoDonGia(int from, int to) {
         Sach[] result = new Sach[0];
-        for (Sach s : sachList) {
+        for (Sach s : list) {
             if (s.getDonGia() <= to && s.getDonGia() >= from) {
                 result = Arrays.copyOf(result, result.length + 1);
                 result[result.length - 1] = s;
@@ -208,7 +204,7 @@ public class DSSach implements IList<Sach> {
     }
     public Sach[] timTheoTenSach(String tenSach) {
         Sach[] result = new Sach[0];
-        for (Sach s : sachList) {
+        for (Sach s : list) {
             if (s.getTenSach().contains(tenSach)) {
                 result = Arrays.copyOf(result, result.length + 1);
                 result[result.length - 1] = s;
@@ -218,7 +214,7 @@ public class DSSach implements IList<Sach> {
     }
     public Sach[] timTheoDoTuoi(int tuoi) {
         Sach[] result = new Sach[0];
-        for (Sach s : sachList) {
+        for (Sach s : list) {
             if (s instanceof SachGiaiTri) {
                 SachGiaiTri sgt = (SachGiaiTri) s;
                 if (sgt.getDoTuoi() == tuoi) {
@@ -231,7 +227,7 @@ public class DSSach implements IList<Sach> {
     }
     public Sach[] timTheoLinhVuc(String linhVuc) {
         Sach[] result = new Sach[0];
-        for (Sach s : sachList) {
+        for (Sach s : list) {
             if (s instanceof SachHocThuat) {
                 SachHocThuat sht = (SachHocThuat) s;
                 if (sht.getLinhVucNC().contains(linhVuc)) {
@@ -244,7 +240,7 @@ public class DSSach implements IList<Sach> {
     }
     public Sach[] timTheoTrinhDo(String trinhDo) {
         Sach[] result = new Sach[0];
-        for (Sach s : sachList) {
+        for (Sach s : list) {
             if (s instanceof SachHocThuat) {
                 SachHocThuat sht = (SachHocThuat) s;
                 if (sht.getTrinhDo().contains(trinhDo)) {
