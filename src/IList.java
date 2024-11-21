@@ -11,4 +11,6 @@ public interface IList<T> {
     public T get(String ma);
     // kiem tra danh sach rong
     public boolean isEmpty();
+    // lay do dai danh sach
+    public int size();
 }

@@ -1,5 +1,6 @@
 import java.util.Scanner;
 public class DocGia {
+    private String maDG;
     private String hoDG;
     private String tenDG;
     private String sdtDG;
@@ -8,7 +9,8 @@ public class DocGia {
     
     public DocGia(){}
 
-    public DocGia(String hoDG,String tenDG,String sdtDG,String emailDG,String sachDaMuon){
+    public DocGia(String maDG, String hoDG,String tenDG,String sdtDG,String emailDG,String sachDaMuon){
+        this.maDG=maDG;
         this.hoDG=hoDG;
         this.tenDG=tenDG;
         this.sdtDG=sdtDG;
@@ -16,6 +18,7 @@ public class DocGia {
         this.sachDaMuon=sachDaMuon;
     }
     public DocGia(DocGia dg1){
+        this.maDG=dg1.maDG;
         this.hoDG=dg1.hoDG;
         this.tenDG=dg1.tenDG;
         this.sdtDG=dg1.sdtDG;
@@ -23,23 +26,28 @@ public class DocGia {
         this.sachDaMuon=dg1.sachDaMuon;
     }
 
-
-    public String gethoDG(){
+    public String getMaDG(){
+        return maDG;
+    }
+    public String getHoDG(){
         return hoDG;
     }
-    public String gettenDG(){
+    public String getTenDG(){
         return tenDG;
     }
-    public String getsdtDG(){
+    public String getSdtDG(){
         return sdtDG;
     }
-    public String getemailDG(){
+    public String getEmailDG(){
         return emailDG;
     }
     public String getsachDaMuon(){
         return sachDaMuon;
     }
     
+    public void setmaDG(String maDG){
+        this.maDG= maDG;
+    }
 
     public void sethoDG(String hoDG){
         this.hoDG= hoDG;
@@ -61,6 +69,8 @@ public class DocGia {
     
     public void nhap(){
         Scanner nhap= new Scanner(System.in);
+        System.out.print("Nhap ma doc gia: ");
+        maDG= nhap.nextLine();
         System.out.print("Nhap ho doc gia: ");
         hoDG= nhap.nextLine();
         System.out.print("Nhap ten doc gia: ");
@@ -75,6 +85,7 @@ public class DocGia {
     }
 
     public void xuat(){
+        System.out.println("Ma doc gia: "+maDG);
         System.out.println("Ten doc gia: "+hoDG);
         System.out.println("Ten doc gia: "+tenDG);
         System.out.println("So dien thoai doc gia: "+sdtDG);
@@ -82,5 +93,7 @@ public class DocGia {
         System.out.println("Sach da muon: "+sachDaMuon);
     }
 
-
+    public String toFile(){
+        return maDG+", "+hoDG+", "+tenDG+", "+sdtDG+", "+emailDG+", "+sachDaMuon;
+    }
 }
