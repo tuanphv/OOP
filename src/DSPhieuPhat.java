@@ -7,9 +7,6 @@ public class DSPhieuPhat implements IList<Phieuphat>, Serializable {
     private final int MAX = 100; // Kích thước tối đa của danh sách
 
     public DSPhieuPhat() {
-    }
-
-    public DSPhieuPhat() {
         this.dsPhieuPhat = new Phieuphat[MAX];
         this.soLuong = 0;
     }
@@ -113,6 +110,11 @@ public class DSPhieuPhat implements IList<Phieuphat>, Serializable {
         return soLuong == 0;
     }
 
+    @Override
+    public int size() {
+        return soLuong;
+    }
+
     public void nhapDanhSach() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập số lượng phiếu phạt: ");
@@ -128,6 +130,7 @@ public class DSPhieuPhat implements IList<Phieuphat>, Serializable {
             phieuPhat.nhap();
             add(phieuPhat);
         }
+        scanner.close();
     }
 
     public void xuatDanhSach() {

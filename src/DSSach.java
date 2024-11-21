@@ -161,7 +161,11 @@ public class DSSach implements IList<Sach> {
     public boolean isEmpty() {
         return list.length == 0;
     }
-    
+
+    public int size() {
+        return list.length;
+    }
+
     public Sach[] timTheoMaTacGia(String maTacGia) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {
