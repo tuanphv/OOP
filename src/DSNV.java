@@ -1,47 +1,248 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 
-public class DSNV {
-    NhanVien []dsnv= new NhanVien[0];
-    
-    private void them_mang(){
+public class DSNV implements IList<NhanVien>{
+    private NhanVien []dsnv= new NhanVien[0];
+    Scanner nhap= new Scanner(System.in);
+
+    public void add(NhanVien nv){
         int solg= dsnv.length;
-        dsnv= Arrays.copyOf(dsnv, solg+ 1);
+        if (indexOf(nv.getMaNV())!= -1)
+            System.out.println("Da co nhan vien trong danh sach");      
+        else {
+            dsnv= Arrays.copyOf(dsnv, solg+1);
+            dsnv[solg]=nv;
+        }
     }
 
-    private void bo_mang(){
+    public void remove(NhanVien nv){
         int solg= dsnv.length;
-        dsnv= Arrays.copyOf(dsnv, solg+ 1);
+        if(nv == null || indexOf(nv.getMaNV()) == -1)
+            System.out.println("Nhan vien chua co trong danh sach");
+        else {
+            for(int i=indexOf(nv.getMaNV()); i<solg-1 ; i++)
+                dsnv[i].copyNV(dsnv[i+1]);
+        }
     }
 
-    public void them(int n){
+    public NhanVien get (String ma){
+        if(indexOf(ma)!= -1) return dsnv[indexOf(ma)];
+        return null;
+    }
+
+    public NhanVien[] timTheoKhoangLuong(int from, int to){
         int solg= dsnv.length;
-        for (int i=0; i< solg; i++){
-            them_mang();
-            dsnv[i]= new NhanVien();
-            dsnv[i].nhap();
-            if (!ktraMaNV(dsnv[i].getMaNV())){
-                System.out.print("Da co ma so nhan vien trong danh sach");
-                bo_mang();
+        NhanVien[] temp= new NhanVien [0];
+        for(int i=0; i <solg; i++)
+            if(Integer.parseInt(dsnv[i].getLuong()) >= from && Integer.parseInt(dsnv[i].getLuong()) <= to){
+                int solg2= temp.length;
+                temp= Arrays.copyOf(temp, solg2 +1);
+                temp[solg2]= dsnv[i];
+            }
+        return temp;
+    }
+
+    public NhanVien[] timTheoGioiTinh(String gioiTinh){
+        int solg= dsnv.length;
+        NhanVien[] temp= new NhanVien [0];
+        for(int i=0; i < solg; i++){
+            if (dsnv[i].getgioiTinh().equalsIgnoreCase(gioiTinh)){
+                int solg2= temp.length;
+                temp= Arrays.copyOf(temp, solg2 +1);
+                temp[solg2]= dsnv[i];
+            }
+        }
+        return temp;
+    }
+
+    public NhanVien[] timTheoSDT(String sdt){
+        int solg= dsnv.length;
+        NhanVien[] temp= new NhanVien [0];
+        for(int i=0; i < solg; i++){
+            if (dsnv[i].getSdtNV().equalsIgnoreCase(sdt)){
+                int solg2= temp.length;
+                temp= Arrays.copyOf(temp, solg2 +1);
+                temp[solg2]= dsnv[i];
+            }
+        }
+        return temp;
+    }
+
+    public NhanVien[] timTheoChucVu(String chucVu){
+        int solg= dsnv.length;
+        NhanVien[] temp= new NhanVien [0];
+        for(int i=0; i < solg; i++){
+            if (dsnv[i].getChucVu().equalsIgnoreCase(chucVu)){
+                int solg2= temp.length;
+                temp= Arrays.copyOf(temp, solg2 +1);
+                temp[solg2]= dsnv[i];
+            }
+        }
+        return temp;
+    }
+
+    public NhanVien[] timTheoTen(String ten){
+        int solg= dsnv.length;
+        NhanVien[] temp= new NhanVien [0];
+        for(int i=0; i < solg; i++){
+            if (dsnv[i].getTenNV().equalsIgnoreCase(ten)){
+                int solg2= temp.length;
+                temp= Arrays.copyOf(temp, solg2 +1);
+                temp[solg2]= dsnv[i];
+            }
+        }
+        return temp;
+    }
+
+    public void hienthi(){
+        System.out.println("----------THONG TIN TOAN BO NHAN VIEN----------");
+        int solg= dsnv.length;
+        if(isEmpty()) System.out.println("Danh sach rong");
+        else{
+            System.out.printf("%5s %10s %20s %20s %15s %10s %10s\n", "STT","MaNv", "TenNV", "ChucVuNV", "SdtNv", "GioiTinh", "Luong");
+            for (int i=0; i< solg; i++){
+                System.out.printf("%5s", i);
+                dsnv[i].xuat();
             }
         }
     }
 
-    public void xoa(String n){
+    public boolean isEmpty(){
         int solg= dsnv.length;
-        for(int i=0; i< solg; i++)
-            if(dsnv[i].getMaNV().equals(n)){
-                for(int j=i; j< solg; j++)
-                    dsnv[i].copyNV(dsnv[i+1]);
-                return;
-            }
-        System.out.println("Khong co ma nhan vien trong danh sach");
+        if(solg ==0) return true;
+        return false;
     }
 
-    public boolean ktraMaNV(String n){
+    public void docFile(){
+        try{
+            FileReader fr= new FileReader("./lib/NV.txt");
+            BufferedReader br= new BufferedReader(fr);
+            String line= br.readLine();
+            while (line != null){
+                System.out.println(line);
+                line= br.readLine();
+            }
+            br.close();
+        }
+        catch (IOException e) {
+            System.out.println("Loi khi doc file: " + e.getMessage());
+        }
+        finally{
+            System.out.println("Da doc file xong");
+        }
+    }
+
+    public void ghiFile(){
+        try {
+            FileWriter fw= new FileWriter("./lib/NV.txt");
+            BufferedWriter bw= new BufferedWriter(fw);
+            String line;
+            line= nhap.nextLine();
+            bw.write(line);
+            bw.newLine();
+            bw.close();
+            fw.close();
+        }
+        catch(IOException e){
+            System.out.println("Loi khi ghi file: " + e);
+        }
+        finally{
+            System.out.println("Da ghi file xong");
+        }
+    }
+
+    public void menu(){
+        int input;
+        do{
+            System.out.println("----------QUAN LY NHAN VIEN----------");
+            System.out.println("1. Them nhan vien");
+            System.out.println("2. Xoa nhan vien");
+            System.out.println("3. Tim nhan vien theo ten");
+            System.out.println("4. Tim nhan vien theo chuc vu");
+            System.out.println("5. Tim nhan vien theo sdt");
+            System.out.println("6. Tim nhan vien theo gioi tinh");
+            System.out.println("7. Tim nhan vien theo khoang luong");
+            System.out.println("8. Hien thi danh sach nhan vien");
+            System.out.println("0. Thoat");
+            input= Integer.parseInt(nhap.nextLine());
+            if(input ==1){
+                System.out.println("So nv muon them");
+                int solg= nhap.nextInt();
+                nhap.nextLine();
+                for(int i=0;i<solg;i++){
+                    NhanVien temp= new NhanVien();
+                    temp.nhap();
+                    add(temp);
+                }
+            };
+            if(input== 2){
+                System.out.println("So nv muon xoa");
+                int solg= Integer.parseInt(nhap.nextLine());
+                for(int i=0;i<solg;i++){
+                    System.out.println("Nhap ma nv can xoa");
+                    String temp= nhap.nextLine();
+                    remove(get(temp));
+                }
+            }
+            if(input==3){
+                System.out.println("Nhap ten nv can tim");
+                String temp= nhap.nextLine();
+                NhanVien[] kq= timTheoTen(temp);
+                System.out.println("Co" + kq.length + "ketqua");
+                for(int i=0; i <kq.length; i++)
+                    kq[i].xuat();
+            }
+            if (input==4){
+                System.out.println("Nhap chuc vu nv can tim");
+                String temp= nhap.nextLine();
+                NhanVien[] kq= timTheoChucVu(temp);
+                System.out.println("Co" + kq.length + "ketqua");
+                for(int i=0; i < kq.length; i++)
+                    kq[i].xuat();
+    
+            }
+            if (input==5){
+                System.out.println("Nhap sdt nv can tim");
+                String temp= nhap.nextLine();
+                NhanVien[] kq= timTheoSDT(temp);
+                System.out.println("Co" + kq.length + "ketqua");
+                for(int i=0; i < kq.length; i++)
+                    kq[i].xuat();
+            }
+            if(input==6){
+                System.out.print("Nhap gioi tih nv can tim: ");
+                String temp= nhap.nextLine();
+                NhanVien[] kq= timTheoGioiTinh(temp);
+                System.out.println("Co" + kq.length + "ketqua");
+                for(int i=0; i <kq.length; i++)
+                    kq[i].xuat();
+            }
+            if(input==7){
+                System.out.println("Nhap khoang luong can tim");
+                int from= Integer.parseInt(nhap.nextLine());
+                int to= Integer.parseInt(nhap.nextLine());
+                NhanVien[] kq= timTheoKhoangLuong(from, to);
+                System.out.println("Co" + kq.length + "ketqua");
+                for(int i=0; i < kq.length; i++)
+                    kq[i].xuat();
+            }
+            if(input==8){
+                hienthi();
+            }
+        }
+        while(input != 0);
+    }
+
+    public int indexOf(String n){
         int solg= dsnv.length;
         for (int i=0; i< solg; i++)
             if (dsnv[i].getMaNV().equals(n))
-                return false;
-        return true;
+                return i;
+        return -1;
     }
 }

@@ -10,5 +10,8 @@ public class test {
         l1.add(s2);
         l1.xuatTheoLoai();
         l1.ghiFile();
+
+        // DSNV dsnv1= new DSNV();
+        // dsnv1.menu();
     }
 }
