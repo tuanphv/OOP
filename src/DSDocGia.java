@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.Arrays;
 import java.io.*;
+import java.util.Scanner;
 
 public class DSDocGia implements IList<DocGia> {
     private DocGia[] dsDocGia = new DocGia[0];
@@ -15,7 +16,26 @@ public class DSDocGia implements IList<DocGia> {
     public DSDocGia(DSDocGia ds) {
         this.dsDocGia = ds.dsDocGia;
     }
+    
+    public void nhapDanhSach() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập số lượng độc giả: ");
+        int soLuong = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < soLuong; i++) {
+            System.out.println("Nhập thông tin độc giả thứ " + (i + 1) + ":");
+            DocGia dg = new DocGia();
+            dg.nhap();
+            add(dg);
+        }
+        scanner.close();
+    }
 
+    public void xuatDanhSach() {
+        for (DocGia dg : dsDocGia) {
+            dg.xuat();
+        }
+    }
+    
     public void docFile() {
         try {
             // Đọc file
@@ -23,7 +43,10 @@ public class DSDocGia implements IList<DocGia> {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] s = line.split(", ");
-                DocGia dg = new DocGia(s[0], s[1], s[2], s[3], s[4], s[5]);
+                int lastSpaceIndex = s[1].lastIndexOf(' ');
+                String ho = s[1].substring(0, lastSpaceIndex);
+                String ten = s[1].substring(lastSpaceIndex + 1);
+                DocGia dg = new DocGia(s[0], ho, ten, s[2], s[3]);
                 add(dg);
             }
             reader.close();
@@ -92,5 +115,20 @@ public class DSDocGia implements IList<DocGia> {
 
     public int size() {
         return dsDocGia.length;
+    }
+
+    public DocGia[] timTheoHoTen(String hoTen) {
+        DocGia[] result = new DocGia[0];
+        String data[] = hoTen.split(" ");
+        for (DocGia dg : dsDocGia) {
+            for (String s : data) {
+                if (dg.getTenDG().contains(s) || dg.getHoDG().contains(s)) {
+                    result = Arrays.copyOf(result, result.length + 1);
+                    result[result.length - 1] = dg;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 }
