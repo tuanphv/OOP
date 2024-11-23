@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DSSach implements IList<Sach> {
     Scanner in = new Scanner(System.in);
-    static Sach[] list = new Sach[0];
+    private Sach[] list = new Sach[0];
 
     public DSSach() {
     }

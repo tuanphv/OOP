@@ -27,6 +27,7 @@ public class ChiTietPhieuNhap {
         System.out.print("Nhap don gia: ");
         donGia = nhap.nextInt();
         thanhTien = soLuong * donGia;
+        nhap.close();
     }
 
     public String getMaSach() {
