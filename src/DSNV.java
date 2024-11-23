@@ -285,7 +285,4 @@ public class DSNV implements IList<NhanVien>{
         return -1;
     }
 
-    public int size(){
-        return dsnv.length;
-    }
 }
