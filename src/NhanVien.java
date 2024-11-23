@@ -29,15 +29,6 @@ public class NhanVien {
         this.gioiTinh= nv1.gioiTinh;
     }
 
-    public void copyNV(NhanVien nv1){
-        maNV= nv1.maNV;
-        tenNV= nv1.tenNV;
-        chucVu= nv1.chucVu;
-        luong= nv1.luong;
-        gioiTinh= nv1.gioiTinh;
-        sdtNV= nv1.sdtNV;
-    }
-
     public String getMaNV(){
         return maNV;
     }
@@ -87,11 +78,24 @@ public class NhanVien {
     }
 
     public String ktraSdt(String sdt){
-        while(sdt.length()!=10 && sdt.charAt(0)!=0){
+        while(sdt.length()!=10 && sdt.charAt(0)!='0'){
             System.out.println("So dien thoai khong hop le");
             sdt= nhap.nextLine();
         }
             return sdt;
+    }
+
+    public String ktraLuong(String luong){
+        while(true){
+            try{
+                Integer.parseInt(luong);
+                return luong;
+            }
+            catch(NumberFormatException e){
+                System.out.println("Luong khong hop le. Nhap lai");
+                luong= nhap.nextLine();
+            }
+        }
     }
 
     public String ktraGioiTinh(String gioiTinh){
