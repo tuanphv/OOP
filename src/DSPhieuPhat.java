@@ -2,7 +2,8 @@ import java.io.*;
 import java.util.Scanner;
 
 public class DSPhieuPhat implements IList<Phieuphat> {
-    private Phieuphat[] list = new Phieuphat[0];  // Mảng ban đầu rỗng
+    private Phieuphat[] list = new Phieuphat[100];  // Mảng với kích thước cố định
+    private int count = 0; // Biến đếm số lượng phiếu phạt
 
     public DSPhieuPhat() {}
 
@@ -99,6 +100,11 @@ public void remove(Phieuphat phieuphat) {
         return list.length;
     }
 
+    // Lấy danh sách phiếu phạt
+    public Phieuphat[] getList() {
+        return list;
+    }
+    
     // Hiển thị menu và thực hiện các thao tác
     public static void main(String[] args) {
         DSPhieuPhat ds = new DSPhieuPhat();
