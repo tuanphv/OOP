@@ -55,19 +55,14 @@ public class SachHocThuat extends Sach {
         System.out.printf("%-20s%s\n", "Linh vuc nghien cuu:", linhVucNC);
         System.out.printf("%-20s%s\n", "Trinh do hoc van:", trinhDoHV);
     }
-
-    @Override
-    public void ghiFile() {
-        super.ghiFile();
-    }
-
+    
     @Override
     public String toString() {
         return String.format("%s%-20s%s", super.toString(), linhVucNC, trinhDoHV);
     }
 
     @Override
-    public String toFile() {
-        return "1, " + super.toFile() + ", " + linhVucNC + ", " + trinhDoHV;
+    public String formatToString() {
+        return "1, " + super.formatToString() + ", " + linhVucNC + ", " + trinhDoHV;
     }
 }

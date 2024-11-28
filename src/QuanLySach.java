@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class QuanLySach {
-    DSSach dsSach = new DSSach();
-
-    public void Menu() {
+    public void Menu(DSSach dsSach) {
         Scanner in = new Scanner(System.in);
         int chon = 0;
         System.out.println("Quan ly sach");
@@ -17,24 +15,7 @@ public class QuanLySach {
             chon = Integer.parseInt(in.nextLine());
             switch (chon) {
                 case 1:
-                    int chonLoai = 0;
-                    do {
-                        System.out.println("Chon loai sach: 1. Sach hoc thuat, 2. Sach giai tri");
-                        chonLoai = Integer.parseInt(in.nextLine());
-                        switch (chonLoai) {
-                            case 1:
-                                SachHocThuat sht = new SachHocThuat();
-                                dsSach.add(sht);
-                                break;
-                            case 2:
-                                SachGiaiTri sgt = new SachGiaiTri();
-                                dsSach.add(sgt);
-                                break;
-                            default:
-                                System.out.println("Chon sai! Vui long chon lai");
-                                break;
-                        }
-                    } while (chonLoai != 1 && chonLoai != 2);
+                    dsSach.them();
                     break;
                 case 2:
                     System.out.println("Nhap ma sach can xoa: ");
@@ -66,13 +47,13 @@ public class QuanLySach {
                             case 3:
                                 System.out.println("Nhap nam xuat ban can tim: ");
                                 int namXB = Integer.parseInt(in.nextLine());
-                                dsSach.timTheoNamXB(namXB);
+                                new DSSach(dsSach.timTheoNamXB(namXB)).xuat();;
                                 break;
                             case 4:
                                 System.out.println("Nhap khoang gia can tim: ");
                                 int giaMin = Integer.parseInt(in.nextLine());
                                 int giaMax = Integer.parseInt(in.nextLine());
-                                dsSach.timTheoDonGia(giaMin, giaMax);
+                                new DSSach(dsSach.timTheoDonGia(giaMin, giaMax)).xuat();;
                                 break;
                             case 5:
                                 System.out.println("Ket thuc tim kiem");

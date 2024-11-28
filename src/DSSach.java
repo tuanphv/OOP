@@ -26,8 +26,11 @@ public class DSSach implements IList<Sach> {
             BufferedReader reader = new BufferedReader(new FileReader("./lib/sach.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
+                // tách dữ liệu từ dạng chuỗi sang mảng
                 String[] s = line.split(", ");
                 switch (s[0]) {
+                    // tạo đối tượng sách theo loại
+                    // 0 là sách giải trí, 1 là sách học thuật
                     case "0":
                         SachGiaiTri sgt = new SachGiaiTri(s[1], s[2], s[3], s[4], Integer.parseInt(s[5]), Integer.parseInt(s[6]), Integer.parseInt(s[7]), s[8], Integer.parseInt(s[9]));
                         add(sgt);
@@ -52,7 +55,7 @@ public class DSSach implements IList<Sach> {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/sach.txt"));
             for (Sach s : list) {
-                writer.write(s.toFile());
+                writer.write(s.formatToString());
                 writer.newLine();
             }
             writer.close();
@@ -117,7 +120,29 @@ public class DSSach implements IList<Sach> {
                 System.out.println(x);
         }
     }
-
+    // thêm sách vào danh sách, trước khi thêm hỏi loại cần thêm
+    public void them() {
+        int chon;
+        Sach s = new Sach();
+        // while tới khi nào chọn đúng loại sách hoặc thoát
+        do {
+            System.out.println("Chon loai sach: 1. Sach hoc thuat, 2. Sach giai tri");
+            chon = Integer.parseInt(in.nextLine());
+            if (chon != 1 && chon != 2)
+                System.out.println("Chon sai! Vui long chon lai");
+        } while (chon != 1 && chon != 2);
+        switch (chon) {
+            case 1:
+                s = new SachHocThuat();
+                break;
+            case 2:
+                s = new SachGiaiTri();
+                break;
+        }
+        s.nhap();
+        add(s);
+    }
+    // add sách vào cuối danh sách, kiểm tra trùng mã sách
     public void add(Sach s1) {
         int index = indexOf(s1.getMaSach());
         if (index == -1) {
@@ -131,13 +156,11 @@ public class DSSach implements IList<Sach> {
 
     public void suaSach(Sach s1) {
         int index = indexOf(s1.getMaSach());
-        list[index].setTenSach(s1.getTenSach());
-        list[index].setMaNXB(s1.getMaNXB());
-        list[index].setMaTG(s1.getMaTG());
-        list[index].setNamXB(s1.getNamXB());
-        list[index].setDonGia(s1.getDonGia());
-        list[index].setSoLuong(s1.getSoLuong());
-        list[index].setTheLoai(s1.getTheLoai());
+        if (index == -1)
+            System.out.println("Khong tim thay sach!");
+        else {
+            list[index] = s1;
+        }
     }
 
     public void remove(Sach s1) {
@@ -150,7 +173,7 @@ public class DSSach implements IList<Sach> {
             list = Arrays.copyOf(list, len - 1);
         }
     }
-
+    // get sách theo mã sách
     public Sach get(String maSach) {
         int index = indexOf(maSach);
         if (index == -1)

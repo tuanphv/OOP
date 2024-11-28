@@ -140,7 +140,7 @@ public class Sach{
     public void ghiFile() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/sach.txt", true));
-            writer.write(this.toFile());
+            writer.write(this.formatToString());
             writer.newLine();
             writer.close();
         } catch (IOException e) {
@@ -153,7 +153,7 @@ public class Sach{
                 soLuong, theLoai);
     }
 
-    public String toFile() {
+    public String formatToString() {
         return String.format("%s, %s, %s, %s, %d, %d, %d, %s", maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong, theLoai);
     }
 }

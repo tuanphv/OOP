@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class ChiTietPhieuNhap {
-    
+    private String maPhieuNhap;
     private String maSach;
     private int soLuong;
     private int donGia;
@@ -10,23 +10,23 @@ public class ChiTietPhieuNhap {
 
     public ChiTietPhieuNhap(){}
 
-    public ChiTietPhieuNhap(String maSach,int soLuong, int donGia){
+    public ChiTietPhieuNhap(String maPhieuNhap, String maSach,int soLuong, int donGia){
+        this.maPhieuNhap = maPhieuNhap;
         this.maSach = maSach;
         this.soLuong = soLuong;
         this.donGia = donGia;
-        thanhTien = soLuong * donGia;
+        this.thanhTien = soLuong * donGia;
     }
 
     public void nhap(){
         Scanner nhap = new Scanner(System.in);
-        nhap.nextLine();
         System.out.print("Nhap ma sach: ");
         maSach = nhap.nextLine();
         System.out.print("Nhap so luong: ");
-        soLuong = nhap.nextInt();
-        System.out.print("Nhap don gia: ");
-        donGia = nhap.nextInt();
-        thanhTien = soLuong * donGia;
+        soLuong = Integer.parseInt(nhap.nextLine());    
+        // đơn giá get từ danh sách sách theo mã sách
+        // thành tiền = số lượng * đơn giá sẽ tính sau 
+        // dùng constructor để tạo chi tiết phiếu nhập hoặc dùng hàm set để set giá trị cho các thuộc tính sau khi nhập
         nhap.close();
     }
 
@@ -44,7 +44,6 @@ public class ChiTietPhieuNhap {
 
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
-        thanhTien = soLuong * donGia;
     }
 
     public int getDonGia() {
@@ -53,7 +52,6 @@ public class ChiTietPhieuNhap {
 
     public void setDonGia(int donGia) {
         this.donGia = donGia;
-        thanhTien = soLuong * donGia;
     }
 
     public double getThanhTien() {
@@ -63,4 +61,8 @@ public class ChiTietPhieuNhap {
     public void setThanhTien(double thanhTien) {
         this.thanhTien = thanhTien;
     }   
+
+    public void tinhTien() {
+        this.thanhTien = this.soLuong * this.donGia;
+    }
 }
