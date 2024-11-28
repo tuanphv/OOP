@@ -144,6 +144,7 @@ public class DSNCC implements IList<NhaCungCap>{
         int solg= NhaCungCap.getSolg();
         if (isEmpty()) System.out.println("Danh sach rong");
         else{
+            System.out.println("----------THONG TIN TOAN BO NHA CUNG CAP----------");
             System.out.printf("%5s", "STT");
             tieude();
             for(int i=0; i <solg; i++){

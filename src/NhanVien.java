@@ -66,15 +66,15 @@ public class NhanVien {
     }
 
     public void setLuong(String luong){
-        this.luong= luong;
+        this.luong= ktraLuong(luong);
     }
 
     public void setSdtNV(String sdtNV){
-        this.sdtNV= sdtNV;
+        this.sdtNV= ktraSdt(sdtNV);
     }
 
     public void setgioiTinhNV(String gioiTinh){
-        this.gioiTinh= gioiTinh;
+        this.gioiTinh= ktraGioiTinh(gioiTinh);
     }
 
     public String ktraSdt(String sdt){
@@ -92,7 +92,7 @@ public class NhanVien {
                 return luong;
             }
             catch(NumberFormatException e){
-                System.out.println("Luong khong hop le. Nhap lai");
+                System.out.print("Luong khong hop le. Nhap lai");
                 luong= nhap.nextLine();
             }
         }
@@ -100,7 +100,7 @@ public class NhanVien {
 
     public String ktraGioiTinh(String gioiTinh){
         while(!gioiTinh.equalsIgnoreCase("nam") && !gioiTinh.equalsIgnoreCase("nu")){
-                System.out.println("Gioi tinh khong hop le. Nhap lai");
+                System.out.print("Gioi tinh khong hop le. Nhap lai");
                 gioiTinh= nhap.nextLine();
             }
         return gioiTinh;
