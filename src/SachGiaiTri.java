@@ -31,6 +31,7 @@ public class SachGiaiTri extends Sach {
     @Override
     public void nhap() {
         super.nhap();
+        System.out.print("Do tuoi phu hop: ");
         doTuoi = Integer.parseInt(in.nextLine());
     }
 

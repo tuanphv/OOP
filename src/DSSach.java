@@ -97,7 +97,11 @@ public class DSSach implements IList<Sach> {
     }
 
     public void xuat() {
-        System.out.println("\nTat ca sach");
+        if (isEmpty()) {
+            System.out.println("Danh sach rong!");
+            return;
+        }
+        System.out.println("\nDanh sach sach:");
         for (Sach x : list) {
             x.xuat();
         }
@@ -140,7 +144,12 @@ public class DSSach implements IList<Sach> {
                 break;
         }
         s.nhap();
+        if (indexOf(s.getMaSach()) != -1) {
+            System.out.println("Da co sach. Vui long nhap lai!");
+            return;
+        }
         add(s);
+        System.out.println("Them sach thanh cong");
     }
     // add sách vào cuối danh sách, kiểm tra trùng mã sách
     public void add(Sach s1) {
@@ -171,6 +180,7 @@ public class DSSach implements IList<Sach> {
             int len = list.length;
             System.arraycopy(list, index + 1, list, index, len - index - 1);
             list = Arrays.copyOf(list, len - 1);
+            System.out.println("Xoa sach thanh cong");
         }
     }
     // get sách theo mã sách
@@ -232,7 +242,7 @@ public class DSSach implements IList<Sach> {
     public Sach[] timTheoTenSach(String tenSach) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {
-            if (s.getTenSach().contains(tenSach)) {
+            if (s.getTenSach().toLowerCase().contains(tenSach.toLowerCase())) {
                 result = Arrays.copyOf(result, result.length + 1);
                 result[result.length - 1] = s;
             }

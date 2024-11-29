@@ -106,7 +106,7 @@ public class Sach{
     Scanner in = new Scanner(System.in);
 
     public void nhap() {
-        System.out.println("Nhap thoong tin sach");
+        System.out.println("Nhap thong tin sach");
         System.out.print("Ma sach: ");
         maSach = in.nextLine();
         System.out.print("Ten sach: ");
@@ -121,7 +121,7 @@ public class Sach{
         donGia = Integer.parseInt(in.nextLine());
         System.out.print("So luong sach: ");
         soLuong = Integer.parseInt(in.nextLine());
-        System.out.print("The loai");
+        System.out.print("The loai: ");
         theLoai = in.nextLine();
     }
 
