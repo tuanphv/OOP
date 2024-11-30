@@ -3,8 +3,7 @@ import java.util.Scanner;
 
 public class DSPhieuPhat implements IList<Phieuphat> {
     private Phieuphat[] list = new Phieuphat[100];  // Mảng với kích thước cố định
-    private int count = 0; // Biến đếm số lượng phiếu phạt
-
+    
     public DSPhieuPhat() {}
 
     public DSPhieuPhat(Phieuphat[] l1) {

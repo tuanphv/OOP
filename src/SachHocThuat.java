@@ -5,9 +5,8 @@ public class SachHocThuat extends Sach {
     public SachHocThuat() {
     }
 
-    public SachHocThuat(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong,
-            String theLoai, String linhVucNC, String trinhDoHV) {
-        super(maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong, theLoai);
+    public SachHocThuat(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong, String linhVucNC, String trinhDoHV) {
+        super(maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong);
         this.linhVucNC = linhVucNC;
         this.trinhDoHV = trinhDoHV;
     }

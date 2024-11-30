@@ -11,13 +11,11 @@ public class Sach{
     private int namXB;
     private int donGia;
     private int soLuong;
-    private String theLoai;
 
     public Sach() {
     }
 
-    public Sach(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong,
-            String theLoai) {
+    public Sach(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.maNXB = maNXB;
@@ -25,7 +23,6 @@ public class Sach{
         this.namXB = namXB;
         this.donGia = donGia;
         this.soLuong = soLuong;
-        this.theLoai = theLoai;
     }
 
     public Sach(Sach s1) {
@@ -36,7 +33,6 @@ public class Sach{
         this.namXB = s1.namXB;
         this.donGia = s1.donGia;
         this.soLuong = s1.soLuong;
-        this.theLoai = s1.theLoai;
     }
 
     public String getMaSach() {
@@ -67,10 +63,6 @@ public class Sach{
         return soLuong;
     }
 
-    public String getTheLoai() {
-        return theLoai;
-    }
-
     public void setMaSach(String maSach) {
         this.maSach = maSach;
     }
@@ -99,10 +91,6 @@ public class Sach{
         this.soLuong = soLuong;
     }
 
-    public void setTheLoai(String theLoai) {
-        this.theLoai = theLoai;
-    }
-
     Scanner in = new Scanner(System.in);
 
     public void nhap() {
@@ -121,12 +109,10 @@ public class Sach{
         donGia = Integer.parseInt(in.nextLine());
         System.out.print("So luong sach: ");
         soLuong = Integer.parseInt(in.nextLine());
-        System.out.print("The loai: ");
-        theLoai = in.nextLine();
     }
 
     public void xuat() {
-        System.out.println("<===== Thong tin sach =====>");
+        System.out.println("\n<===== Thong tin sach =====>");
         System.out.printf("%-20s%s\n", "Ma sach:", maSach);
         System.out.printf("%-20s%s\n", "Ten sach:", tenSach);
         System.out.printf("%-20s%s\n", "Ma nha xuat ban:", maNXB); 
@@ -134,7 +120,6 @@ public class Sach{
         System.out.printf("%-20s%d\n", "Nam xuat ban:", namXB);
         System.out.printf("%-20s%d\n", "Don gia:", donGia);
         System.out.printf("%-20s%d\n", "So luong:", soLuong);
-        System.out.printf("%-20s%s\n", "The loai:", theLoai);
     }
 
     public void ghiFile() {
@@ -149,11 +134,11 @@ public class Sach{
     }
     @Override
     public String toString() {
-        return String.format("%-10s%-35s%-10s%-12s%-8d%-9d%-10d%-20s", maSach, tenSach, maNXB, maTG, namXB, donGia,
-                soLuong, theLoai);
+        return String.format("%-10s%-30s%-8s%-8s%-8d%-10d%-10d", maSach, tenSach, maNXB, maTG, namXB, donGia,
+                soLuong);
     }
 
     public String formatToString() {
-        return String.format("%s, %s, %s, %s, %d, %d, %d, %s", maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong, theLoai);
+        return String.format("%s, %s, %s, %s, %d, %d, %d", maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong);
     }
 }

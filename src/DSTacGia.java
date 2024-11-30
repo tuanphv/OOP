@@ -1,17 +1,17 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DanhSachTacGia {
+public class DSTacGia {
     TacGia[] DSTG = new TacGia[0];
 
-    public DanhSachTacGia() {
+    public DSTacGia() {
     }
 
-    public DanhSachTacGia(TacGia[] DSTG) {
+    public DSTacGia(TacGia[] DSTG) {
         this.DSTG = DSTG;
     }
 
-    public DanhSachTacGia(DanhSachTacGia ds) {
+    public DSTacGia(DSTacGia ds) {
         this.DSTG = ds.DSTG;
     }
 

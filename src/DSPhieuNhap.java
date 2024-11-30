@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DSPN implements IList<PhieuNhap>{
+public class DSPhieuNhap implements IList<PhieuNhap>{
     PhieuNhap[] dspn= new PhieuNhap[0];
     Scanner nhap= new Scanner(System.in);
 

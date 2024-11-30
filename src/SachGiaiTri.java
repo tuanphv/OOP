@@ -4,9 +4,8 @@ public class SachGiaiTri extends Sach {
     public SachGiaiTri() {
     }
 
-    public SachGiaiTri(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong,
-            String theLoai, int doTuoi) {
-        super(maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong, theLoai);
+    public SachGiaiTri(String maSach, String tenSach, String maNXB, String maTG, int namXB, int donGia, int soLuong, int doTuoi) {
+        super(maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong);
         this.doTuoi = doTuoi;
     }
 

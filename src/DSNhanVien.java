@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DSNV implements IList<NhanVien>{
+public class DSNhanVien implements IList<NhanVien>{
     private NhanVien []dsnv= new NhanVien[0];
     Scanner nhap= new Scanner(System.in);
 

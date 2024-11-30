@@ -21,6 +21,7 @@ public class DSSach implements IList<Sach> {
         }
         return -1;
     }
+
     public void docFile() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("./lib/sach.txt"));
@@ -32,11 +33,13 @@ public class DSSach implements IList<Sach> {
                     // tạo đối tượng sách theo loại
                     // 0 là sách giải trí, 1 là sách học thuật
                     case "0":
-                        SachGiaiTri sgt = new SachGiaiTri(s[1], s[2], s[3], s[4], Integer.parseInt(s[5]), Integer.parseInt(s[6]), Integer.parseInt(s[7]), s[8], Integer.parseInt(s[9]));
+                        SachGiaiTri sgt = new SachGiaiTri(s[1], s[2], s[3], s[4], Integer.parseInt(s[5]),
+                                Integer.parseInt(s[6]), Integer.parseInt(s[7]), Integer.parseInt(s[8]));
                         add(sgt);
-                        break;                        
+                        break;
                     case "1":
-                        SachHocThuat sht = new SachHocThuat(s[1], s[2], s[3], s[4], Integer.parseInt(s[5]), Integer.parseInt(s[6]), Integer.parseInt(s[7]), s[8], s[9], s[10]);
+                        SachHocThuat sht = new SachHocThuat(s[1], s[2], s[3], s[4], Integer.parseInt(s[5]),
+                                Integer.parseInt(s[6]), Integer.parseInt(s[7]), s[8], s[9]);
                         add(sht);
                         break;
                     default:
@@ -51,6 +54,7 @@ public class DSSach implements IList<Sach> {
             System.out.println("Doc file thanh cong");
         }
     }
+
     public void ghiFile() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/sach.txt"));
@@ -97,33 +101,15 @@ public class DSSach implements IList<Sach> {
     }
 
     public void xuat() {
-        if (isEmpty()) {
-            System.out.println("Danh sach rong!");
-            return;
-        }
-        System.out.println("\nDanh sach sach:");
+        System.out.println("\nDanh sach sach");
+        System.out.printf("%-10s%-30s%-8s%-8s%-8s%-10s%-10s%-20s%s\n",
+                "Ma sach", "Ten sach", "Ma NXB", "Ma TG", "Nam XB",
+                "Don gia", "So luong", "Trinh do(Do tuoi)", "Linh vuc");
         for (Sach x : list) {
-            x.xuat();
+                System.out.println(x);
         }
     }
 
-    public void xuatTheoLoai() {
-        System.out.println("\nSach giai tri:");
-        System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%s\n",
-                "Ma sach", "Ten sach", "Ma NXB", "Ma tac gia", "Nam XB", "Don gia", "So luong", "The loai", "Do tuoi");
-        for (Sach x : list) {
-            if (x instanceof SachGiaiTri)
-                System.out.println(x);
-        }
-        System.out.println("\nSach hoc thuat:");
-        System.out.printf("%-10s%-35s%-10s%-12s%-8s%-9s%-10s%-20s%-20s%s\n",
-                "Ma sach", "Ten sach", "Ma NXB", "Ma tac gia", "Nam XB", "Don gia", "So luong", "The loai",
-                "Linh vuc nghien cuu", "Trinh do");
-        for (Sach x : list) {
-            if (x instanceof SachHocThuat)
-                System.out.println(x);
-        }
-    }
     // thêm sách vào danh sách, trước khi thêm hỏi loại cần thêm
     public void them() {
         int chon;
@@ -151,6 +137,7 @@ public class DSSach implements IList<Sach> {
         add(s);
         System.out.println("Them sach thanh cong");
     }
+
     // add sách vào cuối danh sách, kiểm tra trùng mã sách
     public void add(Sach s1) {
         int index = indexOf(s1.getMaSach());
@@ -183,6 +170,7 @@ public class DSSach implements IList<Sach> {
             System.out.println("Xoa sach thanh cong");
         }
     }
+
     // get sách theo mã sách
     public Sach get(String maSach) {
         int index = indexOf(maSach);
@@ -192,7 +180,7 @@ public class DSSach implements IList<Sach> {
     }
 
     public boolean isEmpty() {
-        return list.length == 0;
+        return list == null || list.length == 0;
     }
 
     public int size() {
@@ -209,6 +197,7 @@ public class DSSach implements IList<Sach> {
         }
         return result;
     }
+
     public Sach[] timTheoNamXB(int namXB) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {
@@ -219,16 +208,7 @@ public class DSSach implements IList<Sach> {
         }
         return result;
     }
-    public Sach[] timTheoTheLoai(String theLoai) {
-        Sach[] result = new Sach[0];
-        for (Sach s : list) {
-            if (s.getTheLoai().equals(theLoai)) {
-                result = Arrays.copyOf(result, result.length + 1);
-                result[result.length - 1] = s;
-            }
-        }
-        return result;
-    }
+
     public Sach[] timTheoDonGia(int from, int to) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {
@@ -239,6 +219,7 @@ public class DSSach implements IList<Sach> {
         }
         return result;
     }
+
     public Sach[] timTheoTenSach(String tenSach) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {
@@ -249,6 +230,7 @@ public class DSSach implements IList<Sach> {
         }
         return result;
     }
+
     public Sach[] timTheoDoTuoi(int tuoi) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {
@@ -262,6 +244,7 @@ public class DSSach implements IList<Sach> {
         }
         return result;
     }
+
     public Sach[] timTheoLinhVuc(String linhVuc) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {
@@ -275,6 +258,7 @@ public class DSSach implements IList<Sach> {
         }
         return result;
     }
+
     public Sach[] timTheoTrinhDo(String trinhDo) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {

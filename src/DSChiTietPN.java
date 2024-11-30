@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class DSCTPN {
+public class DSChiTietPN {
     ChiTietPhieuNhap[] dsctpn= new ChiTietPhieuNhap[0];
 
     public int size(){

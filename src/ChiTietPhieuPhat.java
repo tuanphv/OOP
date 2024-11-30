@@ -17,11 +17,11 @@ public class ChiTietPhieuPhat {
     }
 
     public ChiTietPhieuPhat(ChiTietPhieuPhat s1) {
-    this.Mapp = s1.Mapp;
-    this.Masach = s1.Masach;
-    this.Maqd = s1.Maqd;
-    this.Tienphat = s1.Tienphat;
-}
+        this.Mapp = s1.Mapp;
+        this.Masach = s1.Masach;
+        this.Maqd = s1.Maqd;
+        this.Tienphat = s1.Tienphat;
+    }
 
     public String getMapp() {
         return Mapp;
@@ -56,28 +56,32 @@ public class ChiTietPhieuPhat {
     }
 
     public void Nhap() {
-    Scanner scanner = new Scanner(System.in);
-    try {
-        System.out.print("Nhập mã phiếu phạt: ");
-        this.Mapp = scanner.nextLine();
-        System.out.print("Nhập mã sách: ");
-        this.Masach = scanner.nextLine();
-        System.out.print("Nhập mã quy định: ");
-        this.Maqd = scanner.nextLine();
-        System.out.print("Nhập tiền phạt: ");
-        this.Tienphat = Double.parseDouble(scanner.nextLine());
-    } catch (NumberFormatException e) {
-        System.out.println("Lỗi: Tiền phạt phải là số!");
-        this.Tienphat = 0.0;
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Nhập mã phiếu phạt: ");
+            this.Mapp = scanner.nextLine();
+            System.out.print("Nhập mã sách: ");
+            this.Masach = scanner.nextLine();
+            System.out.print("Nhập mã quy định: ");
+            this.Maqd = scanner.nextLine();
+            System.out.print("Nhập tiền phạt: ");
+            this.Tienphat = Double.parseDouble(scanner.nextLine());
+            scanner.close();
+        } catch (NumberFormatException e) {
+            System.out.println("Lỗi: Tiền phạt phải là số!");
+            this.Tienphat = 0.0;
+        }
     }
-}
-
-
 
     public void Xuat() {
         System.out.println("Mã phiếu phạt: " + Mapp);
         System.out.println("Mã sách: " + Masach);
         System.out.println("Mã quy định: " + Maqd);
         System.out.println("Tiền phạt: " + Tienphat);
+    }
+
+    @Override
+    public String toString() {
+        return Mapp + ", " + Masach + ", " + Maqd + ", " + Tienphat;
     }
 }

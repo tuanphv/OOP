@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
+public class DSChiTietPP implements IList<ChiTietPhieuPhat> {
     private ChiTietPhieuPhat[] list = new ChiTietPhieuPhat[0];  // Mảng ban đầu rỗng
 
     // Phương thức đọc file và khởi tạo danh sách từ file

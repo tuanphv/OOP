@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DSNCC implements IList<NhaCungCap>{
+public class DSNhaCC implements IList<NhaCungCap>{
     private NhaCungCap[] dsncc= new NhaCungCap[0];
     Scanner nhap= new Scanner(System.in);
 
