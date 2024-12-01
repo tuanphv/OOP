@@ -9,80 +9,80 @@ public class MenuQuanLyPhat {
         dsQuyDinhPhat = new DSQuyDinhPhat();
     }
 
-    public void showMenu() {
+    public void hienThiMenu() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("\n--- Menu Quản Lý Phạt ---");
-            System.out.println("1. Quản lý phiếu phạt");
-            System.out.println("2. Quản lý quy định phạt");
-            System.out.println("3. Thoát");
-            System.out.print("Chọn thao tác: ");
+            System.out.println("\n--- Menu Quan Ly Phat ---");
+            System.out.println("1. Quan ly phieu phat");
+            System.out.println("2. Quan ly quy dinh phat");
+            System.out.println("3. Thoat");
+            System.out.print("Chon thao tac: ");
             
-            int choice = scanner.nextInt();
-            scanner.nextLine();  // Clear the buffer
+            int luaChon = scanner.nextInt();
+            scanner.nextLine();  // Xoa bo dem
 
-            switch (choice) {
+            switch (luaChon) {
                 case 1:
-                    managePhieuPhat(scanner);
+                    quanLyPhieuPhat(scanner);
                     break;
                 case 2:
-                    manageQuyDinhPhat(scanner);
+                    quanLyQuyDinhPhat(scanner);
                     break;
                 case 3:
-                    System.out.println("Thoát chương trình.");
+                    System.out.println("Thoat chuong trinh.");
                     scanner.close();
                     return;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+                    System.out.println("Lua chon khong hop le. Vui long thu lai.");
             }
         }
     }
 
-    private void managePhieuPhat(Scanner scanner) {
+    private void quanLyPhieuPhat(Scanner scanner) {
         while (true) {
-            System.out.println("\n--- Quản Lý Phiếu Phạt ---");
-            System.out.println("1. Đọc dữ liệu từ file");
-            System.out.println("2. Ghi dữ liệu vào file");
-            System.out.println("3. Thêm phiếu phạt");
-            System.out.println("4. Xóa phiếu phạt");
-            System.out.println("5. Xem danh sách phiếu phạt");
-            System.out.println("6. Quay lại");
-            System.out.print("Chọn thao tác: ");
+            System.out.println("\n--- Quan Ly Phieu Phat ---");
+            System.out.println("1. Doc du lieu tu file");
+            System.out.println("2. Ghi du lieu vao file");
+            System.out.println("3. Them phieu phat");
+            System.out.println("4. Xoa phieu phat");
+            System.out.println("5. Xem danh sach phieu phat");
+            System.out.println("6. Quay lai");
+            System.out.print("Chon thao tac: ");
             
-            int choice = scanner.nextInt();
-            scanner.nextLine();  // Clear the buffer
+            int luaChon = scanner.nextInt();
+            scanner.nextLine();  // Xoa bo dem
 
-            switch (choice) {
+            switch (luaChon) {
                 case 1:
                     dsPhieuPhat.docFile();
-                    System.out.println("Dữ liệu đã được đọc từ file.");
+                    System.out.println("Du lieu da duoc doc tu file.");
                     break;
                 case 2:
                     dsPhieuPhat.ghiFile();
-                    System.out.println("Dữ liệu đã được ghi vào file.");
+                    System.out.println("Du lieu da duoc ghi vao file.");
                     break;
                 case 3:
-                    Phieuphat newPhieu = new Phieuphat();
-                    newPhieu.nhap();  // Nhập thông tin phiếu phạt mới
-                    dsPhieuPhat.add(newPhieu);
-                    System.out.println("Phiếu phạt đã được thêm.");
+                    Phieuphat phieuMoi = new Phieuphat();
+                    phieuMoi.nhap();  // Nhap thong tin phieu phat moi
+                    dsPhieuPhat.add(phieuMoi);
+                    System.out.println("Phieu phat da duoc them.");
                     break;
                 case 4:
-                    System.out.print("Nhập mã phiếu phạt cần xóa: ");
-                    String mappToDelete = scanner.nextLine();
-                    Phieuphat phieuphatToRemove = dsPhieuPhat.get(mappToDelete);
-                    if (phieuphatToRemove != null) {
-                        dsPhieuPhat.remove(phieuphatToRemove);
-                        System.out.println("Phiếu phạt đã được xóa.");
+                    System.out.print("Nhap ma phieu phat can xoa: ");
+                    String maPPCanXoa = scanner.nextLine();
+                    Phieuphat phieuCanXoa = dsPhieuPhat.get(maPPCanXoa);
+                    if (phieuCanXoa != null) {
+                        dsPhieuPhat.remove(phieuCanXoa);
+                        System.out.println("Phieu phat da duoc xoa.");
                     } else {
-                        System.out.println("Không tìm thấy phiếu phạt có mã: " + mappToDelete);
+                        System.out.println("Khong tim thay phieu phat co ma: " + maPPCanXoa);
                     }
                     break;
                 case 5:
                     if (dsPhieuPhat.isEmpty()) {
-                        System.out.println("Danh sách phiếu phạt rỗng.");
+                        System.out.println("Danh sach phieu phat rong.");
                     } else {
-                        System.out.println("Danh sách phiếu phạt:");
+                        System.out.println("Danh sach phieu phat:");
                         for (int i = 0; i < dsPhieuPhat.size(); i++) {
                             dsPhieuPhat.getList()[i].xuat();
                         }
@@ -91,71 +91,72 @@ public class MenuQuanLyPhat {
                 case 6:
                     return;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+                    System.out.println("Lua chon khong hop le. Vui long thu lai.");
             }
         }
     }
 
-    private void manageQuyDinhPhat(Scanner scanner) {
+    private void quanLyQuyDinhPhat(Scanner scanner) {
         while (true) {
-            System.out.println("\n--- Quản Lý Quy Định Phạt ---");
-            System.out.println("1. Đọc dữ liệu từ file");
-            System.out.println("2. Ghi dữ liệu vào file");
-            System.out.println("3. Thêm quy định phạt");
-            System.out.println("4. Xóa quy định phạt");
-            System.out.println("5. Xem danh sách quy định phạt");
-            System.out.println("6. Quay lại");
-            System.out.print("Chọn thao tác: ");
+            System.out.println("\n--- Quan Ly Quy Dinh Phat ---");
+            System.out.println("1. Doc du lieu tu file");
+            System.out.println("2. Ghi du lieu vao file");
+            System.out.println("3. Them quy dinh phat");
+            System.out.println("4. Xoa quy dinh phat");
+            System.out.println("5. Xem danh sach quy dinh phat");
+            System.out.println("6. Quay lai");
+            System.out.print("Chon thao tac: ");
             
-            int choice = scanner.nextInt();
-            scanner.nextLine();  // Clear the buffer
+            int luaChon = scanner.nextInt();
+            scanner.nextLine();  // Xoa bo dem
 
-            switch (choice) {
+            switch (luaChon) {
                 case 1:
                     dsQuyDinhPhat.docFile();
-                    System.out.println("Dữ liệu đã được đọc từ file.");
+                    System.out.println("Du lieu da duoc doc tu file.");
                     break;
                 case 2:
                     dsQuyDinhPhat.ghiFile();
-                    System.out.println("Dữ liệu đã được ghi vào file.");
+                    System.out.println("Du lieu da duoc ghi vao file.");
                     break;
                 case 3:
-                    Quydinhphat newQuyDinh = new Quydinhphat();
-                    newQuyDinh.Nhap();  // Nhập thông tin quy định phạt mới
-                    dsQuyDinhPhat.add(newQuyDinh);
-                    System.out.println("Quy định phạt đã được thêm.");
+                    Quydinhphat quyMoi = new Quydinhphat();
+               quyMoi.Nhap();  // Nhap thong tin quy dinh phat moi
+                 System.out.println("Quy dinh phat da duoc them.");
+                    dsQuyDinhPhat.add(quyMoi);
+                    System.out.println("Quy dinh phat da duoc them.");
                     break;
                 case 4:
-                    System.out.print("Nhập mã quy định phạt cần xóa: ");
-                    String maqdToDelete = scanner.nextLine();
-                    Quydinhphat quyDinhToRemove = dsQuyDinhPhat.get(maqdToDelete);
-                    if (quyDinhToRemove != null) {
-                        dsQuyDinhPhat.remove(quyDinhToRemove);
-                        System.out.println("Quy định phạt đã được xóa.");
+                    System.out.print("Nhap ma quy dinh phat can xoa: ");
+                    String maQDCanXoa = scanner.nextLine();
+                    Quydinhphat quyCanXoa = dsQuyDinhPhat.get(maQDCanXoa);
+                    if (quyCanXoa != null) {
+                        dsQuyDinhPhat.remove(quyCanXoa);
+                        System.out.println("Quy dinh phat da duoc xoa.");
                     } else {
-                        System.out.println("Không tìm thấy quy định phạt có mã: " + maqdToDelete);
+                        System.out.println("Khong tim thay quy dinh phat co ma: " + maQDCanXoa);
                     }
                     break;
                 case 5:
                     if (dsQuyDinhPhat.isEmpty()) {
-                        System.out.println("Danh sách quy định phạt rỗng.");
+                        System.out.println("Danh sach quy dinh phat rong.");
                     } else {
-                        System.out.println("Danh sách quy định phạt:");
+                        System.out.println("Danh sach quy dinh phat:");
                         for (int i = 0; i < dsQuyDinhPhat.size(); i++) {
-                            dsQuyDinhPhat.getList()[i].Xuat();
+                     dsQuyDinhPhat.getList()[i].Xuat(); // Display the fine regulation
                         }
                     }
                     break;
                 case 6:
                     return;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+                    System.out.println("Lua chon khong hop le. Vui long thu lai.");
             }
         }
     }
 
     public static void main(String[] args) {
         MenuQuanLyPhat menu = new MenuQuanLyPhat();
-        menu.showMenu();
+        menu.hienThiMenu();
     }
 }
