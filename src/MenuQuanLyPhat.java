@@ -30,7 +30,7 @@ public class MenuQuanLyPhat {
                     break;
                 case 3:
                     System.out.println("Thoat chuong trinh.");
-                    scanner.close();
+                    // scanner.close(); // Remove this line to prevent closing the scanner prematurely
                     return;
                 default:
                     System.out.println("Lua chon khong hop le. Vui long thu lai.");
