@@ -1,5 +1,6 @@
 import java.io.*;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Scanner; // Importing Arrays class
 
 public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
     private ChiTietPhieuPhat[] list = new ChiTietPhieuPhat[100];  // Fixed-size array
@@ -12,6 +13,10 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
         try (Scanner scanner = new Scanner(new File("./lib/ChiTietPhieuPhat.txt"))) {
             while (scanner.hasNextLine()) {
                 String[] data = scanner.nextLine().split(", ");
+                if (data.length < 4) {
+                    System.out.println("Warning: Skipping line due to insufficient data: " + Arrays.toString(data));
+                    continue; // Skip this line
+                }
                 String mapp = data[0];
                 String masach = data[1];
                 String maqd = data[2];

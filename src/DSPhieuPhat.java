@@ -52,7 +52,9 @@ public class DSPhieuPhat implements IList<Phieuphat> {
     public void ghiFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter("./lib/PhieuPhat.txt"))) {
             for (Phieuphat phieuphat : list) {
-                writer.println(phieuphat.getMapp() + ", " + phieuphat.getMadg() + ", " + phieuphat.getManv() + ", " + phieuphat.getTongphat());
+                if (phieuphat != null) {
+                    writer.println(phieuphat.getMapp() + ", " + phieuphat.getMadg() + ", " + phieuphat.getManv() + ", " + phieuphat.getTongphat());
+                }
             }
         } catch (IOException e) {
             System.out.println("Lỗi khi ghi file: " + e.getMessage());
@@ -97,7 +99,7 @@ public void remove(Phieuphat phieuphat) {
     // Lấy phiếu phạt theo mã phiếu
     public Phieuphat get(String mapp) {
         for (Phieuphat phieuphat : list) {
-            if (phieuphat.getMapp().equals(mapp)) {
+            if (phieuphat != null && phieuphat.getMapp().equals(mapp)) {
                 return phieuphat;
             }
         }
@@ -134,7 +136,14 @@ public void remove(Phieuphat phieuphat) {
             System.out.println("6. Thoát");
             System.out.print("Chọn thao tác: ");
             
-            int choice = scanner.nextInt();
+            int choice;
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            } else {
+                System.out.println("Vui lòng nhập một số hợp lệ.");
+                scanner.nextLine(); // Clear the invalid input
+                continue; // Restart the loop
+            }
             scanner.nextLine();  // Đọc dấu cách hoặc newline dư thừa
 
             switch (choice) {
