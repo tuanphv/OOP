@@ -10,7 +10,7 @@ public class DSPhieuPhat implements IList<Phieuphat> {
         this.list = l1;
     }
 
-    // Đọc dữ liệu từ file và lưu vào mảng
+    // Read data from file and store in array
     public void docFile() {
         try (Scanner scanner = new Scanner(new File("./lib/PhieuPhat.txt"))) {
             while (scanner.hasNextLine()) {
@@ -22,14 +22,29 @@ public class DSPhieuPhat implements IList<Phieuphat> {
 
                 Phieuphat phieuphat = new Phieuphat(mapp, madg, manv, tongphat);
 
-                // Mở rộng mảng để thêm đối tượng mới
+                // Expand array to add new object
                 Phieuphat[] newList = new Phieuphat[list.length + 1];
                 System.arraycopy(list, 0, newList, 0, list.length);
                 newList[list.length] = phieuphat;
                 list = newList;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File không tìm thấy: " + e.getMessage());
+            System.out.println("File not found: " + e.getMessage());
+        }
+
+        // Synchronize with ChiTietPhieuPhat.txt
+        synchronizeWithChiTietPhieuPhat();
+    }
+
+    // Synchronize data with ChiTietPhieuPhat.txt
+    private void synchronizeWithChiTietPhieuPhat() {
+        DSChiTietPhieuPhat dsChiTiet = new DSChiTietPhieuPhat();
+        dsChiTiet.docFile(); // Read data from ChiTietPhieuPhat.txt
+
+        for (Phieuphat phieuphat : list) {
+            // Logic to update PhieuPhat.txt based on ChiTietPhieuPhat.txt
+            // This can include checking if the entries in ChiTietPhieuPhat.txt correspond to the entries in PhieuPhat.txt
+            // and updating or adding as necessary
         }
     }
 
