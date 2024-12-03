@@ -14,11 +14,12 @@ public class QuanLySach {
         int chon = 0;
         do {
             System.out.println("\n<==== Menu Quan ly sach ====>");
-            System.out.println("1. Them sach vao thu vien");
-            System.out.println("2. Xoa sach khoi thu vien");
-            System.err.println("3. Tim sach");
-            System.out.println("4. Hien thi danh sach sach");
-            System.out.println("5. Thoat");
+            System.out.println("1. Them sach");
+            System.out.println("2. Sua thong tin sach");
+            System.out.println("3. Xoa sach");
+            System.err.println("4. Tim kiem sach");
+            System.out.println("5. Hien thi danh sach sach");
+            System.out.println("6. Thoat");
             System.out.print("Chon chuc nang: ");
             chon = Integer.parseInt(in.nextLine());
             switch (chon) {
@@ -26,17 +27,22 @@ public class QuanLySach {
                     dsSach.them();
                     break;
                 case 2:
-                    System.out.println("Nhap ma sach can xoa: ");
+                    System.out.print("Nhap ma sach can sua: ");
+                    String maSachSua = in.nextLine();
+                    dsSach.suaSach(maSachSua);
+                    break;
+                case 3:
+                    System.out.print("Nhap ma sach can xoa: ");
                     String maSachXoa = in.nextLine();
                     dsSach.remove(dsSach.get(maSachXoa));
                     break;
-                case 3:
+                case 4:
                     MenuTimKiem(dsSach, in);
                     break;
-                case 4:
+                case 5:
                     dsSach.xuat();
                     break;
-                case 5:
+                case 6:
                     System.out.println("Da thoat quan ly sach");
                     dsSach.ghiFile();
                     break;
@@ -44,7 +50,7 @@ public class QuanLySach {
                     System.out.println("Chon sai! Vui long chon lai");
                     break;
             }
-        } while (chon != 5);
+        } while (chon != 6);
         in.close();
     }
 
@@ -52,8 +58,8 @@ public class QuanLySach {
         int chonTim = 0;
         do {
             System.out.println("\n<==== Chon cach tim kiem ====>");
-            System.out.println("1. Tim theo ten sach");
-            System.out.println("2. Tim theo ma sach");
+            System.out.println("1. Tim theo ma sach");
+            System.out.println("2. Tim theo ten sach");
             System.out.println("3. Tim theo nam xuat ban");
             System.out.println("4. Tim theo khoang gia");
             System.out.println("5. Thoat");
@@ -61,18 +67,15 @@ public class QuanLySach {
             chonTim = Integer.parseInt(in.nextLine());
             switch (chonTim) {
                 case 1:
-                    System.out.print("Nhap ten sach can tim: ");
-                    String tenSach = in.nextLine();
-                    DSSach kqua = new DSSach(dsSach.timTheoTenSach(tenSach));
-                    if (kqua.isEmpty())
-                        System.out.println("Khong tim thay sach");
-                    else
-                        kqua.xuat();
-                    break;
-                case 2:
                     System.out.print("Nhap ma sach can tim: ");
                     String maSachTim = in.nextLine();
-                    dsSach.get(maSachTim).xuat();;
+                    dsSach.get(maSachTim).xuat();
+                    ;
+                    break;
+                case 2:
+                    System.out.print("Nhap ten sach can tim: ");
+                    String tenSach = in.nextLine();
+                    new DSSach(dsSach.timTheoTenSach(tenSach)).xuat();
                     break;
                 case 3:
                     System.out.print("Nhap nam xuat ban can tim: ");
