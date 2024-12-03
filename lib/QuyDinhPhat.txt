@@ -1,0 +1,3 @@
+QD001;sach rach;2000.0
+QD002;sach hu;500000.0
+QD003;meomeo;400000.0

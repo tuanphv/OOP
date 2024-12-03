@@ -10,7 +10,7 @@ public class DSPhieuPhat implements IList<Phieuphat> {
         this.list = l1;
     }
 
-    // Đọc dữ liệu từ file và lưu vào mảng
+    // Read data from file and store in array
     public void docFile() {
         try (Scanner scanner = new Scanner(new File("./lib/PhieuPhat.txt"))) {
             while (scanner.hasNextLine()) {
@@ -22,14 +22,29 @@ public class DSPhieuPhat implements IList<Phieuphat> {
 
                 Phieuphat phieuphat = new Phieuphat(mapp, madg, manv, tongphat);
 
-                // Mở rộng mảng để thêm đối tượng mới
+                // Expand array to add new object
                 Phieuphat[] newList = new Phieuphat[list.length + 1];
                 System.arraycopy(list, 0, newList, 0, list.length);
                 newList[list.length] = phieuphat;
                 list = newList;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File không tìm thấy: " + e.getMessage());
+            System.out.println("File not found: " + e.getMessage());
+        }
+
+        // Synchronize with ChiTietPhieuPhat.txt
+        synchronizeWithChiTietPhieuPhat();
+    }
+
+    // Synchronize data with ChiTietPhieuPhat.txt
+    private void synchronizeWithChiTietPhieuPhat() {
+        DSChiTietPhieuPhat dsChiTiet = new DSChiTietPhieuPhat();
+        dsChiTiet.docFile(); // Read data from ChiTietPhieuPhat.txt
+
+        for (Phieuphat phieuphat : list) {
+            // Logic to update PhieuPhat.txt based on ChiTietPhieuPhat.txt
+            // This can include checking if the entries in ChiTietPhieuPhat.txt correspond to the entries in PhieuPhat.txt
+            // and updating or adding as necessary
         }
     }
 
@@ -37,7 +52,9 @@ public class DSPhieuPhat implements IList<Phieuphat> {
     public void ghiFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter("./lib/PhieuPhat.txt"))) {
             for (Phieuphat phieuphat : list) {
-                writer.println(phieuphat.getMapp() + ", " + phieuphat.getMadg() + ", " + phieuphat.getManv() + ", " + phieuphat.getTongphat());
+                if (phieuphat != null) {
+                    writer.println(phieuphat.getMapp() + ", " + phieuphat.getMadg() + ", " + phieuphat.getManv() + ", " + phieuphat.getTongphat());
+                }
             }
         } catch (IOException e) {
             System.out.println("Lỗi khi ghi file: " + e.getMessage());
@@ -82,7 +99,7 @@ public void remove(Phieuphat phieuphat) {
     // Lấy phiếu phạt theo mã phiếu
     public Phieuphat get(String mapp) {
         for (Phieuphat phieuphat : list) {
-            if (phieuphat.getMapp().equals(mapp)) {
+            if (phieuphat != null && phieuphat.getMapp().equals(mapp)) {
                 return phieuphat;
             }
         }
@@ -104,73 +121,5 @@ public void remove(Phieuphat phieuphat) {
         return list;
     }
     
-    // Hiển thị menu và thực hiện các thao tác
-    public static void main(String[] args) {
-        DSPhieuPhat ds = new DSPhieuPhat();
-        Scanner scanner = new Scanner(System.in);
-        
-        while (true) {
-            System.out.println("\n--- Menu ---");
-            System.out.println("1. Đọc dữ liệu từ file");
-            System.out.println("2. Ghi dữ liệu vào file");
-            System.out.println("3. Thêm phiếu phạt");
-            System.out.println("4. Xóa phiếu phạt");
-            System.out.println("5. Xem danh sách phiếu phạt");
-            System.out.println("6. Thoát");
-            System.out.print("Chọn thao tác: ");
-            
-            int choice = scanner.nextInt();
-            scanner.nextLine();  // Đọc dấu cách hoặc newline dư thừa
-
-            switch (choice) {
-                case 1:
-                    ds.docFile();
-                    System.out.println("Dữ liệu đã được đọc từ file.");
-                    break;
-
-                case 2:
-                    ds.ghiFile();
-                    System.out.println("Dữ liệu đã được ghi vào file.");
-                    break;
-
-                case 3:
-                    Phieuphat newPhieu = new Phieuphat();
-                    newPhieu.nhap();  // Nhập thông tin phiếu phạt mới
-                    ds.add(newPhieu);
-                    System.out.println("Phiếu phạt đã được thêm.");
-                    break;
-
-                case 4:
-                    System.out.print("Nhập mã phiếu phạt cần xóa: ");
-                    String mappToDelete = scanner.nextLine();
-                    Phieuphat phieuphatToRemove = ds.get(mappToDelete);
-                    if (phieuphatToRemove != null) {
-                        ds.remove(phieuphatToRemove);
-                        System.out.println("Phiếu phạt đã được xóa.");
-                    } else {
-                        System.out.println("Không tìm thấy phiếu phạt có mã: " + mappToDelete);
-                    }
-                    break;
-
-                case 5:
-                    if (ds.isEmpty()) {
-                        System.out.println("Danh sách phiếu phạt rỗng.");
-                    } else {
-                        System.out.println("Danh sách phiếu phạt:");
-                        for (int i = 0; i < ds.size(); i++) {
-                            ds.list[i].xuat();
-                        }
-                    }
-                    break;
-
-                case 6:
-                    System.out.println("Thoát chương trình.");
-                    scanner.close();
-                    return;
-
-                default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
-            }
-        }
-    }
+    // Removed the main method to prevent Scanner conflicts
 }
