@@ -51,7 +51,7 @@ public class DSSach implements IList<Sach> {
         } catch (IOException e) {
             System.out.println("Loi doc file " + e.getMessage());
         } finally {
-            System.out.println("Doc file thanh cong");
+            System.out.println("Doc file sach thanh cong");
         }
     }
 
@@ -105,13 +105,26 @@ public class DSSach implements IList<Sach> {
             System.out.println("Danh sach rong");
             return;
         }
-        System.out.println("\nDanh sach sach");
-        System.out.printf("%-10s%-30s%-8s%-8s%-8s%-10s%-10s%-20s%s\n",
-                "Ma sach", "Ten sach", "Ma NXB", "Ma TG", "Nam XB",
-                "Don gia", "So luong", "Trinh do(Do tuoi)", "Linh vuc");
+        System.out.println("\nDanh sach sach (" + list.length + " sach)");
+        String[] head = {"Ma sach", "Ten sach", "Ma NXB", "Ma TG", "Nam XB",
+                "Don gia", "So luong", "Trinh do(Do tuoi)", "Linh vuc"};
+        String[][] data = new String[list.length][];
+        int i = 0;
         for (Sach x : list) {
-                System.out.println(x);
+            data[i] = new String[] {
+                x.getMaSach(),
+                x.getTenSach(),
+                x.getMaNXB(),
+                x.getMaTG(),
+                String.valueOf(x.getNamXB()),
+                String.valueOf(x.getDonGia()),
+                String.valueOf(x.getSoLuong()),
+                x instanceof SachGiaiTri ? String.valueOf(((SachGiaiTri) x).getDoTuoi()) : ((SachHocThuat)x).getTrinhDo(),
+                x instanceof SachHocThuat ? ((SachHocThuat) x).getLinhVucNC() : ""
+            };
+            i++;
         }
+        new ANSI(head, data).printTable();
     }
 
     // thêm sách vào danh sách, trước khi thêm hỏi loại cần thêm
