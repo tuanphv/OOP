@@ -13,15 +13,15 @@ public class QuanLySach {
         Scanner in = new Scanner(System.in);
         int chon = 0;
         do {
-            new PrintTable(new String[]{"Menu Quan ly sach"},
+            new ANSI(new String[]{"Menu Quan ly sach"},
             new String[][]{
                 {"1. Them sach"},
                 {"2. Sua thong tin sach"},
                 {"3. Xoa sach"},
                 {"4. Tim kiem sach"},
                 {"5. Hien thi danh sach sach"},
-                {"6. Thoat"}});
-            System.out.print(PrintTable.formatText("Chon chuc nang: ", PrintTable.FG_COLOR.YELLOW, PrintTable.BG_COLOR.NONE, PrintTable.STYLE.BOLD));
+                {"6. Thoat"}}).printTable();
+            System.out.print(ANSI.formatText("Chon chuc nang: "));
             chon = Integer.parseInt(in.nextLine());
             switch (chon) {
                 case 1:
@@ -58,14 +58,14 @@ public class QuanLySach {
     public void MenuTimKiem(DSSach dsSach, Scanner in) {
         int chonTim = 0;
         do {
-            new PrintTable(new String[]{"Chon cach tim kiem"},
+            new ANSI(new String[]{"Chon cach tim kiem"},
             new String[][]{
                 {"1. Tim theo ma sach"},
                 {"2. Tim theo ten sach"},
                 {"3. Tim theo nam xuat ban"},
                 {"4. Tim theo khoang gia"},
-                {"5. Thoat"}});
-            System.out.print("Chon chuc nang: ");
+                {"5. Thoat"}}).printTable();
+            System.out.print(ANSI.formatText("Chon chuc nang: "));
             chonTim = Integer.parseInt(in.nextLine());
             switch (chonTim) {
                 case 1:
