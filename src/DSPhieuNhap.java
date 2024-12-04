@@ -179,7 +179,7 @@ public class DSPhieuNhap implements IList<PhieuNhap>{
         int solg= dspn.length;
         PhieuNhap[] temp= new PhieuNhap[0];
         for(int i=0; i< solg; i++)
-            if(Integer.parseInt(dspn[i].getTongtien()) >= from && Integer.parseInt(dspn[i].getTongtien()) <= to){
+            if(dspn[i].getTongtien() >= from && dspn[i].getTongtien() <= to){
                 temp= Arrays.copyOf(temp, temp.length+ 1);
                 temp[temp.length-1]= dspn[i];
             }
