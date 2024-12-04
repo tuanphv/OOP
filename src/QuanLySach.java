@@ -13,14 +13,15 @@ public class QuanLySach {
         Scanner in = new Scanner(System.in);
         int chon = 0;
         do {
-            System.out.println("\n<==== Menu Quan ly sach ====>");
-            System.out.println("1. Them sach");
-            System.out.println("2. Sua thong tin sach");
-            System.out.println("3. Xoa sach");
-            System.err.println("4. Tim kiem sach");
-            System.out.println("5. Hien thi danh sach sach");
-            System.out.println("6. Thoat");
-            System.out.print("Chon chuc nang: ");
+            new PrintTable(new String[]{"Menu Quan ly sach"},
+            new String[][]{
+                {"1. Them sach"},
+                {"2. Sua thong tin sach"},
+                {"3. Xoa sach"},
+                {"4. Tim kiem sach"},
+                {"5. Hien thi danh sach sach"},
+                {"6. Thoat"}});
+            System.out.print(PrintTable.formatText("Chon chuc nang: ", PrintTable.FG_COLOR.YELLOW, PrintTable.BG_COLOR.NONE, PrintTable.STYLE.BOLD));
             chon = Integer.parseInt(in.nextLine());
             switch (chon) {
                 case 1:
@@ -57,12 +58,13 @@ public class QuanLySach {
     public void MenuTimKiem(DSSach dsSach, Scanner in) {
         int chonTim = 0;
         do {
-            System.out.println("\n<==== Chon cach tim kiem ====>");
-            System.out.println("1. Tim theo ma sach");
-            System.out.println("2. Tim theo ten sach");
-            System.out.println("3. Tim theo nam xuat ban");
-            System.out.println("4. Tim theo khoang gia");
-            System.out.println("5. Thoat");
+            new PrintTable(new String[]{"Chon cach tim kiem"},
+            new String[][]{
+                {"1. Tim theo ma sach"},
+                {"2. Tim theo ten sach"},
+                {"3. Tim theo nam xuat ban"},
+                {"4. Tim theo khoang gia"},
+                {"5. Thoat"}});
             System.out.print("Chon chuc nang: ");
             chonTim = Integer.parseInt(in.nextLine());
             switch (chonTim) {

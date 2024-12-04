@@ -1,4 +1,4 @@
-public class printToDisplay {
+public class PrintTable {
     public class BG_COLOR {
         public static final String BLACK = "40";
         public static final String RED = "41";
@@ -29,11 +29,8 @@ public class printToDisplay {
         public static final String REVERSE = "7";
         public static final String CONCEALED = "8";
     }
-
-    public printToDisplay(String[] headers, String[][] data) {
-        printTable(headers, data);
-    }
-    public void printTable(String[] headers, String[][] data) {
+ 
+    public PrintTable(String[] headers, String[][] data) {
         int[] columnWidths = new int[headers.length];
         for (int i = 0; i < headers.length; i++) {
             columnWidths[i] = headers[i].length();
@@ -51,11 +48,11 @@ public class printToDisplay {
         }
         printFooter(headers, columnWidths);
     }
-    public String formatText(String text, String fgColor, String bgColor) {
+    public static String formatText(String text, String fgColor, String bgColor) {
         return formatText(text, fgColor, bgColor, "");
     }
 
-    public String formatText(String text, String fgColor, String bgColor, String style) {
+    public static String formatText(String text, String fgColor, String bgColor, String style) {
         return "\u001B[" + fgColor + ";" + bgColor + (style != "" ? ";" + style : "") + "m" + text + "\u001B[0m";
     }
 
@@ -71,7 +68,7 @@ public class printToDisplay {
         System.out.println(headerString);
         StringBuilder headerString1 = new StringBuilder("║");
         for (int i = 0; i < header.length; i++)
-            headerString1.append(" ").append(formatText(setLength(header[i], columnWidths[i]), FG_COLOR.GREEN, BG_COLOR.NONE)).append(" ║");
+            headerString1.append(" ").append(formatText(setLength(header[i], columnWidths[i]), FG_COLOR.GREEN, BG_COLOR.NONE, STYLE.BOLD)).append(" ║");
         System.out.println(headerString1);
         StringBuilder headerString2 = new StringBuilder("╠");
         for (int i = 0; i < header.length; i++) {
@@ -96,6 +93,6 @@ public class printToDisplay {
     public static void main(String[] args) {
         String[] headers = { "Name","Age"};
         String[][] data = { { "John", "25" }, { "Sally", "22" }, { "Jane", "30" } };
-        new printToDisplay(headers, data);
+        new PrintTable(headers, data);
     }
 }
