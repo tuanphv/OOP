@@ -5,14 +5,15 @@ public class PhieuNhap {
     private String ngayNhap;
     private String maNV;
     private String maNCC;
-    private String tongtien;
+    private Double tongTien;
     Scanner nhap= new Scanner(System.in);
 
     public PhieuNhap() {}
-    public PhieuNhap(String maPN, String ngayNhap, String maNV, String maNCC){
+    public PhieuNhap(String maPN, String maNV, String maNCC, Double tongTien, String ngayNhap){
         this.maNCC = maNCC;
         this.maPN = maPN;
         this.ngayNhap = ngayNhap;
+        this.tongTien= tongTien;
         this.maNV = maNV;
     }
 
@@ -21,7 +22,7 @@ public class PhieuNhap {
         this.maPN = pn.maPN;
         this.ngayNhap = pn.ngayNhap;
         this.maNV = pn.maNV;
-        this.tongtien = pn.tongtien;
+        this.tongTien = pn.tongTien;
     }
 
     public String ktraNgayNhap(String ngayNhap){
@@ -62,8 +63,8 @@ public class PhieuNhap {
         this.maNCC = maNCC;
     }
 
-    public void setTongtien(String tongtien){
-        this.tongtien = tongtien;
+    public void setTongtien(Double tongTien){
+        this.tongTien = tongTien;
     }
 
     public String getMaPN(){
@@ -82,8 +83,8 @@ public class PhieuNhap {
         return maNCC;
     }
 
-    public String getTongtien(){
-        return tongtien;
+    public Double getTongtien(){
+        return tongTien;
     }
 
     public void nhap(){
@@ -98,6 +99,6 @@ public class PhieuNhap {
     }
 
     public void xuat(){
-        System.out.printf("%10s%20s%10s%10s%10s\n", maPN, ngayNhap, maNV, maNCC, tongtien);
+        System.out.printf("%10s%20s%10s%10s%10s\n", maPN, ngayNhap, maNV, maNCC, tongTien);
     }
 }
