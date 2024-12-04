@@ -101,6 +101,10 @@ public class DSSach implements IList<Sach> {
     }
 
     public void xuat() {
+        if (isEmpty()) {
+            System.out.println("Danh sach rong");
+            return;
+        }
         System.out.println("\nDanh sach sach");
         System.out.printf("%-10s%-30s%-8s%-8s%-8s%-10s%-10s%-20s%s\n",
                 "Ma sach", "Ten sach", "Ma NXB", "Ma TG", "Nam XB",
@@ -150,11 +154,17 @@ public class DSSach implements IList<Sach> {
         }
     }
 
-    public void suaSach(Sach s1) {
-        int index = indexOf(s1.getMaSach());
+    public void suaSach(String maSach) {
+        int index = indexOf(maSach);
         if (index == -1)
             System.out.println("Khong tim thay sach!");
         else {
+            Sach s1 = new Sach();
+            if (list[index] instanceof SachHocThuat)
+                s1 = new SachHocThuat();
+            else
+                s1 = new SachGiaiTri();
+            s1.nhap();
             list[index] = s1;
         }
     }

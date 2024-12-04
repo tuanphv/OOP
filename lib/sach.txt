@@ -1,20 +1,20 @@
-0, 0001, Cuoc Phieu Luu Ky Dieu, NXB001, TG001, 2015, 46000, 11, 12
-1, 1010, Vat Ly Hien Dai, NXB010, TG010, 2019, 17000, 17, Co ban, Vat ly
-0, 0002, Hanh Trinh Tuoi Tho, NXB002, TG002, 2016, 41000, 6, 10
-0, 0004, Ky Nghi Dang Nho, NXB004, TG004, 2018, 22000, 6, 14
-1, 1002, Lap Trinh Python, NXB002, TG002, 2011, 24000, 18, Trung cap, Lap trinh
-0, 0005, Chuyen Tau Bi An, NXB005, TG005, 2019, 32000, 7, 16
-0, 0006, Hoi Ban Nhi Nho, NXB006, TG006, 2020, 21000, 5, 10
-1, 1004, Co Hoc Luong Tu, NXB004, TG004, 2013, 25000, 13, Nang cao, Vat ly
-0, 0007, Giac Mo Bay Xa, NXB007, TG007, 2021, 45000, 9, 18
-0, 0009, Ky Niem Tuoi Tho, NXB009, TG009, 2023, 40000, 8, 9
-1, 1001, Toan Hoc Ung Dung, NXB001, TG001, 2010, 28000, 14, Nang cao, Toan hoc
-0, 0008, Cuon Sach Phep Thuat, NXB008, TG008, 2022, 38000, 10, 13
-1, 1003, Giai Tich Cao Cap, NXB003, TG003, 2012, 18000, 13, Co ban, Toan hoc
-0, 0003, The Gioi Dieu Ky, NXB003, TG003, 2017, 33000, 9, 8
-1, 1005, Dien Tu Can Ban, NXB005, TG005, 2014, 24000, 16, Co ban, Ky thuat
-1, 1006, Hoa Hoc Huu Co, NXB006, TG006, 2015, 27000, 15, Co ban, Hoa hoc
-1, 1007, Ly Thuyet Mat Ma, NXB007, TG007, 2016, 23000, 19, Trung cap, An ninh mang
-0, 0010, Cuoc Song Tuyet Voi, NXB010, TG010, 2024, 49000, 15, 11
-1, 1008, Ky Thuat Moi Truong, NXB008, TG008, 2017, 35000, 17, Nang cao, Moi truong
-1, 1009, Giai Tich So, NXB009, TG009, 2018, 25000, 15, Nang cao, Toan hoc
+0, S001, Cuoc Phieu Luu Ky Dieu, NXB001, TG001, 2015, 46000, 11, 12
+1, S110, Vat Ly Hien Dai, NXB010, TG010, 2019, 17000, 17, Co ban, Vat ly
+0, S002, Hanh Trinh Tuoi Tho, NXB002, TG002, 2016, 41000, 6, 10
+0, S004, Ky Nghi Dang Nho, NXB004, TG004, 2018, 22000, 6, 14
+1, S102, Lap Trinh Python, NXB002, TG002, 2011, 24000, 18, Trung cap, Lap trinh
+0, S005, Chuyen Tau Bi An, NXB005, TG005, 2019, 32000, 7, 16
+0, S006, Hoi Ban Nhi Nho, NXB006, TG006, 2020, 21000, 5, 10
+1, S104, Co Hoc Luong Tu, NXB004, TG004, 2013, 25000, 13, Nang cao, Vat ly
+0, S007, Giac Mo Bay Xa, NXB007, TG007, 2021, 45000, 9, 18
+0, S009, Ky Niem Tuoi Tho, NXB009, TG009, 2023, 40000, 8, 9
+1, S101, Toan Hoc Ung Dung, NXB001, TG001, 2010, 28000, 14, Nang cao, Toan hoc
+0, S008, Cuon Sach Phep Thuat, NXB008, TG008, 2022, 38000, 10, 13
+1, S103, Giai Tich Cao Cap, NXB003, TG003, 2012, 18000, 13, Co ban, Toan hoc
+0, S003, The Gioi Dieu Ky, NXB003, TG003, 2017, 33000, 9, 8
+1, S105, Dien Tu Can Ban, NXB005, TG005, 2014, 24000, 16, Co ban, Ky thuat
+1, S106, Hoa Hoc Huu Co, NXB006, TG006, 2015, 27000, 15, Co ban, Hoa hoc
+1, S107, Ly Thuyet Mat Ma, NXB007, TG007, 2016, 23000, 19, Trung cap, An ninh mang
+0, S010, Cuoc Song Tuyet Voi, NXB010, TG010, 2024, 49000, 15, 11
+1, S108, Ky Thuat Moi Truong, NXB008, TG008, 2017, 35000, 17, Nang cao, Moi truong
+1, S109, Giai Tich So, NXB009, TG009, 2018, 25000, 15, Nang cao, Toan hoc
