@@ -3,16 +3,15 @@ import java.util.Scanner;
 import Format.ANSI;
 
 public class QuanLySach {
+    DSSach dsSach;
     public QuanLySach() {
-        DSSach dsSach = new DSSach();
-        menu(dsSach);
-    }
-
-    public void menu(DSSach dsSach) {
+        dsSach = new DSSach();
         if (dsSach.isEmpty()) {
-            dsSach = new DSSach();
             dsSach.docFile();
         }
+    }
+
+    public void hienthiMenu() {
         Scanner in = new Scanner(System.in);
         int chon = 0;
         do {

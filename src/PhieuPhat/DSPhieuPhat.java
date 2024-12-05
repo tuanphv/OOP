@@ -6,35 +6,29 @@ import java.util.Scanner;
 
 import Interface.IList;
 
-public class DSPhieuPhat implements IList<Phieuphat> {
-    private Phieuphat[] list = new Phieuphat[100]; // Mảng với kích thước cố định
+public class DSPhieuPhat implements IList<PhieuPhat> {
+    private PhieuPhat[] list = new PhieuPhat[0];
 
     public DSPhieuPhat() {
     }
 
-    public DSPhieuPhat(Phieuphat[] l1) {
+    public DSPhieuPhat(PhieuPhat[] l1) {
         this.list = l1;
     }
 
     // Read data from file and store in array
     public void docFile() {
-        try (Scanner scanner = new Scanner(new File("./lib/PhieuPhat.txt"))) {
-            while (scanner.hasNextLine()) {
-                String[] data = scanner.nextLine().split(", ");
-                String mapp = data[0];
-                String madg = data[1];
-                String manv = data[2];
-                Double tongphat = Double.parseDouble(data[3]);
-
-                Phieuphat phieuphat = new Phieuphat(mapp, madg, manv, tongphat);
-
-                // Expand array to add new object
-                Phieuphat[] newList = new Phieuphat[list.length + 1];
-                System.arraycopy(list, 0, newList, 0, list.length);
-                newList[list.length] = phieuphat;
-                list = newList;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("./lib/PhieuPhat.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(", ");
+                if (parts.length >= 4) {
+                    add(new PhieuPhat(parts[0], parts[1], parts[2], Integer.parseInt(parts[3])));
+                }
             }
-        } catch (FileNotFoundException e) {
+            reader.close();
+        } catch (IOException e) {
             System.out.println("File not found: " + e.getMessage());
         }
 
@@ -47,7 +41,7 @@ public class DSPhieuPhat implements IList<Phieuphat> {
         DSChiTietPhieuPhat dsChiTiet = new DSChiTietPhieuPhat();
         dsChiTiet.docFile(); // Read data from ChiTietPhieuPhat.txt
 
-        for (Phieuphat phieuphat : list) {
+        for (PhieuPhat phieuphat : list) {
             // Logic to update PhieuPhat.txt based on ChiTietPhieuPhat.txt
             // This can include checking if the entries in ChiTietPhieuPhat.txt correspond
             // to the entries in PhieuPhat.txt
@@ -58,10 +52,10 @@ public class DSPhieuPhat implements IList<Phieuphat> {
     // Ghi dữ liệu vào file
     public void ghiFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter("./lib/PhieuPhat.txt"))) {
-            for (Phieuphat phieuphat : list) {
+            for (PhieuPhat phieuphat : list) {
                 if (phieuphat != null) {
-                    writer.println(phieuphat.getMapp() + ", " + phieuphat.getMadg() + ", " + phieuphat.getManv() + ", "
-                            + phieuphat.getTongphat());
+                    writer.println(phieuphat.getMaPP() + ", " + phieuphat.getMaDG() + ", " + phieuphat.getMaNV() + ", "
+                            + phieuphat.getTongPhat());
                 }
             }
         } catch (IOException e) {
@@ -70,8 +64,8 @@ public class DSPhieuPhat implements IList<Phieuphat> {
     }
 
     // Thêm phiếu phạt vào mảng
-    public boolean add(Phieuphat phieuphat) {
-        int index = indexOf(phieuphat.getMapp());
+    public boolean add(PhieuPhat phieuphat) {
+        int index = indexOf(phieuphat.getMaPP());
         if (index != -1) {
             return false;
         }
@@ -80,6 +74,21 @@ public class DSPhieuPhat implements IList<Phieuphat> {
         return true;
     }
 
+    public void edit(String ma) {
+        int index = indexOf(ma);
+        if (index != -1) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Nhập thông tin mới cho phiếu phạt:");
+            System.out.print("Nhập mã độc giả: ");
+            list[index].setMaDG(scanner.nextLine());
+            System.out.print("Nhập mã nhân viên: ");
+            list[index].setMaNV(scanner.nextLine());
+            System.out.println("Đã cập nhật thông tin cho phiếu phạt có mã " + ma);
+            scanner.close();
+            return;
+        }
+        System.out.println("Không tìm thấy phiếu phạt có mã " + ma);
+    }
     // Xóa phiếu phạt khỏi mảng
     public void remove(String ma) {
         int index = indexOf(ma); // Lấy vị trí của phiếu phạt theo mã phiếu
@@ -96,7 +105,7 @@ public class DSPhieuPhat implements IList<Phieuphat> {
     // Lấy vị trí của phiếu phạt trong mảng
     public int indexOf(String Mapp) {
         for (int i = 0; i < list.length; i++) {
-            if (list[i].getMapp().equals(Mapp)) {
+            if (list[i].getMaPP().equals(Mapp)) {
                 return i;
             }
         }
@@ -104,9 +113,9 @@ public class DSPhieuPhat implements IList<Phieuphat> {
     }
 
     // Lấy phiếu phạt theo mã phiếu
-    public Phieuphat get(String mapp) {
-        for (Phieuphat phieuphat : list) {
-            if (phieuphat != null && phieuphat.getMapp().equals(mapp)) {
+    public PhieuPhat get(String mapp) {
+        for (PhieuPhat phieuphat : list) {
+            if (phieuphat != null && phieuphat.getMaPP().equals(mapp)) {
                 return phieuphat;
             }
         }
@@ -115,7 +124,7 @@ public class DSPhieuPhat implements IList<Phieuphat> {
 
     // Kiểm tra mảng có rỗng không
     public boolean isEmpty() {
-        return list.length == 0;
+        return list.length == 0 || list == null;
     }
 
     // Lấy độ dài của mảng
@@ -124,9 +133,17 @@ public class DSPhieuPhat implements IList<Phieuphat> {
     }
 
     // Lấy danh sách phiếu phạt
-    public Phieuphat[] getList() {
+    public PhieuPhat[] getList() {
         return list;
     }
 
-    // Removed the main method to prevent Scanner conflicts
+    public void xuat() {
+        if (isEmpty()) {
+            System.out.println("Danh sach phieu phat rong.");
+        } else {
+            System.out.println("Danh sach phieu phat:");
+            for (PhieuPhat phieuphat : list)   
+                phieuphat.xuat();
+        }
+    }
 }

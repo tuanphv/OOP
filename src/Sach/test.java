@@ -1,7 +1,7 @@
-import Sach.QuanLySach;
-
+package Sach;
 public class test {
     public static void main(String[] args) {
-        new QuanLySach();
+        new QuanLySach().hienthiMenu();;
+
     }
 }

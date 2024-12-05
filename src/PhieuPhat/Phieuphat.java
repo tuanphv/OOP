@@ -1,79 +1,92 @@
 package PhieuPhat;
+
 import java.util.Scanner;
 
-public class Phieuphat {
-    private String Mapp;
-    private String Madg;
-    private String Manv;
-    private Double Tongphat;
+public class PhieuPhat {
+    private String maPP;
+    private String maDG;
+    private String maNV;
+    private int tongPhat;
 
-    public Phieuphat() {
+    public PhieuPhat() {
     }
 
-    public Phieuphat(String mapp, String madg, String manv, Double tongphat) {
-        this.Mapp = mapp;
-        this.Madg = madg;
-        this.Manv = manv;
-        this.Tongphat = tongphat;
+    public PhieuPhat(String maPP, String maDG, String maNV, int tongPhat) {
+        this.maPP = maPP;
+        this.maDG = maDG;
+        this.maNV = maNV;
+        this.tongPhat = tongPhat;
     }
 
-    public Phieuphat(Phieuphat s1) {
-        this.Mapp = s1.Mapp;
-        this.Madg = s1.Madg;
-        this.Manv = s1.Manv;
-        this.Tongphat = s1.Tongphat;
+    public PhieuPhat(PhieuPhat s1) {
+        this.maPP = s1.maPP;
+        this.maDG = s1.maDG;
+        this.maNV = s1.maNV;
+        this.tongPhat = s1.tongPhat;
     }
 
-    public String getMapp() {
-        return Mapp;
+    public String getMaPP() {
+        return maPP;
     }
 
-    public String getMadg() {
-        return Madg;
+    public String getMaDG() {
+        return maDG;
     }
 
-    public String getManv() {
-        return Manv;
+    public String getMaNV() {
+        return maNV;
     }
 
-    public Double getTongphat() {
-        return Tongphat;
+    public int getTongPhat() {
+        return tongPhat;
     }
 
-    public void setMapp(String mapp) {
-        this.Mapp = mapp;
+    public void setMaPP(String maPP) {
+        this.maPP = maPP;
     }
 
-    public void setMadg(String madg) {
-        this.Madg = madg;
+    public void setMaDG(String maDG) {
+        this.maDG = maDG;
     }
 
-    public void setManv(String manv) {
-        this.Manv = manv;
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
     }
 
-    public void setTongphat(Double tongphat) {
-        this.Tongphat = tongphat;
+    public void setTongPhat(int tongPhat) {
+        this.tongPhat = tongPhat;
     }
 
     public void nhap() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập mã phiếu phạt: ");
-        this.Mapp = scanner.nextLine();
-        System.out.print("Nhập mã độc giả: ");
-        this.Madg = scanner.nextLine();
-        System.out.print("Nhập mã nhân viên: ");
-        this.Manv = scanner.nextLine();
-        // nhập từng chi tiết phạt
-        // System.out.print("Nhập tổng phạt: ");
-        // this.Tongphat = scanner.nextDouble();
+        System.out.print("Nhap ma phieu phat: ");
+        this.maPP = scanner.nextLine();
+        System.out.print("Nhap ma doc gia: ");
+        this.maDG = scanner.nextLine();
+        System.out.print("Nhap ma nhan vien: ");
+        this.maNV = scanner.nextLine();
         scanner.close();
     }
 
     public void xuat() {
-        System.out.println("Mã phiếu phạt: " + Mapp);
-        System.out.println("Mã độc giả: " + Madg);
-        System.out.println("Mã nhân viên: " + Manv);
-        System.out.println("Tổng phạt: " + Tongphat);
+        System.out.println("Ma phieu phat: " + maPP);
+        System.out.println("Ma doc gia: " + maDG);
+        System.out.println("Ma nhan vien: " + maNV);
+        System.out.println("Tong phat: " + tongPhat);
+    }
+
+    public void xuatChiTiet() {
+        DSChiTietPhieuPhat dsChiTiet = new DSChiTietPhieuPhat();
+        if (dsChiTiet.isEmpty()) {
+            dsChiTiet.docFile();
+        }
+        System.out.println("Ma phieu phat: " + maPP);
+        System.out.println("Ma doc gia: " + maDG);
+        System.out.println("Ma nhan vien: " + maNV);
+        dsChiTiet.xuatKQ(dsChiTiet.getChiTietCuaPhieu(maPP));
+        System.out.println("Tong phat: " + tongPhat);
+    }
+    public String toString() {
+        return maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
     }
 }

@@ -85,4 +85,8 @@ public class ChiTietPhieuPhat {
     public String toString() {
         return Mapp + ", " + Masach + ", " + Maqd + ", " + Tienphat;
     }
+
+    public String[] toArray() {
+        return new String[] {Mapp, Masach, Maqd, String.valueOf(Tienphat)};
+    }
 }

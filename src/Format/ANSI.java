@@ -1,4 +1,5 @@
 package Format;
+
 public class ANSI {
     public class BG_COLOR {
         public static final String BLACK = "40";
@@ -34,10 +35,11 @@ public class ANSI {
     private String[] headers;
     private String[][] data;
 
-    public ANSI(String[] headers, String[][] data){
+    public ANSI(String[] headers, String[][] data) {
         this.headers = headers;
         this.data = data;
     }
+
     public void printTable() {
         int[] columnWidths = new int[headers.length];
         for (int i = 0; i < headers.length; i++) {
@@ -73,8 +75,24 @@ public class ANSI {
         return String.format("%-" + length + "s", text);
     }
 
+    public String setLength(String text, int length, String alignment) {
+        if (text.length() >= length) {
+            return text;
+        }
+        switch (alignment) {
+            case "left":
+                return String.format("%-" + length + "s", text);
+            case "right":
+                return String.format("%" + length + "s", text);
+            default:
+                int padding = (length - text.length()) / 2;
+                int remainder = (length - text.length()) % 2;
+                return String.format("%" + padding + "s%s%" + (padding + remainder) + "s", "", text, "");
+        }
+    }
+
     // ║ ╔ ╗ ╚ ╝ ╠ ╣ ╦ ╩ ╬
-    public void printHeader(String[] header, int[] columnWidths) {
+    private void printHeader(String[] header, int[] columnWidths) {
         StringBuilder headerString = new StringBuilder("╔");
         for (int i = 0; i < header.length; i++) {
             headerString.append("═".repeat(columnWidths[i] + 2)).append(i == header.length - 1 ? "╗" : "╦");
@@ -83,7 +101,8 @@ public class ANSI {
         StringBuilder headerString1 = new StringBuilder("║");
         for (int i = 0; i < header.length; i++)
             headerString1.append(" ").append(
-                    formatText(setLength(header[i], columnWidths[i]), FG_COLOR.GREEN, BG_COLOR.NONE, STYLE.BOLD))
+                    formatText(setLength(header[i], columnWidths[i], "center"), FG_COLOR.GREEN, BG_COLOR.NONE,
+                            STYLE.BOLD))
                     .append(" ║");
         System.out.println(headerString1);
         StringBuilder headerString2 = new StringBuilder("╠");
@@ -94,14 +113,14 @@ public class ANSI {
 
     }
 
-    public void printRow(String[] row, int[] columnWidths) {
+    private void printRow(String[] row, int[] columnWidths) {
         StringBuilder rowString = new StringBuilder("║");
         for (int i = 0; i < row.length; i++)
             rowString.append(" ").append(setLength(row[i], columnWidths[i])).append(" ║");
         System.out.println(rowString);
     }
 
-    public void printFooter(String[] header, int[] columnWidths) {
+    private void printFooter(String[] header, int[] columnWidths) {
         StringBuilder headerString = new StringBuilder("╚");
         for (int i = 0; i < header.length; i++) {
             headerString.append("═".repeat(columnWidths[i] + 2)).append(i == header.length - 1 ? "╝" : "╩");

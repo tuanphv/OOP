@@ -58,6 +58,22 @@ public class DSQuyDinhPhat implements IList<Quydinhphat> {
         return false;
     }
 
+    public void edit(String maQD) {
+        int index = indexOf(maQD);
+        if (index != -1) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Nhap noi dung moi: ");
+            String noidung = scanner.nextLine();
+            System.out.println("Nhap muc phat moi: ");
+            double mucphat = scanner.nextDouble();
+            list[index].setNoidung(noidung);
+            list[index].setMucphat(mucphat);
+            System.out.println("Quy dinh phat da duoc cap nhat.");
+            scanner.close();
+            return;
+        }
+        System.out.println("Khong tim thay quy dinh phat can cap nhat.");
+    }
     // Remove regulation from the array
     public void remove(String maqd) {
         int index = indexOf(maqd);  // Get position of regulation by code
@@ -93,7 +109,7 @@ public class DSQuyDinhPhat implements IList<Quydinhphat> {
 
     // Check if array is empty
     public boolean isEmpty() {
-        return list.length == 0;
+        return list.length == 0 || list == null;
     }
 
     // Get length of array

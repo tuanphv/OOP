@@ -1,25 +1,25 @@
 package PhieuPhat;
 import java.io.*;
 import java.util.Arrays;
-import java.util.Scanner; // Importing Arrays class
 
+import Format.ANSI;
 import Interface.IList;
 
 public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
-    private ChiTietPhieuPhat[] list = new ChiTietPhieuPhat[100];
+    private static ChiTietPhieuPhat[] list = new ChiTietPhieuPhat[0];
 
     public DSChiTietPhieuPhat() {}
     
     // Read data from ChiTietPhieuPhat.txt and store in array
     public void docFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("./lib/ChiTietPhieuPhat.txt"))) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("./lib/ChiTietPhieuPhat.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(", ");
-                if (parts.length >= 4) {
-                    add(new ChiTietPhieuPhat(parts[0], parts[1], parts[2], Integer.parseInt(parts[3])));
-                }
+                add(new ChiTietPhieuPhat(parts[0], parts[1], parts[2], Integer.parseInt(parts[3])));
             }
+            reader.close();
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
@@ -42,7 +42,7 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
     // Add regulation to the array
     public boolean add(ChiTietPhieuPhat chiTiet) {
         int index = indexOf(chiTiet.getMaPP());
-        if (index == -1) {
+        if (index != -1) {
             return false;
         }
         list = Arrays.copyOf(list, list.length + 1);
@@ -87,5 +87,25 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
     // Get length of array
     public int size() {
         return list.length;
+    }
+
+    public ChiTietPhieuPhat[] getChiTietCuaPhieu(String mapp) {
+        ChiTietPhieuPhat[] result = new ChiTietPhieuPhat[0];
+        for (ChiTietPhieuPhat chiTiet : list) {
+            if (chiTiet.getMaPP().equals(mapp)) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = chiTiet;
+            }
+        }
+        return result;
+    }
+
+    public void xuatKQ(ChiTietPhieuPhat[] result) {
+        String[] header = {"Ma phieu phat", "Ma sach", "Ma quy dinh", "Tien phat"};
+        String[][] data = new String[result.length][];
+        for (int i = 0; i < result.length; i++) {
+            data[i] = result[i].toArray();
+        }
+        new ANSI(header, data).printTable();
     }
 }
