@@ -5,12 +5,12 @@ public class ChiTietPhieuPhat {
     private String Mapp;
     private String Masach;
     private String Maqd;
-    private Double Tienphat;
+    private int Tienphat;
 
     public ChiTietPhieuPhat() {
     }
 
-    public ChiTietPhieuPhat(String mapp, String masach, String maqd, Double tienphat) {
+    public ChiTietPhieuPhat(String mapp, String masach, String maqd, int tienphat) {
         this.Mapp = mapp;
         this.Masach = masach;
         this.Maqd = maqd;
@@ -36,7 +36,7 @@ public class ChiTietPhieuPhat {
         return Maqd;
     }
 
-    public Double getTienPhat() {
+    public int getTienPhat() {
         return Tienphat;
     }
 
@@ -52,7 +52,7 @@ public class ChiTietPhieuPhat {
         this.Maqd = maqd;
     }
 
-    public void setTienPhat(Double tienphat) {
+    public void setTienPhat(int tienphat) {
         this.Tienphat = tienphat;
     }
 
@@ -66,11 +66,11 @@ public class ChiTietPhieuPhat {
             System.out.print("Nhập mã quy định: ");
             this.Maqd = scanner.nextLine();
             System.out.print("Nhập tiền phạt: ");
-            this.Tienphat = Double.parseDouble(scanner.nextLine());
+            this.Tienphat = Integer.parseInt(scanner.nextLine());
             scanner.close();
         } catch (NumberFormatException e) {
             System.out.println("Lỗi: Tiền phạt phải là số!");
-            this.Tienphat = 0.0;
+            this.Tienphat = 0;
         }
     }
 

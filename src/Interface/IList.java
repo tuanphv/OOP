@@ -5,7 +5,7 @@ public interface IList<T> {
     // them 1 doi tuong vao cuoi danh sach
     public boolean add(T obj);
     // sua doi tuong theo id
-    public void edit(String ma);
+    // public void edit(String ma);
     // xoa doi tuong obj
     public void remove(String ma);
     // lay vi tri cua doi tuong trong danh sach

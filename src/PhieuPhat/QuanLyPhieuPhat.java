@@ -1,6 +1,8 @@
 package PhieuPhat;
 import java.util.Scanner;
 
+import Format.ANSI;
+
 public class QuanLyPhieuPhat {
     private DSPhieuPhat dsPhieuPhat;
     private DSQuyDinhPhat dsQuyDinhPhat;
@@ -14,10 +16,13 @@ public class QuanLyPhieuPhat {
         Scanner scanner = new Scanner(System.in);
         int luaChon;
         do {
-            System.out.println("\n--- Menu Quan Ly Phat ---");
-            System.out.println("1. Quan ly phieu phat");
-            System.out.println("2. Quan ly quy dinh phat");
-            System.out.println("3. Thoat");
+            System.out.println("");
+            new ANSI(new String[] {"Menu Quan Ly Phat"},
+            new String[][]{
+                {"1. Quan ly phieu phat"},
+                {"2. Quan ly quy dinh phat"},
+                {"3. Thoat"}
+            }).printTable();
             System.out.print("Chon thao tac: ");
             
             luaChon = Integer.parseInt(scanner.nextLine());
@@ -70,13 +75,7 @@ public class QuanLyPhieuPhat {
                 case 4:
                     System.out.print("Nhap ma phieu phat can xoa: ");
                     String maPPCanXoa = scanner.nextLine();
-                    Phieuphat phieuCanXoa = dsPhieuPhat.get(maPPCanXoa);
-                    if (phieuCanXoa != null) {
-                        dsPhieuPhat.remove(phieuCanXoa);
-                        System.out.println("Phieu phat da duoc xoa.");
-                    } else {
-                        System.out.println("Khong tim thay phieu phat co ma: " + maPPCanXoa);
-                    }
+                    dsPhieuPhat.remove(maPPCanXoa);
                     break;
                 case 5:
                     if (dsPhieuPhat.isEmpty()) {
@@ -129,13 +128,7 @@ public class QuanLyPhieuPhat {
                 case 4:
                     System.out.print("Nhap ma quy dinh phat can xoa: ");
                     String maQDCanXoa = scanner.nextLine();
-                    Quydinhphat quyCanXoa = dsQuyDinhPhat.get(maQDCanXoa);
-                    if (quyCanXoa != null) {
-                        dsQuyDinhPhat.remove(quyCanXoa);
-                        System.out.println("Quy dinh phat da duoc xoa.");
-                    } else {
-                        System.out.println("Khong tim thay quy dinh phat co ma: " + maQDCanXoa);
-                    }
+                    dsQuyDinhPhat.remove(maQDCanXoa);
                     break;
                 case 5:
                     if (dsQuyDinhPhat.isEmpty()) {

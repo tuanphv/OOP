@@ -6,45 +6,33 @@ import java.util.Scanner; // Importing Arrays class
 import Interface.IList;
 
 public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
-    private ChiTietPhieuPhat[] list = new ChiTietPhieuPhat[100];  // Fixed-size array
-    private int size = 0; // Track the number of elements
+    private ChiTietPhieuPhat[] list = new ChiTietPhieuPhat[100];
 
     public DSChiTietPhieuPhat() {}
     
     // Read data from ChiTietPhieuPhat.txt and store in array
     public void docFile() {
-        try (Scanner scanner = new Scanner(new File("./lib/ChiTietPhieuPhat.txt"))) {
-            while (scanner.hasNextLine()) {
-                String[] data = scanner.nextLine().split(", ");
-                if (data.length < 4) {
-                    System.out.println("Warning: Skipping line due to insufficient data: " + Arrays.toString(data));
-                    continue; // Skip this line
+        try (BufferedReader reader = new BufferedReader(new FileReader("./lib/ChiTietPhieuPhat.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(", ");
+                if (parts.length >= 4) {
+                    add(new ChiTietPhieuPhat(parts[0], parts[1], parts[2], Integer.parseInt(parts[3])));
                 }
-                String mapp = data[0];
-                String masach = data[1];
-                String maqd = data[2];
-                Double tienphat = Double.parseDouble(data[3]);
-
-                ChiTietPhieuPhat chiTiet = new ChiTietPhieuPhat(mapp, masach, maqd, tienphat);
-
-                // Expand array to add new object
-                if (size >= list.length) {
-                    ChiTietPhieuPhat[] newList = new ChiTietPhieuPhat[list.length * 2];
-                    System.arraycopy(list, 0, newList, 0, list.length);
-                    list = newList;
-                }
-                list[size++] = chiTiet; // Add new object and increment size
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
         }
     }
 
     // Write data to ChiTietPhieuPhat.txt
     public void ghiFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("./lib/ChiTietPhieuPhat.txt"))) {
-            for (int i = 0; i < size; i++) {
-                writer.println(list[i].getMaPP() + ", " + list[i].getMaSach() + ", " + list[i].getMaQD() + ", " + list[i].getTienPhat());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/ChiTietPhieuPhat.txt"))) {
+            for (ChiTietPhieuPhat chiTiet : list) {
+                if (chiTiet != null) {
+                    writer.write(chiTiet.toString());
+                    writer.newLine();
+                }
             }
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
@@ -52,29 +40,30 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
     }
 
     // Add regulation to the array
-    public void add(ChiTietPhieuPhat chiTiet) {
-        if (size >= list.length) {
-            ChiTietPhieuPhat[] newList = new ChiTietPhieuPhat[list.length * 2];
-            System.arraycopy(list, 0, newList, 0, list.length);
-            list = newList;
+    public boolean add(ChiTietPhieuPhat chiTiet) {
+        int index = indexOf(chiTiet.getMaPP());
+        if (index == -1) {
+            return false;
         }
-        list[size++] = chiTiet; // Add new object and increment size
+        list = Arrays.copyOf(list, list.length + 1);
+        list[list.length - 1] = chiTiet;
+        return true;
     }
 
     // Remove regulation from the array
-    public void remove(ChiTietPhieuPhat chiTiet) {
-        int index = indexOf(chiTiet.getMaPP());
+    public void remove(String mapp) {
+        int index = indexOf(mapp);
         if (index != -1) {
-            System.arraycopy(list, index + 1, list, index, size - index - 1);
-            size--; // Decrement size
+            System.arraycopy(list, index + 1, list, index, list.length - 1 - index);
+            list = Arrays.copyOf(list, list.length - 1);
         }
     }
 
     // Get regulation by code
     public ChiTietPhieuPhat get(String mapp) {
-        for (int i = 0; i < size; i++) {
-            if (list[i].getMaPP().equals(mapp)) {
-                return list[i];
+        for (ChiTietPhieuPhat chiTiet : list) {
+            if (chiTiet.getMaPP().equals(mapp)) {
+                return chiTiet;
             }
         }
         return null; // Return null if not found
@@ -82,7 +71,7 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
 
     // Get position of regulation in the array
     public int indexOf(String mapp) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < list.length; i++) {
             if (list[i].getMaPP().equals(mapp)) {
                 return i;
             }
@@ -92,11 +81,11 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
 
     // Check if array is empty
     public boolean isEmpty() {
-        return size == 0;
+        return list.length == 0 || list == null;
     }
 
     // Get length of array
     public int size() {
-        return size;
+        return list.length;
     }
 }

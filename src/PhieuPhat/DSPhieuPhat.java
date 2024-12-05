@@ -1,13 +1,16 @@
 package PhieuPhat;
+
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import Interface.IList;
 
 public class DSPhieuPhat implements IList<Phieuphat> {
-    private Phieuphat[] list = new Phieuphat[100];  // Mảng với kích thước cố định
-    
-    public DSPhieuPhat() {}
+    private Phieuphat[] list = new Phieuphat[100]; // Mảng với kích thước cố định
+
+    public DSPhieuPhat() {
+    }
 
     public DSPhieuPhat(Phieuphat[] l1) {
         this.list = l1;
@@ -46,7 +49,8 @@ public class DSPhieuPhat implements IList<Phieuphat> {
 
         for (Phieuphat phieuphat : list) {
             // Logic to update PhieuPhat.txt based on ChiTietPhieuPhat.txt
-            // This can include checking if the entries in ChiTietPhieuPhat.txt correspond to the entries in PhieuPhat.txt
+            // This can include checking if the entries in ChiTietPhieuPhat.txt correspond
+            // to the entries in PhieuPhat.txt
             // and updating or adding as necessary
         }
     }
@@ -56,7 +60,8 @@ public class DSPhieuPhat implements IList<Phieuphat> {
         try (PrintWriter writer = new PrintWriter(new FileWriter("./lib/PhieuPhat.txt"))) {
             for (Phieuphat phieuphat : list) {
                 if (phieuphat != null) {
-                    writer.println(phieuphat.getMapp() + ", " + phieuphat.getMadg() + ", " + phieuphat.getManv() + ", " + phieuphat.getTongphat());
+                    writer.println(phieuphat.getMapp() + ", " + phieuphat.getMadg() + ", " + phieuphat.getManv() + ", "
+                            + phieuphat.getTongphat());
                 }
             }
         } catch (IOException e) {
@@ -65,39 +70,38 @@ public class DSPhieuPhat implements IList<Phieuphat> {
     }
 
     // Thêm phiếu phạt vào mảng
-    public void add(Phieuphat phieuphat) {
-        // Mở rộng mảng để thêm đối tượng mới
-        Phieuphat[] newList = new Phieuphat[list.length + 1];
-        System.arraycopy(list, 0, newList, 0, list.length);
-        newList[list.length] = phieuphat;
-        list = newList;
+    public boolean add(Phieuphat phieuphat) {
+        int index = indexOf(phieuphat.getMapp());
+        if (index != -1) {
+            return false;
+        }
+        list = Arrays.copyOf(list, list.length + 1);
+        list[list.length - 1] = phieuphat;
+        return true;
     }
 
     // Xóa phiếu phạt khỏi mảng
-    // Xóa phiếu phạt khỏi mảng
-public void remove(Phieuphat phieuphat) {
-    int index = indexOf(phieuphat.getMapp());  // Lấy vị trí của phiếu phạt theo mã phiếu
-    if (index != -1) {  // Nếu tìm thấy phiếu phạt
-        Phieuphat[] newList = new Phieuphat[list.length - 1];  // Tạo mảng mới có kích thước giảm đi 1
-        System.arraycopy(list, 0, newList, 0, index);  // Sao chép phần trước phiếu phạt
-        System.arraycopy(list, index + 1, newList, index, list.length - index - 1);  // Sao chép phần sau phiếu phạt
-        list = newList;  // Gán mảng mới cho danh sách
+    public void remove(String ma) {
+        int index = indexOf(ma); // Lấy vị trí của phiếu phạt theo mã phiếu
+        if (index != -1) { // Nếu tìm thấy phiếu phạt
+            int length = list.length;
+            System.arraycopy(list, index + 1, list, index, length - index - 1); // Sao chép phần trước phiếu phạt
+            list = Arrays.copyOf(list, length - 1);
+            System.out.println("Đã xóa phiếu phạt có mã " + ma);
+            return;
+        }
+        System.out.println("Không tìm thấy phiếu phạt có mã " + ma);
     }
-}
-
-
-
 
     // Lấy vị trí của phiếu phạt trong mảng
     public int indexOf(String Mapp) {
-    for (int i = 0; i < list.length; i++) {
-        if (list[i].getMapp().equals(Mapp)) {
-            return i;
+        for (int i = 0; i < list.length; i++) {
+            if (list[i].getMapp().equals(Mapp)) {
+                return i;
+            }
         }
+        return -1; // Không tìm thấy
     }
-    return -1; // Không tìm thấy
-}
-
 
     // Lấy phiếu phạt theo mã phiếu
     public Phieuphat get(String mapp) {
@@ -106,7 +110,7 @@ public void remove(Phieuphat phieuphat) {
                 return phieuphat;
             }
         }
-        return null;  // Trả về null nếu không tìm thấy
+        return null; // Trả về null nếu không tìm thấy
     }
 
     // Kiểm tra mảng có rỗng không
@@ -123,6 +127,6 @@ public void remove(Phieuphat phieuphat) {
     public Phieuphat[] getList() {
         return list;
     }
-    
+
     // Removed the main method to prevent Scanner conflicts
 }

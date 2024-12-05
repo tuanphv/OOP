@@ -1,5 +1,6 @@
 package PhieuPhat;
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import Interface.IList;
@@ -47,23 +48,27 @@ public class DSQuyDinhPhat implements IList<Quydinhphat> {
     }
 
     // Add regulation to the array
-    public void add(Quydinhphat quydinhphat) {
-        // Expand array to add new object
-        Quydinhphat[] newList = new Quydinhphat[list.length + 1];
-        System.arraycopy(list, 0, newList, 0, list.length);
-        newList[list.length] = quydinhphat;
-        list = newList;
+    public boolean add(Quydinhphat quydinhphat) {
+        int index = indexOf(quydinhphat.getMaqd());  // Get position of regulation by code
+        if (index == -1) {  // If regulation not found
+            list = Arrays.copyOf(list, list.length + 1);  // Expand array to add new object
+            list[list.length - 1] = quydinhphat;  // Add new object to the end of the array
+            return true;
+        }
+        return false;
     }
 
     // Remove regulation from the array
-    public void remove(Quydinhphat quydinhphat) {
-        int index = indexOf(quydinhphat.getMaqd());  // Get position of regulation by code
+    public void remove(String maqd) {
+        int index = indexOf(maqd);  // Get position of regulation by code
         if (index != -1) {  // If regulation found
-            Quydinhphat[] newList = new Quydinhphat[list.length - 1];  // Create new array with size reduced by 1
-            System.arraycopy(list, 0, newList, 0, index);  // Copy part before regulation
-            System.arraycopy(list, index + 1, newList, index, list.length - index - 1);  // Copy part after regulation
-            list = newList;  // Assign new array to list
+            int len = list.length;
+            System.arraycopy(list, index + 1, list, index, len - 1 - index);  // Shift elements
+            list = Arrays.copyOf(list, len - 1);  // Resize array
+            System.out.println("Quy dinh phat da duoc xoa.");
+            return;
         }
+        System.out.println("Khong tim thay quy dinh phat can xoa.");
     }
 
     // Get position of regulation in the array
