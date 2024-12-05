@@ -108,8 +108,10 @@ public class NhanVien {
     }
 
     public void nhap(){
-        System.out.print("Nhap ma nhan vien: ");
-        maNV= nhap.nextLine();
+        if (maNV==null || maNV==""){
+            System.out.print("Nhap ma nhan vien: ");
+            maNV= nhap.nextLine();
+        }
         System.out.print("Nhap ten nhan vien: ");
         tenNV= nhap.nextLine();
         System.out.print("Nhap chuc vu nhan vien: ");

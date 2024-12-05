@@ -44,7 +44,7 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
     public void ghiFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter("./lib/ChiTietPhieuPhat.txt"))) {
             for (int i = 0; i < size; i++) {
-                writer.println(list[i].getMapp() + ", " + list[i].getMasach() + ", " + list[i].getMaqd() + ", " + list[i].getTienphat());
+                writer.println(list[i].getMaPP() + ", " + list[i].getMaSach() + ", " + list[i].getMaQD() + ", " + list[i].getTienPhat());
             }
         } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
@@ -63,7 +63,7 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
 
     // Remove regulation from the array
     public void remove(ChiTietPhieuPhat chiTiet) {
-        int index = indexOf(chiTiet.getMapp());
+        int index = indexOf(chiTiet.getMaPP());
         if (index != -1) {
             System.arraycopy(list, index + 1, list, index, size - index - 1);
             size--; // Decrement size
@@ -73,7 +73,7 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
     // Get regulation by code
     public ChiTietPhieuPhat get(String mapp) {
         for (int i = 0; i < size; i++) {
-            if (list[i].getMapp().equals(mapp)) {
+            if (list[i].getMaPP().equals(mapp)) {
                 return list[i];
             }
         }
@@ -83,7 +83,7 @@ public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
     // Get position of regulation in the array
     public int indexOf(String mapp) {
         for (int i = 0; i < size; i++) {
-            if (list[i].getMapp().equals(mapp)) {
+            if (list[i].getMaPP().equals(mapp)) {
                 return i;
             }
         }

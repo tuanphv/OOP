@@ -72,20 +72,31 @@ public class DSDocGia implements IList<DocGia> {
         }
     }
 
-    public void add(DocGia dg) {
+    public boolean add(DocGia dg) {
         int index = indexOf(dg.getMaDG());
         if (index == -1) { // nếu chưa có sách thì thêm
             int n = dsDocGia.length;
             dsDocGia = Arrays.copyOf(dsDocGia, n + 1);
             dsDocGia[n] = dg;
-        } else
-            System.out.println("Đã tồn tại thông tin độc giả này");
-
+            return true;
+        }
+        return false;
     }
 
-    public void remove(DocGia dg) {
+    public void edit(String ma) {
+        int index = indexOf(ma);
+        if (index == -1) {
+            System.out.println("Không tìm thấy độc giả cần sửa");
+        } else {
+            DocGia dg = new DocGia();
+            dg.setmaDG(ma);
+            dg.nhap();
+            dsDocGia[index] = dg;
+        }
+    }
+    public void remove(String ma) {
         //
-        int index = indexOf(dg.getMaDG());
+        int index = indexOf(ma);
         if (index == -1) {
             System.out.println("Không tìm thấy độc giả cần xóa");
         } else {

@@ -34,12 +34,12 @@ public class QuanLySach {
                 case 2:
                     System.out.print("Nhap ma sach can sua: ");
                     String maSachSua = in.nextLine();
-                    dsSach.suaSach(maSachSua);
+                    dsSach.edit(maSachSua);
                     break;
                 case 3:
                     System.out.print("Nhap ma sach can xoa: ");
                     String maSachXoa = in.nextLine();
-                    dsSach.remove(dsSach.get(maSachXoa));
+                    dsSach.remove(maSachXoa);
                     break;
                 case 4:
                     menuTimKiem(dsSach, in);

@@ -24,39 +24,39 @@ public class ChiTietPhieuPhat {
         this.Tienphat = s1.Tienphat;
     }
 
-    public String getMapp() {
+    public String getMaPP() {
         return Mapp;
     }
 
-    public String getMasach() {
+    public String getMaSach() {
         return Masach;
     }
 
-    public String getMaqd() {
+    public String getMaQD() {
         return Maqd;
     }
 
-    public Double getTienphat() {
+    public Double getTienPhat() {
         return Tienphat;
     }
 
-    public void setMapp(String mapp) {
+    public void setMaPP(String mapp) {
         this.Mapp = mapp;
     }
 
-    public void setMasach(String masach) {
+    public void setMaSach(String masach) {
         this.Masach = masach;
     }
 
-    public void setMaqd(String maqd) {
+    public void setMaQD(String maqd) {
         this.Maqd = maqd;
     }
 
-    public void setTienphat(Double tienphat) {
+    public void setTienPhat(Double tienphat) {
         this.Tienphat = tienphat;
     }
 
-    public void Nhap() {
+    public void nhap() {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Nhập mã phiếu phạt: ");
@@ -74,7 +74,7 @@ public class ChiTietPhieuPhat {
         }
     }
 
-    public void Xuat() {
+    public void xuat() {
         System.out.println("Mã phiếu phạt: " + Mapp);
         System.out.println("Mã sách: " + Masach);
         System.out.println("Mã quy định: " + Maqd);

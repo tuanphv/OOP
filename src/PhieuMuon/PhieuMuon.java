@@ -5,9 +5,8 @@ public class PhieuMuon {
     private String maDocGia;
     private String ngayMuon;
     private String maNhanVien;
-    Scanner input = new Scanner(System.in);
-
-
+    
+    
     public PhieuMuon() {
     }
 
@@ -16,17 +15,17 @@ public class PhieuMuon {
         this.maDocGia = maDocGia;
         this.ngayMuon = ngayMuon;
         this.maNhanVien = maNhanVien;
-
+        
     }
-
+    
     public PhieuMuon(PhieuMuon pm1) {
         this.maPhieuMuon = pm1.maPhieuMuon;
         this.maDocGia = pm1.maDocGia;
         this.ngayMuon = pm1.ngayMuon;
         this.maNhanVien = pm1.maNhanVien;
     }
-
-
+    
+    
     public String getmaPhieuMuon() {
         return maPhieuMuon;
     }
@@ -41,7 +40,7 @@ public class PhieuMuon {
     }
 
 
-
+    
     public void setmaPhieuMuon(String maPhieuMuon) {
         this.maPhieuMuon = maPhieuMuon;
     }
@@ -54,8 +53,9 @@ public class PhieuMuon {
     public void setmaNhanVien(String maNhanVien){
         this.maNhanVien=maNhanVien;
     }
-
+    
     public void nhap() {
+        Scanner input = new Scanner(System.in);
         System.out.print("Nhap ma phieu muon: ");
         maPhieuMuon = input.nextLine();
         System.out.print("Nhap ma doc gia:  ");
@@ -64,13 +64,20 @@ public class PhieuMuon {
         ngayMuon = input.nextLine();
         System.out.print("Nhap ma nhan vien: ");
         maNhanVien = input.nextLine();
+        input.close();
     }
 
     
     public void xuat() {
         System.out.printf("%-15s %-15s %-15s %-15s\n", maPhieuMuon, maDocGia, ngayMuon, maNhanVien);
     }
-    
+    @Override
+    public String toString() {
+        return maPhieuMuon + ", " + maDocGia + ", " + ngayMuon + ", " + maNhanVien;
+    }
 
+    public String[] toArray() {
+        return new String[] {maPhieuMuon, maDocGia, ngayMuon, maNhanVien};
+    }
 
 }

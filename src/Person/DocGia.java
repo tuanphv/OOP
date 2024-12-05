@@ -1,4 +1,5 @@
 package Person;
+
 import java.util.Scanner;
 
 public class DocGia {
@@ -69,8 +70,10 @@ public class DocGia {
 
     public void nhap() {
         Scanner nhap = new Scanner(System.in);
-        System.out.print("Nhap ma doc gia: ");
-        maDG = nhap.nextLine();
+        if (maDG == "" || maDG == null) {
+            System.out.print("Nhap ma doc gia: ");
+            maDG = nhap.nextLine();
+        }
         System.out.print("Nhap ho doc gia: ");
         hoDG = nhap.nextLine();
         System.out.print("Nhap ten doc gia: ");

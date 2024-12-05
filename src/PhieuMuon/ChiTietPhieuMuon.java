@@ -66,7 +66,7 @@ public class ChiTietPhieuMuon {
         Scanner nhap = new Scanner(System.in);
         System.out.print("Nhap ma phieu muon: ");
         maPhieuMuon = nhap.nextLine();
-        System.out.print("Nhap han tra:  ");
+        System.out.print("Nhap han tra sach:  ");
         hanTra = nhap.nextLine();
         System.out.print("Nhap ngay tra: ");
         ngayTra = nhap.nextLine();

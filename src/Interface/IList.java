@@ -3,9 +3,11 @@ public interface IList<T> {
     public void docFile();
     public void ghiFile();
     // them 1 doi tuong vao cuoi danh sach
-    public void add(T obj);
+    public boolean add(T obj);
+    // sua doi tuong theo id
+    public void edit(String ma);
     // xoa doi tuong obj
-    public void remove(T obj);
+    public void remove(String ma);
     // lay vi tri cua doi tuong trong danh sach
     public int indexOf(String ma);
     // lay doi tuong theo id

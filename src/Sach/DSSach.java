@@ -158,28 +158,28 @@ public class DSSach implements IList<Sach> {
                 s = new SachGiaiTri();
                 break;
         }
-        s.nhap();
-        if (indexOf(s.getMaSach()) != -1) {
-            System.out.println("Da co sach. Vui long nhap lai!");
-            return;
+        boolean check = add(s);
+        while (check == false) {
+            System.out.println("Ma sach da ton tai, vui long nhap lai");
+            s.nhap();
+            check = add(s);
         }
-        add(s);
         System.out.println("Them sach thanh cong");
     }
 
     // add sách vào cuối danh sách, kiểm tra trùng mã sách
-    public void add(Sach s1) {
+    public boolean add(Sach s1) {
         int index = indexOf(s1.getMaSach());
         if (index == -1) {
             int n = list.length;
             list = Arrays.copyOf(list, n + 1);
             list[n] = s1;
-        } else {
-            System.out.println("Da co sach trong thu vien");
-        }
+            return true;
+        } 
+        return false;
     }
 
-    public void suaSach(String maSach) {
+    public void edit(String maSach) {
         int index = indexOf(maSach);
         if (index == -1)
             System.out.println("Khong tim thay sach!");
@@ -194,8 +194,8 @@ public class DSSach implements IList<Sach> {
         }
     }
 
-    public void remove(Sach s1) {
-        int index = indexOf(s1.getMaSach());
+    public void remove(String maSach) {
+        int index = indexOf(maSach);
         if (index == -1)
             System.out.println("Khong tim thay sach!");
         else {
