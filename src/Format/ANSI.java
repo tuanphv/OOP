@@ -1,7 +1,5 @@
 package Format;
 
-import java.util.Scanner;
-
 public class ANSI {
     public class BG_COLOR {
         public static final String BLACK = "40";
