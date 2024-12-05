@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import Format.ANSI;
+import Validate.Validate;
+
 public class Sach{
     private String maSach;
     private String tenSach;
@@ -104,23 +107,21 @@ public class Sach{
         maNXB = in.nextLine();
         System.out.print("Ma tac gia: ");
         maTG = in.nextLine();
-        System.out.print("Nam xuat ban: ");
-        namXB = Integer.parseInt(in.nextLine());
-        System.out.print("Don gia: ");
-        donGia = Integer.parseInt(in.nextLine());
-        System.out.print("So luong sach: ");
-        soLuong = Integer.parseInt(in.nextLine());
+        namXB = Validate.getNumber(in, "Nam xuat ban: ");
+        donGia = Validate.getNumber(in, "Don gia: ");
+        soLuong = Validate.getNumber(in, "So luong: ");
     }
 
     public void xuat() {
-        System.out.println("\n<===== Thong tin sach =====>");
-        System.out.printf("%-20s%s\n", "Ma sach:", maSach);
-        System.out.printf("%-20s%s\n", "Ten sach:", tenSach);
-        System.out.printf("%-20s%s\n", "Ma nha xuat ban:", maNXB); 
-        System.out.printf("%-20s%s\n", "Ma tac gia:", maTG);
-        System.out.printf("%-20s%d\n", "Nam xuat ban:", namXB);
-        System.out.printf("%-20s%d\n", "Don gia:", donGia);
-        System.out.printf("%-20s%d\n", "So luong:", soLuong);
+        new ANSI(new String[]{"Thong tin sach"},
+        new String[][]{
+            {"Ma sach: " + maSach},
+            {"Ten sach: " + tenSach},
+            {"Ma nha xuat ban: " + maNXB},
+            {"Ma tac gia: " + maTG},
+            {"Nam xuat ban: " + namXB},
+            {"Don gia: " + donGia},
+            {"So luong: " + soLuong}}).printTable();
     }
 
     public void ghiFile() {

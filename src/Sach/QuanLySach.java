@@ -1,6 +1,7 @@
 package Sach;
 import java.util.Scanner;
 import Format.ANSI;
+import Validate.Validate;
 
 public class QuanLySach {
     DSSach dsSach;
@@ -16,7 +17,7 @@ public class QuanLySach {
         int chon = 0;
         do {
             System.out.println("");
-            new ANSI(new String[]{"Menu Quan ly sach"},
+            new ANSI(new String[]{"Menu Quan ly sach".toUpperCase()},
             new String[][]{
                 {"1. Them sach"},
                 {"2. Sua thong tin sach"},
@@ -24,8 +25,7 @@ public class QuanLySach {
                 {"4. Tim kiem sach"},
                 {"5. Hien thi danh sach sach"},
                 {"6. Thoat"}}).printTable();
-            System.out.print(ANSI.formatText("Chon chuc nang: "));
-            chon = Integer.parseInt(in.nextLine());
+            chon = Validate.getChoice(in, 1, 6);
             switch (chon) {
                 case 1:
                     dsSach.them();
@@ -61,15 +61,14 @@ public class QuanLySach {
         int chonTim = 0;
         do {
             System.out.println("");
-            new ANSI(new String[]{"Chon cach tim kiem"},
+            new ANSI(new String[]{"Chon cach tim kiem".toUpperCase()},
             new String[][]{
                 {"1. Tim theo ma sach"},
                 {"2. Tim theo ten sach"},
                 {"3. Tim theo nam xuat ban"},
                 {"4. Tim theo khoang gia"},
                 {"5. Thoat"}}).printTable();
-            System.out.print(ANSI.formatText("Chon chuc nang: "));
-            chonTim = Integer.parseInt(in.nextLine());
+            chonTim = Validate.getChoice(in, 1, 5);
             switch (chonTim) {
                 case 1:
                     System.out.print("Nhap ma sach can tim: ");

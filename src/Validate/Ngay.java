@@ -1,4 +1,4 @@
-package Format;
+package Validate;
 import java.time.LocalDate;
 
 public class Ngay {
@@ -20,7 +20,7 @@ public class Ngay {
         this.date = date;
         this.month = month;
         this.year = year;
-        this.time = date + "/" + month + "/" + year;
+        this.time = String.format("%02d/%02d/%04d", date, month, year);
     }
 
     public Ngay(Ngay ngay) {

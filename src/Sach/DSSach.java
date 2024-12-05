@@ -158,6 +158,7 @@ public class DSSach implements IList<Sach> {
                 s = new SachGiaiTri();
                 break;
         }
+        s.nhap();
         boolean check = add(s);
         while (check == false) {
             System.out.println("Ma sach da ton tai, vui long nhap lai");
