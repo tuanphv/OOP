@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import Format.ANSI;
 import Validate.Validate;
 
 public class Sach {
