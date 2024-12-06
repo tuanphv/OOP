@@ -41,6 +41,10 @@ public class Ngay {
         return year;
     }
 
+    public int getQuy() {
+        return (month - 1) / 3 + 1;
+    }
+    
     public boolean isValidDate() {
         try {
             LocalDate.of(year, month, date);

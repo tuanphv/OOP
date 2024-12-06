@@ -1,4 +1,5 @@
 package Sach;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 import Format.ANSI;
 import Validate.Validate;
 
-public class Sach{
+public class Sach {
     private String maSach;
     private String tenSach;
     private String maNXB;
@@ -99,7 +100,8 @@ public class Sach{
 
     public void nhap() {
         System.out.println("Nhap thong tin sach");
-        maSach = Validate.checkNotExist(in, "Ma sach: ", ">> Ma sach da ton tai!", new DSSach().getList(), Sach::getMaSach);
+        maSach = Validate.checkNotExist(in, "Ma sach: ", ">> Ma sach da ton tai!", new DSSach().getList(),
+                Sach::getMaSach);
         System.out.print("Ten sach: ");
         tenSach = in.nextLine();
         System.out.print("Ma nha xuat ban: ");
@@ -112,15 +114,13 @@ public class Sach{
     }
 
     public void xuat() {
-        new ANSI(new String[]{"Thong tin sach"},
-        new String[][]{
-            {"Ma sach: " + maSach},
-            {"Ten sach: " + tenSach},
-            {"Ma nha xuat ban: " + maNXB},
-            {"Ma tac gia: " + maTG},
-            {"Nam xuat ban: " + namXB},
-            {"Don gia: " + donGia},
-            {"So luong: " + soLuong}}).printTable();
+        System.out.printf("%-20s%s\n", "Ma sach:", maSach);
+        System.out.printf("%-20s%s\n", "Ten sach:", tenSach);
+        System.out.printf("%-20s%s\n", "Ma NXB:", maNXB);
+        System.out.printf("%-20s%s\n", "Ma TG:", maTG);
+        System.out.printf("%-20s%d\n", "Nam XB:", namXB);
+        System.out.printf("%-20s%d\n", "Don gia:", donGia);
+        System.out.printf("%-20s%d\n", "So luong:", soLuong);
     }
 
     public void ghiFile() {
@@ -133,12 +133,14 @@ public class Sach{
             System.out.println(e.getMessage());
         }
     }
+
     @Override
     public String toString() {
         return String.format("%s, %s, %s, %s, %d, %d, %d", maSach, tenSach, maNXB, maTG, namXB, donGia, soLuong);
     }
 
     public String[] toArray() {
-        return new String[]{maSach, tenSach, maNXB, maTG, String.valueOf(namXB), String.valueOf(donGia), String.valueOf(soLuong)}; 
+        return new String[] { maSach, tenSach, maNXB, maTG, String.valueOf(namXB), String.valueOf(donGia),
+                String.valueOf(soLuong) };
     }
 }

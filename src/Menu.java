@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 import Format.ANSI;
+import NCC_NXB.DSNhaCC;
+import Person.DSDocGia;
+import Person.DSNhanVien;
 import PhieuMuon.DSChiTietPM;
 import PhieuMuon.DSPhieuMuon;
 import PhieuMuon.QuanLyPhieuMuon;
@@ -24,6 +27,10 @@ public class Menu {
     DSPhieuPhat dsPhieuPhat = new DSPhieuPhat();
     DSChiTietPP dsChiTietPP = new DSChiTietPP();
 
+    DSDocGia dsDocGia = new DSDocGia();
+    DSNhanVien dsNhanVien = new DSNhanVien();
+    DSNhaCC dsNhaCC = new DSNhaCC();
+
     public Menu() {
     }
 
@@ -38,6 +45,11 @@ public class Menu {
 
         dsPhieuPhat.docFile();
         dsChiTietPP.docFile();
+
+        dsDocGia.docFile();
+        dsNhanVien.docFile();
+        dsNhaCC.docFile();
+        
     }
 
     private void ghiFile() {

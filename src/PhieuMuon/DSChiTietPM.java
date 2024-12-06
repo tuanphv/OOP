@@ -1,10 +1,12 @@
 package PhieuMuon;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Arrays;
 
-import Validate.Ngay;
+import Format.ANSI;
 
 public class DSChiTietPM {
 
@@ -50,6 +52,16 @@ public class DSChiTietPM {
     }
 
     public void ghiFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/ChiTietPhieuMuon.txt"));
+            for (ChiTietPhieuMuon ctpm : dsCTPM) {
+                writer.write(ctpm.toString());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Loi ghi file: " + e);
+        }
     }
 
     public void them(String maPM) {
@@ -87,5 +99,23 @@ public class DSChiTietPM {
 
     public boolean isEmpty() {
         return dsCTPM.length == 0 || dsCTPM == null;
+    }
+
+    public ChiTietPhieuMuon[] getList() {
+        return dsCTPM;
+    }
+
+    public void xuat() {
+        if (isEmpty()) {
+            System.out.println("Khong co du lieu");
+        } else {
+            String[] header = { "Ma phieu muon", "Ma sach", "So luong", "Han phai tra", "Ngay khach tra" };
+            String[][] data = new String[dsCTPM.length][5];
+            for (int i = 0; i < dsCTPM.length; i++) {
+                data[i] = dsCTPM[i].toArray();
+            }
+            new ANSI("Danh sach chi tiet phieu muon", header, data).printTable();
+            ANSI.pause();
+        }
     }
 }

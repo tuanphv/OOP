@@ -123,6 +123,7 @@ public class DSSach implements IList<Sach> {
             i++;
         }
         new ANSI(head, data).printTable();
+        ANSI.pause();
     }
     //#endregion
     //#region Xuất KQ tìm kiếm

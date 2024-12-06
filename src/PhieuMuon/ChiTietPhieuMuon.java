@@ -50,7 +50,7 @@ public class ChiTietPhieuMuon {
         return maSach;
     }
 
-    public int getSoLSong() {
+    public int getSoLuong() {
         return soLuong;
     }
 

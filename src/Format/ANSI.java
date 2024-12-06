@@ -31,11 +31,18 @@ public class ANSI {
         public static final String REVERSE = "7";
         public static final String CONCEALED = "8";
     }
-
+    private String title;
     private String[] headers;
     private String[][] data;
 
     public ANSI(String[] headers, String[][] data) {
+        this.title = "";
+        this.headers = headers;
+        this.data = data;
+    }
+
+    public ANSI(String title, String[] headers, String[][] data) {
+        this.title = title;
         this.headers = headers;
         this.data = data;
     }
@@ -52,7 +59,9 @@ public class ANSI {
                 }
             }
         }
-        System.out.println();
+        if (title != "") {
+            System.out.println(formatText(title, FG_COLOR.BLUE, BG_COLOR.NONE, STYLE.BOLD).toUpperCase());
+        }
         printHeader(headers, columnWidths);
         for (int i = 0; i < data.length; i++) {
             printRow(data[i], columnWidths);
@@ -129,9 +138,13 @@ public class ANSI {
         System.out.flush();
     }
 
-    public static void main(String[] args) {
-        String[] header = { "Name", "Age" };
-        String[][] data = { { "John", "25" }, { "Sally", "22" }, { "Janeft", "30" } };
-        new ANSI(header, data).printTable();
+    public static void pause() {
+        System.out.print("Press Enter to continue...");
+        try {
+            System.in.read();
+            System.in.skip(System.in.available());
+            System.out.println();
+        } catch (Exception e) {
+        }
     }
 }

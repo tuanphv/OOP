@@ -42,7 +42,7 @@ public class DSDocGia implements IList<DocGia> {
     public void docFile() {
         try {
             // Đọc file
-            BufferedReader reader = new BufferedReader(new FileReader("./lib/docgia.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("./lib/DocGia.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] s = line.split(", ");
@@ -61,7 +61,7 @@ public class DSDocGia implements IList<DocGia> {
     public void ghiFile() {
         // Ghi file
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/docgia.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/DocGia.txt"));
             for (DocGia dg : dsDocGia) {
                 writer.write(dg.toFile());
                 writer.newLine();
