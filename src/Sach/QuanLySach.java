@@ -12,8 +12,7 @@ public class QuanLySach {
         }
     }
 
-    public void hienthiMenu() {
-        Scanner in = new Scanner(System.in);
+    public void hienThiMenu(Scanner in) {
         int chon = 0;
         do {
             System.out.println("");
@@ -73,7 +72,8 @@ public class QuanLySach {
                 case 1:
                     System.out.print("Nhap ma sach can tim: ");
                     String maSachTim = in.nextLine();
-                    Sach kq = dsSach.get(maSachTim);
+                    DSSach ds1 = new DSSach();
+                    Sach kq = ds1.get(maSachTim);
                     if (kq!=null) kq.xuat();
                     else System.out.println("Khong tim thay sach");
                     break;

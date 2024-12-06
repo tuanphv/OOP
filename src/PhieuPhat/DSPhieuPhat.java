@@ -31,22 +31,6 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         } catch (IOException e) {
             System.out.println("File not found: " + e.getMessage());
         }
-
-        // Synchronize with ChiTietPhieuPhat.txt
-        synchronizeWithChiTietPhieuPhat();
-    }
-
-    // Synchronize data with ChiTietPhieuPhat.txt
-    private void synchronizeWithChiTietPhieuPhat() {
-        DSChiTietPhieuPhat dsChiTiet = new DSChiTietPhieuPhat();
-        dsChiTiet.docFile(); // Read data from ChiTietPhieuPhat.txt
-
-        for (PhieuPhat phieuphat : list) {
-            // Logic to update PhieuPhat.txt based on ChiTietPhieuPhat.txt
-            // This can include checking if the entries in ChiTietPhieuPhat.txt correspond
-            // to the entries in PhieuPhat.txt
-            // and updating or adding as necessary
-        }
     }
 
     // Ghi dữ liệu vào file

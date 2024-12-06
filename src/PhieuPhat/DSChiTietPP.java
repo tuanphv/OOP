@@ -5,10 +5,10 @@ import java.util.Arrays;
 import Format.ANSI;
 import Interface.IList;
 
-public class DSChiTietPhieuPhat implements IList<ChiTietPhieuPhat> {
+public class DSChiTietPP implements IList<ChiTietPhieuPhat> {
     private static ChiTietPhieuPhat[] list = new ChiTietPhieuPhat[0];
 
-    public DSChiTietPhieuPhat() {}
+    public DSChiTietPP() {}
     
     // Read data from ChiTietPhieuPhat.txt and store in array
     public void docFile() {

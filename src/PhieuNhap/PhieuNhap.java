@@ -8,11 +8,11 @@ public class PhieuNhap {
     private String ngayNhap;
     private String maNV;
     private String maNCC;
-    private Double tongTien;
+    private int tongTien;
     Scanner nhap= new Scanner(System.in);
 
     public PhieuNhap() {}
-    public PhieuNhap(String maPN, String maNV, String maNCC, Double tongTien, String ngayNhap){
+    public PhieuNhap(String maPN, String ngayNhap, String maNV, String maNCC, int tongTien){
         this.maNCC = maNCC;
         this.maPN = maPN;
         this.ngayNhap = ngayNhap;
@@ -44,7 +44,7 @@ public class PhieuNhap {
         this.maNCC = maNCC;
     }
 
-    public void setTongtien(Double tongTien){
+    public void setTongtien(int tongTien){
         this.tongTien = tongTien;
     }
 
@@ -64,7 +64,7 @@ public class PhieuNhap {
         return maNCC;
     }
 
-    public Double getTongtien(){
+    public int getTongtien(){
         return tongTien;
     }
 

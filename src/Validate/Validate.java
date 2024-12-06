@@ -1,6 +1,7 @@
 package Validate;
 
 import java.util.Scanner;
+import java.util.function.Function;
 
 import Format.ANSI;
 import Format.ANSI.BG_COLOR;
@@ -73,5 +74,77 @@ public class Validate {
         }
         notification("", message + date + "\n", isCall);
         return date;
+    }
+
+    public static int getSoLSong(Scanner sc, String message, String error, String outOfRange, int max) {
+        System.out.print(message);
+        int number;
+        boolean isCall = false;
+        while (true) {
+            try {
+                number = Integer.parseInt(sc.nextLine());
+                if (number < 0 || number > max) {
+                    notification(outOfRange, message, isCall);
+                    isCall = true;
+                    continue;
+                }
+                break;
+            } catch (NumberFormatException e) {
+                notification(error, message, isCall);
+                isCall = true;
+            }
+        }
+        notification("", message + number + "\n", isCall);
+        return number;
+    }
+
+    public static <T> String checkExist(Scanner sc, String message, String notFound, T[] array, Function<T, String> method) {
+        System.out.print(message);
+        String ma;
+        boolean isCall = false;
+        while (true) {
+            ma = sc.nextLine();
+            boolean isExist = false;
+            for (T t : array) {
+                if (method.apply(t).equals(ma)) {
+                    isExist = true;
+                    break;
+                }
+            }
+            // nếu mã không tồn tại trong danh sách
+            if (!isExist) {
+                notification(notFound, message, isCall);
+                isCall = true;
+                continue;
+            }
+            break;
+        }
+        notification("", message + ma + "\n", isCall);
+        return ma;
+    }
+
+    public static <T> String checkNotExist(Scanner sc, String message, String found, T[] array, Function<T, String> method) {
+        System.out.print(message);
+        String ma;
+        boolean isCall = false;
+        while (true) {
+            ma = sc.nextLine();
+            boolean isExist = false;
+            for (T t : array) {
+                if (method.apply(t).equals(ma)) {
+                    isExist = true;
+                    break;
+                }
+            }
+            // nếu mã tồn tại trong danh sách
+            if (isExist) {
+                notification(found, message, isCall);
+                isCall = true;
+                continue;
+            }
+            break;
+        }
+        notification("", message + ma + "\n", isCall);
+        return ma;
     }
 }

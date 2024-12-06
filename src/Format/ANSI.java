@@ -1,7 +1,5 @@
 package Format;
 
-import java.util.Scanner;
-
 public class ANSI {
     public class BG_COLOR {
         public static final String BLACK = "40";
@@ -54,6 +52,7 @@ public class ANSI {
                 }
             }
         }
+        System.out.println();
         printHeader(headers, columnWidths);
         for (int i = 0; i < data.length; i++) {
             printRow(data[i], columnWidths);

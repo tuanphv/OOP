@@ -67,7 +67,7 @@ public class DSChiTietPN {
 
     public void docFile(){
         try{
-            BufferedReader br= new BufferedReader(new FileReader("./lib/CTPN.txt"));
+            BufferedReader br= new BufferedReader(new FileReader("./lib/ChiTietPhieuNhap.txt"));
             String line;
             while ((line = br.readLine() )!= null){
                 String[] str= line.split(", ");
@@ -86,7 +86,7 @@ public class DSChiTietPN {
 
     public void ghiFile(){
         try {
-            BufferedWriter bw= new BufferedWriter(new FileWriter("./lib/CTPN.txt"));
+            BufferedWriter bw= new BufferedWriter(new FileWriter("./lib/ChiTietPhieuNhap.txt"));
             for(ChiTietPhieuNhap ctpn: dsctpn){
                 bw.write(ctpn.toString());
                 bw.newLine();
@@ -97,7 +97,7 @@ public class DSChiTietPN {
             System.out.println("Loi khi ghi file: " + e);
         }
         finally{
-            System.out.println("Da ghi file xong");
+            System.out.println("Doc file ChiTietPhieuNhap.txt thanh cong");
         }
     }
 
