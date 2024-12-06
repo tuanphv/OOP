@@ -63,24 +63,25 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
 
     public void docFile() {
         try {
-            FileReader fr = new FileReader("./lib/PN.txt");
-            BufferedReader br = new BufferedReader(fr);
+            BufferedReader br = new BufferedReader(new FileReader("./lib/PhieuNhap.txt"));
             String line = br.readLine();
             while (line != null) {
-                System.out.println(line);
+                String[] data = line.split(", ");
+                PhieuNhap pn = new PhieuNhap(data[0], data[1], data[2], data[3], Integer.parseInt(data[4]));
+                add(pn);
                 line = br.readLine();
             }
             br.close();
         } catch (IOException e) {
             System.out.println("Loi khi doc file: " + e.getMessage());
         } finally {
-            System.out.println("Da doc file xong");
+            System.out.println("Doc file PhieuNhap.txt thanh cong");
         }
     }
 
     public void ghiFile() {
         try {
-            FileWriter fw = new FileWriter("./lib/PN.txt");
+            FileWriter fw = new FileWriter("./lib/PhieuNhap.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             String line;
             line = nhap.nextLine();

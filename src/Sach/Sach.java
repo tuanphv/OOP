@@ -40,31 +40,31 @@ public class Sach{
     }
 
     public String getMaSach() {
-        return maSach;
+        return this.maSach;
     }
 
     public String getTenSach() {
-        return tenSach;
+        return this.tenSach;
     }
 
     public String getMaNXB() {
-        return maNXB;
+        return this.maNXB;
     }
 
     public String getMaTG() {
-        return maTG;
+        return this.maTG;
     }
 
     public int getNamXB() {
-        return namXB;
+        return this.namXB;
     }
 
     public int getDonGia() {
-        return donGia;
+        return this.donGia;
     }
 
     public int getSoLuong() {
-        return soLuong;
+        return this.soLuong;
     }
 
     public void setMaSach(String maSach) {
@@ -99,8 +99,7 @@ public class Sach{
 
     public void nhap() {
         System.out.println("Nhap thong tin sach");
-        System.out.print("Ma sach: ");
-        maSach = in.nextLine();
+        maSach = Validate.checkNotExist(in, "Ma sach: ", ">> Ma sach da ton tai!", new DSSach().getList(), Sach::getMaSach);
         System.out.print("Ten sach: ");
         tenSach = in.nextLine();
         System.out.print("Ma nha xuat ban: ");

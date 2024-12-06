@@ -52,6 +52,7 @@ public class ANSI {
                 }
             }
         }
+        System.out.println();
         printHeader(headers, columnWidths);
         for (int i = 0; i < data.length; i++) {
             printRow(data[i], columnWidths);

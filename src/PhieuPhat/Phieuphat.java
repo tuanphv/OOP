@@ -76,7 +76,7 @@ public class PhieuPhat {
     }
 
     public void xuatChiTiet() {
-        DSChiTietPhieuPhat dsChiTiet = new DSChiTietPhieuPhat();
+        DSChiTietPP dsChiTiet = new DSChiTietPP();
         if (dsChiTiet.isEmpty()) {
             dsChiTiet.docFile();
         }

@@ -1,4 +1,7 @@
 package Sach;
+
+import Validate.Validate;
+
 public class SachGiaiTri extends Sach {
     private int doTuoi;
 
@@ -31,8 +34,7 @@ public class SachGiaiTri extends Sach {
     @Override
     public void nhap() {
         super.nhap();
-        System.out.print("Do tuoi phu hop: ");
-        doTuoi = Integer.parseInt(in.nextLine());
+        doTuoi = Validate.getNumber(in, "Nhap do tuoi phu hop: ");
     }
 
     @Override

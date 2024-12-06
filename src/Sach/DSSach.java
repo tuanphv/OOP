@@ -24,10 +24,14 @@ public class DSSach implements IList<Sach> {
         }
         return -1;
     }
+
+    public Sach[] getList() {
+        return list;
+    }
     //#region Đọc ghi file
     public void docFile() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("./lib/sach.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("./lib/Sach.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 // tách dữ liệu từ dạng chuỗi sang mảng
@@ -54,13 +58,13 @@ public class DSSach implements IList<Sach> {
         } catch (IOException e) {
             System.out.println("Loi doc file " + e.getMessage());
         } finally {
-            System.out.println("Doc file sach thanh cong");
+            System.out.println("Doc file Sach.txt thanh cong");
         }
     }
 
     public void ghiFile() {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/sach.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/Sach.txt"));
             for (Sach s : list) {
                 writer.write(s.toString());
                 writer.newLine();

@@ -7,15 +7,18 @@ import Format.ANSI;
 import Interface.IList;
 
 public class DSPhieuMuon implements IList<PhieuMuon> {
-    private static PhieuMuon[] dspm;
+    private static PhieuMuon[] dspm = new PhieuMuon[0];
     Scanner input = new Scanner(System.in);
 
     public DSPhieuMuon() {
-        dspm = new PhieuMuon[0];
     }
 
     public DSPhieuMuon(PhieuMuon[] ds) {
         dspm = ds;
+    }
+
+    public PhieuMuon[] getList() {
+        return dspm;
     }
 
     public void nhap() {
@@ -30,8 +33,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
     }
 
     public void xuat() {
-        System.out.println("");
-        String[] header = { "Ma Phieu muon", "Ma Doc gia", "Ngay muon", "Ma Nhan vien" };
+        String[] header = { "Ma Phieu muon", "Ma Nhan vien", "Ma Doc gia", "Ngay muon" };
         String[][] data = new String[dspm.length][];
         for (int i = 0; i < dspm.length; i++) {
             data[i] = dspm[i].toArray();
@@ -41,7 +43,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
 
     public void ghiFile() {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("PhieuMuon.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("./lib/PhieuMuon.txt"));
             for (PhieuMuon pm : dspm) {
                 bw.write(pm.toString());
                 bw.newLine();
@@ -55,7 +57,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
 
     public void docFile() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("PhieuMuon.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("./lib/PhieuMuon.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(", ");
@@ -65,6 +67,12 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
             reader.close();
         } catch (Exception e) {
             System.out.println("Loi doc file: " + e);
+        } finally {
+            if (dspm.length == 0) {
+                System.out.println("Khong co du lieu");
+            } else {
+                System.out.println("Doc file PhieuMuon.txt thanh cong");
+            }
         }
     }
 
@@ -78,7 +86,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
 
     public PhieuMuon get(String ma) {
         for (PhieuMuon pm : dspm) {
-            if (pm.getmaPhieuMuon().equals(ma)) {
+            if (pm.getMaPM().equals(ma)) {
                 return pm;
             }
         }
@@ -88,6 +96,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
     // #region Thêm
     public void them() {
         PhieuMuon pm = new PhieuMuon();
+        System.out.println("Nhap thong tin phieu muon muon them");
         pm.nhap();
         boolean result = add(pm);
         while (result == false) {
@@ -100,7 +109,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
 
     public boolean add(PhieuMuon pm) {
         int n = dspm.length;
-        if (indexOf(pm.getmaPhieuMuon()) == -1) {
+        if (indexOf(pm.getMaPM()) == -1) {
             dspm = Arrays.copyOf(dspm, n + 1);
             dspm[n] = pm;
             return true;
@@ -117,13 +126,13 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
         } else {
             System.out.print("Nhap ma doc gia: ");
             String madg = input.nextLine();
-            dspm[vitri].setmaDocGia(madg);
+            dspm[vitri].setMaDG(madg);
             System.out.print("Nhap ngay xuat: ");
             String ngayxuat = input.nextLine();
-            dspm[vitri].setngayMuon(ngayxuat);
+            dspm[vitri].setNgayMuon(ngayxuat);
             System.out.print("Nhap ma nhan vien: ");
             String manv = input.nextLine();
-            dspm[vitri].setmaNhanVien(manv);
+            dspm[vitri].setMaNV(manv);
 
         }
     }
@@ -144,9 +153,22 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
 
     // #endregion
     // #region Tìm kiếm
+    public void xuatKQ(PhieuMuon[] result) {
+        if (result.length == 0) {
+            System.out.println("Khong tim thay ket qua");
+        } else {
+            String[] header = { "Ma Phieu muon", "Ma Nhan vien", "Ma Doc gia", "Ngay muon" };
+            String[][] data = new String[result.length][];
+            for (int i = 0; i < result.length; i++) {
+                data[i] = result[i].toArray();
+            }
+            new ANSI(header, data).printTable();
+        }
+    }
+
     public int indexOf(String maPhieuMuon) {
         for (int i = 0; i < dspm.length; i++) {
-            if (dspm[i].getmaPhieuMuon().equals(maPhieuMuon)) {
+            if (dspm[i].getMaPM().equals(maPhieuMuon)) {
                 return i;
             }
         }
@@ -158,7 +180,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
         String matim = input.nextLine();
 
         for (PhieuMuon phieu : dspm) {
-            if (phieu.getmaPhieuMuon().equals(matim)) {
+            if (phieu.getMaPM().equals(matim)) {
                 return phieu;
             }
         }
@@ -167,18 +189,16 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
         return null;
     }
 
-    public PhieuMuon timKiemMaDocGia() {
-        System.out.print("Nhap ma doc gia can tim: ");
-        String matim = input.nextLine();
+    public PhieuMuon[] timKiemMaDocGia(String matim) {
+        PhieuMuon[] result = new PhieuMuon[0];
 
         for (PhieuMuon phieu : dspm) {
-            if (phieu.getmaDocGia().equals(matim)) {
-                return phieu;
+            if (phieu.getMaDG().equals(matim)) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = phieu;
             }
         }
-
-        System.out.println("Khong tim thay ma doc gia can tim");
-        return null;
+        return result;
     }
 
     public PhieuMuon[] timKiemMaNV() {
@@ -187,7 +207,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
         PhieuMuon[] result = new PhieuMuon[0];
 
         for (PhieuMuon phieu : dspm) {
-            if (phieu.getmaNhanVien().equals(matim)) {
+            if (phieu.getMaNV().equals(matim)) {
                 result = Arrays.copyOf(result, result.length + 1);
                 result[result.length - 1] = phieu;
             }
@@ -196,13 +216,4 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
     }
 
     // #endregion
-    public static void main(String[] args) {
-        DSPhieuMuon dspm = new DSPhieuMuon();
-        dspm.nhap();
-        dspm.xuat();
-        PhieuMuon n = dspm.timKiemMaPhieuMuon();
-        n.xuat();
-        PhieuMuon n1 = dspm.timKiemMaDocGia();
-        n1.xuat();
-    }
 }
