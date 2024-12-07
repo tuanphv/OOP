@@ -1,9 +1,8 @@
 package PhieuPhat;
-import java.io.*;
-import java.util.Arrays;
-
 import Format.ANSI;
 import Interface.IList;
+import java.io.*;
+import java.util.Arrays;
 
 public class DSChiTietPP implements IList<ChiTietPhieuPhat> {
     private static ChiTietPhieuPhat[] list = new ChiTietPhieuPhat[0];
