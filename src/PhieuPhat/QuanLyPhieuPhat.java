@@ -3,20 +3,17 @@ package PhieuPhat;
 import java.util.Scanner;
 
 import Format.ANSI;
+import Validate.Validate;
 
 public class QuanLyPhieuPhat {
     private DSPhieuPhat dsPhieuPhat;
+    private DSChiTietPP dsChiTietPP;
     private DSQuyDinhPhat dsQuyDinhPhat;
 
-    public QuanLyPhieuPhat() {
-        dsPhieuPhat = new DSPhieuPhat();
-        dsQuyDinhPhat = new DSQuyDinhPhat();
-        if (dsPhieuPhat.isEmpty()) {
-            dsPhieuPhat.docFile();
-        }
-        if (dsQuyDinhPhat.isEmpty()) {
-            dsQuyDinhPhat.docFile();
-        }
+    public QuanLyPhieuPhat(DSPhieuPhat dsPhieuPhat, DSChiTietPP dsChiTietPP) {
+        this.dsPhieuPhat = dsPhieuPhat;
+        this.dsChiTietPP = dsChiTietPP;
+        this.dsQuyDinhPhat = new DSQuyDinhPhat();
     }
 
     public void hienThiMenu() {
@@ -27,38 +24,39 @@ public class QuanLyPhieuPhat {
             new ANSI(new String[] { "Menu Quan Ly Phat" },
                     new String[][] {
                             { "1. Quan ly phieu phat" },
-                            { "2. Quan ly quy dinh phat" },
-                            { "3. Thoat" }
+                            { "2. Quan ly chi tiet phieu phat" },
+                            { "3. Quan ly quy dinh phat" },
+                            { "4. Thoat" }
                     }).printTable();
-            System.out.print("Chon thao tac: ");
 
-            luaChon = Integer.parseInt(scanner.nextLine());
+            luaChon = Validate.getChoice(scanner, 1, 4);
 
             switch (luaChon) {
                 case 1:
                     quanLyPhieuPhat(scanner);
                     break;
                 case 2:
-                    quanLyQuyDinhPhat(scanner);
+                    menuChiTietPhieuPhat(scanner);
                     break;
                 case 3:
-                    System.out.println("Thoat chuong trinh.");
+                    quanLyQuyDinhPhat(scanner);
                     break;
                 default:
-                    System.out.println("Lua chon khong hop le. Vui long thu lai.");
+                    System.out.println("Thoat chuong trinh.");
+                    return;
             }
-        } while (luaChon != 3);
+        } while (true);
     }
 
     private void quanLyPhieuPhat(Scanner scanner) {
         while (true) {
             System.out.println("");
             new ANSI(new String[] { "Quan Ly Phieu Phat" },
-                    new String[][] { 
+                    new String[][] {
                             { "1. Them phieu phat" },
                             { "2. Sua phieu phat" },
                             { "3. Xoa phieu phat" },
-                            { "4. Xem phieu phat cu the"},
+                            { "4. Xem phieu phat cu the" },
                             { "5. Xem danh sach phieu phat" },
                             { "6. Quay lai" } })
                     .printTable();
@@ -117,10 +115,8 @@ public class QuanLyPhieuPhat {
                             { "4. Xem danh sach quy dinh phat" },
                             { "5. Quay lai" }
                     }).printTable();
-            System.out.print("Chon thao tac: ");
 
-            int luaChon = scanner.nextInt();
-            scanner.nextLine(); // Xoa bo dem
+            int luaChon = Validate.getChoice(scanner, 1, 5);
 
             switch (luaChon) {
                 case 1:
@@ -150,17 +146,37 @@ public class QuanLyPhieuPhat {
                         }
                     }
                     break;
-                case 5:
+                default:
                     System.out.println("Quay lai.");
                     return;
-                default:
-                    System.out.println("Lua chon khong hop le. Vui long thu lai.");
             }
         }
     }
 
-    public static void main(String[] args) {
-        QuanLyPhieuPhat menu = new QuanLyPhieuPhat();
-        menu.hienThiMenu();
+    private void menuChiTietPhieuPhat(Scanner scanner) {
+        while (true) {
+            System.out.println("");
+            new ANSI(new String[] { "Menu Chi Tiet Phieu Phat" },
+                    new String[][] {
+                            { "1. Them chi tiet phieu phat" },
+                            { "2. Sua chi tiet phieu phat" },
+                            { "3. Xoa chi tiet phieu phat" },
+                            { "4. Xem danh sach chi tiet phieu phat" },
+                            { "5. Quay lai" } })
+                    .printTable();
+            int luaChon = Validate.getChoice(scanner, 1, 5);
+            switch (luaChon) {
+                case 1:
+                    String maPP = Validate.checkExist(scanner, "Nhap ma phieu phat can them chi tiet: ",
+                            ">> Ma phieu phat khong ton tai!", dsPhieuPhat.getList(), PhieuPhat::getMaPP);
+                    dsChiTietPP.them(maPP);
+                    break;
+                case 2: case 3: case 4:
+                    System.out.println("Chuc nang chua ho tro.");
+                    break;
+                default:
+                    return;
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ import PhieuNhap.DSChiTietPN;
 import PhieuNhap.DSPhieuNhap;
 import PhieuPhat.DSChiTietPP;
 import PhieuPhat.DSPhieuPhat;
+import PhieuPhat.QuanLyPhieuPhat;
 import Sach.DSSach;
 import Sach.QuanLySach;
 import Validate.Validate;
@@ -85,7 +86,7 @@ public class Menu {
                     new QuanLyPhieuMuon(dsPhieuMuon, dsChiTietPM).hienThiMenu(scanner);
                     break;
                 case 3:
-                    // new MenuPhieuNhap(dsPhieuNhap, dsChiTietPN).hienThiMenu();
+                    new QuanLyPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
                     break;
                 case 4:
                     // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();

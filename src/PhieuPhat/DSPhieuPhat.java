@@ -24,7 +24,7 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(", ");
                 if (parts.length >= 4) {
-                    add(new PhieuPhat(parts[0], parts[1], parts[2], Integer.parseInt(parts[3])));
+                    add(new PhieuPhat(parts[0], parts[1], parts[2], parts[3], Integer.parseInt(parts[3])));
                 }
             }
             reader.close();

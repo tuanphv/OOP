@@ -45,15 +45,11 @@ public class QuanLySach {
                 case 5:
                     dsSach.xuat();
                     break;
-                case 6:
-                    System.out.println("Da thoat quan ly sach");
-                    break;
                 default:
-                    System.out.println("Chon sai! Vui long chon lai");
-                    break;
+                    System.out.println("Da thoat quan ly sach");
+                    return;
             }
-        } while (chon != 6);
-        in.close();
+        } while (true);
     }
 
     public void menuTimKiem(DSSach dsSach, Scanner in) {
@@ -95,13 +91,10 @@ public class QuanLySach {
                     int giaMax = Integer.parseInt(in.nextLine());
                     DSSach.xuatKQTimKiem(dsSach.timTheoDonGia(giaMin, giaMax));
                     break;
-                case 5:
-                    System.out.println("Ket thuc tim kiem");
-                    break;
                 default:
-                    System.out.println("Chon sai! Vui long chon lai");
-                    break;
+                    System.out.println("Ket thuc tim kiem");
+                    return;
             }
-        } while (chonTim != 5);
+        } while (true);
     }
 }

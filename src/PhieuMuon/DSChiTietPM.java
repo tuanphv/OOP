@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.util.Arrays;
 
 import Format.ANSI;
+import Sach.DSSach;
+import Sach.Sach;
 
 public class DSChiTietPM {
 
@@ -117,5 +119,18 @@ public class DSChiTietPM {
             new ANSI("Danh sach chi tiet phieu muon", header, data).printTable();
             ANSI.pause();
         }
+    }
+    // Get the list of books in a specific borrowing order
+    public Sach[] getDSSach(String maPM) {
+        Sach[] result = new Sach[0];
+        DSSach dsSach = new DSSach();
+        for (ChiTietPhieuMuon ctpm : dsCTPM) {
+            if (ctpm.getMaPM().equals(maPM)) {
+                Sach sach = dsSach.get(ctpm.getMaSach());
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = sach;
+            }
+        }
+        return result;
     }
 }

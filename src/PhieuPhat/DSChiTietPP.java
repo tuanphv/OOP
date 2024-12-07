@@ -39,6 +39,12 @@ public class DSChiTietPP implements IList<ChiTietPhieuPhat> {
         }
     }
 
+    public void them(String maPP) {
+        ChiTietPhieuPhat chiTiet = new ChiTietPhieuPhat();
+        chiTiet.nhap(maPP);
+        add(chiTiet);
+    }
+
     // Add regulation to the array
     public boolean add(ChiTietPhieuPhat chiTiet) {
         int index = indexOf(chiTiet.getMaPP());

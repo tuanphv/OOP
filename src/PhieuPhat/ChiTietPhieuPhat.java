@@ -1,5 +1,10 @@
 package PhieuPhat;
+
 import java.util.Scanner;
+
+import PhieuMuon.DSChiTietPM;
+import Sach.Sach;
+import Validate.Validate;
 
 public class ChiTietPhieuPhat {
     private String Mapp;
@@ -56,22 +61,19 @@ public class ChiTietPhieuPhat {
         this.Tienphat = tienphat;
     }
 
-    public void nhap() {
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Nhập mã phiếu phạt: ");
-            this.Mapp = scanner.nextLine();
-            System.out.print("Nhập mã sách: ");
-            this.Masach = scanner.nextLine();
-            System.out.print("Nhập mã quy định: ");
-            this.Maqd = scanner.nextLine();
-            System.out.print("Nhập tiền phạt: ");
-            this.Tienphat = Integer.parseInt(scanner.nextLine());
-            scanner.close();
-        } catch (NumberFormatException e) {
-            System.out.println("Lỗi: Tiền phạt phải là số!");
-            this.Tienphat = 0;
-        }
+    public void nhap(String maPP) {
+        // từ danh sách chi tiết phiếu mượn lấy ra danh sách sách của phiếu mượn
+        DSChiTietPM dsctpm = new DSChiTietPM();
+        Sach[] sachs = dsctpm.getDSSach(maPP);
+        Scanner scanner = new Scanner(System.in);
+        this.Mapp = maPP;
+        // kiểm tra sách có trong phiếu mượn hay không
+        this.Masach = Validate.checkExist(scanner, "Nhap ma sach: ", "Ma sach khong ton tai", sachs, Sach::getMaSach);
+        System.out.print("Nhập mã quy định: ");
+        this.Maqd = scanner.nextLine();
+        System.out.print("Nhập tiền phạt: ");
+        this.Tienphat = Integer.parseInt(scanner.nextLine());
+        scanner.close();
     }
 
     public void xuat() {
@@ -87,6 +89,6 @@ public class ChiTietPhieuPhat {
     }
 
     public String[] toArray() {
-        return new String[] {Mapp, Masach, Maqd, String.valueOf(Tienphat)};
+        return new String[] { Mapp, Masach, Maqd, String.valueOf(Tienphat) };
     }
 }
