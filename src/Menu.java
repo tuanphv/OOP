@@ -66,7 +66,7 @@ public class Menu {
         dsChiTietPP.ghiFile();
     }
     public void hienThiMenu() {
-        docFile();
+        //docFile();
         do {
             Scanner scanner = new Scanner(System.in);
             new ANSI(new String[] { "Menu chinh".toUpperCase() },
@@ -91,10 +91,12 @@ public class Menu {
                 case 4:
                     // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
                     break;
-                case 5:
+                case 6:
                     System.out.println("Thoat chuong trinh.");
                     ghiFile();
                     return;
+                case 5:
+                    dsNhaCC.menu();
                 default:
                     System.out.println("Chon sai! Vui long chon lai");
                     break;
