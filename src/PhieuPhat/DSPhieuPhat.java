@@ -1,10 +1,9 @@
 package PhieuPhat;
 
+import Interface.IList;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
-
-import Interface.IList;
 
 public class DSPhieuPhat implements IList<PhieuPhat> {
     private PhieuPhat[] list = new PhieuPhat[0];
