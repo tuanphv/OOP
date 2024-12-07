@@ -2,7 +2,7 @@ package Person;
 
 import java.util.Scanner;
 
-public class DocGia {
+public class DocGia extends Person {
     private String maDG;
     private String hoDG;
     private String tenDG;
@@ -92,7 +92,8 @@ public class DocGia {
         System.out.println("Email doc gia:" + emailDG);
     }
 
-    public String toFile() {
+    @Override
+    public String toString() {
         return maDG + ", " + hoDG + " " + tenDG + ", " + sdtDG + ", " + emailDG;
     }
 }

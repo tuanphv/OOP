@@ -63,7 +63,7 @@ public class DSDocGia implements IList<DocGia> {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/DocGia.txt"));
             for (DocGia dg : dsDocGia) {
-                writer.write(dg.toFile());
+                writer.write(dg.toString());
                 writer.newLine();
             }
             writer.close();
