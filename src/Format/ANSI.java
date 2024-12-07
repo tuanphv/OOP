@@ -47,6 +47,10 @@ public class ANSI {
         this.data = data;
     }
 
+    /**
+     * Print table with ANSI color and style
+     * @see #formatText(String, String, String, String)
+     */
     public void printTable() {
         int[] columnWidths = new int[headers.length];
         for (int i = 0; i < headers.length; i++) {
@@ -69,6 +73,14 @@ public class ANSI {
         printFooter(headers, columnWidths);
     }
 
+    /**
+     * Format text with color and style
+     * @param text  Text to format
+     * @param fgColor  Foreground color
+     * @param bgColor Background color
+     * @param style Style
+     * @return Formatted text
+     */
     public static String formatText(String text, String fgColor, String bgColor, String style) {
         return "\u001B[" + fgColor + ";" + bgColor + (style != "" ? ";" + style : "") + "m" + text + "\u001B[0m";
     }
@@ -77,8 +89,12 @@ public class ANSI {
         return formatText(text, fgColor, bgColor, "");
     }
 
+    public static String formatText(String text, String fgColor) {
+        return formatText(text, fgColor, BG_COLOR.NONE);
+    }
+
     public static String formatText(String text) {
-        return formatText(text, FG_COLOR.YELLOW, BG_COLOR.NONE);
+        return formatText(text, FG_COLOR.YELLOW);
     }
 
     private String setLength(String text, int length, String alignment) {
@@ -138,6 +154,9 @@ public class ANSI {
         System.out.flush();
     }
 
+    /**
+     * Pause the program until the user press Enter
+     */
     public static void pause() {
         System.out.print("Press Enter to continue...");
         try {

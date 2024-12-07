@@ -142,6 +142,7 @@ public class DSSach implements IList<Sach> {
             i++;
         }
         new ANSI(head, data).printTable();
+        ANSI.pause();
     }
     //#endregion
     // thêm sách vào danh sách, trước khi thêm hỏi loại cần thêm
