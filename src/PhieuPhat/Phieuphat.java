@@ -71,7 +71,7 @@ public class PhieuPhat {
     }
 
     public void nhap() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); // Avoid closing the scanner
         System.out.print("Nhap ma phieu phat: ");
         this.maPP = scanner.nextLine();
         System.out.print("Nhap ma doc gia: ");

@@ -1,10 +1,9 @@
 package PhieuPhat;
 
-import java.util.Scanner;
-
 import PhieuMuon.DSChiTietPM;
 import Sach.Sach;
 import Validate.Validate;
+import java.util.Scanner;
 
 public class ChiTietPhieuPhat {
     private String Mapp;

@@ -1,19 +1,16 @@
 package PhieuPhat;
 
-import java.util.Scanner;
-
 import Format.ANSI;
 import Validate.Validate;
+import java.util.Scanner;
 
 public class QuanLyPhieuPhat {
     private DSPhieuPhat dsPhieuPhat;
     private DSChiTietPP dsChiTietPP;
-    private DSQuyDinhPhat dsQuyDinhPhat;
 
     public QuanLyPhieuPhat(DSPhieuPhat dsPhieuPhat, DSChiTietPP dsChiTietPP) {
         this.dsPhieuPhat = dsPhieuPhat;
         this.dsChiTietPP = dsChiTietPP;
-        this.dsQuyDinhPhat = new DSQuyDinhPhat();
     }
 
     public void hienThiMenu() {
@@ -25,8 +22,7 @@ public class QuanLyPhieuPhat {
                     new String[][] {
                             { "1. Quan ly phieu phat" },
                             { "2. Quan ly chi tiet phieu phat" },
-                            { "3. Quan ly quy dinh phat" },
-                            { "4. Thoat" }
+                            { "3. Thoat" }
                     }).printTable();
 
             luaChon = Validate.getChoice(scanner, 1, 4);
@@ -37,9 +33,6 @@ public class QuanLyPhieuPhat {
                     break;
                 case 2:
                     menuChiTietPhieuPhat(scanner);
-                    break;
-                case 3:
-                    quanLyQuyDinhPhat(scanner);
                     break;
                 default:
                     System.out.println("Thoat chuong trinh.");
@@ -100,55 +93,6 @@ public class QuanLyPhieuPhat {
                     return;
                 default:
                     System.out.println("Lua chon khong hop le. Vui long thu lai.");
-            }
-        }
-    }
-
-    private void quanLyQuyDinhPhat(Scanner scanner) {
-        while (true) {
-            System.out.println("");
-            new ANSI(new String[] { "Quan Ly Quy Dinh Phat" },
-                    new String[][] {
-                            { "1. Them quy dinh phat" },
-                            { "2. Sua quy dinh phat" },
-                            { "3. Xoa quy dinh phat" },
-                            { "4. Xem danh sach quy dinh phat" },
-                            { "5. Quay lai" }
-                    }).printTable();
-
-            int luaChon = Validate.getChoice(scanner, 1, 5);
-
-            switch (luaChon) {
-                case 1:
-                    Quydinhphat quyMoi = new Quydinhphat();
-                    quyMoi.Nhap(); // Nhap thong tin quy dinh phat moi
-                    System.out.println("Quy dinh phat da duoc them.");
-                    dsQuyDinhPhat.add(quyMoi);
-                    System.out.println("Quy dinh phat da duoc them.");
-                    break;
-                case 2:
-                    System.out.print("Nhap ma quy dinh phat can sua: ");
-                    String maQDCanSua = scanner.nextLine();
-                    dsQuyDinhPhat.edit(maQDCanSua);
-                    break;
-                case 3:
-                    System.out.print("Nhap ma quy dinh phat can xoa: ");
-                    String maQDCanXoa = scanner.nextLine();
-                    dsQuyDinhPhat.remove(maQDCanXoa);
-                    break;
-                case 4:
-                    if (dsQuyDinhPhat.isEmpty()) {
-                        System.out.println("Danh sach quy dinh phat rong.");
-                    } else {
-                        System.out.println("Danh sach quy dinh phat:");
-                        for (int i = 0; i < dsQuyDinhPhat.size(); i++) {
-                            dsQuyDinhPhat.getList()[i].Xuat(); // Display the fine regulation
-                        }
-                    }
-                    break;
-                default:
-                    System.out.println("Quay lai.");
-                    return;
             }
         }
     }
