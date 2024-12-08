@@ -106,7 +106,8 @@ public class QuanLyPhieuPhat {
                             { "2. Sua chi tiet phieu phat" },
                             { "3. Xoa chi tiet phieu phat" },
                             { "4. Xem danh sach chi tiet phieu phat" },
-                            { "5. Quay lai" } })
+                            { "5. Thong Ke Khach Hang Tra Qua Han" },  
+                            { "6. Quay lai" } })
                     .printTable();
             int luaChon = Validate.getChoice(scanner, 1, 5);
             switch (luaChon) {
@@ -115,7 +116,7 @@ public class QuanLyPhieuPhat {
                             ">> Ma phieu phat khong ton tai!", dsPhieuPhat.getList(), PhieuPhat::getMaPP);
                     dsChiTietPP.them(maPP);
                     break;
-                case 2: case 3: case 4:
+                case 2: case 3: case 4: case 5:
                     System.out.println("Chuc nang chua ho tro.");
                     break;
                 default:

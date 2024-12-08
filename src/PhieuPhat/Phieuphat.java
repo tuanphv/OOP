@@ -2,8 +2,6 @@ package PhieuPhat;
 
 import java.util.Scanner;
 
-import Validate.Validate;
-
 public class PhieuPhat {
     private String maPM;
     private String maPP;
@@ -78,15 +76,7 @@ public class PhieuPhat {
         this.maDG = scanner.nextLine();
         System.out.print("Nhap ma nhan vien: ");
         this.maNV = scanner.nextLine();
-        int soLoi = Validate.getNumber(scanner, "Nhap so luong loi phai phat: ");
         DSChiTietPP dsChiTiet = new DSChiTietPP();
-        for (int i = 0; i < soLoi; i++) {
-            System.out.println("Nhap thong tin loi thu " + (i + 1));
-            ChiTietPhieuPhat chiTiet = new ChiTietPhieuPhat();
-            chiTiet.nhap(maPP);
-            dsChiTiet.add(chiTiet);
-        }
-        scanner.close();
     }
 
     public void xuat() {
