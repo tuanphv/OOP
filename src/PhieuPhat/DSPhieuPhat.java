@@ -34,13 +34,14 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
 
     // Xuất danh sách phiếu phạt
     public void xuat() {
-        String[] header = { "Ma Phieu phat", "Ma Phieu Muon", "Ma Doc Gia", "Ma Nhan Vien", "Tong Phat" };
-        String[][] data = new String[dsPP.length][];
-        for (int i = 0; i < dsPP.length; i++) {
-            data[i] = dsPP[i].toArray();
-        }
-        new ANSI(header, data).printTable();
+    String[] header = { "Ma Phieu phat", "Ma Phieu Muon", "Ma Doc Gia", "Ma Nhan Vien", "Tong Phat" };
+    String[][] data = new String[dsPP.length][];  // Tạo mảng 2D để chứa dữ liệu
+    for (int i = 0; i < dsPP.length; i++) {
+        data[i] = dsPP[i].toArray();  // Lấy mảng chuỗi từ mỗi đối tượng PhieuPhat
     }
+    new ANSI(header, data).printTable();  // In bảng với tiêu đề và dữ liệu
+}
+
 
     // Ghi file danh sách phiếu phạt
     public void ghiFile() {
