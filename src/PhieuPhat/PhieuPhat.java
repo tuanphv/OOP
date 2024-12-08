@@ -109,4 +109,13 @@ public class PhieuPhat {
     public String toString() {
         return maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
     }
+     public String[] toArray() {
+        return new String[] { 
+            maPM,        // Mã phiếu mượn
+            maPP,        // Mã phiếu phạt
+            maDG,        // Mã độc giả
+            maNV,        // Mã nhân viên
+            String.valueOf(tongPhat) // Tổng tiền phạt (chuyển sang chuỗi)
+        };
+    }
 }
