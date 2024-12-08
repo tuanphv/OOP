@@ -14,7 +14,7 @@ public class NhanVien extends Person {
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String tenNV, String chucVu, String sdtNV, String gioiTinh, String luong) {
+    public NhanVien(String maNV, String tenNV, String chucVu, String luong, String sdtNV, String gioiTinh) {
         this.maNV = maNV;
         this.tenNV = tenNV;
         this.chucVu = chucVu;

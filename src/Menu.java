@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import Format.ANSI;
 import NCC_NXB.DSNhaCC;
 import Person.DSDocGia;
@@ -16,6 +14,7 @@ import PhieuPhat.QuanLyPhieuPhat;
 import Sach.DSSach;
 import Sach.QuanLySach;
 import Validate.Validate;
+import java.util.Scanner;
 
 public class Menu {
     DSSach dsSach = new DSSach();
@@ -26,8 +25,8 @@ public class Menu {
     DSPhieuNhap dsPhieuNhap = new DSPhieuNhap();
     DSChiTietPN dsChiTietPN = new DSChiTietPN();
 
-    DSPhieuPhat dsPhieuPhat = new DSPhieuPhat();
-    DSChiTietPP dsChiTietPP = new DSChiTietPP();
+    //DSPhieuPhat dsPhieuPhat = new DSPhieuPhat();
+    //DSChiTietPP dsChiTietPP = new DSChiTietPP();
 
     DSDocGia dsDocGia = new DSDocGia();
     DSNhanVien dsNhanVien = new DSNhanVien();
@@ -45,8 +44,8 @@ public class Menu {
         dsPhieuNhap.docFile();
         dsChiTietPN.docFile();
 
-        dsPhieuPhat.docFile();
-        dsChiTietPP.docFile();
+        //dsPhieuPhat.docFile();
+        //dsChiTietPP.docFile();
 
         dsDocGia.docFile();
         dsNhanVien.docFile();
@@ -63,11 +62,11 @@ public class Menu {
         dsPhieuNhap.ghiFile();
         dsChiTietPN.ghiFile();
 
-        dsPhieuPhat.ghiFile();
-        dsChiTietPP.ghiFile();
+        //dsPhieuPhat.ghiFile();
+        //dsChiTietPP.ghiFile();
     }
     public void hienThiMenu() {
-        //docFile();
+        docFile();
         do {
             Scanner scanner = new Scanner(System.in);
             new ANSI(new String[] { "Menu chinh".toUpperCase() },
@@ -92,6 +91,7 @@ public class Menu {
                 case 4:
                     // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
                     break;
+                case 5:
                 case 5:
                     System.out.println("Thoat chuong trinh.");
                     ghiFile();

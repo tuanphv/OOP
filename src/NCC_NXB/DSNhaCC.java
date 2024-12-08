@@ -9,18 +9,17 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import Interface.IList;
-import Person.NhanVien;
 
 public class DSNhaCC implements IList<NhaCungCap> {
     private NhaCungCap[] dsncc = new NhaCungCap[0];
     Scanner nhap = new Scanner(System.in);
 
     public int size() {
-        return dsncc.length;
+        return NhaCungCap.getSolg();
     }
 
     public int indexOf(String ma) {
-        for (int i = 0; i < dsncc.length; i++)
+        for (int i = 0; i < NhaCungCap.getSolg(); i++)
             if (dsncc[i].getMaNCC().equals(ma))
                 return i;
         return -1;
@@ -34,73 +33,71 @@ public class DSNhaCC implements IList<NhaCungCap> {
     }
 
     public boolean add(NhaCungCap ncc) {
-        int solg = dsncc.length;
+        int solg = NhaCungCap.getSolg();
         if (indexOf(ncc.getMaNCC()) != -1) {
             System.out.println("Da co nha cung cap trong danh sach");
             return false;
         } else {
             dsncc = Arrays.copyOf(dsncc, solg + 1);
+            NhaCungCap.setSolg(solg + 1);
             dsncc[solg] = ncc;
             return true;
         }
     }
 
     public boolean isEmpty() {
-        if (dsncc.length == 0)
+        if (NhaCungCap.getSolg() == 0)
             return true;
         return false;
     }
 
     public void remove(String ma) {
-        int solg = dsncc.length;
+        int solg = NhaCungCap.getSolg();
         int index = indexOf(ma);
         if (index == -1)
             System.out.println("Nha cung cap chua co trong danh sach");
         else {
             for (int i = index; i < solg - 1; i++)
                 dsncc[i] = dsncc[i + 1];
+            NhaCungCap.setSolg(solg - 1);
             dsncc = Arrays.copyOf(dsncc, solg - 1);
         }
     }
 
-public void docFile() {
+    public void docFile() {
         try {
-            FileReader fr = new FileReader("./lib/NhaCungCap.txt");
+            FileReader fr = new FileReader("lib/dsncc.txt");
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
             while (line != null) {
-                String parts[]= line.split(", ");
-                NhaCungCap ncc= new NhaCungCap(parts[0], parts[1], parts[2], parts[3]);
-                add(ncc);
+                System.out.println(line);
                 line = br.readLine();
             }
             br.close();
         } catch (IOException e) {
-            System.out.println("Loi khi doc file: " + e.getMessage());
+            System.out.println("Khong doc duoc file");
         } finally {
-            System.out.println("Da doc file xong");
+            System.out.println("Doc file thanh cong");
         }
     }
 
     public void ghiFile() {
         try {
-            FileWriter fw = new FileWriter("./lib/NhaCungCap.txt", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            for(int i=0; i< dsncc.length; i++) {
-                bw.write(dsncc[i].toString());
-                bw.newLine();
-            }
-            
-            bw.close();
+            FileWriter fw = new FileWriter("lib/dsncc.txt");
+            BufferedWriter br = new BufferedWriter(fw);
+            String line = nhap.nextLine();
+            br.write(line);
+            br.newLine();
+            br.close();
         } catch (IOException e) {
-            System.out.println("Loi khi ghi file: " + e);
+            System.out.println("Khong ghi duoc file");
         } finally {
-            System.out.println("Da ghi file xong");
+            System.out.println("Ghi file thanh cong");
         }
     }
 
     public NhaCungCap[] timTheoMa(String ma) {
-        int solg = dsncc.length;
+        int solg = NhaCungCap.getSolg();
         NhaCungCap[] temp = new NhaCungCap[0];
         for (int i = 0; i < solg; i++)
             if (dsncc[i].getMaNCC().equals(ma)) {
@@ -111,7 +108,7 @@ public void docFile() {
     }
 
     public NhaCungCap[] timTheoTen(String ten) {
-        int solg = dsncc.length;
+        int solg = NhaCungCap.getSolg();
         NhaCungCap[] temp = new NhaCungCap[0];
         for (int i = 0; i < solg; i++)
             if (dsncc[i].getTen().equalsIgnoreCase(ten)) {
@@ -122,7 +119,7 @@ public void docFile() {
     }
 
     public NhaCungCap[] timTheoDiaChi(String diaChi) {
-        int solg = dsncc.length;
+        int solg = NhaCungCap.getSolg();
         NhaCungCap[] temp = new NhaCungCap[0];
         for (int i = 0; i < solg; i++)
             if (dsncc[i].getDiaChi().equalsIgnoreCase(diaChi)) {
@@ -133,7 +130,7 @@ public void docFile() {
     }
 
     public NhaCungCap[] timTheoSdt(String sdt) {
-        int solg =dsncc.length;
+        int solg = NhaCungCap.getSolg();
         NhaCungCap[] temp = new NhaCungCap[0];
         for (int i = 0; i < solg; i++)
             if (dsncc[i].getSdt().equalsIgnoreCase(sdt)) {
@@ -148,7 +145,7 @@ public void docFile() {
     }
 
     public void hienthi() {
-        int solg =dsncc.length;
+        int solg = NhaCungCap.getSolg();
         if (isEmpty())
             System.out.println("Danh sach rong");
         else {
@@ -250,12 +247,6 @@ public void docFile() {
             }
             if (input == 8) {
                 hienthi();
-            }
-            if(input == 9) {
-                docFile();
-            }
-            if(input == 10) {
-                ghiFile();
             }
         } while (input != 0);
     }

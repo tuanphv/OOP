@@ -18,8 +18,6 @@ public class DSNhanVien implements IList<NhanVien> {
         return dsnv.length;
     }
 
-    public DSNhanVien() {}
-
     public boolean add(NhanVien nv) {
         int solg = dsnv.length;
         if (indexOf(nv.getMaNV()) != -1) {
@@ -157,13 +155,11 @@ public class DSNhanVien implements IList<NhanVien> {
 
     public void docFile() {
         try {
-            FileReader fr = new FileReader("./lib/NhanVien.txt");
+            FileReader fr = new FileReader("./lib/NV.txt");
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
             while (line != null) {
-                String parts[]= line.split(", ");
-                NhanVien nv= new NhanVien(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]);
-                add(nv);
+                System.out.println(line);
                 line = br.readLine();
             }
             br.close();
@@ -176,13 +172,12 @@ public class DSNhanVien implements IList<NhanVien> {
 
     public void ghiFile() {
         try {
-            FileWriter fw = new FileWriter("./lib/NhanVien.txt", true);
+            FileWriter fw = new FileWriter("./lib/NV.txt");
             BufferedWriter bw = new BufferedWriter(fw);
-            for(int i=0; i< dsnv.length; i++) {
-                bw.write(dsnv[i].toString());
-                bw.newLine();
-            }
-            
+            String line;
+            line = nhap.nextLine();
+            bw.write(line);
+            bw.newLine();
             bw.close();
         } catch (IOException e) {
             System.out.println("Loi khi ghi file: " + e);
@@ -216,8 +211,6 @@ public class DSNhanVien implements IList<NhanVien> {
             System.out.println("8. Tim nhan vien theo khoang luong");
             System.out.println("9. Sua thong tin nhan vien");
             System.out.println("10. Hien thi danh sach nhan vien");
-            System.out.println("12. Ghi vao file nhan vien");
-            System.out.println("11. Doc file nhan vien");
             System.out.println("0. Thoat");
             input = Integer.parseInt(nhap.nextLine());
             if (input == 1) {
@@ -294,12 +287,6 @@ public class DSNhanVien implements IList<NhanVien> {
                 String temp = nhap.nextLine();
                 NhanVien nv = get(temp);
                 suaNhanVien(nv);
-            }
-            if(input == 11) {
-                docFile();
-            }
-            if(input == 12) {
-                ghiFile();
             }
             if (input == 10) {
                 hienthi();

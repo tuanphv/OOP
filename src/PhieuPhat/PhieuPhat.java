@@ -1,8 +1,7 @@
 package PhieuPhat;
 
+import Validate.Ngay;
 import java.util.Scanner;
-
-import Validate.Validate;
 
 public class PhieuPhat {
     private String maPM;
@@ -69,6 +68,14 @@ public class PhieuPhat {
     public void setMaPM(String maPM) {
         this.maPM = maPM;
     }
+    
+    public int soNgayQuaHan(String hanTra, String ngayTra) {
+        Ngay hanTraNgay = new Ngay(hanTra);
+        Ngay ngayTraNgay = new Ngay(ngayTra);
+
+        int soNgay = ngayTraNgay.soNgayTreHan(hanTraNgay);
+        return Math.max(soNgay, 0);
+    }
 
     public void nhap() {
         Scanner scanner = new Scanner(System.in); // Avoid closing the scanner
@@ -78,17 +85,10 @@ public class PhieuPhat {
         this.maDG = scanner.nextLine();
         System.out.print("Nhap ma nhan vien: ");
         this.maNV = scanner.nextLine();
-        int soLoi = Validate.getNumber(scanner, "Nhap so luong loi phai phat: ");
         DSChiTietPP dsChiTiet = new DSChiTietPP();
-        for (int i = 0; i < soLoi; i++) {
-            System.out.println("Nhap thong tin loi thu " + (i + 1));
-            ChiTietPhieuPhat chiTiet = new ChiTietPhieuPhat();
-            chiTiet.nhap(maPP);
-            dsChiTiet.add(chiTiet);
-        }
-        scanner.close();
     }
-
+    
+    
     public void xuat() {
         System.out.println("Ma phieu phat: " + maPP);
         System.out.println("Ma doc gia: " + maDG);
@@ -96,18 +96,26 @@ public class PhieuPhat {
         System.out.println("Tong phat: " + tongPhat);
     }
 
-    public void xuatChiTiet() {
-        DSChiTietPP dsChiTiet = new DSChiTietPP();
-        if (dsChiTiet.isEmpty()) {
-            dsChiTiet.docFile();
-        }
-        System.out.println("Ma phieu phat: " + maPP);
-        System.out.println("Ma doc gia: " + maDG);
-        System.out.println("Ma nhan vien: " + maNV);
-        dsChiTiet.xuatKQ(dsChiTiet.getChiTietCuaPhieu(maPP));
-        System.out.println("Tong phat: " + tongPhat);
-    }
+    // public void xuatChiTiet() {
+    //     DSChiTietPP dsChiTiet = new DSChiTietPP();
+    //     if (dsChiTiet.isEmpty()) {
+    //         dsChiTiet.docFile();
+    //     }
+    //     System.out.println("Ma phieu phat: " + maPP);
+    //     System.out.println("Ma doc gia: " + maDG);
+    //     System.out.println("Ma nhan vien: " + maNV);
+    //     System.out.println("Tong phat: " + tongPhat);
+    // }
     public String toString() {
         return maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
+    }
+     public String[] toArray() {
+        return new String[] { 
+            maPM,        // Mã phiếu mượn
+            maPP,        // Mã phiếu phạt
+            maDG,        // Mã độc giả
+            maNV,        // Mã nhân viên
+            String.valueOf(tongPhat) // Tổng tiền phạt (chuyển sang chuỗi)
+        };
     }
 }

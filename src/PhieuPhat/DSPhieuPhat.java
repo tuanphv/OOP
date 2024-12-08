@@ -1,132 +1,149 @@
 package PhieuPhat;
 
+import Format.ANSI;
 import Interface.IList;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class DSPhieuPhat implements IList<PhieuPhat> {
-    private PhieuPhat[] list = new PhieuPhat[0];
+    private static PhieuPhat[] dsPP = new PhieuPhat[0];
+    private Scanner input = new Scanner(System.in);
 
-    public DSPhieuPhat() {
+    public DSPhieuPhat() {}
+
+    public DSPhieuPhat(PhieuPhat[] ds) {
+        dsPP = ds;
     }
 
-    public DSPhieuPhat(PhieuPhat[] l1) {
-        this.list = l1;
+    public PhieuPhat[] getList() {
+        return dsPP;
     }
 
-    // Read data from file and store in array
+    // Nhập danh sách phiếu phạt
+    public void nhap() {
+        System.out.print("Nhap so luong phieu phat: ");
+        int n = Integer.parseInt(input.nextLine());
+        dsPP = new PhieuPhat[n];
+        for (int i = 0; i < n; i++) {
+            dsPP[i] = new PhieuPhat();
+            dsPP[i].nhap();
+            System.out.println("-------------------------");
+        }
+    }
+
+    // Xuất danh sách phiếu phạt
+    public void xuat() {
+    String[] header = { "Ma Phieu phat", "Ma Phieu Muon", "Ma Doc Gia", "Ma Nhan Vien", "Tong Phat" };
+    String[][] data = new String[dsPP.length][];  // Tạo mảng 2D để chứa dữ liệu
+    for (int i = 0; i < dsPP.length; i++) {
+        data[i] = dsPP[i].toArray();  // Lấy mảng chuỗi từ mỗi đối tượng PhieuPhat
+    }
+    new ANSI(header, data).printTable();  // In bảng với tiêu đề và dữ liệu
+}
+
+
+    // Ghi file danh sách phiếu phạt
+    public void ghiFile() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("./lib/PhieuPhat.txt"))) {
+            for (PhieuPhat pp : dsPP) {
+                bw.write(pp.toString());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Lỗi ghi file: " + e);
+        }
+    }
+
+    // Đọc file danh sách phiếu phạt
     public void docFile() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("./lib/PhieuPhat.txt"));
+        try (BufferedReader reader = new BufferedReader(new FileReader("./lib/PhieuPhat.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(", ");
-                if (parts.length >= 4) {
-                    add(new PhieuPhat(parts[0], parts[1], parts[2], parts[3], Integer.parseInt(parts[3])));
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("File not found: " + e.getMessage());
-        }
-    }
-
-    // Ghi dữ liệu vào file
-    public void ghiFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("./lib/PhieuPhat.txt"))) {
-            for (PhieuPhat phieuphat : list) {
-                if (phieuphat != null) {
-                    writer.println(phieuphat.getMaPP() + ", " + phieuphat.getMaDG() + ", " + phieuphat.getMaNV() + ", "
-                            + phieuphat.getTongPhat());
-                }
+                String[] data = line.split(", ");
+                PhieuPhat pp = new PhieuPhat(data[0], data[1], data[2], data[3], Integer.parseInt(data[4]));
+                add(pp);
             }
         } catch (IOException e) {
-            System.out.println("Lỗi khi ghi file: " + e.getMessage());
+            System.out.println("Lỗi đọc file: " + e);
         }
     }
 
-    // Thêm phiếu phạt vào mảng
-    public boolean add(PhieuPhat phieuphat) {
-        int index = indexOf(phieuphat.getMaPP());
-        if (index != -1) {
-            return false;
-        }
-        list = Arrays.copyOf(list, list.length + 1);
-        list[list.length - 1] = phieuphat;
-        return true;
+    // Kiểm tra xem danh sách có rỗng không
+    public boolean isEmpty() {
+        return dsPP.length == 0;
     }
 
-    public void edit(String ma) {
-        int index = indexOf(ma);
-        if (index != -1) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Nhập thông tin mới cho phiếu phạt:");
-            System.out.print("Nhập mã độc giả: ");
-            list[index].setMaDG(scanner.nextLine());
-            System.out.print("Nhập mã nhân viên: ");
-            list[index].setMaNV(scanner.nextLine());
-            System.out.println("Đã cập nhật thông tin cho phiếu phạt có mã " + ma);
-            scanner.close();
-            return;
-        }
-        System.out.println("Không tìm thấy phiếu phạt có mã " + ma);
-    }
-    // Xóa phiếu phạt khỏi mảng
-    public void remove(String ma) {
-        int index = indexOf(ma); // Lấy vị trí của phiếu phạt theo mã phiếu
-        if (index != -1) { // Nếu tìm thấy phiếu phạt
-            int length = list.length;
-            System.arraycopy(list, index + 1, list, index, length - index - 1); // Sao chép phần trước phiếu phạt
-            list = Arrays.copyOf(list, length - 1);
-            System.out.println("Đã xóa phiếu phạt có mã " + ma);
-            return;
-        }
-        System.out.println("Không tìm thấy phiếu phạt có mã " + ma);
+    // Lấy kích thước của danh sách
+    public int size() {
+        return dsPP.length;
     }
 
-    // Lấy vị trí của phiếu phạt trong mảng
-    public int indexOf(String Mapp) {
-        for (int i = 0; i < list.length; i++) {
-            if (list[i].getMaPP().equals(Mapp)) {
+    // Lấy đối tượng phiếu phạt theo mã
+    public PhieuPhat get(String ma) {
+        for (PhieuPhat pp : dsPP) {
+            if (pp.getMaPP().equals(ma)) {
+                return pp;
+            }
+        }
+        return null;
+    }
+
+    // Thêm phiếu phạt vào danh sách
+    public boolean add(PhieuPhat pp) {
+        int n = dsPP.length;
+        if (indexOf(pp.getMaPP()) == -1) {
+            dsPP = Arrays.copyOf(dsPP, n + 1);
+            dsPP[n] = pp;
+            return true;
+        }
+        return false;
+    }
+
+    // Tìm kiếm phiếu phạt theo mã
+    public int indexOf(String maPP) {
+        for (int i = 0; i < dsPP.length; i++) {
+            if (dsPP[i].getMaPP().equals(maPP)) {
                 return i;
             }
         }
-        return -1; // Không tìm thấy
+        return -1;
     }
 
-    // Lấy phiếu phạt theo mã phiếu
-    public PhieuPhat get(String mapp) {
-        for (PhieuPhat phieuphat : list) {
-            if (phieuphat != null && phieuphat.getMaPP().equals(mapp)) {
-                return phieuphat;
+    // Xóa phiếu phạt theo mã
+    public void remove(String maPP) {
+        int index = indexOf(maPP);
+        if (index == -1) {
+            System.out.println("Không tìm thấy phiếu phạt cần xóa");
+        } else {
+            for (int i = index; i < dsPP.length - 1; i++) {
+                dsPP[i] = dsPP[i + 1];
+            }
+            dsPP = Arrays.copyOf(dsPP, dsPP.length - 1);
+        }
+    }
+
+    // Tìm kiếm phiếu phạt theo mã độc giả
+    public PhieuPhat[] timKiemMaDocGia(String maDG) {
+        PhieuPhat[] result = new PhieuPhat[0];
+        for (PhieuPhat pp : dsPP) {
+            if (pp.getMaDG().equals(maDG)) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = pp;
             }
         }
-        return null; // Trả về null nếu không tìm thấy
+        return result;
     }
 
-    // Kiểm tra mảng có rỗng không
-    public boolean isEmpty() {
-        return list.length == 0 || list == null;
-    }
-
-    // Lấy độ dài của mảng
-    public int size() {
-        return list.length;
-    }
-
-    // Lấy danh sách phiếu phạt
-    public PhieuPhat[] getList() {
-        return list;
-    }
-
-    public void xuat() {
-        if (isEmpty()) {
-            System.out.println("Danh sach phieu phat rong.");
-        } else {
-            System.out.println("Danh sach phieu phat:");
-            for (PhieuPhat phieuphat : list)   
-                phieuphat.xuat();
+    // Tìm kiếm phiếu phạt theo mã nhân viên
+    public PhieuPhat[] timKiemMaNV(String maNV) {
+        PhieuPhat[] result = new PhieuPhat[0];
+        for (PhieuPhat pp : dsPP) {
+            if (pp.getMaNV().equals(maNV)) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = pp;
+            }
         }
+        return result;
     }
 }

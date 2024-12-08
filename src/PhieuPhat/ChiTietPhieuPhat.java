@@ -6,58 +6,47 @@ import Validate.Validate;
 import java.util.Scanner;
 
 public class ChiTietPhieuPhat {
-    private String Mapp;
-    private String Masach;
-    private String Maqd;
-    private int Tienphat;
+    private String maPP;
+    private String maSach;
+    private int tienPhat;
 
     public ChiTietPhieuPhat() {
     }
 
-    public ChiTietPhieuPhat(String mapp, String masach, String maqd, int tienphat) {
-        this.Mapp = mapp;
-        this.Masach = masach;
-        this.Maqd = maqd;
-        this.Tienphat = tienphat;
+    public ChiTietPhieuPhat(String maPP, String masach, int tienphat) {
+        this.maPP = maPP;
+        this.maSach = masach;
+        this.tienPhat = tienphat;
     }
 
     public ChiTietPhieuPhat(ChiTietPhieuPhat s1) {
-        this.Mapp = s1.Mapp;
-        this.Masach = s1.Masach;
-        this.Maqd = s1.Maqd;
-        this.Tienphat = s1.Tienphat;
+        this.maPP = s1.maPP;
+        this.maSach = s1.maSach;
+        this.tienPhat = s1.tienPhat;
     }
 
-    public String getMaPP() {
-        return Mapp;
+    public String maPP() {
+        return maPP;
     }
 
     public String getMaSach() {
-        return Masach;
-    }
-
-    public String getMaQD() {
-        return Maqd;
+        return maSach;
     }
 
     public int getTienPhat() {
-        return Tienphat;
+        return tienPhat;
     }
 
-    public void setMaPP(String mapp) {
-        this.Mapp = mapp;
+    public void maPP(String maPP) {
+        this.maPP = maPP;
     }
 
     public void setMaSach(String masach) {
-        this.Masach = masach;
-    }
-
-    public void setMaQD(String maqd) {
-        this.Maqd = maqd;
+        this.maSach = masach;
     }
 
     public void setTienPhat(int tienphat) {
-        this.Tienphat = tienphat;
+        this.tienPhat = tienphat;
     }
 
     public void nhap(String maPP) {
@@ -65,29 +54,26 @@ public class ChiTietPhieuPhat {
         DSChiTietPM dsctpm = new DSChiTietPM();
         Sach[] sachs = dsctpm.getDSSach(maPP);
         Scanner scanner = new Scanner(System.in);
-        this.Mapp = maPP;
+        this.maPP = maPP;
         // kiểm tra sách có trong phiếu mượn hay không
-        this.Masach = Validate.checkExist(scanner, "Nhap ma sach: ", "Ma sach khong ton tai", sachs, Sach::getMaSach);
-        System.out.print("Nhập mã quy định: ");
-        this.Maqd = scanner.nextLine();
+        this.maSach = Validate.checkExist(scanner, "Nhap ma sach: ", "Ma sach khong ton tai", sachs, Sach::getMaSach);
         System.out.print("Nhập tiền phạt: ");
-        this.Tienphat = Integer.parseInt(scanner.nextLine());
+        this.tienPhat = Integer.parseInt(scanner.nextLine());
         scanner.close();
     }
 
     public void xuat() {
-        System.out.println("Mã phiếu phạt: " + Mapp);
-        System.out.println("Mã sách: " + Masach);
-        System.out.println("Mã quy định: " + Maqd);
-        System.out.println("Tiền phạt: " + Tienphat);
+        System.out.println("Mã phiếu phạt: " + maPP);
+        System.out.println("Mã sách: " + maSach);
+        System.out.println("Tiền phạt: " + tienPhat);
     }
 
     @Override
     public String toString() {
-        return Mapp + ", " + Masach + ", " + Maqd + ", " + Tienphat;
+        return maPP + ", " + maSach + ", " + tienPhat;
     }
 
     public String[] toArray() {
-        return new String[] { Mapp, Masach, Maqd, String.valueOf(Tienphat) };
+        return new String[] { maPP, maSach, String.valueOf(tienPhat) };
     }
 }
