@@ -48,19 +48,12 @@ public class ChiTietPhieuPhat {
         this.maSach = masach;
     }
 
-    public int soNgayQuaHan(String hanTra, String ngayTra) {
-    Ngay hanTraNgay = new Ngay(hanTra); 
-    Ngay ngayTraNgay = new Ngay(ngayTra); 
-
-    int soNgay = ngayTraNgay.soNgayTreHan(hanTraNgay); 
-    return Math.max(soNgay, 0);
-    }
-
 
     public void setTienPhat(int tienphat) {
         this.tienPhat = tienphat;
     }
 
+    
     public void nhap(String maPP) {
         // từ danh sách chi tiết phiếu mượn lấy ra danh sách sách của phiếu mượn
         DSChiTietPM dsctpm = new DSChiTietPM();
