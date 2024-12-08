@@ -2,7 +2,6 @@ package PhieuPhat;
 
 import PhieuMuon.DSChiTietPM;
 import Sach.Sach;
-import Validate.Ngay;
 import Validate.Validate;
 import java.util.Scanner;
 
@@ -17,7 +16,6 @@ public class ChiTietPhieuPhat {
     public ChiTietPhieuPhat(String maPP, String masach, int tienphat) {
         this.maPP = maPP;
         this.maSach = masach;
-
         this.tienPhat = tienphat;
     }
 
@@ -38,7 +36,6 @@ public class ChiTietPhieuPhat {
     public int getTienPhat() {
         return tienPhat;
     }
-    
 
     public void maPP(String maPP) {
         this.maPP = maPP;
@@ -48,12 +45,10 @@ public class ChiTietPhieuPhat {
         this.maSach = masach;
     }
 
-
     public void setTienPhat(int tienphat) {
         this.tienPhat = tienphat;
     }
 
-    
     public void nhap(String maPP) {
         // từ danh sách chi tiết phiếu mượn lấy ra danh sách sách của phiếu mượn
         DSChiTietPM dsctpm = new DSChiTietPM();

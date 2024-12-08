@@ -1,61 +1,121 @@
 package PhieuPhat;
 
+import Format.ANSI;
 import Interface.IList;
 import PhieuMuon.ChiTietPhieuMuon;
 import PhieuMuon.DSChiTietPM;
 import Validate.Ngay;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class DSPhieuPhat implements IList<PhieuPhat> {
-    PhieuPhat[] dsPP = new PhieuPhat[0];
+    private static PhieuPhat[] dsPP = new PhieuPhat[0];
+    Scanner input = new Scanner(System.in);
 
-    public DSPhieuPhat() {
-    }
+   public DSPhieuPhat() {
+   }
     
-    public void taoDanhSachPhieuPhat(DSChiTietPM dsCTPM) {
-        for (ChiTietPhieuMuon ctpm : dsCTPM.getList()) {
-            if (soNgayQuaHan(ctpm.getNgayTra(), ctpm.getHanTra()) > 0) {
-                PhieuPhat phieuPhat = new PhieuPhat();
-                // Increase the size of dsPP and add the new element
-                dsPP = Arrays.copyOf(dsPP, dsPP.length + 1);
-                dsPP[dsPP.length - 1] = phieuPhat;
-            }
+    public DSPhieuPhat(PhieuPhat[] ds) {
+        dsPP = ds;
+    }
+
+    public PhieuPhat[] getList() {
+        return dsPP;
+    }
+
+    public void nhap() {
+        System.out.print("Nhap so luong phieu phat: ");
+        int n = Integer.parseInt(input.nextLine());
+        dsPP = new PhieuPhat[n];
+        for (int i = 0; i < n; i++) {
+            dsPP[i] = new PhieuPhat();
+            dsPP[i].nhap();
+            System.out.println("-------------------------");
         }
     }
+    public void xuat() {
+    String[] header = { "Ma Phieu Muon", "Ma Phieu Phat", "Ma Doc Gia", "Ma Nhan Vien", "Tong Phat" };
+    String[][] data = new String[dsPP.length][];
+    
+    for (int i = 0; i < dsPP.length; i++) {
+        data[i] = dsPP[i].toArray();
+    }
+    
+    new ANSI(header, data).printTable();
+}
+
+
+    public void tinhTienPhat(DSChiTietPM dsCTPM) {
+    int donGiaPhat = 5000; 
+
+    for (ChiTietPhieuMuon ctpm : dsCTPM.getList()) {
+        int soNgayTre = soNgayQuaHan(ctpm.getNgayTra(), ctpm.getHanTra());
+
+        if (soNgayTre > 0) {
+            int tienPhat = soNgayTre * donGiaPhat;
+            
+        } else {
+            System.out.println("Số ngày quá hạn là 0");
+        }
+    }
+}
+
 
     // Implementing IList methods
     @Override
     public void docFile() {
-        // Implementation for reading from a file
+        try (BufferedReader reader = new BufferedReader(new FileReader("./lib/PhieuPhat.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(", ");
+                PhieuPhat phieuPhat = new PhieuPhat(data[0], data[1], data[2], data[3], Integer.parseInt(data[4]));
+                add(phieuPhat);
+            }
+        } catch (Exception e) {
+            System.out.println("Error reading file: " + e);
+        }
     }
 
     @Override
     public void ghiFile() {
-        // Implementation for writing to a file
-    }
-
-    @Override
-    public boolean add(PhieuPhat obj) {
-        dsPP = Arrays.copyOf(dsPP, dsPP.length + 1);
-        dsPP[dsPP.length - 1] = obj;
-        return true;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("./lib/PhieuPhat.txt"))) {
+            for (PhieuPhat phieuPhat : dsPP) {
+                writer.write(phieuPhat.toString());
+                writer.newLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Error writing file: " + e);
+        }
     }
 
     @Override
     public void remove(String ma) {
-        // Implementation for removing an object by ID
+        int index = indexOf(ma);
+        if (index != -1) {
+            PhieuPhat[] newDsPP = new PhieuPhat[dsPP.length - 1];
+            for (int i = 0, j = 0; i < dsPP.length; i++) {
+                if (i != index) {
+                    newDsPP[j++] = dsPP[i];
+                }
+            }
+            dsPP = newDsPP;
+        }
     }
 
     @Override
     public int indexOf(String ma) {
-        // Implementation for finding the index of an object by ID
-        return -1; // Placeholder
+        for (int i = 0; i < dsPP.length; i++) {
+            if (dsPP[i].getMaPP().equals(ma)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public PhieuPhat get(String ma) {
-        // Implementation for getting an object by ID
-        return null; // Placeholder
+        int index = indexOf(ma);
+        return index != -1 ? dsPP[index] : null;
     }
 
     @Override
@@ -93,7 +153,7 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
 
         // Tạo đối tượng DSPhieuPhat và gọi phương thức tạo danh sách phiếu phạt
         DSPhieuPhat dsPhieuPhat = new DSPhieuPhat();
-        dsPhieuPhat.taoDanhSachPhieuPhat(dsCTPM);
+        //dsPhieuPhat.taoDanhSachPhieuPhat(dsCTPM);
 
         // Hiển thị danh sách phiếu phạt
         System.out.println("Danh sách phiếu phạt:");

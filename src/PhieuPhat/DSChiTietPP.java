@@ -113,13 +113,5 @@ public class DSChiTietPP {
     public Sach[] getDSSach(String maPP) {
         Sach[] result = new Sach[0];
         DSSach dsSach = new DSSach();
-        for (ChiTietPhieuPhat ctpp : dsCTPP) {
-            if (ctpp.maPP().equals(maPP)) {
-                Sach sach = dsSach.get(ctpp.getMaSach());
-                result = Arrays.copyOf(result, result.length + 1);
-                result[result.length - 1] = sach;
-            }
-        }
-        return result;
     }
 }
