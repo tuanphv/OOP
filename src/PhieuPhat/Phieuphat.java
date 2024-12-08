@@ -8,10 +8,9 @@ public class PhieuPhat {
     private String maDG;
     private String maNV;
     private int tongPhat;
-    private DSChiTietPP dsChiTiet;
 
     public PhieuPhat() {
-        this.dsChiTiet = new DSChiTietPP();
+        
     }
 
     public PhieuPhat(String maPM, String maPP, String maDG, String maNV, int tongPhat) {
@@ -20,7 +19,7 @@ public class PhieuPhat {
         this.maDG = maDG;
         this.maNV = maNV;
         this.tongPhat = tongPhat;
-        this.dsChiTiet = new DSChiTietPP();
+        
     }
 
     public PhieuPhat(PhieuPhat s1) {
@@ -29,7 +28,6 @@ public class PhieuPhat {
         this.maDG = s1.maDG;
         this.maNV = s1.maNV;
         this.tongPhat = s1.tongPhat;
-        this.dsChiTiet = new DSChiTietPP(s1.dsChiTiet);
     }
 
     public String getMaPM() {
@@ -80,22 +78,20 @@ public class PhieuPhat {
         this.maDG = cin.nextLine();
         System.out.print("Nhap ma nhan vien: ");
         this.maNV = cin.nextLine();
-        this.dsChiTiet = new DSChiTietPP();
-        this.dsChiTiet.docFile();
-        this.tongPhat = this.dsChiTiet.getTongPhat(this.maPP);
+        System.out.println("nhap tien phat: ");
+        this.tongPhat = cin.nextInt();
     }
 
     public void xuat() {
+        System.out.println("Ma phieu Muon: " + maPM);
         System.out.println("Ma phieu phat: " + maPP);
         System.out.println("Ma doc gia: " + maDG);
         System.out.println("Ma nhan vien: " + maNV);
         System.out.println("Tong phat: " + tongPhat);
-        System.out.println("Chi tiet phieu phat:");
-        this.dsChiTiet.xuatKQ(this.dsChiTiet.getChiTietCuaPhieu(maPP));
     }
 
     public String toString() {
-        return maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
+        return maPM + ", " + maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
     }
 
     public String[] toArray() {

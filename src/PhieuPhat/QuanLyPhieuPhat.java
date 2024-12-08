@@ -1,113 +1,118 @@
 package PhieuPhat;
 
-
-import java.util.Scanner;
 import Format.ANSI;
 import Validate.Validate;
-import Sach.DSSach;
-
+import java.util.Scanner;
 
 public class QuanLyPhieuPhat {
-    DSPhieuPhat dsPhieuPhat;
+    private DSPhieuPhat dsPhieuPhat;
+    private DSChiTietPP dsChiTietPP;
 
     public QuanLyPhieuPhat() {
         dsPhieuPhat = new DSPhieuPhat();
         if (dsPhieuPhat.isEmpty()) {
             dsPhieuPhat.docFile();
         }
+        dsChiTietPP = new DSChiTietPP();
+        if (dsChiTietPP.isEmpty()) {
+            dsChiTietPP.docFile();
+        }
     }
 
-    public void hienThiMenu(Scanner in) {
-        int chon = 0;
+    public QuanLyPhieuPhat(DSPhieuPhat dsPhieuPhat, DSChiTietPP dsChiTietPP) {
+        this.dsPhieuPhat = dsPhieuPhat;
+        this.dsChiTietPP = dsChiTietPP;
+    }
+
+    public void hienThiMenu(Scanner scanner) {
         do {
-            hienThiMenuChinh();
-            chon = Validate.getChoice(in, 1, 6);
-            switch (chon) {
+            new ANSI(new String[] { "Menu Quan ly phieu Phat".toUpperCase() },
+                    new String[][] {
+                            { "1. Quan ly phieu Phat" },
+                            { "2. Quan ly chi tiet phieu Phat" },
+                            { "3. Thong ke Phieu Phat" },
+                            { "4. Tro lai" }
+                    }).printTable();
+            int choice = Validate.getChoice(scanner, 1, 4);
+            switch (choice) {
                 case 1:
-                    dsPhieuPhat.nhap();
+                    menuPhieuPhat(scanner);
                     break;
                 case 2:
-                    suaPhieuPhat(in);
+                    menuChiTietPhieuPhat(scanner);
                     break;
                 case 3:
-                    xoaPhieuPhat(in);
+                    System.out.println("chuc nang phat trien sau");
+                    break;
+                default:
+                    System.out.println("Thoat Quan ly phieu Phat.");
+                    return;
+            }
+        } while (true);
+    }
+
+    public void menuPhieuPhat(Scanner scanner) {
+    int choice;
+    do {
+        new ANSI(new String[] { "Menu Quan ly phieu Phat".toUpperCase() },
+                new String[][] {
+                        { "1. Xem thong tin phieu Phat" },
+                        { "2. Xem tat ca phieu Phat" },
+                        { "3. Tro lai" }
+                }).printTable();
+
+        choice = Validate.getChoice(scanner, 1, 3);
+
+        switch (choice) {
+            case 1:
+               
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                System.out.println("Thoat Menu Quan ly phieu Phat.");
+                return;
+            default:
+                System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+        }
+    } while (true);
+}
+
+    private void menuChiTietPhieuPhat(Scanner scanner) {
+        do {
+            new ANSI(new String[] { "Menu Quan ly chi tiet phieu Phat".toUpperCase() },
+                    new String[][] {
+                            { "1. Them chi tiet phieu Phat" },
+                            { "2. Xoa chi tiet phieu Phat" },
+                            { "3. Xem chi tiet phieu Phat" },
+                            { "4. Hien thi toan bo chi tiet Phieu Phat" },
+                            { "5. Tro lai" }
+                    }).printTable();
+            int choice = Validate.getChoice(scanner, 1, 5);
+            switch (choice) {
+                case 1:
+                    
+                    break;
+                case 2:
+                    System.out.println("Chức năng đang phát triển.");
+                    break;
+                case 3:
+                    System.out.println("Chức năng đang phát triển.");
                     break;
                 case 4:
-                    menuTimKiem(dsPhieuPhat, in);
-                    break;
-                case 5:
-                    dsPhieuPhat.xuat();
+                    dsChiTietPP.xuat();
                     break;
                 default:
-                    System.out.println("Đã thoát quản lý phiếu phạt");
+                    System.out.println("Thoát chương trình.");
                     return;
             }
         } while (true);
     }
-
-    private void hienThiMenuChinh() {
-        System.out.println("");
-        new ANSI(new String[]{"menu quan ly phieu phat".toUpperCase()},
-            new String[][]{
-                {"1. Thêm phiếu phạt"},
-                {"2. Sửa thông tin phiếu phạt"},
-                {"3. Xóa phiếu phạt"},
-                {"4. Tìm kiếm phiếu phạt"},
-                {"5. Hiển thị danh sách phiếu phạt"},
-                {"6. Thoát"}}).printTable();
-    }
-
-    private void suaPhieuPhat(Scanner in) {
-        System.out.print("Nhập mã phiếu phạt cần sửa: ");
-        String maPPSua = in.nextLine();
-        dsPhieuPhat.edit(maPPSua);
-    }
-
-    private void xoaPhieuPhat(Scanner in) {
-        System.out.print("Nhập mã phiếu phạt cần xóa: ");
-        String maPPXoa = in.nextLine();
-        dsPhieuPhat.remove(maPPXoa);
-    }
-
-    public void menuTimKiem(DSPhieuPhat dsPhieuPhat, Scanner in) {
-        int chonTim = 0;
-        do {
-            System.out.println("");
-            new ANSI(new String[]{"Chọn cách tìm kiếm".toUpperCase()},
-            new String[][]{
-                {"1. Tìm theo mã phiếu phạt"},
-                {"2. Tìm theo mã độc giả"},
-                {"3. Tìm theo mã nhân viên"},
-                {"4. Thoát"}}).printTable();
-            chonTim = Validate.getChoice(in, 1, 4);
-            switch (chonTim) {
-                case 1:
-                    timKiemTheoMaPhieuPhat(in);
-                    break;
-                case 2:
-                    timKiemTheoMaDocGia(in);
-                    break;
-                case 3:
-                    timKiemTheoMaNhanVien(in);
-                    break;
-                default:
-                    System.out.println("Kết thúc tìm kiếm");
-                    return;
-            }
-        } while (true);
-    }
-
-    private void timKiemTheoMaDocGia(Scanner in) {
-        System.out.print("Nhập mã độc giả cần tìm: ");
-        String maDG = in.nextLine();
-        PhieuPhat[] phieuPhatDG = dsPhieuPhat.timKiemMaDocGia(maDG);
-        DSSach.xuatKQTimKiem(phieuPhatDG);
-    }
-
-    private void timKiemTheoMaNhanVien(Scanner in) {
-        System.out.print("Nhập mã nhân viên cần tìm: ");
-        String maNV = in.nextLine();
-        PhieuPhat[] phieuPhatNV = dsPhieuPhat.timKiemMaNV(maNV);
-        DSSach.xuatKQTimKiem(phieuPhatNV);
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        QuanLyPhieuPhat quanLyPhieuPhat = new QuanLyPhieuPhat();
+        quanLyPhieuPhat.hienThiMenu(scanner);
+        scanner.close();
     }
 }
