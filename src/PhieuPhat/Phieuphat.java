@@ -76,9 +76,10 @@ public class PhieuPhat {
         this.maDG = scanner.nextLine();
         System.out.print("Nhap ma nhan vien: ");
         this.maNV = scanner.nextLine();
-        DSChiTietPP dsChiTiet = new DSChiTietPP();
+        //DSChiTietPP dsChiTiet = new DSChiTietPP();
     }
-
+    
+    
     public void xuat() {
         System.out.println("Ma phieu phat: " + maPP);
         System.out.println("Ma doc gia: " + maDG);
@@ -86,17 +87,16 @@ public class PhieuPhat {
         System.out.println("Tong phat: " + tongPhat);
     }
 
-    public void xuatChiTiet() {
-        DSChiTietPP dsChiTiet = new DSChiTietPP();
-        if (dsChiTiet.isEmpty()) {
-            dsChiTiet.docFile();
-        }
-        System.out.println("Ma phieu phat: " + maPP);
-        System.out.println("Ma doc gia: " + maDG);
-        System.out.println("Ma nhan vien: " + maNV);
-        dsChiTiet.xuatKQ(dsChiTiet.getChiTietCuaPhieu(maPP));
-        System.out.println("Tong phat: " + tongPhat);
-    }
+    // public void xuatChiTiet() {
+    //     DSChiTietPP dsChiTiet = new DSChiTietPP();
+    //     if (dsChiTiet.isEmpty()) {
+    //         dsChiTiet.docFile();
+    //     }
+    //     System.out.println("Ma phieu phat: " + maPP);
+    //     System.out.println("Ma doc gia: " + maDG);
+    //     System.out.println("Ma nhan vien: " + maNV);
+    //     System.out.println("Tong phat: " + tongPhat);
+    // }
     public String toString() {
         return maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
     }

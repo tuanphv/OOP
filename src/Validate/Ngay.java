@@ -68,6 +68,24 @@ public class Ngay {
         LocalDate date2 = LocalDate.of(ngay.year, ngay.month, ngay.date);
         return date1.compareTo(date2);
     }
+    
+    /**
+    * Tính số ngày trễ hạn giữa hai đối tượng {@code Ngay}.
+    * @param hanTra : {@code Ngay} - ngày hạn trả.
+    * @return số ngày trễ hạn. Nếu không trễ, trả về 0.
+    */
+    //example int soNgayTreHan = ngayTra.soNgayTreHan(hanTra);
+    public int soNgayTreHan(Ngay hanTra) {
+    LocalDate ngayTra = LocalDate.of(this.year, this.month, this.date);
+    LocalDate ngayHanTra = LocalDate.of(hanTra.year, hanTra.month, hanTra.date);
+
+    if (!ngayTra.isAfter(ngayHanTra)) {
+        return 0; // Không trễ hạn
+    }
+
+    return (int) java.time.temporal.ChronoUnit.DAYS.between(ngayHanTra, ngayTra);
+    }
+    
 
     public boolean isBefore(Ngay ngay) {
         return compare(ngay) < 0;
