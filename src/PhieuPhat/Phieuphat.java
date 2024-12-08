@@ -10,7 +10,6 @@ public class PhieuPhat {
     private int tongPhat;
 
     public PhieuPhat() {
-        
     }
 
     public PhieuPhat(String maPM, String maPP, String maDG, String maNV, int tongPhat) {
@@ -19,7 +18,6 @@ public class PhieuPhat {
         this.maDG = maDG;
         this.maNV = maNV;
         this.tongPhat = tongPhat;
-        
     }
 
     public PhieuPhat(PhieuPhat s1) {
@@ -71,36 +69,35 @@ public class PhieuPhat {
     }
 
     public void nhap() {
-        Scanner cin = new Scanner(System.in); 
+        Scanner scanner = new Scanner(System.in); // Avoid closing the scanner
         System.out.print("Nhap ma phieu phat: ");
-        this.maPP = cin.nextLine();
+        this.maPP = scanner.nextLine();
         System.out.print("Nhap ma doc gia: ");
-        this.maDG = cin.nextLine();
+        this.maDG = scanner.nextLine();
         System.out.print("Nhap ma nhan vien: ");
-        this.maNV = cin.nextLine();
-        System.out.println("nhap tien phat: ");
-        this.tongPhat = cin.nextInt();
+        this.maNV = scanner.nextLine();
+        // DSChiTietPP dsChiTiet = new DSChiTietPP();
     }
 
     public void xuat() {
-        System.out.println("Ma phieu Muon: " + maPM);
         System.out.println("Ma phieu phat: " + maPP);
         System.out.println("Ma doc gia: " + maDG);
         System.out.println("Ma nhan vien: " + maNV);
         System.out.println("Tong phat: " + tongPhat);
     }
 
+    // public void xuatChiTiet() {
+    //     DSChiTietPP dsChiTiet = new DSChiTietPP();
+    //     if (dsChiTiet.isEmpty()) {
+    //         dsChiTiet.docFile();
+    //     }
+    //     System.out.println("Ma phieu phat: " + maPP);
+    //     System.out.println("Ma doc gia: " + maDG);
+    //     System.out.println("Ma nhan vien: " + maNV);
+    //     dsChiTiet.xuatKQ(dsChiTiet.getChiTietCuaPhieu(maPP));
+    //     System.out.println("Tong phat: " + tongPhat);
+    // }
     public String toString() {
-        return maPM + ", " + maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
-    }
-
-    public String[] toArray() {
-        return new String[] { 
-            maPM,        // Mã phiếu mượn
-            maPP,        // Mã phiếu phạt
-            maDG,        // Mã độc giả
-            maNV,        // Mã nhân viên
-            String.valueOf(tongPhat) // Tổng tiền phạt (chuyển sang chuỗi)
-        };
+        return maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
     }
 }
