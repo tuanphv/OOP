@@ -92,7 +92,6 @@ public class Menu {
                     // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
                     break;
                 case 5:
-                case 5:
                     System.out.println("Thoat chuong trinh.");
                     ghiFile();
                     return;
