@@ -29,6 +29,13 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
         return false;
     }
 
+    public void them(String maPN){
+        PhieuNhap pn = new PhieuNhap();
+        pn.setMaPN(maPN);
+        pn.nhap();
+        add(pn);
+    }
+
     public void remove(String ma) {
         int solg = dspn.length;
         int index = indexOf(ma);

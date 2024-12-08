@@ -5,9 +5,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
+
+import Sach.DSSach;
 
 public class DSChiTietPN {
     ChiTietPhieuNhap[] dsctpn= new ChiTietPhieuNhap[0];
+    Scanner nhap= new Scanner(System.in);
 
     public int size(){
         return dsctpn.length;
@@ -42,14 +46,28 @@ public class DSChiTietPN {
         return -1;
     }
 
-    public void add(ChiTietPhieuNhap pn){
+    public void them(String maPN, String maSach, DSSach dsSach){
+        ChiTietPhieuNhap ctpn= new ChiTietPhieuNhap();
+        ctpn.setMaPN(maPN);
+        ctpn.setMaSach(maSach);
+        int donGia= dsSach.get(maSach).getDonGia();
+        ctpn.setDonGia(donGia);
+        ctpn.nhap(); //nhap so luong
+        ctpn.setThanhTien(ctpn.getSoLuong(), ctpn.getDonGia());
+        add(ctpn);
+    }
+
+    public void add(ChiTietPhieuNhap ctpn){
         int solg= dsctpn.length;
-        if (indexOf(pn.getMaPN(), pn.getMaSach()) != -1) {
-            System.out.println("Đã tồn tại sách trong chi tiết phiếu nhập");
-            return;
-        }
         dsctpn= Arrays.copyOf(dsctpn, solg+1);
-        dsctpn[solg]= new ChiTietPhieuNhap(pn);
+        dsctpn[solg]= ctpn;
+    }
+
+    public boolean checkBook(String maSach, DSSach dssach){
+        for(int i=0; i< dssach.size(); i++){
+            if(dssach.indexOf(maSach)!= -1) return true;
+        }
+        return false;
     }
 
     public void remove(ChiTietPhieuNhap ctpn){

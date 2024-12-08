@@ -1,9 +1,9 @@
 package PhieuNhap;
 import java.util.Scanner;
 
-import Sach.DSSach;
-import Sach.Sach;
-import Validate.Validate;
+// import Sach.DSSach;
+// import Sach.Sach;
+// import Validate.Validate;
 
 public class ChiTietPhieuNhap {
     private String maPN;
@@ -32,28 +32,26 @@ public class ChiTietPhieuNhap {
     }
 
     public void nhap(){
-        Scanner nhap = new Scanner(System.in);
-        nhap.nextLine();
-        System.out.print("Nhap ma phieu nhap: ");
-        maPN = nhap.nextLine();
-        System.out.print("Nhap ma sach: ");
-        maSach = nhap.nextLine();
+        // System.out.print("Nhap ma phieu nhap: ");
+        // maPN = nhap.nextLine();
+        // System.out.print("Nhap ma sach: ");
+        // maSach = nhap.nextLine();
         System.out.print("Nhap so luong: ");
         soLuong = Integer.parseInt(nhap.nextLine());    
-        DSSach dsSach = new DSSach();
-        if (dsSach.isEmpty()) {
-            dsSach.docFile();
-        }
+        // DSSach dsSach = new DSSach();
+        // if (dsSach.isEmpty()) {
+        //     dsSach.docFile();
+        // }
         // nếu sách chưa tồn tại trong kho
-        Sach sach = dsSach.get(maSach);
-        if (sach == null) {
-            System.out.println("Sach khong co san trong kho");
-            donGia = Validate.getNumber(nhap, "Nhap don gia moi: ");
-        } else {
-            donGia = sach.getDonGia();
-        }
-        setThanhTien(soLuong, donGia);
-        nhap.close();
+        // Sach sach = dsSach.get(maSach);
+        // if (sach == null) {
+        //     System.out.println("Sach khong co san trong kho");
+        //     donGia = Validate.getNumber(nhap, "Nhap don gia moi: ");
+        // } else {
+        //     donGia = sach.getDonGia();
+        // }
+        // setThanhTien(soLuong, donGia);
+        // nhap.close();
     }
 
     public String getMaPN() {

@@ -9,6 +9,7 @@ import PhieuMuon.DSPhieuMuon;
 import PhieuMuon.QuanLyPhieuMuon;
 import PhieuNhap.DSChiTietPN;
 import PhieuNhap.DSPhieuNhap;
+import PhieuNhap.QuanLyPhieuNhap;
 import PhieuPhat.DSChiTietPP;
 import PhieuPhat.DSPhieuPhat;
 import PhieuPhat.QuanLyPhieuPhat;
@@ -86,17 +87,15 @@ public class Menu {
                     new QuanLyPhieuMuon(dsPhieuMuon, dsChiTietPM).hienThiMenu(scanner);
                     break;
                 case 3:
-                    new QuanLyPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
+                    new QuanLyPhieuNhap(dsPhieuNhap, dsChiTietPN, dsSach).hienThiMenu();
                     break;
                 case 4:
                     // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
                     break;
-                case 6:
+                case 5:
                     System.out.println("Thoat chuong trinh.");
                     ghiFile();
                     return;
-                case 5:
-                    dsNhaCC.menu();
                 default:
                     System.out.println("Chon sai! Vui long chon lai");
                     break;
