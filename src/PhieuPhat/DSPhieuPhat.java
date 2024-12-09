@@ -31,6 +31,18 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
             System.out.println("-------------------------");
         }
     }
+     public void them() {
+        PhieuPhat pp = new PhieuPhat();
+        System.out.println("Nhap thong tin phieu phat muon them");
+        pp.nhap();
+        boolean result = add(pp);
+        while (result == false) {
+            System.out.println("Ma phieu phat da ton tai, vui long nhap lai");
+            pp.nhap();
+            result = add(pp);
+        }
+        System.out.println("Them phieu muon thanh cong");
+     }
 
     // Xuất danh sách phiếu phạt
     public void xuat() {
@@ -112,16 +124,18 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
 
     // Xóa phiếu phạt theo mã
     public void remove(String maPP) {
-        int index = indexOf(maPP);
-        if (index == -1) {
-            System.out.println("Không tìm thấy phiếu phạt cần xóa");
-        } else {
-            for (int i = index; i < dsPP.length - 1; i++) {
-                dsPP[i] = dsPP[i + 1];
-            }
-            dsPP = Arrays.copyOf(dsPP, dsPP.length - 1);
+    int index = indexOf(maPP);
+    if (index == -1) {
+        System.out.println("Không tìm thấy phiếu phạt cần xóa");
+    } else {
+        for (int i = index; i < dsPP.length - 1; i++) {
+            dsPP[i] = dsPP[i + 1];
         }
+        dsPP = Arrays.copyOf(dsPP, dsPP.length - 1);
+        System.out.println("Đã xóa phiếu phạt có mã: " + maPP);
     }
+    }
+
 
     // Tìm kiếm phiếu phạt theo mã độc giả
     public PhieuPhat[] timKiemMaDocGia(String maDG) {
