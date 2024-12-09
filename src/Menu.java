@@ -8,6 +8,7 @@ import PhieuMuon.DSPhieuMuon;
 import PhieuMuon.QuanLyPhieuMuon;
 import PhieuNhap.DSChiTietPN;
 import PhieuNhap.DSPhieuNhap;
+import PhieuNhap.QuanLyPhieuNhap;
 import Sach.DSSach;
 import Sach.QuanLySach;
 import Validate.Validate;
@@ -90,7 +91,7 @@ public class Menu {
                     new QuanLyPhieuMuon(dsPhieuMuon, dsChiTietPM).hienThiMenu(scanner);
                     break;
                 case 3:
-                    //new QuanLyPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
+                    new QuanLyPhieuNhap(dsPhieuNhap, dsChiTietPN, dsSach, dsNhanVien, dsNhaCC).hienThiMenu();
                     break;
                 case 4:
                     // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
