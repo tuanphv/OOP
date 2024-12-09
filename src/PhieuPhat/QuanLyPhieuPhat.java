@@ -1,6 +1,7 @@
 package PhieuPhat;
 
 import Format.ANSI;
+import PhieuMuon.DSChiTietPM;
 import Validate.Validate;
 import java.util.Scanner;
 
@@ -9,11 +10,18 @@ public class QuanLyPhieuPhat {
     private DSChiTietPP dsChiTietPP;
 
     public QuanLyPhieuPhat() {
+        // Initialize DSChiTietPM
+        DSChiTietPM dsChiTietPM = new DSChiTietPM();
+        dsChiTietPM.docFile();
+
+        // Initialize DSChiTietPP
         dsChiTietPP = new DSChiTietPP();
         if (dsChiTietPP.isEmpty()) {
             dsChiTietPP.docFile();
         }
-        dsPhieuPhat = new DSPhieuPhat(dsChiTietPP);
+
+        // Create DSPhieuPhat with both dependencies
+        dsPhieuPhat = new DSPhieuPhat(dsChiTietPP, dsChiTietPM);
         if (dsPhieuPhat.isEmpty()) {
             dsPhieuPhat.docFile();
         }
@@ -60,10 +68,12 @@ public class QuanLyPhieuPhat {
                         { "2. Xoa phieu Phat" },
                         { "3. Xem thong tin phieu Phat" },
                         { "4. Xem tat ca phieu Phat" },
-                        { "5. Tro lai" }
+                        { "5. kiem tra tien phat ben chi tiet phieu muon" },    
+                        { "6. Tro lai" }
+
                 }).printTable();
 
-        choice = Validate.getChoice(scanner, 1, 5);
+        choice = Validate.getChoice(scanner, 1, 6);
 
         switch (choice) {
             case 1:
@@ -94,6 +104,10 @@ public class QuanLyPhieuPhat {
                 dsPhieuPhat.xuat();
                 break;
             case 5:
+                System.out.println("Kiểm tra tiền phạt bên chi tiết phiếu mượn:");
+                dsPhieuPhat.tinhTienPhat(); // Gọi phương thức tính tiền phạt
+               break;
+            case 6:
                 System.out.println("Thoat Menu Quan ly phieu Phat.");
                 return;
             default:

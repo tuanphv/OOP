@@ -2,6 +2,9 @@ package PhieuPhat;
 
 import Format.ANSI;
 import Interface.IList;
+import PhieuMuon.ChiTietPhieuMuon;
+import PhieuMuon.DSChiTietPM;
+import Validate.Ngay;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -10,11 +13,20 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
     private static PhieuPhat[] dsPP = new PhieuPhat[0];
     private Scanner input = new Scanner(System.in);
     private DSChiTietPP dsChiTietPP;
-
+    private DSChiTietPM dsCTPM;
+    public DSPhieuPhat(DSChiTietPM dsChiTietPM) {
+        this.dsCTPM = dsChiTietPM;
+    }
+    
     public DSPhieuPhat() {}
 
     public DSPhieuPhat(DSChiTietPP dsChiTietPP) {
-    this.dsChiTietPP = dsChiTietPP;
+        this.dsChiTietPP = dsChiTietPP;
+    }
+
+    public DSPhieuPhat(DSChiTietPP dsChiTietPP, DSChiTietPM dsChiTietPM) {
+        this.dsChiTietPP = dsChiTietPP;
+        this.dsCTPM = dsChiTietPM;
     }
 
     public PhieuPhat[] getList() {
@@ -156,4 +168,62 @@ public void remove(String maPP) {
         }
         return result;
     }
+   public void tinhTienPhat() {
+    if (dsCTPM == null) {
+        System.out.println("Chưa có dữ liệu chi tiết phiếu mượn.");
+        return;
+    }
+
+    ChiTietPhieuMuon[] dsChiTiet = dsCTPM.getList();
+    if (dsChiTiet == null || dsChiTiet.length == 0) {
+        System.out.println("Không có dữ liệu chi tiết phiếu mượn.");
+        return;
+    }
+
+    int tienPhatMotNgay = 5000; // Số tiền phạt cho 1 ngày trễ hạn
+    boolean coPhat = false;
+
+    // Tiêu đề của bảng
+    String[] header = { "Mã Phiếu Mượn", "Mã Sách", "Số Ngày Trễ", "Tiền Phạt" };
+    
+    // Tạo mảng tạm để lưu dữ liệu
+    String[][] tempData = new String[dsChiTiet.length][];
+    int count = 0;  // Đếm số lượng phiếu phạt thực tế
+
+    for (ChiTietPhieuMuon ctpm : dsCTPM.getList()) {
+        String hanTraStr = ctpm.getHanTra();
+        String ngayTraStr = ctpm.getNgayTra();
+
+        if (ngayTraStr != null && hanTraStr != null) {
+            Ngay hanTra = new Ngay(hanTraStr);
+            Ngay ngayTra = new Ngay(ngayTraStr);
+
+            // So sánh ngày
+            if (ngayTra.compare(hanTra) > 0) {
+                // Tính số ngày trễ và tiền phạt
+                java.time.LocalDate hanTraDate = java.time.LocalDate.of(hanTra.getYear(), hanTra.getMonth(), hanTra.getDate());
+                java.time.LocalDate ngayTraDate = java.time.LocalDate.of(ngayTra.getYear(), ngayTra.getMonth(), ngayTra.getDate());
+                int soNgayTre = (int) java.time.temporal.ChronoUnit.DAYS.between(hanTraDate, ngayTraDate);
+
+                int tienPhat = soNgayTre * tienPhatMotNgay;
+
+                // Thêm thông tin vào mảng tạm
+                tempData[count] = new String[] { ctpm.getMaPM(), ctpm.getMaSach(), String.valueOf(soNgayTre), String.valueOf(tienPhat) };
+                count++;
+                coPhat = true;
+            }
+        }
+    }
+
+    if (coPhat) {
+        // Tạo mảng kết quả với kích thước chính xác
+        String[][] data = Arrays.copyOf(tempData, count);
+        // In bảng thông tin tiền phạt
+        new ANSI(header, data).printTable();
+    } else {
+        System.out.println("Không có sách nào bị trễ hạn.");
+    }
+}
+
+
 }
