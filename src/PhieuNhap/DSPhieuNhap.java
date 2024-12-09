@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import Interface.IList;
 import NCC_NXB.NhaCungCap;
@@ -34,7 +37,7 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
         pn.setMaPN(maPN);
         pn.setMaNV(maNV);
         pn.setMaNCC(maNCC);
-        pn.nhap();//nhap tat ca tru tong tien
+        pn.nhap();//nhap ngay thang
         while(add(pn)== false){
             System.out.println("Ma phieu nhap da ton tai. Nhap lai:");
             maPN = nhap.nextLine();
@@ -182,32 +185,29 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
     }
 
     public PhieuNhap[] timtheoNgayNhap(String from, String to) {
+        
         int solg = dspn.length;
-        PhieuNhap[] kq = new PhieuNhap[0];
-        String[] temp = from.split("/");
-        int ngayBD = Integer.parseInt(temp[0]);
-        int thangBD = Integer.parseInt(temp[1]);
-        int namBD = Integer.parseInt(temp[2]);
-
-        String[] temp1 = to.split("/");
-        int ngayKT = Integer.parseInt(temp1[0]);
-        int thangKT = Integer.parseInt(temp1[1]);
-        int namKT = Integer.parseInt(temp1[2]);
-
+        PhieuNhap[] kq= new PhieuNhap[0];
+        DateTimeFormatter formater= DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate ngayBD;
+        LocalDate ngayKT;
+        while (true){
+            try{
+                ngayBD= LocalDate.parse(from, formater);
+                ngayKT= LocalDate.parse(to, formater);
+                break;
+            }
+            catch(DateTimeParseException e){
+                System.out.println("Loi ngay thang, nhap lai(dd/MM/yyyy): ");
+                from= nhap.nextLine();
+                to= nhap.nextLine();
+            }
+        }
         for (int i = 0; i < solg; i++) {
-            String[] temp2 = dspn[i].getNgayNhap().split("/");
-            int ngay = Integer.parseInt(temp2[0]);
-            int thang = Integer.parseInt(temp2[1]);
-            int nam = Integer.parseInt(temp2[2]);
-            if (namBD <= nam && nam <= namKT) {
-                kq = Arrays.copyOf(kq, kq.length + 1);
-                kq[kq.length - 1] = dspn[i];
-            } else if (thangBD <= thang && thang <= thangKT) {
-                kq = Arrays.copyOf(kq, kq.length + 1);
-                kq[kq.length - 1] = dspn[i];
-            } else if (ngayBD <= ngay && ngay <= ngayKT) {
-                kq = Arrays.copyOf(kq, kq.length + 1);
-                kq[kq.length - 1] = dspn[i];
+            LocalDate ngay= LocalDate.parse(dspn[i].getNgayNhap(), formater);
+            if((ngayBD.isEqual(ngay) || ngayBD.isBefore(ngay)) && (ngayKT.isEqual(ngay) || ngayKT.isAfter(ngay))){
+                kq= Arrays.copyOf(kq, kq.length+1);
+                kq[kq.length-1]= dspn[i];
             }
         }
         return kq;
