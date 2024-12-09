@@ -78,7 +78,7 @@ public class TacGia {
         System.out.println("Quoc gia: " + quocGiaTG);
     }
 
-        @Override
+    @Override
     public String toString() {
         return String.format("%s, %s, %s, %s", maTG, tenTG, namSinhTG, quocGiaTG);
     }

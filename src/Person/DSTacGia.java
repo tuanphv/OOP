@@ -21,7 +21,7 @@ public class DSTacGia implements IList<TacGia>  {
     }
 
     public void nhap() {
-        System.out.print("Nhap so luong phieu muon: ");
+        System.out.print("Nhap so luong tac gia: ");
         int n = Integer.parseInt(nhap.nextLine());
         dstg = new TacGia[n];
         for (int i = 0; i < n; i++) {
@@ -99,7 +99,6 @@ public class DSTacGia implements IList<TacGia>  {
 
     public void them() {
         TacGia tg = new TacGia();
-        System.out.println("Nhap thong tin tac gia muon them");
         tg.nhap();
         boolean result = add(tg);
         while (result == false) {
@@ -144,7 +143,7 @@ public class DSTacGia implements IList<TacGia>  {
             System.out.print("Nhap ngay sinh: ");
             String ngaysinh = nhap.nextLine();
             dstg[vitri].setNSinhTG(ngaysinh);
-            System.out.print("Nhap quoc gia vien: ");
+            System.out.print("Nhap quoc gia : ");
             String quocgia = nhap.nextLine();
             dstg[vitri].setQGiaTG(quocgia);
 
@@ -156,7 +155,7 @@ public class DSTacGia implements IList<TacGia>  {
     public void remove(String maxoa) {
         int vitri = indexOf(maxoa);
         if (vitri == -1) {
-            System.out.println("Khong tim thay ma phieu muon can xoa");
+            System.out.println("Khong tim thay ma tac gia can xoa");
         } else {
             for (int i = vitri; i < dstg.length - 1; i++) {
                 dstg[i] = dstg[i + 1];
@@ -198,7 +197,7 @@ public class DSTacGia implements IList<TacGia>  {
     }
 
     public TacGia[] timKiemTenTacGia(){
-        System.out.print ("Nhap ten tac gia can tim ");
+        System.out.print ("Nhap ten tac gia can tim: ");
         String tentim =  nhap.nextLine();
         TacGia[] result = new TacGia[0];
 
@@ -211,6 +210,46 @@ public class DSTacGia implements IList<TacGia>  {
         return result;
     }
 
+    public TacGia[] timKiemNamSinhTacGia() {
+        System.out.print("Nhap nam sinh tac gia can tim: ");
+        String namTim = nhap.nextLine();
+        TacGia[] result = new TacGia[0];
+        try {
+            int nam = Integer.parseInt(namTim);
+            if (nam > 2024 || nam < 0) {
+                System.out.println("Nam tim khong hop le");
+                return result; 
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Vui long nhap nam sinh hop le!");
+            return result;  
+        }
+    
+        for (TacGia tg : dstg) {
+            if (tg.getNSinhTG().contains(namTim)) {  
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = tg;
+            }
+        }
+    
+        return result;
+    }
+    
+    
+    public TacGia[] timKiemQuocGiaTacGia() {
+        System.out.print("Nhap quoc gia tac gia can tim: ");
+        String quocGiaTim = nhap.nextLine();
+        TacGia[] result = new TacGia[0];
+        for (TacGia tg : dstg) {
+            if (tg.getQGiaTG().toLowerCase().contains(quocGiaTim.toLowerCase())) {  
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = tg;
+            }
+        }
+    
+        return result;
+    }
+    
 
     public void hienThiMenu(Scanner scanner) {
         do {
@@ -254,20 +293,23 @@ public class DSTacGia implements IList<TacGia>  {
                     break;
                 case 6:
                     TacGia[] tgtim = timKiemTenTacGia();
-                    if (tgtim != null && tgtim.length > 0) {
-                        String[] header = { "Ma Tac Gia", "Ten Tac Gia", "Ngay Sinh", "Quoc Gia" };
-                
-                        // Tạo mảng hai chiều để chứa dữ liệu
-                        String[][] data = new String[tgtim.length][];
-                        for (int i = 0; i < tgtim.length; i++) {
-                            data[i] = tgtim[i].toArray(); // Gọi toArray() cho từng đối tượng TacGia
-                        }
-                
-                        // In bảng
-                        new ANSI(header, data).printTable();
-                    } else {
-                        System.out.println("Khong tim thay tac gia nao.");
-                    }
+                    xuatKQ(tgtim);
+                    break;
+
+                case 7:
+                    TacGia[] tgtimtheonam = timKiemNamSinhTacGia();
+                    xuatKQ(tgtimtheonam);
+                    break;
+                case 8:
+                    TacGia[] tgtimtheoqg = timKiemQuocGiaTacGia();
+                    xuatKQ(tgtimtheoqg);
+                    break;
+                case 9:
+                    System.out.println("Thoat chuong trinh.");
+                    ghiFile();
+                    return;
+                default:
+                    System.out.println("Chon sai! Vui long chon lai");
                     break;
             }   
         } while (true);
