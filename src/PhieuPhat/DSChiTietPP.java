@@ -19,7 +19,6 @@ public class DSChiTietPP {
         return dsCTPP;
     }
 
-    // Nhập danh sách chi tiết phiếu phạt
     public void nhap(String maPP) {
         System.out.print("Nhập số lượng chi tiết phiếu phạt: ");
         int n = Integer.parseInt(input.nextLine());
@@ -31,7 +30,6 @@ public class DSChiTietPP {
         }
     }
 
-    // Xuất danh sách chi tiết phiếu phạt
     public void xuat() {
         String[] header = { "Ma Phieu Phat", "Ma Sach", "Tien Phat" };
         String[][] data = new String[dsCTPP.length][];
@@ -41,7 +39,6 @@ public class DSChiTietPP {
         new ANSI(header, data).printTable();
     }
 
-    // Ghi file danh sách chi tiết phiếu phạt
     public void ghiFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("./lib/ChiTietPhieuPhat.txt"))) {
             for (ChiTietPhieuPhat ctp : dsCTPP) {
@@ -53,7 +50,6 @@ public class DSChiTietPP {
         }
     }
 
-    // Đọc file danh sách chi tiết phiếu phạt
     public void docFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader("./lib/ChiTietPhieuPhat.txt"))) {
             String line;
@@ -67,17 +63,14 @@ public class DSChiTietPP {
         }
     }
 
-    // Kiểm tra xem danh sách có rỗng không
     public boolean isEmpty() {
         return dsCTPP.length == 0;
     }
 
-    // Lấy kích thước của danh sách
     public int size() {
         return dsCTPP.length;
     }
 
-    // Lấy chi tiết phiếu phạt theo mã
     public ChiTietPhieuPhat get(String ma) {
         for (ChiTietPhieuPhat ctp : dsCTPP) {
             if (ctp.maPP().equals(ma)) {
@@ -87,7 +80,6 @@ public class DSChiTietPP {
         return null;
     }
 
-    // Thêm chi tiết phiếu phạt vào danh sách
     public boolean add(ChiTietPhieuPhat ctp) {
         int n = dsCTPP.length;
         if (indexOf(ctp.maPP()) == -1) {
@@ -98,7 +90,6 @@ public class DSChiTietPP {
         return false;
     }
 
-    // Tìm kiếm chi tiết phiếu phạt theo mã phiếu phạt
     public int indexOf(String maPP) {
         for (int i = 0; i < dsCTPP.length; i++) {
             if (dsCTPP[i].maPP().equals(maPP)) {
@@ -107,8 +98,6 @@ public class DSChiTietPP {
         }
         return -1;
     }
-
-    // Xóa chi tiết phiếu phạt theo mã phiếu phạt
     public void remove(String maPP) {
         int index = indexOf(maPP);
         if (index == -1) {
@@ -121,7 +110,6 @@ public class DSChiTietPP {
         }
     }
 
-    // Tìm kiếm chi tiết phiếu phạt theo mã sách
     public ChiTietPhieuPhat[] timKiemMaSach(String maSach) {
         ChiTietPhieuPhat[] result = new ChiTietPhieuPhat[0];
         for (ChiTietPhieuPhat ctp : dsCTPP) {

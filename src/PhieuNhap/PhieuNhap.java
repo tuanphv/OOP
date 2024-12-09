@@ -69,8 +69,8 @@ public class PhieuNhap {
     }
 
     public void nhap(){
-        // System.out.print("Nhap ma phieu nhap: ");
-        // maPN = nhap.nextLine();
+        System.out.print("Nhap ma phieu nhap: ");
+        maPN = nhap.nextLine();
         ngayNhap = Validate.getDate(nhap, "Nhap ngay nhap hang: ");
         // System.out.print("Nhap ma nhan vien: ");
         // maNV = nhap.nextLine();
@@ -80,5 +80,11 @@ public class PhieuNhap {
 
     public void xuat(){
         System.out.printf("%10s%20s%10s%10s%10s\n", maPN, ngayNhap, maNV, maNCC, tongTien);
+    }
+
+    public static void main(String[] args) {
+        PhieuNhap pn = new PhieuNhap();
+        pn.nhap();
+        pn.xuat();
     }
 }

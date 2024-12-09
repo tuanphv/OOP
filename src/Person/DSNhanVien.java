@@ -36,7 +36,7 @@ public class DSNhanVien implements IList<NhanVien> {
         else {
             NhanVien nv = new NhanVien();
             nv.setMaNV(ma);
-            nv.nhap();
+            nv.nhap(nhap);
             dsnv[index] = nv;
         }
     }
@@ -128,7 +128,7 @@ public class DSNhanVien implements IList<NhanVien> {
             return;
         }
         int index = indexOf(nv.getMaNV());
-        dsnv[index].nhap();
+        dsnv[index].nhap(nhap);
     }
 
     public void hienthi() {
@@ -222,7 +222,7 @@ public class DSNhanVien implements IList<NhanVien> {
                 int solg = Integer.parseInt(nhap.nextLine());
                 for (int i = 0; i < solg; i++) {
                     NhanVien temp = new NhanVien();
-                    temp.nhap();
+                    temp.nhap(nhap);
                     add(temp);
                 }
             }

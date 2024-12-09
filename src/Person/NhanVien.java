@@ -108,7 +108,7 @@ public class NhanVien extends Person {
         return gioiTinh;
     }
 
-    public void nhap() {
+    public void nhap(Scanner nhap) {
         if (maNV == null || maNV == "") {
             System.out.print("Nhap ma nhan vien: ");
             maNV = nhap.nextLine();

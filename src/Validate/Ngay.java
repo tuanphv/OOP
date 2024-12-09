@@ -75,16 +75,16 @@ public class Ngay {
     * @return số ngày trễ hạn. Nếu không trễ, trả về 0.
     */
     //example int soNgayTreHan = ngayTra.soNgayTreHan(hanTra);
-    public int soNgayTreHan(Ngay hanTra) {
-    LocalDate ngayTra = LocalDate.of(this.year, this.month, this.date);
-    LocalDate ngayHanTra = LocalDate.of(hanTra.year, hanTra.month, hanTra.date);
+    private int soNgayTreHan(Ngay hanTra, Ngay ngayTra) {
+    LocalDate ngayHanTra = LocalDate.of(hanTra.getYear(), hanTra.getMonth(), hanTra.getDate());
+    LocalDate ngayTraSach = LocalDate.of(ngayTra.getYear(), ngayTra.getMonth(), ngayTra.getDate());
 
-    if (!ngayTra.isAfter(ngayHanTra)) {
+    if (!ngayTraSach.isAfter(ngayHanTra)) {
         return 0; // Không trễ hạn
     }
 
-    return (int) java.time.temporal.ChronoUnit.DAYS.between(ngayHanTra, ngayTra);
-    }
+    return (int) java.time.temporal.ChronoUnit.DAYS.between(ngayHanTra, ngayTraSach);
+}
     
 
     public boolean isBefore(Ngay ngay) {

@@ -1,6 +1,7 @@
 package PhieuPhat;
 
 import Format.ANSI;
+import PhieuMuon.DSChiTietPM;
 import Validate.Validate;
 import java.util.Scanner;
 
@@ -9,13 +10,20 @@ public class QuanLyPhieuPhat {
     private DSChiTietPP dsChiTietPP;
 
     public QuanLyPhieuPhat() {
-        dsPhieuPhat = new DSPhieuPhat();
-        if (dsPhieuPhat.isEmpty()) {
-            dsPhieuPhat.docFile();
-        }
+        // Initialize DSChiTietPM
+        DSChiTietPM dsChiTietPM = new DSChiTietPM();
+        dsChiTietPM.docFile();
+
+        // Initialize DSChiTietPP
         dsChiTietPP = new DSChiTietPP();
         if (dsChiTietPP.isEmpty()) {
             dsChiTietPP.docFile();
+        }
+
+        // Create DSPhieuPhat with both dependencies
+        dsPhieuPhat = new DSPhieuPhat(dsChiTietPP, dsChiTietPM);
+        if (dsPhieuPhat.isEmpty()) {
+            dsPhieuPhat.docFile();
         }
     }
 
@@ -56,21 +64,50 @@ public class QuanLyPhieuPhat {
     do {
         new ANSI(new String[] { "Menu Quan ly phieu Phat".toUpperCase() },
                 new String[][] {
-                        { "1. Xem thong tin phieu Phat" },
-                        { "2. Xem tat ca phieu Phat" },
-                        { "3. Tro lai" }
+                        { "1. Them phieu Phat" },
+                        { "2. Xoa phieu Phat" },
+                        { "3. Xem thong tin phieu Phat" },
+                        { "4. Xem tat ca phieu Phat" },
+                        { "5. kiem tra tien phat ben chi tiet phieu muon" },    
+                        { "6. Tro lai" }
+
                 }).printTable();
 
-        choice = Validate.getChoice(scanner, 1, 3);
+        choice = Validate.getChoice(scanner, 1, 6);
 
         switch (choice) {
             case 1:
-               
-                break;
+                dsPhieuPhat.them();
+            break;
             case 2:
-                
-                break;
+               System.out.println("Nhập mã phiếu phạt muốn xóa: ");
+               String maPP = scanner.nextLine();
+               if (dsPhieuPhat.get(maPP) != null) {
+               dsPhieuPhat.remove(maPP);
+               System.out.println("Đã xóa phiếu phạt thành công.");
+               } else {
+               System.out.println("Không tìm thấy phiếu phạt này.");
+               }
+            break;
             case 3:
+                System.out.println("nhap ma phieu phat can xem: ");
+                String maPPxem = scanner.nextLine();
+                PhieuPhat phieuphat = dsPhieuPhat.get(maPPxem);
+                if (phieuphat != null) {
+                    phieuphat.xuat();
+                } else {
+                    System.out.println("khong tim thay phieu phat co ma: " + maPPxem);
+                }
+                break;
+            case 4:
+                System.out.println("Danh sach phieu phat: ");
+                dsPhieuPhat.xuat();
+                break;
+            case 5:
+                System.out.println("Kiem tra tien phat ben chi tiet phieu muon:");
+                dsPhieuPhat.tinhTienPhat(); 
+               break;
+            case 6:
                 System.out.println("Thoat Menu Quan ly phieu Phat.");
                 return;
             default:
@@ -83,24 +120,23 @@ public class QuanLyPhieuPhat {
         do {
             new ANSI(new String[] { "Menu Quan ly chi tiet phieu Phat".toUpperCase() },
                     new String[][] {
-                            { "1. Them chi tiet phieu Phat" },
-                            { "2. Xoa chi tiet phieu Phat" },
-                            { "3. Xem chi tiet phieu Phat" },
-                            { "4. Hien thi toan bo chi tiet Phieu Phat" },
-                            { "5. Tro lai" }
+                            { "1. Xem chi tiet phieu Phat" },
+                            { "2. Hien thi toan bo chi tiet Phieu Phat" },
+                            { "3. Tro lai" }
                     }).printTable();
-            int choice = Validate.getChoice(scanner, 1, 5);
+            int choice = Validate.getChoice(scanner, 1, 3);
             switch (choice) {
+                
                 case 1:
-                    
+                    System.out.println("Moi ban nhap ma phieu phat de xem chi tiet phieu phat: ");
+                    String maphieuphat = scanner.nextLine();
+                    ChiTietPhieuPhat ctpp = dsChiTietPP.get(maphieuphat);
+
+                    if (ctpp != null) {
+                        ctpp.xuat();
+                    }
                     break;
                 case 2:
-                    System.out.println("Chức năng đang phát triển.");
-                    break;
-                case 3:
-                    System.out.println("Chức năng đang phát triển.");
-                    break;
-                case 4:
                     dsChiTietPP.xuat();
                     break;
                 default:

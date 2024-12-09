@@ -1,7 +1,7 @@
 package Person;
 import java.util.Scanner;
 
-public class TacGia {
+public class TacGia extends Person {
     private String maTG;
     private String tenTG;
     private String namSinhTG;
@@ -57,8 +57,7 @@ public class TacGia {
         this.quocGiaTG = quocGiaTG;
     }
 
-    public void nhap() {
-        Scanner nhap = new Scanner(System.in);
+    public void nhap(Scanner nhap) {
         System.out.println("Nhap thong tin tac gia");
         System.out.print("Ma tac gia: ");
         maTG = nhap.nextLine();
@@ -68,7 +67,6 @@ public class TacGia {
         namSinhTG = nhap.nextLine();
         System.out.print("Quoc gia: ");
         quocGiaTG = nhap.nextLine();
-        nhap.close();
     }
 
     public void xuat() {
@@ -80,6 +78,11 @@ public class TacGia {
 
     @Override
     public String toString() {
-        return String.format("%-12s%-30s%-10s%-15s", maTG, tenTG, namSinhTG, quocGiaTG);
+        return String.format("%s, %s, %s, %s", maTG, tenTG, namSinhTG, quocGiaTG);
     }
+
+    public String[] toArray() {
+        return new String[] { maTG, tenTG, namSinhTG, quocGiaTG };
+    }
+
 }
