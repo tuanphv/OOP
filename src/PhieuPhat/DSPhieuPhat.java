@@ -41,12 +41,12 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
             pp.nhap();
             result = add(pp);
         }
-        System.out.println("Them phieu muon thanh cong");
+        System.out.println("Them phieu phat thanh cong");
      }
 
     // Xuất danh sách phiếu phạt
     public void xuat() {
-    String[] header = { "Ma Phieu phat", "Ma Phieu Muon", "Ma Doc Gia", "Ma Nhan Vien", "Tong Phat" };
+    String[] header = { "Ma Phieu Muon", "Ma Phieu Phat", "Ma Doc Gia", "Ma Nhan Vien", "Tong Phat" };
     String[][] data = new String[dsPP.length][];  // Tạo mảng 2D để chứa dữ liệu
     for (int i = 0; i < dsPP.length; i++) {
         data[i] = dsPP[i].toArray();  // Lấy mảng chuỗi từ mỗi đối tượng PhieuPhat

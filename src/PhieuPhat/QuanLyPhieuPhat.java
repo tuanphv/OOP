@@ -86,7 +86,7 @@ public class QuanLyPhieuPhat {
                 if (phieuphat != null) {
                     phieuphat.xuat();
                 } else {
-                    System.out.println("khong tim thay phieu muon co ma: " + maPPxem);
+                    System.out.println("khong tim thay phieu phat co ma: " + maPPxem);
                 }
                 break;
             case 4:
