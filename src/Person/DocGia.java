@@ -58,8 +58,7 @@ public class DocGia extends Person {
         this.emailDG = emailDG;
     }
 
-    public void nhap() {
-        Scanner nhap = new Scanner(System.in);
+    public void nhap(Scanner nhap) {
         if (maDG == "" || maDG == null) {
             System.out.print("Nhap ma doc gia: ");
             maDG = nhap.nextLine();
@@ -70,7 +69,6 @@ public class DocGia extends Person {
         sdtDG = nhap.nextLine();
         System.out.print("Nhap email doc gia: ");
         emailDG = nhap.nextLine();
-        nhap.close();
     }
 
     public void xuat() {

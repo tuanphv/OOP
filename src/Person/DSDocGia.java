@@ -27,7 +27,7 @@ public class DSDocGia implements IList<DocGia> {
         dsdg = new DocGia[n];
         for (int i = 0; i < n; i++) {
             dsdg[i] = new DocGia();
-            dsdg[i].nhap();
+            dsdg[i].nhap(nhap);
             System.out.println("-------------------------");
         }
     }
@@ -99,11 +99,11 @@ public class DSDocGia implements IList<DocGia> {
     //#region thêm
     public void them() {
         DocGia dg = new DocGia();
-        dg.nhap();
+        dg.nhap(nhap);
         boolean result = add(dg);
         while (result == false) {
             System.out.println("Ma doc gia da ton tai, vui long nhap lai");
-            dg.nhap();
+            dg.nhap(nhap);
             result = add(dg);
         }
         System.out.println("Them tac gia thanh cong");

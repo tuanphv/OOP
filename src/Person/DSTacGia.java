@@ -26,7 +26,7 @@ public class DSTacGia implements IList<TacGia>  {
         dstg = new TacGia[n];
         for (int i = 0; i < n; i++) {
             dstg[i] = new TacGia();
-            dstg[i].nhap();
+            dstg[i].nhap(nhap);
             System.out.println("-------------------------");
         }
     }
@@ -99,16 +99,14 @@ public class DSTacGia implements IList<TacGia>  {
 
     public void them() {
         TacGia tg = new TacGia();
-        tg.nhap();
+        tg.nhap(nhap);
         boolean result = add(tg);
         while (result == false) {
             System.out.println("Ma tac gia da ton tai, vui long nhap lai");
-            tg.nhap();
+            tg.nhap(nhap);
             result = add(tg);
         }
         System.out.println("Them tac gia thanh cong");
-        
-        ghiFile();
     }
     
 
