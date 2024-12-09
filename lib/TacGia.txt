@@ -1,0 +1,12 @@
+TG001, Nguyen Nhat Anh, 07/07/1955, Viet Nam  
+TG002, J.K. Rowling, 31/07/1965, Anh  
+TG003, George Orwell, 25/06/1903, Anh  
+TG004, Ernest Hemingway, 21/07/1899, My  
+TG005, Haruki Murakami, 12/01/1949, Nhat Ban  
+TG006, Lev Tolstoy, 09/09/1828, Nga  
+TG007, Mark Twain, 30/11/1835, My  
+TG008, Paulo Coelho, 24/08/1947, Brazil  
+TG009, Victor Hugo, 26/02/1802, Phap  
+TG010, Margaret Atwood, 18/11/1939, Canada  
+TG011, Nguyen Du, 19/15/1971, Viet Nam
+TG012, Nguyen Hue, 12/03/1900, Viet Nam

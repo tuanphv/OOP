@@ -78,8 +78,13 @@ public class TacGia {
         System.out.println("Quoc gia: " + quocGiaTG);
     }
 
-    @Override
+        @Override
     public String toString() {
-        return String.format("%-12s%-30s%-10s%-15s", maTG, tenTG, namSinhTG, quocGiaTG);
+        return String.format("%s, %s, %s, %s", maTG, tenTG, namSinhTG, quocGiaTG);
     }
+
+    public String[] toArray() {
+        return new String[] { maTG, tenTG, namSinhTG, quocGiaTG };
+    }
+
 }
