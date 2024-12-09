@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Format.ANSI;
 import Interface.IList;
+import Validate.Validate;
 
 public class DSNhanVien implements IList<NhanVien> {
     private NhanVien[] dsnv = new NhanVien[0];
@@ -46,6 +48,7 @@ public class DSNhanVien implements IList<NhanVien> {
             dsnv[index] = nv;
         }
     }
+
     public void remove(String ma) {
         int solg = dsnv.length;
         int index = indexOf(ma);
@@ -177,8 +180,8 @@ public class DSNhanVien implements IList<NhanVien> {
             FileWriter fw = new FileWriter("./lib/NhanVien.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             String line;
-            for(int i=0; i<dsnv.length; i++){
-                line= dsnv[i].toString();
+            for (int i = 0; i < dsnv.length; i++) {
+                line = dsnv[i].toString();
                 bw.write(line);
                 bw.newLine();
             }
@@ -201,114 +204,106 @@ public class DSNhanVien implements IList<NhanVien> {
         return temp;
     }
 
-    public void xuatKQTimKiem(NhanVien[] kq){
-        if(kq.length == 0){
-            System.out.println("Khong tim thay nhan vien nao");
-            return;
-        }
-        tieude();
-        for(int i=0; i< kq.length; i++){
-            System.out.printf("%5s ", i+1);
-            kq[i].xuat();
+    public void xuatKQ(NhanVien[] kq) {
+        int solg = kq.length;
+        if (solg == 0)
+            System.out.println("Khong tim thay ket qua");
+        else {
+            String[] title = { "MaNV", "TenNV", "ChucVuNV", "SdtNV", "GioiTinh", "Luong" };
+            String[][] data = new String[solg][];
+            for (int i = 0; i < solg; i++) {
+                data[i] = kq[i].toArray();
+            }
+            new ANSI(title, data).printTable();
         }
     }
 
-    // public void menu() {
-    //     int input;
-    //     do {
-    //         System.out.println("----------QUAN LY NHAN VIEN----------");
-    //         System.out.println("1. Them nhan vien");
-    //         System.out.println("2. Xoa nhan vien");
-    //         System.out.println("3. Tim nhan vien theo ma");
-    //         System.out.println("4. Tim nhan vien theo ten");
-    //         System.out.println("5. Tim nhan vien theo chuc vu");
-    //         System.out.println("6. Tim nhan vien theo sdt");
-    //         System.out.println("7. Tim nhan vien theo gioi tinh");
-    //         System.out.println("8. Tim nhan vien theo khoang luong");
-    //         System.out.println("9. Sua thong tin nhan vien");
-    //         System.out.println("10. Hien thi danh sach nhan vien");
-    //         System.out.println("0. Thoat");
-    //         input = Integer.parseInt(nhap.nextLine());
-    //         if (input == 1) {
-    //             System.out.print("So nv muon them: ");
-    //             int solg = Integer.parseInt(nhap.nextLine());
-    //             for (int i = 0; i < solg; i++) {
-    //                 NhanVien temp = new NhanVien();
-    //                 temp.nhap(nhap);
-    //                 add(temp);
-    //             }
-    //         }
-    //         ;
-    //         if (input == 2) {
-    //             System.out.println("So nv muon xoa");
-    //             int solg = Integer.parseInt(nhap.nextLine());
-    //             for (int i = 0; i < solg; i++) {
-    //                 System.out.println("Nhap ma nv can xoa");
-    //                 String temp = nhap.nextLine();
-    //                 remove(temp);
-    //             }
-    //         }
-    //         if (input == 3) {
-    //             System.out.println("Nhap ma nv can tim");
-    //             String temp = nhap.nextLine();
-    //             NhanVien[] kq = timTheoMa(temp);
-    //             System.out.println("Co " + kq.length + " ketqua");
-    //             for (int i = 0; i < kq.length; i++)
-    //                 kq[i].xuat();
-    //         }
-    //         if (input == 4) {
-    //             System.out.println("Nhap ten nv can tim");
-    //             String temp = nhap.nextLine();
-    //             NhanVien[] kq = timTheoTen(temp);
-    //             System.out.println("Co " + kq.length + " ketqua");
-    //             for (int i = 0; i < kq.length; i++)
-    //                 kq[i].xuat();
-    //         }
-    //         if (input == 5) {
-    //             System.out.println("Nhap chuc vu nv can tim");
-    //             String temp = nhap.nextLine();
-    //             NhanVien[] kq = timTheoChucVu(temp);
-    //             System.out.println("Co " + kq.length + " ketqua");
-    //             for (int i = 0; i < kq.length; i++)
-    //                 kq[i].xuat();
-
-    //         }
-    //         if (input == 6) {
-    //             System.out.println("Nhap sdt nv can tim");
-    //             String temp = nhap.nextLine();
-    //             NhanVien[] kq = timTheoSDT(temp);
-    //             System.out.println("Co " + kq.length + " ketqua");
-    //             for (int i = 0; i < kq.length; i++)
-    //                 kq[i].xuat();
-    //         }
-    //         if (input == 7) {
-    //             System.out.print("Nhap gioi tinh nv can tim: ");
-    //             String temp = nhap.nextLine();
-    //             NhanVien[] kq = timTheoGioiTinh(temp);
-    //             System.out.println("Co " + kq.length + " ketqua");
-    //             for (int i = 0; i < kq.length; i++)
-    //                 kq[i].xuat();
-    //         }
-    //         if (input == 8) {
-    //             System.out.println("Nhap khoang luong can tim");
-    //             int from = Integer.parseInt(nhap.nextLine());
-    //             int to = Integer.parseInt(nhap.nextLine());
-    //             NhanVien[] kq = timTheoKhoangLuong(from, to);
-    //             System.out.println("Co " + kq.length + " ketqua");
-    //             for (int i = 0; i < kq.length; i++)
-    //                 kq[i].xuat();
-    //         }
-    //         if (input == 9) {
-    //             System.out.print("Nhap ma nhan vien muon sua: ");
-    //             String temp = nhap.nextLine();
-    //             NhanVien nv = get(temp);
-    //             suaNhanVien(nv);
-    //         }
-    //         if (input == 10) {
-    //             hienthi();
-    //         }
-    //     } while (input != 0);
-    // }
+    public void menu() {
+        int input;
+        do {
+            new ANSI(new String[] { "Menu Quan ly nhan vien".toUpperCase() },
+                    new String[][] {
+                            { "1. Them nhan vien" },
+                            { "2. Xoa nhan vien" },
+                            { "3. Tim nhan vien theo ma" },
+                            { "4. Tim nhan vien theo ten" },
+                            { "5. Tim nhan vien theo chuc vu" },
+                            { "6. Tim nhan vien theo sdt" },
+                            { "7. Tim nhan vien theo gioi tinh" },
+                            { "8. Tim nhan vien theo khoang luong" },
+                            { "9. Sua thong tin nhan vien" },
+                            { "10. Hien thi danh sach nhan vien" },
+                            { "0. Thoat" }
+                    }).printTable();
+            input = Validate.getChoice(nhap, 0, 10);
+            String text;
+            switch (input) {
+                case 1:
+                    System.out.print("So nv muon them: ");
+                    int solgthem = Integer.parseInt(nhap.nextLine());
+                    for (int i = 0; i < solgthem; i++) {
+                        NhanVien temp = new NhanVien();
+                        temp.nhap(nhap);
+                        add(temp);
+                    }
+                    break;
+                case 2:
+                    System.out.println("So nv muon xoa");
+                    int solgxoa = Integer.parseInt(nhap.nextLine());
+                    for (int i = 0; i < solgxoa; i++) {
+                        System.out.println("Nhap ma nv can xoa");
+                        String temp = nhap.nextLine();
+                        remove(temp);
+                    }
+                    break;
+                case 3:
+                    System.out.println("Nhap ma nv can tim");
+                    text = nhap.nextLine();
+                    NhanVien[] kq = timTheoMa(text);
+                    System.out.println("Co " + kq.length + " ketqua");
+                    for (int i = 0; i < kq.length; i++)
+                        kq[i].xuat();
+                    break;
+                case 4:
+                    System.out.println("Nhap ten nv can tim");
+                    text = nhap.nextLine();
+                    xuatKQ(timTheoTen(text));
+                    break;
+                case 5:
+                    System.out.println("Nhap chuc vu nv can tim");
+                    text = nhap.nextLine();
+                    xuatKQ(timTheoChucVu(text));
+                    break;
+                case 6:
+                    System.out.println("Nhap sdt nv can tim");
+                    text = nhap.nextLine();
+                    xuatKQ(timTheoSDT(text));
+                    break;
+                case 7:
+                    System.out.print("Nhap gioi tinh nv can tim: ");
+                    text = nhap.nextLine();
+                    xuatKQ(timTheoGioiTinh(text));
+                    break;
+                case 8:
+                    System.out.println("Nhap khoang luong can tim");
+                    int from = Integer.parseInt(nhap.nextLine());
+                    int to = Integer.parseInt(nhap.nextLine());
+                    xuatKQ(timTheoKhoangLuong(from, to));
+                    break;
+                case 9:
+                    System.out.print("Nhap ma nhan vien muon sua: ");
+                    String temp = nhap.nextLine();
+                    NhanVien nv = get(temp);
+                    suaNhanVien(nv);
+                    break;
+                case 10:
+                    hienthi();
+                    break;
+                default:
+                    System.out.println("Thoat chuong trinh");
+            }
+        } while (true);
+    }
 
     public int indexOf(String n) {
         int solg = dsnv.length;

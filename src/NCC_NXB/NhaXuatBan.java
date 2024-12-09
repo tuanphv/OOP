@@ -27,22 +27,22 @@ public class NhaXuatBan {
         this.emailNXB=nxb1.emailNXB;
     }
 
-    public String getmaNXB(){
+    public String getMaNXB(){
         return maNXB;
     }
-    public String gettenNXB(){
+    public String getTenNXB(){
         return tenNXB;
     }
-    public String getnamThanhLap(){
+    public String getNamThanhLap(){
         return namThanhLap;
     }
-    public String getquocGia(){
+    public String getQuocGia(){
         return quocGia;
     }
-    public String getdiaChiNXB(){
+    public String getDiaChiNXB(){
         return diaChiNXB;
     }
-    public String getemailNXB(){
+    public String getEmailNXB(){
         return emailNXB;
     }
 
@@ -66,10 +66,12 @@ public class NhaXuatBan {
         this.emailNXB=emailNXB;
     }
 
-    public void nhap(){
-        Scanner nhap= new Scanner(System.in);
-        System.out.print("Nhap ma nha xuat ban: ");
-        maNXB= nhap.nextLine();
+    public void nhap(Scanner nhap){
+        System.out.println("Nhap thong tin nha xuat ban");
+        if (maNXB == null) {
+            System.out.print("Nhap ma nha xuat ban: ");
+            maNXB = nhap.nextLine();
+        }
         System.out.print("Nhap ten nha xuat ban: ");
         tenNXB= nhap.nextLine();
         System.out.print("Nhap nam thanh lap: ");
@@ -80,7 +82,6 @@ public class NhaXuatBan {
         diaChiNXB= nhap.nextLine();
         System.out.print("Nhap email nha xuat ban: ");
         emailNXB= nhap.nextLine();
-        nhap.close();
     }
 
     public void xuat(){
@@ -94,6 +95,10 @@ public class NhaXuatBan {
 
     @Override
     public String toString() {
-        return String.format("%-15s%-15s%-15s%-15s%-15s%-15s", maNXB, tenNXB, namThanhLap, quocGia, diaChiNXB,emailNXB);
+        return maNXB + ", " + tenNXB + ", " + namThanhLap + ", " + quocGia + ", " + diaChiNXB + ", " + emailNXB;
+    }
+
+    public String[] toArray() {
+        return new String[] { maNXB, tenNXB, namThanhLap, quocGia, diaChiNXB, emailNXB };
     }
 }
