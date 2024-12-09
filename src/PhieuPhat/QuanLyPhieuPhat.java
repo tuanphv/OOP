@@ -106,29 +106,14 @@ public class QuanLyPhieuPhat {
         do {
             new ANSI(new String[] { "Menu Quan ly chi tiet phieu Phat".toUpperCase() },
                     new String[][] {
-                            { "1. Them chi tiet phieu Phat" },
-                            { "2. Xoa chi tiet phieu Phat" },
-                            { "3. Xem chi tiet phieu Phat" },
-                            { "4. Hien thi toan bo chi tiet Phieu Phat" },
-                            { "5. Tro lai" }
+                            { "1. Xem chi tiet phieu Phat" },
+                            { "2. Hien thi toan bo chi tiet Phieu Phat" },
+                            { "3. Tro lai" }
                     }).printTable();
-            int choice = Validate.getChoice(scanner, 1, 5);
+            int choice = Validate.getChoice(scanner, 1, 3);
             switch (choice) {
+                
                 case 1:
-                  ChiTietPhieuPhat newCTPP = new ChiTietPhieuPhat();
-                  System.out.println("Nhập thông tin chi tiết phiếu phạt:");
-                  newCTPP.nhap(scanner.nextLine()); 
-                  if (dsChiTietPP.add(newCTPP)) {
-                  System.out.println("Thêm chi tiết phiếu phạt thành công.");
-                  } else {
-                  System.out.println("Chi tiết phiếu phạt đã tồn tại!");
-                  }
-                break;
-
-                case 2:
-                    System.out.println("Chức năng đang phát triển.");
-                    break;
-                case 3:
                     System.out.println("Moi ban nhap ma phieu phat de xem chi tiet phieu phat: ");
                     String maphieuphat = scanner.nextLine();
                     ChiTietPhieuPhat ctpp = dsChiTietPP.get(maphieuphat);
@@ -137,7 +122,7 @@ public class QuanLyPhieuPhat {
                         ctpp.xuat();
                     }
                     break;
-                case 4:
+                case 2:
                     dsChiTietPP.xuat();
                     break;
                 default:

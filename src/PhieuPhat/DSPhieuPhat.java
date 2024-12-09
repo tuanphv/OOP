@@ -20,7 +20,6 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         return dsPP;
     }
 
-    // Nhập danh sách phiếu phạt
     public void nhap() {
         System.out.print("Nhap so luong phieu phat: ");
         int n = Integer.parseInt(input.nextLine());
@@ -44,18 +43,17 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         System.out.println("Them phieu phat thanh cong");
      }
 
-    // Xuất danh sách phiếu phạt
+
     public void xuat() {
     String[] header = { "Ma Phieu Muon", "Ma Phieu Phat", "Ma Doc Gia", "Ma Nhan Vien", "Tong Phat" };
-    String[][] data = new String[dsPP.length][];  // Tạo mảng 2D để chứa dữ liệu
+    String[][] data = new String[dsPP.length][]; 
     for (int i = 0; i < dsPP.length; i++) {
-        data[i] = dsPP[i].toArray();  // Lấy mảng chuỗi từ mỗi đối tượng PhieuPhat
+        data[i] = dsPP[i].toArray();  
     }
-    new ANSI(header, data).printTable();  // In bảng với tiêu đề và dữ liệu
+    new ANSI(header, data).printTable();  
 }
 
 
-    // Ghi file danh sách phiếu phạt
     public void ghiFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("./lib/PhieuPhat.txt"))) {
             for (PhieuPhat pp : dsPP) {
@@ -67,7 +65,6 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         }
     }
 
-    // Đọc file danh sách phiếu phạt
     public void docFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader("./lib/PhieuPhat.txt"))) {
             String line;
@@ -81,17 +78,15 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         }
     }
 
-    // Kiểm tra xem danh sách có rỗng không
     public boolean isEmpty() {
         return dsPP.length == 0;
     }
 
-    // Lấy kích thước của danh sách
+  
     public int size() {
         return dsPP.length;
     }
 
-    // Lấy đối tượng phiếu phạt theo mã
     public PhieuPhat get(String ma) {
         for (PhieuPhat pp : dsPP) {
             if (pp.getMaPP().equals(ma)) {
@@ -101,7 +96,6 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         return null;
     }
 
-    // Thêm phiếu phạt vào danh sách
     public boolean add(PhieuPhat pp) {
         int n = dsPP.length;
         if (indexOf(pp.getMaPP()) == -1) {
@@ -112,7 +106,6 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         return false;
     }
 
-    // Tìm kiếm phiếu phạt theo mã
     public int indexOf(String maPP) {
         for (int i = 0; i < dsPP.length; i++) {
             if (dsPP[i].getMaPP().equals(maPP)) {
@@ -122,7 +115,6 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         return -1;
     }
 
-    // Xóa phiếu phạt theo mã
     public void remove(String maPP) {
     int index = indexOf(maPP);
     if (index == -1) {
@@ -136,8 +128,6 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
     }
     }
 
-
-    // Tìm kiếm phiếu phạt theo mã độc giả
     public PhieuPhat[] timKiemMaDocGia(String maDG) {
         PhieuPhat[] result = new PhieuPhat[0];
         for (PhieuPhat pp : dsPP) {
@@ -149,7 +139,6 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         return result;
     }
 
-    // Tìm kiếm phiếu phạt theo mã nhân viên
     public PhieuPhat[] timKiemMaNV(String maNV) {
         PhieuPhat[] result = new PhieuPhat[0];
         for (PhieuPhat pp : dsPP) {
