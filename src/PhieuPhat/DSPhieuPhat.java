@@ -9,11 +9,12 @@ import java.util.Scanner;
 public class DSPhieuPhat implements IList<PhieuPhat> {
     private static PhieuPhat[] dsPP = new PhieuPhat[0];
     private Scanner input = new Scanner(System.in);
+    private DSChiTietPP dsChiTietPP;
 
     public DSPhieuPhat() {}
 
-    public DSPhieuPhat(PhieuPhat[] ds) {
-        dsPP = ds;
+    public DSPhieuPhat(DSChiTietPP dsChiTietPP) {
+    this.dsChiTietPP = dsChiTietPP;
     }
 
     public PhieuPhat[] getList() {
@@ -115,18 +116,24 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         return -1;
     }
 
-    public void remove(String maPP) {
+    @Override
+public void remove(String maPP) {
     int index = indexOf(maPP);
     if (index == -1) {
-        System.out.println("Không tìm thấy phiếu phạt cần xóa");
+        System.out.println("Không tìm thấy phiếu phạt cần xóa.");
     } else {
+        // Xóa chi tiết phiếu phạt liên quan
+        dsChiTietPP.remove(maPP);
+        System.out.println("Đã xóa các chi tiết phiếu phạt liên quan tới mã: " + maPP);
+
+        // Xóa phiếu phạt
         for (int i = index; i < dsPP.length - 1; i++) {
             dsPP[i] = dsPP[i + 1];
         }
         dsPP = Arrays.copyOf(dsPP, dsPP.length - 1);
         System.out.println("Đã xóa phiếu phạt có mã: " + maPP);
     }
-    }
+}
 
     public PhieuPhat[] timKiemMaDocGia(String maDG) {
         PhieuPhat[] result = new PhieuPhat[0];
