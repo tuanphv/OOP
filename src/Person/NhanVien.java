@@ -6,7 +6,7 @@ public class NhanVien extends Person {
     private String maNV;
     private String tenNV;
     private String chucVu;
-    private String luong;
+    private int luong;
     private String sdtNV;
     private String gioiTinh;
     Scanner nhap = new Scanner(System.in);
@@ -14,7 +14,7 @@ public class NhanVien extends Person {
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String tenNV, String chucVu, String luong, String sdtNV, String gioiTinh) {
+    public NhanVien(String maNV, String tenNV, String chucVu, int luong, String sdtNV, String gioiTinh) {
         this.maNV = maNV;
         this.tenNV = tenNV;
         this.chucVu = chucVu;
@@ -48,7 +48,7 @@ public class NhanVien extends Person {
         return sdtNV;
     }
 
-    public String getLuong() {
+    public int getLuong() {
         return luong;
     }
 
@@ -68,8 +68,8 @@ public class NhanVien extends Person {
         this.chucVu = chucVu;
     }
 
-    public void setLuong(String luong) {
-        this.luong = ktraLuong(luong);
+    public void setLuong(int luong) {
+        this.luong = luong;
     }
 
     public void setSdtNV(String sdtNV) {
@@ -88,17 +88,17 @@ public class NhanVien extends Person {
         return sdt;
     }
 
-    public String ktraLuong(String luong) {
-        while (true) {
-            try {
-                Integer.parseInt(luong);
-                return luong;
-            } catch (NumberFormatException e) {
-                System.out.print("Luong khong hop le. Nhap lai");
-                luong = nhap.nextLine();
-            }
-        }
-    }
+    // public String ktraLuong(String luong) {
+    //     while (true) {
+    //         try {
+    //             Integer.parseInt(luong);
+    //             return luong;
+    //         } catch (NumberFormatException e) {
+    //             System.out.print("Luong khong hop le. Nhap lai");
+    //             luong = nhap.nextLine();
+    //         }
+    //     }
+    // }
 
     public String ktraGioiTinh(String gioiTinh) {
         while (!gioiTinh.equalsIgnoreCase("nam") && !gioiTinh.equalsIgnoreCase("nu")) {
@@ -109,10 +109,8 @@ public class NhanVien extends Person {
     }
 
     public void nhap(Scanner nhap) {
-        if (maNV == null || maNV == "") {
             System.out.print("Nhap ma nhan vien: ");
             maNV = nhap.nextLine();
-        }
         System.out.print("Nhap ten nhan vien: ");
         tenNV = nhap.nextLine();
         System.out.print("Nhap chuc vu nhan vien: ");
@@ -122,15 +120,15 @@ public class NhanVien extends Person {
         System.out.print("Nhap gioi tinh nhan vien: ");
         gioiTinh = ktraGioiTinh(nhap.nextLine());
         System.out.print("Nhap luong nhan vien: ");
-        luong = nhap.nextLine();
+        luong = Integer.parseInt(nhap.nextLine());
     }
 
     public void xuat() {
-        System.out.printf("%10s %20s %20s %15s %10s %10s\n", maNV, tenNV, chucVu, sdtNV, gioiTinh, luong);
+        System.out.printf("%10s%20s%20s%15s%10s%10s\n", maNV, tenNV, chucVu, sdtNV, gioiTinh, luong);
     }
 
     @Override
     public String toString() {
-        return maNV + ", " + tenNV + ", " + chucVu + ", " + sdtNV + ", " + gioiTinh + ", " + luong;
+        return maNV + ", " + tenNV + ", " + chucVu + ", "+ luong +", " + sdtNV + ", " + gioiTinh ;
     }
 }
