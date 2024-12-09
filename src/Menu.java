@@ -2,6 +2,7 @@ import Format.ANSI;
 import NCC_NXB.DSNhaCC;
 import Person.DSDocGia;
 import Person.DSNhanVien;
+import Person.DSTacGia;
 import PhieuMuon.DSChiTietPM;
 import PhieuMuon.DSPhieuMuon;
 import PhieuMuon.QuanLyPhieuMuon;
@@ -27,7 +28,7 @@ public class Menu {
     DSDocGia dsDocGia = new DSDocGia();
     DSNhanVien dsNhanVien = new DSNhanVien();
     DSNhaCC dsNhaCC = new DSNhaCC();
-
+    DSTacGia dsTacGia = new DSTacGia();
     public Menu() {
     }
 
@@ -46,6 +47,8 @@ public class Menu {
         dsDocGia.docFile();
         dsNhanVien.docFile();
         dsNhaCC.docFile();
+
+        dsTacGia.docFile();
         
     }
 
@@ -60,6 +63,8 @@ public class Menu {
 
         //dsPhieuPhat.ghiFile();
         //dsChiTietPP.ghiFile();
+
+        dsTacGia.ghiFile();
     }
     public void hienThiMenu() {
         docFile();
@@ -71,9 +76,10 @@ public class Menu {
                             { "2. Quan ly phieu muon" },
                             { "3. Quan ly phieu nhap" },
                             { "4. Quan ly phieu phat" },
-                            { "5. Thoat" }
+                            { "5. Quan ly tac gia" },
+                            { "6. Thoat" }
                     }).printTable();
-            int choice = Validate.getChoice(scanner, 1, 5);
+            int choice = Validate.getChoice(scanner, 1, 6);
             switch (choice) {
                 case 1:
                     new QuanLySach().hienThiMenu(scanner);
@@ -88,6 +94,10 @@ public class Menu {
                     // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
                     break;
                 case 5:
+                    dsTacGia.hienThiMenu(scanner);
+                    break;
+                
+                case 6:
                     System.out.println("Thoat chuong trinh.");
                     ghiFile();
                     return;
