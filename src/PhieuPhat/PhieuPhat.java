@@ -67,18 +67,28 @@ public class PhieuPhat {
     public void setMaPM(String maPM) {
         this.maPM = maPM;
     }
+    
+    // public int soNgayQuaHan(String hanTra, String ngayTra) {
+    //     Ngay hanTraNgay = new Ngay(hanTra);
+    //     Ngay ngayTraNgay = new Ngay(ngayTra);
+
+    //     int soNgay = ngayTraNgay.soNgayTreHan(hanTraNgay);
+    //     return Math.max(soNgay, 0);
+    // }
 
     public void nhap() {
         Scanner scanner = new Scanner(System.in); // Avoid closing the scanner
+        System.out.print("Nhap ma phieu muon: ");
+        this.maPM = scanner.nextLine();
         System.out.print("Nhap ma phieu phat: ");
         this.maPP = scanner.nextLine();
         System.out.print("Nhap ma doc gia: ");
         this.maDG = scanner.nextLine();
         System.out.print("Nhap ma nhan vien: ");
         this.maNV = scanner.nextLine();
-        //DSChiTietPP dsChiTiet = new DSChiTietPP();
+        System.out.print("Nhap tong phat: ");
+        this.tongPhat = Integer.parseInt(scanner.nextLine());
     }
-    
     
     public void xuat() {
         System.out.println("Ma phieu phat: " + maPP);
@@ -87,17 +97,18 @@ public class PhieuPhat {
         System.out.println("Tong phat: " + tongPhat);
     }
 
-    // public void xuatChiTiet() {
-    //     DSChiTietPP dsChiTiet = new DSChiTietPP();
-    //     if (dsChiTiet.isEmpty()) {
-    //         dsChiTiet.docFile();
-    //     }
-    //     System.out.println("Ma phieu phat: " + maPP);
-    //     System.out.println("Ma doc gia: " + maDG);
-    //     System.out.println("Ma nhan vien: " + maNV);
-    //     System.out.println("Tong phat: " + tongPhat);
-    // }
     public String toString() {
         return maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
     }
+    
+    public String[] toArray() {
+        return new String[] { 
+            maPM,        // Mã phiếu mượn
+            maPP,        // Mã phiếu phạt
+            maDG,        // Mã độc giả
+            maNV,        // Mã nhân viên
+            String.valueOf(tongPhat) // Tổng tiền phạt (chuyển sang chuỗi)
+        };
+    }
 }
+
