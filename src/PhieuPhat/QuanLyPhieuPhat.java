@@ -67,13 +67,12 @@ public class QuanLyPhieuPhat {
                         { "1. Them phieu Phat" },
                         { "2. Xoa phieu Phat" },
                         { "3. Xem thong tin phieu Phat" },
-                        { "4. Xem tat ca phieu Phat" },
-                        { "5. kiem tra tien phat ben chi tiet phieu muon" },    
-                        { "6. Tro lai" }
+                        { "4. Xem tat ca phieu Phat" }, 
+                        { "5. Tro lai" }
 
                 }).printTable();
 
-        choice = Validate.getChoice(scanner, 1, 6);
+        choice = Validate.getChoice(scanner, 1, 5);
 
         switch (choice) {
             case 1:
@@ -104,10 +103,6 @@ public class QuanLyPhieuPhat {
                 dsPhieuPhat.xuat();
                 break;
             case 5:
-                System.out.println("Kiem tra tien phat ben chi tiet phieu muon:");
-                dsPhieuPhat.tinhTienPhat(); 
-               break;
-            case 6:
                 System.out.println("Thoat Menu Quan ly phieu Phat.");
                 return;
             default:
