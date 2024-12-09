@@ -54,6 +54,10 @@ public class ChiTietPhieuNhap {
         // nhap.close();
     }
 
+    public void xuat(){
+        System.out.printf("%10s%10s%15s%10s%20s\n", maPN, maSach, donGia, soLuong, thanhTien);
+    }
+
     public String getMaPN() {
         return maPN;
     }
@@ -100,6 +104,6 @@ public class ChiTietPhieuNhap {
 
     @Override 
     public String toString() {
-        return maPN + ", " + maSach + ", " + soLuong + ", " + donGia;
+        return maPN + ", " + maSach + ", " + soLuong + ", " + donGia + ", " + thanhTien;
     }
 }

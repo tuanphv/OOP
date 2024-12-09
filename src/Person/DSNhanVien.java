@@ -155,11 +155,13 @@ public class DSNhanVien implements IList<NhanVien> {
 
     public void docFile() {
         try {
-            FileReader fr = new FileReader("./lib/NV.txt");
+            FileReader fr = new FileReader("./lib/NhanVien.txt");
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
             while (line != null) {
-                System.out.println(line);
+                String[] arr = line.split(",");
+                NhanVien nv = new NhanVien(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+                add(nv);
                 line = br.readLine();
             }
             br.close();
@@ -172,12 +174,14 @@ public class DSNhanVien implements IList<NhanVien> {
 
     public void ghiFile() {
         try {
-            FileWriter fw = new FileWriter("./lib/NV.txt");
+            FileWriter fw = new FileWriter("./lib/NhanVien.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             String line;
-            line = nhap.nextLine();
-            bw.write(line);
-            bw.newLine();
+            for(int i=0; i<dsnv.length; i++){
+                line= dsnv[i].toString();
+                bw.write(line);
+                bw.newLine();
+            }
             bw.close();
         } catch (IOException e) {
             System.out.println("Loi khi ghi file: " + e);

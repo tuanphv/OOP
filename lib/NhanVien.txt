@@ -1,0 +1,23 @@
+NV001, Thai Tuan, kiem hang, 3000000, 0902451316, Nam
+NV002, Ta Hong Q, kiem hang, 3000000, 0123456789, Nam
+NV003, La Hoanh N, kiem hang, 3000000, 0123456789, Nam
+NV004, Tran Le Nhu Q, kiem hang, 3000000, 0123456789, Nu
+NV005, Nguyen Le Han Q, kiem hang, 3000000, 0123456789, Nam
+NV006, Bui Le Nhat T, kiem hang, 3000000,0123456789,  Nu
+NV007, Pham Van G, kiem hang, 3000000, 0123456789, Nam
+NV008, Nguyen Thi H, kiem hang, 3000000, 0123456789, Nu
+NV009, Le Van I, thu ngan, 4000000, 0123456789, Nam
+NV010, Tran Thi K, thu ngan, 4000000, 0123456789, Nu
+NV011, Hoang Van L, quan ly, 5000000, 0123456789, Nam
+NV012, Pham Thi M, quan ly, 5000000, 0123456789, Nu
+NV013, Nguyen Van N, quan ly, 5000000, 0123456789, Nam
+NV014, Tran Thi P, don dep, 3000000, 0123456789, Nu
+NV015, Le Van Q, don dep, 3000000, 0123456789, Nam
+NV016, Hoang Thi R, don dep, 3000000, 0123456789, Nu
+NV017, Tran Ngoc L, don dep, 3000000, 0123456789, Nam
+NV018, Tran Lam V, don dep, 3000000, 0123456789, Nu
+NV019, Nguyen Thu M, don dep, 3000000, 0123456789, Nu
+NV020, Duong Thao V, don dep, 3000000, 0123456789, Nu
+NV021, Thai Thach, don dep, 3000000, 0123456789, Nam
+NV022, SGUERITK22, don dep, 3000000, 0123456789, Nam
+NV023, Pham Minh K, don dep, 3000000, 0123456789, Nam

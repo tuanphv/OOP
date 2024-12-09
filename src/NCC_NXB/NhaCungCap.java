@@ -6,7 +6,6 @@ public class NhaCungCap {
     private String ten;
     private String diaChi;
     private String sdt;
-    static private int solg= 0;
     Scanner nhap= new Scanner(System.in);
 
     public NhaCungCap(){
@@ -60,21 +59,21 @@ public class NhaCungCap {
         this.sdt= sdt;
     }
 
-    static public int getSolg(){
-        return solg;
-    }
+    // static public int getSolg(){
+    //     return solg;
+    // }
 
-    static public void setSolg(int solg){
-        NhaCungCap.solg= solg;
-    }
+    // static public void setSolg(int solg){
+    //     NhaCungCap.solg= solg;
+    // }
 
-    public String ktrasdt(String sdt){
-        while(sdt.length() != 10 && sdt.charAt(0)!= '0'){
-            System.out.println("So dien thoai khong hop le");
-            sdt= nhap.nextLine();
-        }
-        return sdt;
-    }
+    // public String ktrasdt(String sdt){
+    //     while(sdt.length() != 10 && sdt.charAt(0)!= '0'){
+    //         System.out.println("So dien thoai khong hop le");
+    //         sdt= nhap.nextLine();
+    //     }
+    //     return sdt;
+    // }
 
     public void nhap(){
         System.out.print("Nhap ma nha cung cap: ");
@@ -84,7 +83,7 @@ public class NhaCungCap {
         System.out.print("Nhap dia chi nha cung cap: ");
         diaChi= nhap.nextLine();
         System.out.print("Nhap sdt nha cung cap: ");
-        sdt= ktrasdt(nhap.nextLine());
+        sdt= nhap.nextLine();
     }
 
     public void xuat(){
@@ -92,5 +91,9 @@ public class NhaCungCap {
         System.out.printf("%20s", ten);
         System.out.printf("%20s", diaChi);
         System.out.printf("%15s\n", sdt);
+    }
+
+    public String toString(){
+        return maNCC + ", " + ten + ", " + diaChi+ ", " + sdt;
     }
 }

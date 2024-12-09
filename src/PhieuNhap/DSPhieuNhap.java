@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import Interface.IList;
+import NCC_NXB.NhaCungCap;
 
 public class DSPhieuNhap implements IList<PhieuNhap> {
     PhieuNhap[] dspn = new PhieuNhap[0];
@@ -25,25 +26,43 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
             dspn[solg] = pn;
             return true;
         }
-        System.out.println("Da co phieu nhap trong danh sach");
         return false;
     }
 
-    public void them(String maPN){
+    public void them(String maPN, String maNV, String maNCC){
         PhieuNhap pn = new PhieuNhap();
         pn.setMaPN(maPN);
-        pn.nhap();
-        add(pn);
+        pn.setMaNV(maNV);
+        pn.setMaNCC(maNCC);
+        pn.nhap();//nhap tat ca tru tong tien
+        while(add(pn)== false){
+            System.out.println("Ma phieu nhap da ton tai. Nhap lai:");
+            maPN = nhap.nextLine();
+            pn.setMaPN(maPN);
+            pn.setMaNV(maNV);
+            pn.setMaNCC(maNCC);
+            pn.nhap();
+        }
+    }
+
+    public void setTongTien(String maPN, int tongTien){
+        int index= indexOf(maPN);
+        dspn[index].setTongtien(tongTien);
     }
 
     public void remove(String ma) {
         int solg = dspn.length;
         int index = indexOf(ma);
-        if (index == -1)
+        if (index == -1){
             System.out.println("Khong co phieu nhap trong danh sach");
+            return;
+        }
         else {
-            System.arraycopy(dspn, index + 1, dspn, index, solg - 1 - index);
-            dspn = Arrays.copyOf(dspn, solg - 1);
+            for (int i = index; i < solg - 1; i++) {
+                dspn[i] = dspn[i + 1];
+            }
+            dspn = Arrays.copyOf(dspn, solg-1);
+            System.out.println("Da xoa phieu nhap");
         }
     }
 
@@ -66,6 +85,22 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
             if (dspn[i].getMaPN().equals(n))
                 return i;
         return -1;
+    }
+
+    public void edit(String MaPN, String maPNsua){
+        if(indexOf(MaPN)==-1) {
+            System.out.println("Khong co phieu nhap trong danh sach");
+            return;
+        }
+        int index= indexOf(MaPN);
+        dspn[index].setMaPN(maPNsua);
+        System.out.println("Nhap ma Nv lap phieu: ");
+        String MaNV = nhap.nextLine();
+        dspn[index].setMaNV(MaNV);
+        System.out.println("Nhap ma NCC lap phieu: ");
+        String MaNCC = nhap.nextLine();
+        dspn[index].setMaNCC(MaNCC);
+        dspn[index].nhap();
     }
 
     public void docFile() {
@@ -91,9 +126,11 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
             FileWriter fw = new FileWriter("./lib/PhieuNhap.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             String line;
-            line = nhap.nextLine();
-            bw.write(line);
-            bw.newLine();
+            for(int i=0; i<dspn.length; i++){
+                line= dspn[i].toString();
+                bw.write(line);
+                bw.newLine();
+            }
             bw.close();
         } catch (IOException e) {
             System.out.println("Loi khi ghi file: " + e);
@@ -184,7 +221,7 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
     // return kq;
     // }
 
-    public PhieuNhap[] timtheoTongTien(int from, int to) {
+    public PhieuNhap[] timTheoTongTien(int from, int to) {
         int solg = dspn.length;
         PhieuNhap[] temp = new PhieuNhap[0];
         for (int i = 0; i < solg; i++)
@@ -211,6 +248,19 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
                 System.out.printf("%5s", i);
                 dspn[i].xuat();
             }
+        }
+    }
+
+    public void xuatKQTimKiem(PhieuNhap[] kq){
+        if(kq== null){
+            System.out.println("Khong tim thay phieu nhap nao");
+            return;
+        }
+        tieude();
+        int solg = kq.length;
+        for (int i = 0; i < solg; i++) {
+            System.out.printf("%5s", i);
+            kq[i].xuat();
         }
     }
 

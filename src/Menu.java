@@ -86,7 +86,7 @@ public class Menu {
                     new QuanLyPhieuMuon(dsPhieuMuon, dsChiTietPM).hienThiMenu(scanner);
                     break;
                 case 3:
-                    new QuanLyPhieuNhap(dsPhieuNhap, dsChiTietPN, dsSach).hienThiMenu();
+                    new QuanLyPhieuNhap(dsPhieuNhap, dsChiTietPN, dsSach, dsNhanVien, dsNhaCC).hienThiMenu();
                     break;
                 case 4:
                     // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
