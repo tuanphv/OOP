@@ -8,5 +8,3 @@ TG007, Mark Twain, 30/11/1835, My
 TG008, Paulo Coelho, 24/08/1947, Brazil  
 TG009, Victor Hugo, 26/02/1802, Phap  
 TG010, Margaret Atwood, 18/11/1939, Canada  
-TG011, Nguyen Du, 19/15/1971, Viet Nam
-TG012, Nguyen Hue, 12/03/1900, Viet Nam

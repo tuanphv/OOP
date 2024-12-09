@@ -65,6 +65,7 @@ public class Menu {
         //dsChiTietPP.ghiFile();
 
         dsTacGia.ghiFile();
+        dsDocGia.ghiFile();
     }
     public void hienThiMenu() {
         docFile();
@@ -77,9 +78,10 @@ public class Menu {
                             { "3. Quan ly phieu nhap" },
                             { "4. Quan ly phieu phat" },
                             { "5. Quan ly tac gia" },
-                            { "6. Thoat" }
+                            { "6. Quan ly doc gia"},
+                            { "7. Thoat" }
                     }).printTable();
-            int choice = Validate.getChoice(scanner, 1, 6);
+            int choice = Validate.getChoice(scanner, 1, 7);
             switch (choice) {
                 case 1:
                     new QuanLySach().hienThiMenu(scanner);
@@ -96,8 +98,10 @@ public class Menu {
                 case 5:
                     dsTacGia.hienThiMenu(scanner);
                     break;
-                
                 case 6:
+                    dsDocGia.hienThiMenu(scanner);
+                    break;
+                case 7:
                     System.out.println("Thoat chuong trinh.");
                     ghiFile();
                     return;
