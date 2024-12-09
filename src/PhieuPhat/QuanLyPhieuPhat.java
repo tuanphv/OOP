@@ -104,7 +104,7 @@ public class QuanLyPhieuPhat {
                 dsPhieuPhat.xuat();
                 break;
             case 5:
-                System.out.println("Kiểm tra tiền phạt bên chi tiết phiếu mượn:");
+                System.out.println("Kiem tra tien ben chi tiet phieu muon:");
                 dsPhieuPhat.tinhTienPhat(); // Gọi phương thức tính tiền phạt
                break;
             case 6:

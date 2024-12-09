@@ -184,7 +184,7 @@ public void remove(String maPP) {
     boolean coPhat = false;
 
     // Tiêu đề của bảng
-    String[] header = { "Mã Phiếu Mượn", "Mã Sách", "Số Ngày Trễ", "Tiền Phạt" };
+    String[] header = { "Ma Phieu Muon", "Ma Sach", "So Ngay Tre", "Tien Phat" };
     
     // Tạo mảng tạm để lưu dữ liệu
     String[][] tempData = new String[dsChiTiet.length][];
