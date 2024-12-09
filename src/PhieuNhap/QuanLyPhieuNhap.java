@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Format.ANSI;
 import Person.DSNhanVien;
 import Sach.DSSach;
+import Validate.Validate;
 import NCC_NXB.DSNhaCC;
 
 public class QuanLyPhieuNhap {
@@ -33,7 +34,7 @@ public class QuanLyPhieuNhap {
                 {"1. Quan ly phieu nhap"},
                 {"2. Quan ly chi tiet phieu nhap"},
                 {"3. Thoat"}}).printTable();
-            chon = Integer.parseInt(nhap.nextLine());
+            chon = Validate.getChoice(nhap, 1, 3);
             switch(chon){
                 case 1:
                     hienthiMenuPhieuNhap();
@@ -60,7 +61,8 @@ public class QuanLyPhieuNhap {
                 {"4. Tim kiem phieu nhap"},
                 {"5. Hien thi danh sach phieu nhap"},
                 {"6. Thoat"}}).printTable();
-            chon = Integer.parseInt(nhap.nextLine());
+
+            chon = Validate.getChoice(nhap, 1, 6);
             switch(chon){
                 case 1:
                     System.out.println("Nhap ma phieu: ");
@@ -146,7 +148,7 @@ public class QuanLyPhieuNhap {
                 {"4. Tim phieu nhap theo thoi gian"},
                 {"5. Tim phieu nhap theo tong tien"},
                 {"6. Thoat"}}).printTable();
-            chon = Integer.parseInt(nhap.nextLine());
+            chon = Validate.getChoice(nhap, 1, 6);
             PhieuNhap[] kq=null;
             switch(chon){
                 case 1:
@@ -202,7 +204,7 @@ public class QuanLyPhieuNhap {
                 {"4. Tim kiem chi tiet phieu nhap"},
                 {"5. Hien thi danh sach chi tiet phieu nhap"},
                 {"6. Thoat"}}).printTable();
-            chon = Integer.parseInt(nhap.nextLine());
+            chon = Validate.getChoice(nhap, 1, 6);
             switch (chon) {
                 case 1:
                     System.out.println("Nhap ma PN: ");
@@ -268,7 +270,7 @@ public class QuanLyPhieuNhap {
                 {"1. Tim theo ma phieu nhap"},
                 {"2. Tim theo ma sach"},
                 {"3. Thoat"}}).printTable();
-            chon = Integer.parseInt(nhap.nextLine());
+            chon = Validate.getChoice(nhap, 1, 3);
             switch (chon) {
                 case 1:
                     System.out.println("Nhap ma phieu muon tim: ");

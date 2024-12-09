@@ -1,4 +1,5 @@
 package Validate;
+
 import java.time.LocalDate;
 
 public class Ngay {
@@ -6,12 +7,14 @@ public class Ngay {
     private int date;
     private int month;
     private int year;
+
     public Ngay() {
         LocalDate now = LocalDate.now();
         this.date = now.getDayOfMonth();
         this.month = now.getMonthValue();
         this.year = now.getYear();
     }
+
     public Ngay(String time) {
         String[] arr = time.split("/");
         this.date = Integer.parseInt(arr[0]);
@@ -34,9 +37,11 @@ public class Ngay {
     public int getDate() {
         return date;
     }
+
     public int getMonth() {
         return month;
     }
+
     public int getYear() {
         return year;
     }
@@ -44,7 +49,7 @@ public class Ngay {
     public int getQuy() {
         return (month - 1) / 3 + 1;
     }
-    
+
     public boolean isValidDate() {
         try {
             LocalDate.of(year, month, date);
@@ -53,43 +58,28 @@ public class Ngay {
             return false;
         }
     }
+
     /**
      * so sánh ngày hiện tại với ngày truyền vào
+     * 
      * @param ngay : {@code Ngay} ngày cần so sánh
      * @return
-     * return < 0 : this < ngay
-     * <p> 
-     * return = 0 : this = ngay
-     * <p>
-     * return > 0 : this > ngay
+     *         return < 0 : this < ngay
+     *         <p>
+     *         return = 0 : this = ngay
+     *         <p>
+     *         return > 0 : this > ngay
      */
     public int compare(Ngay ngay) {
         LocalDate date1 = LocalDate.of(this.year, this.month, this.date);
         LocalDate date2 = LocalDate.of(ngay.year, ngay.month, ngay.date);
         return date1.compareTo(date2);
     }
-    
-    /**
-    * Tính số ngày trễ hạn giữa hai đối tượng {@code Ngay}.
-    * @param hanTra : {@code Ngay} - ngày hạn trả.
-    * @return số ngày trễ hạn. Nếu không trễ, trả về 0.
-    */
-    //example int soNgayTreHan = ngayTra.soNgayTreHan(hanTra);
-    private int soNgayTreHan(Ngay hanTra, Ngay ngayTra) {
-    LocalDate ngayHanTra = LocalDate.of(hanTra.getYear(), hanTra.getMonth(), hanTra.getDate());
-    LocalDate ngayTraSach = LocalDate.of(ngayTra.getYear(), ngayTra.getMonth(), ngayTra.getDate());
-
-    if (!ngayTraSach.isAfter(ngayHanTra)) {
-        return 0; // Không trễ hạn
-    }
-
-    return (int) java.time.temporal.ChronoUnit.DAYS.between(ngayHanTra, ngayTraSach);
-}
-    
 
     public boolean isBefore(Ngay ngay) {
         return compare(ngay) < 0;
     }
+
     @Override
     public String toString() {
         return String.format("%02d/%02d/%04d", date, month, year);

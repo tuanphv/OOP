@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import Interface.IList;
-import NCC_NXB.NhaCungCap;
 
 public class DSPhieuNhap implements IList<PhieuNhap> {
     PhieuNhap[] dspn = new PhieuNhap[0];
