@@ -104,8 +104,8 @@ public class QuanLyPhieuPhat {
                 dsPhieuPhat.xuat();
                 break;
             case 5:
-                System.out.println("Kiem tra tien ben chi tiet phieu muon:");
-                dsPhieuPhat.tinhTienPhat(); // Gọi phương thức tính tiền phạt
+                System.out.println("Kiem tra tien phat ben chi tiet phieu muon:");
+                dsPhieuPhat.tinhTienPhat(); 
                break;
             case 6:
                 System.out.println("Thoat Menu Quan ly phieu Phat.");
