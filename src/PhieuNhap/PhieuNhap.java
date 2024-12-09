@@ -69,8 +69,8 @@ public class PhieuNhap {
     }
 
     public void nhap(){
-        System.out.print("Nhap ma phieu nhap: ");
-        maPN = nhap.nextLine();
+        // System.out.print("Nhap ma phieu nhap: ");
+        // maPN = nhap.nextLine();
         ngayNhap = Validate.getDate(nhap, "Nhap ngay nhap hang: ");
         // System.out.print("Nhap ma nhan vien: ");
         // maNV = nhap.nextLine();

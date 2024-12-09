@@ -134,7 +134,7 @@ public class DSChiTietPN {
     public void remove(String maPN, String maSach){
         int solg= dsctpn.length;
         int index= indexOf(maPN, maSach);
-        if (get(maPN, maSach) == null) {
+        if (index== -1) {
             System.out.println("Chi tiet phieu chua co trong danh sach");
             return;
         }

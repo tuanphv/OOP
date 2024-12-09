@@ -1,0 +1,10 @@
+NXB001, Nha Xuat Ban Tre, 1981, Vietnam, 12 Nguyen Thi Minh Khai, nxbtre@gmail.com
+NXB002, Nha Xuat Ban Kim Dong, 1957, Vietnam, 55 Quang Trung, nxbkimdong@gmail.com
+NXB003, Nha Xuat Ban Giao Duc, 1957, Vietnam, 81 Tran Hung Dao, nxbgiaoduc@gmail.com
+NXB004, Nha Xuat Ban Lao Dong, 1946, Vietnam, 175 Giang Vo, nxblaodong@gmail.com
+NXB005, Nha Xuat Ban Phu Nu, 1950, Vietnam, 39 Hang Chuoi, nxbphunu@gmail.com
+NXB006, Nha Xuat Ban Thanh Nien, 1956, Vietnam, 62 Ba Trieu, nxbthanhnien@gmail.com
+NXB007, Nha Xuat Ban Cong An Nhan Dan, 1962, Vietnam, 92 Nguyen Du, nxbcongan@gmail.com
+NXB008, Nha Xuat Ban Khoa Hoc Ky Thuat, 1952, Vietnam, 79 Ly Thuong Kiet, nxbkhoahoc@gmail.com
+NXB009, Nha Xuat Ban The Gioi, 1957, Vietnam, 46 Tran Hung Dao, nxbthegioi@gmail.com
+NXB010, Nha Xuat Ban Van Hoa Thong Tin, 1954, Vietnam, 124 Nguyen Thai Hoc, nxbvanhoa@gmail.com

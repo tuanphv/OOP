@@ -246,7 +246,8 @@ public class QuanLyPhieuNhap {
                     String maSachxoa= nhap.nextLine();
                     dsctpn.remove(maPNxoa, maSachxoa);
                     int tongTienxoa= dsctpn.getTongTien(maPNxoa);
-                    dspn.setTongTien(maPNxoa, tongTienxoa);
+                    if(dspn.indexOf(maPNxoa)!= -1)
+                        dspn.setTongTien(maPNxoa, tongTienxoa);
                     break;
                 case 4:
                     hienThiMenuTimChiTietPhieuNhap();
@@ -276,10 +277,12 @@ public class QuanLyPhieuNhap {
                     System.out.println("Nhap ma phieu muon tim: ");
                     String maPN= nhap.nextLine();
                     dsctpn.xuatKQTimKiem(dsctpn.timTheoMaPN(maPN));
+                    break;
                 case 2:
-                    System.out.println("Nhap ma phieu muon tim: ");
+                    System.out.println("Nhap ma sach muon tim: ");
                     String maSach= nhap.nextLine();
-                    dsctpn.xuatKQTimKiem(dsctpn.timTheoMaPN(maSach));
+                    dsctpn.xuatKQTimKiem(dsctpn.timTheoMaSach(maSach));
+                    break;
                 case 3:
                     return;
             }

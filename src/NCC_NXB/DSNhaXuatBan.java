@@ -139,6 +139,10 @@ public class DSNhaXuatBan implements IList<NhaXuatBan> {
     }
 
     public void xuatKQ(NhaXuatBan[] ds) {
+        if (ds.length == 0) {
+            System.out.println("Khong tim thay ket qua.");
+            return;
+        }
         String[] header = { "Ma NXB", "Ten NXB", "Nam thanh lap", "Quoc gia", "Dia chi", "Email" };
         String[][] data = new String[ds.length][];
         for (int i = 0; i < ds.length; i++) {
