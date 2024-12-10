@@ -100,10 +100,12 @@ public class QuanLyPhieuNhap {
                         }
                         else{
                             dsctpn.them(maPN, maSach, dssach);
+                            
                         }
                     }
                     int tongTien= dsctpn.getTongTien(maPN);
                     dspn.setTongTien(maPN, tongTien);
+                    
                     break;
 
                 case 2:
@@ -220,6 +222,9 @@ public class QuanLyPhieuNhap {
                         break;
                     }
                     dsctpn.them(maPNthem, maSachthem, dssach);
+                    int solgThem= dsctpn.get(maPNthem, maSachthem).getSoLuong();
+                            int solg= dssach.get(maSachthem).getSoLuong();
+                            dssach.get(maSachthem).setSoLuong(solg+ solgThem);
                     int tongTien= dsctpn.getTongTien(maPNthem);
                     dspn.setTongTien(maPNthem, tongTien);
                     break;
@@ -231,11 +236,15 @@ public class QuanLyPhieuNhap {
                     String maSach= nhap.nextLine();
                     System.out.println("Nhap ma PN moi: ");
                     String maPNsua= nhap.nextLine();
+
+                    
+
                     dsctpn.edit( maPN, maSach, maPNsua, dssach);
                     if(dspn.get(maPN)!= null){
                         int tongTiensua= dsctpn.getTongTien(maPN);
                         dspn.setTongTien(maPN, tongTiensua);
                     }
+                    
                     int tongTiensua= dsctpn.getTongTien(maPNsua);
                     dspn.setTongTien(maPNsua, tongTiensua);
                     break;
@@ -244,7 +253,7 @@ public class QuanLyPhieuNhap {
                     String maPNxoa= nhap.nextLine();
                     System.out.println("Nhap ma sach: ");
                     String maSachxoa= nhap.nextLine();
-                    dsctpn.remove(maPNxoa, maSachxoa);
+                    dsctpn.remove(maPNxoa, maSachxoa, dssach);
                     int tongTienxoa= dsctpn.getTongTien(maPNxoa);
                     if(dspn.indexOf(maPNxoa)!= -1)
                         dspn.setTongTien(maPNxoa, tongTienxoa);

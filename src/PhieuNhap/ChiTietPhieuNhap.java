@@ -4,6 +4,7 @@ import java.util.Scanner;
 import Sach.DSSach;
 import Sach.Sach;
 import Validate.Validate;
+//import PhieuNhap.DSChiTietPN;
 
 public class ChiTietPhieuNhap {
     private String maPN;

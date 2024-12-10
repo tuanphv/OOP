@@ -30,7 +30,20 @@ public class DSChiTietPN {
         ctpn.setDonGia(donGia);
         ctpn.nhap(); //nhap so luong
         ctpn.setThanhTien(ctpn.getSoLuong(), ctpn.getDonGia());
-        add(ctpn);
+        while (add(ctpn)== false){
+            System.out.println("Phieu nhap da co trong danh sach");
+            maPN= nhap.nextLine();
+            maSach= nhap.nextLine();
+            ctpn.setMaPN(maPN);
+            ctpn.setMaSach(maSach);
+            donGia= dsSach.get(maSach).getDonGia();
+            ctpn.setDonGia(donGia);
+            ctpn.nhap(); //nhap lai so luong
+            ctpn.setThanhTien(ctpn.getSoLuong(), ctpn.getDonGia());
+        };
+        int solgThem= get(maPN, maSach).getSoLuong();
+                            int solg= dsSach.get(maSach).getSoLuong();
+                            dsSach.get(maSach).setSoLuong(solg+ solgThem);
     }
 
     public ChiTietPhieuNhap get(String maPN, String maSach){
@@ -57,14 +70,14 @@ public class DSChiTietPN {
         return -1;
     }
 
-    public void add(ChiTietPhieuNhap ctpn){
+    public boolean add(ChiTietPhieuNhap ctpn){
         int solg= dsctpn.length;
         if (indexOf(ctpn.getMaPN(), ctpn.getMaSach()) != -1) {
-            System.out.println("Đã tồn tại sách trong chi tiết phiếu nhập");
-            return;
+            return false;
         }
         dsctpn= Arrays.copyOf(dsctpn, solg+1);
         dsctpn[solg]= ctpn;
+        return true;
     }
 
     public void edit(String maPN, String maSach, String maPNsua, DSSach dssach){
@@ -72,6 +85,11 @@ public class DSChiTietPN {
             System.out.println("Chi tiet phieu chua co trong danh sach");
             return;
         }
+
+        int solgThem= get(maPN, maSach).getSoLuong();
+        int solg= dssach.get(maSach).getSoLuong();
+        dssach.get(maSach).setSoLuong(solg-solgThem);
+
         int index= indexOf(maPN, maSach);
         dsctpn[index].setMaPN(maPNsua);
         System.out.print("Nhap ma sach moi: ");
@@ -85,6 +103,11 @@ public class DSChiTietPN {
         dsctpn[index].setDonGia(donGia);
         dsctpn[index].nhap(); //nhap so luong
         dsctpn[index].setThanhTien(dsctpn[index].getSoLuong(), donGia);
+
+        solgThem= get(maPNsua, maSachSua).getSoLuong();
+        solg= dssach.get(maSachSua).getSoLuong();
+        dssach.get(maSachSua).setSoLuong(solg+solgThem);
+
     }
 
     public ChiTietPhieuNhap[] timTheoMaPN(String maPN){
@@ -121,6 +144,17 @@ public class DSChiTietPN {
         }
     }
 
+    // public void setSolg(String maPN, String maSach, DSSach dssach){
+    //     if(dssach.get(maSach)== null)
+    //     for(int i=0; i<dsctpn.length; i++){
+    //         if(dsctpn[i].getMaPN().equalsIgnoreCase(maPN) && dsctpn[i].getMaSach().equalsIgnoreCase(maSach)){
+    //             int soLgThem= dsctpn[i].getSoLuong();
+    //             int solg= dssach.get(maSach).getSoLuong();
+    //             dssach.get(maSach).setSoLuong(solg + soLgThem);
+    //         }
+    //     }
+    // }
+
     public int getTongTien(String maPN){ 
         int solg= dsctpn.length;
         int tongTien= 0;
@@ -131,13 +165,16 @@ public class DSChiTietPN {
         return tongTien;
     }
 
-    public void remove(String maPN, String maSach){
+    public void remove(String maPN, String maSach, DSSach dssach){
         int solg= dsctpn.length;
         int index= indexOf(maPN, maSach);
         if (index== -1) {
             System.out.println("Chi tiet phieu chua co trong danh sach");
             return;
         }
+        int solgBot= get(maPN, maSach).getSoLuong();
+        int soLg= dssach.get(maSach).getSoLuong();
+        dssach.get(maSach).setSoLuong(soLg - solgBot);
         for (int i = index; i < solg - 1; i++) {
             dsctpn[i] = dsctpn[i + 1];
         }
