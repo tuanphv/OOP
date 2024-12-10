@@ -163,13 +163,11 @@ private void menuThongKePhat(Scanner scanner) {
         switch (choice) {
             case 1:
                 System.out.println("\nThong ke doc gia bi phat:");
-                dsPhieuPhat.thongKeDocGiaBiPhat().forEach((key, value) -> 
-                    System.out.println("Ma doc gia: " + key + ", So lan bi phat: " + value));
+                dsPhieuPhat.thongKeDocGiaBiPhat().forEach((key, value) -> System.out.println("Ma doc gia: " + key + ", So lan bi phat: " + value));
                 break;
             case 2:
                 System.out.println("\nThong ke nhan vien lap phieu phat:");
-                dsPhieuPhat.thongKeNhanVienLapPhieuPhat().forEach((key, value) -> 
-                    System.out.println("Ma nhan vien: " + key + ", So phieu phat lap: " + value));
+                dsPhieuPhat.thongKeNhanVienLapPhieuPhat().forEach((key, value) -> System.out.println("Ma nhan vien: " + key + ", So phieu phat lap: " + value));
                 break;
             case 3:
                 System.out.println("\nSo tien phat trung binh: " + dsPhieuPhat.thongKeSoTienPhatTrungBinh());
