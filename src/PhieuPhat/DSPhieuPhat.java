@@ -5,6 +5,8 @@ import Interface.IList;
 import PhieuMuon.DSChiTietPM;
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class DSPhieuPhat implements IList<PhieuPhat> {
@@ -167,10 +169,10 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         return result;
     }
 
-    public void edit( String masua) {
+    public void edit(String masua) {
         int vitri = indexOf(masua);
         if (vitri == -1) {
-            System.out.println("Không tìm thấy phiếu phạt cần sửa.");
+            System.out.println("Khong tim thay phieu phat can sua.");
         } else {
             System.out.println("Nhap ma phieu muon: ");
             String mapm = input.nextLine();
@@ -190,5 +192,40 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
 
         }
     }
+    public Map<String, Integer> thongKeDocGiaBiPhat() {
+        Map<String, Integer> thongKe = new HashMap<>();
+        for (PhieuPhat pp : dsPP) {
+            String maDocGia = pp.getMaDG();
+            thongKe.put(maDocGia, thongKe.getOrDefault(maDocGia, 0) + 1);
+        }
+        return thongKe;
+    }
+
+    public Map<String, Integer> thongKeNhanVienLapPhieuPhat() {
+    Map<String, Integer> thongKe = new HashMap<>();
+    for (PhieuPhat pp : dsPP) {
+        String maNV = pp.getMaNV();
+        thongKe.put(maNV, thongKe.getOrDefault(maNV, 0) + 1);
+    }
+    return thongKe;
+    }
+    public double thongKeSoTienPhatTrungBinh() {
+    if (dsPP.length == 0) {
+        return 0;
+    }
+    int tongTienPhat = 0;
+    for (PhieuPhat pp : dsPP) {
+        tongTienPhat += pp.getTongPhat();
+    }
+    return (double) tongTienPhat / dsPP.length;
+      }
+    public int thongKeTongTienPhat() {
+    int tongTienPhat = 0;
+    for (PhieuPhat pp : dsPP) {
+        tongTienPhat += pp.getTongPhat();
+    }
+    return tongTienPhat;
+}
+
 
 }

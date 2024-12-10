@@ -50,7 +50,7 @@ public class QuanLyPhieuPhat {
                     menuChiTietPhieuPhat(scanner);
                     break;
                 case 3:
-                    System.out.println("chuc nang phat trien sau");
+                    menuThongKePhat(scanner);
                     break;
                 default:
                     System.out.println("Thoat Quan ly phieu Phat.");
@@ -121,35 +121,74 @@ public class QuanLyPhieuPhat {
     } while (true);
 }
 
-    private void menuChiTietPhieuPhat(Scanner scanner) {
-        do {
-            new ANSI(new String[] { "Menu Quan ly chi tiet phieu Phat".toUpperCase() },
-                    new String[][] {
-                            { "1. Xem chi tiet phieu Phat" },
-                            { "2. Hien thi toan bo chi tiet Phieu Phat" },
-                            { "3. Tro lai" }
-                    }).printTable();
-            int choice = Validate.getChoice(scanner, 1, 3);
-            switch (choice) {
-                
-                case 1:
-                    System.out.println("Moi ban nhap ma phieu phat de xem chi tiet phieu phat: ");
-                    String maphieuphat = scanner.nextLine();
-                    ChiTietPhieuPhat ctpp = dsChiTietPP.get(maphieuphat);
+private void menuChiTietPhieuPhat(Scanner scanner) {
+    do {
+        new ANSI(new String[] { "Menu Quan ly chi tiet phieu Phat".toUpperCase() },
+                new String[][] {
+                        { "1. Xem chi tiet phieu Phat" },
+                        { "2. Hien thi toan bo chi tiet Phieu Phat" },
+                        { "3. Tro lai" }
+                }).printTable();
+        int choice = Validate.getChoice(scanner, 1, 3);
+        switch (choice) {
 
-                    if (ctpp != null) {
-                        ctpp.xuat();
-                    }
-                    break;
-                case 2:
-                    dsChiTietPP.xuat();
-                    break;
-                default:
-                    System.out.println("Thoát chương trình.");
-                    return;
-            }
-        } while (true);
-    }
+            case 1:
+                System.out.println("Moi ban nhap ma phieu phat de xem chi tiet phieu phat: ");
+                String maphieuphat = scanner.nextLine();
+                ChiTietPhieuPhat ctpp = dsChiTietPP.get(maphieuphat);
+
+                if (ctpp != null) {
+                    ctpp.xuat();
+                }
+                break;
+            case 2:
+                dsChiTietPP.xuat();
+                break;
+            default:
+                System.out.println("Thoát chương trình.");
+                return;
+        }
+    } while (true);
+}
+
+private void menuThongKePhat(Scanner scanner) {
+    do {
+        new ANSI(new String[] { "Menu thong ke phieu phat".toUpperCase() },
+                new String[][] {
+                        { "1. Thong ke doc gia bi phat" },
+                        { "2. Thong ke nhan vien lap phieu phat" },
+                        { "3. So tien phat trung binh" },
+                        { "4. Tong tien phat" },
+                        { "5. Tro lai" }
+                }).printTable();
+        int choice = Validate.getChoice(scanner, 1, 5); 
+        switch (choice) {
+            case 1:
+                System.out.println("\nThong ke doc gia bi phat:");
+                dsPhieuPhat.thongKeDocGiaBiPhat().forEach((key, value) -> 
+                    System.out.println("Ma doc gia: " + key + ", So lan bi phat: " + value));
+                break;
+            case 2:
+                System.out.println("\nThong ke nhan vien lap phieu phat:");
+                dsPhieuPhat.thongKeNhanVienLapPhieuPhat().forEach((key, value) -> 
+                    System.out.println("Ma nhan vien: " + key + ", So phieu phat lap: " + value));
+                break;
+            case 3:
+                System.out.println("\nSo tien phat trung binh: " + dsPhieuPhat.thongKeSoTienPhatTrungBinh());
+                break;
+            case 4:
+                System.out.println("\nTong tien phat: " + dsPhieuPhat.thongKeTongTienPhat());
+                break;
+            case 5:
+                System.out.println("Quay lai menu chinh.");
+                return; 
+            default:
+                System.out.println("Lua chon ko hop le!!.");
+                break;
+        }
+    } while (true);
+}
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         QuanLyPhieuPhat quanLyPhieuPhat = new QuanLyPhieuPhat();
