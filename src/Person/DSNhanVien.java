@@ -293,8 +293,7 @@ public class DSNhanVien implements IList<NhanVien> {
                 case 9:
                     System.out.print("Nhap ma nhan vien muon sua: ");
                     String temp = nhap.nextLine();
-                    NhanVien nv = get(temp);
-                    suaNhanVien(nv);
+                    edit(temp);
                     break;
                 case 10:
                     hienthi();

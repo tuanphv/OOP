@@ -70,25 +70,25 @@ public class QuanLyNhanVien {
                     System.out.println("Nhap ma NV can tim: ");
                     String maNVTK= nhap.nextLine();
                     NhanVien[] kqTKMaNV=dsnv.timTheoMa(maNVTK);
-                    dsnv.xuatKQTimKiem(kqTKMaNV);
+                    dsnv.xuatKQ(kqTKMaNV);
                     break;
                 case 2:
                     System.out.println("Nhap ten NV can tim: ");
                     String tenNVTK= nhap.nextLine();
                     NhanVien[] kqTKTenNV=dsnv.timTheoTen(tenNVTK);
-                    dsnv.xuatKQTimKiem(kqTKTenNV);
+                    dsnv.xuatKQ(kqTKTenNV);
                     break;
                 case 3:
                     System.out.println("Nhap gioi tinh NV can tim: ");
                     String gtNVTK= nhap.nextLine();
                     NhanVien[] kqTKGtNV=dsnv.timTheoGioiTinh(gtNVTK);
-                    dsnv.xuatKQTimKiem(kqTKGtNV);
+                    dsnv.xuatKQ(kqTKGtNV);
                     break;
                 case 4:
                     System.out.println("Nhap sdt NV can tim: ");
                     String sdtNVTK= nhap.nextLine();
                     NhanVien[] kqTKSdtNV=dsnv.timTheoMa(sdtNVTK);
-                    dsnv.xuatKQTimKiem(kqTKSdtNV);
+                    dsnv.xuatKQ(kqTKSdtNV);
                     break;
                 case 5: 
                     System.out.println("Nhap khoang luong bat dau: ");
@@ -96,13 +96,13 @@ public class QuanLyNhanVien {
                     System.out.println("Nhap khoang luong ket thuc: ");
                     int to= Integer.parseInt(nhap.nextLine());
                     NhanVien[] kqTKLuongNV=dsnv.timTheoKhoangLuong(from, to);
-                    dsnv.xuatKQTimKiem(kqTKLuongNV);
+                    dsnv.xuatKQ(kqTKLuongNV);
                     break;
                 case 6:
                     System.out.println("Nhap chuc vu NV can tim: ");
                     String CvNVTK= nhap.nextLine();
                     NhanVien[] kqTKCvNV=dsnv.timTheoMa(CvNVTK);
-                    dsnv.xuatKQTimKiem(kqTKCvNV);
+                    dsnv.xuatKQ(kqTKCvNV);
                     break;
                 case 7:
                     return;
