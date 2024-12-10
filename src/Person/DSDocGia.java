@@ -5,7 +5,6 @@ import Validate.Validate;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
-
 public class DSDocGia implements IList<DocGia> {
     private static DocGia[] dsdg = new DocGia[0];
     Scanner nhap = new Scanner(System.in);
