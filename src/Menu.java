@@ -4,13 +4,15 @@ import NCC_NXB.DSNhaXuatBan;
 import Person.DSDocGia;
 import Person.DSNhanVien;
 import Person.DSTacGia;
-import Person.QuanLyNhanVien;
 import PhieuMuon.DSChiTietPM;
 import PhieuMuon.DSPhieuMuon;
 import PhieuMuon.QuanLyPhieuMuon;
 import PhieuNhap.DSChiTietPN;
 import PhieuNhap.DSPhieuNhap;
 import PhieuNhap.QuanLyPhieuNhap;
+import PhieuPhat.DSChiTietPP;
+import PhieuPhat.DSPhieuPhat;
+import PhieuPhat.QuanLyPhieuPhat;
 import Sach.DSSach;
 import Sach.QuanLySach;
 import Validate.Validate;
@@ -25,8 +27,8 @@ public class Menu {
     DSPhieuNhap dsPhieuNhap = new DSPhieuNhap();
     DSChiTietPN dsChiTietPN = new DSChiTietPN();
 
-    // DSPhieuPhat dsPhieuPhat = new DSPhieuPhat();
-    // DSChiTietPP dsChiTietPP = new DSChiTietPP();
+    DSPhieuPhat dsPhieuPhat = new DSPhieuPhat();
+    DSChiTietPP dsChiTietPP = new DSChiTietPP();
 
     DSDocGia dsDocGia = new DSDocGia();
     DSNhanVien dsNhanVien = new DSNhanVien();
@@ -46,8 +48,8 @@ public class Menu {
         dsPhieuNhap.docFile();
         dsChiTietPN.docFile();
 
-        // dsPhieuPhat.docFile();
-        // dsChiTietPP.docFile();
+       dsPhieuPhat.docFile();
+       dsChiTietPP.docFile();
 
         dsDocGia.docFile();
         dsNhanVien.docFile();
@@ -66,8 +68,8 @@ public class Menu {
         dsPhieuNhap.ghiFile();
         dsChiTietPN.ghiFile();
 
-        // dsPhieuPhat.ghiFile();
-        // dsChiTietPP.ghiFile();
+        dsPhieuPhat.ghiFile();
+        dsChiTietPP.ghiFile();
         dsNXB.ghiFile();
         dsTacGia.ghiFile();
         dsDocGia.ghiFile();
@@ -104,7 +106,7 @@ public class Menu {
                     new QuanLyPhieuNhap(dsPhieuNhap, dsChiTietPN, dsSach, dsNhanVien, dsNhaCC).hienThiMenu();
                     break;
                 case 4:
-                    // new MenuPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu();
+                    new QuanLyPhieuPhat(dsPhieuPhat, dsChiTietPP).hienThiMenu(scanner);
                     break;
                 case 5:
                     dsTacGia.hienThiMenu(scanner);
