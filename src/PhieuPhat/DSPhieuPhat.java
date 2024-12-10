@@ -209,16 +209,18 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
     }
     return thongKe;
     }
+
     public double thongKeSoTienPhatTrungBinh() {
-    if (dsPP.length == 0) {
-        return 0;
+        if (dsPP.length == 0) {
+            return 0;
+        }
+        int tongTienPhat = 0;
+        for (PhieuPhat pp : dsPP) {
+            tongTienPhat += pp.getTongPhat();
+        }
+        return (double) tongTienPhat / dsPP.length;
     }
-    int tongTienPhat = 0;
-    for (PhieuPhat pp : dsPP) {
-        tongTienPhat += pp.getTongPhat();
-    }
-    return (double) tongTienPhat / dsPP.length;
-      }
+      
     public int thongKeTongTienPhat() {
     int tongTienPhat = 0;
     for (PhieuPhat pp : dsPP) {
