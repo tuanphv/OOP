@@ -167,4 +167,28 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         return result;
     }
 
+    public void edit( String masua) {
+        int vitri = indexOf(masua);
+        if (vitri == -1) {
+            System.out.println("Không tìm thấy phiếu phạt cần sửa.");
+        } else {
+            System.out.println("Nhap ma phieu muon: ");
+            String mapm = input.nextLine();
+            dsPP[vitri].setMaPM(mapm);
+            System.out.println("Nhap ma phieu phat: ");
+            String mapp = input.nextLine();
+            dsPP[vitri].setMaPP(mapp);
+            System.out.println("Nhap ma doc gia: ");
+            String madg = input.nextLine();
+            dsPP[vitri].setMaDG(madg);
+            System.out.println("Nhap ma nhan vien: ");
+            String manv = input.nextLine();
+            dsPP[vitri].setMaNV(manv);
+            System.out.println("Nhap so tien phat: ");
+            int sotienphat = input.nextInt();
+            dsPP[vitri].setTongPhat(sotienphat);
+
+        }
+    }
+
 }
