@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "QuanLyPhieuPhat",
+            "request": "launch",
+            "mainClass": "PhieuPhat.QuanLyPhieuPhat",
+            "projectName": "OOP_c463ceef"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

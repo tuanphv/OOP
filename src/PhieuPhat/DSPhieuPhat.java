@@ -199,14 +199,11 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
     }
 
     public double thongKeSoTienPhatTrungBinh() {
-        if (dsPP.length == 0) {
-            return 0;
-        }
-        int tongTienPhat = 0;
+        int tienphattrungbinh = 0;
         for (PhieuPhat pp : dsPP) {
-            tongTienPhat += pp.getTongPhat();
+            tienphattrungbinh += pp.getTongPhat();
         }
-        return (double) tongTienPhat / dsPP.length;
+        return (double) tienphattrungbinh / dsPP.length;
     }
 
     public int thongKeTongTienPhat() {
