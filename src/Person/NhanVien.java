@@ -133,6 +133,6 @@ public class NhanVien extends Person {
     }
 
     public String[] toArray() {
-        return new String[] { maNV, tenNV, chucVu, sdtNV, gioiTinh, String.valueOf(luong) };
+        return new String[] { maNV, tenNV, chucVu, sdtNV, gioiTinh, luong + ""};
     }
 }

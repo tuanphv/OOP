@@ -115,7 +115,7 @@ public class Menu {
                     dsDocGia.hienThiMenu(scanner);
                     break;
                 case 7:
-                    dsNhanVien.menu();
+                    dsNhanVien.menu(scanner);
                     break;
                 case 8:
                     dsNhaCC.menu();

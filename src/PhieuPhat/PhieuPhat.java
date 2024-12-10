@@ -68,8 +68,7 @@ public class PhieuPhat {
         this.maPM = maPM;
     }
 
-    public void nhap() {
-        Scanner scanner = new Scanner(System.in); // Avoid closing the scanner
+    public void nhap(Scanner scanner) {
         System.out.print("Nhap ma phieu muon: ");
         this.maPM = scanner.nextLine();
         System.out.print("Nhap ma phieu phat: ");

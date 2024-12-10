@@ -218,7 +218,7 @@ public class DSNhanVien implements IList<NhanVien> {
         }
     }
 
-    public void menu() {
+    public void menu(Scanner nhap) {
         int input;
         do {
             new ANSI(new String[] { "Menu Quan ly nhan vien".toUpperCase() },

@@ -41,7 +41,7 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         dsPP = new PhieuPhat[n];
         for (int i = 0; i < n; i++) {
             dsPP[i] = new PhieuPhat();
-            dsPP[i].nhap();
+            dsPP[i].nhap(input);
             System.out.println("-------------------------");
         }
     }
@@ -49,11 +49,11 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
     public void them() {
         PhieuPhat pp = new PhieuPhat();
         System.out.println("Nhap thong tin phieu phat muon them");
-        pp.nhap();
+        pp.nhap(input);
         boolean result = add(pp);
         while (result == false) {
             System.out.println("Ma phieu phat da ton tai, vui long nhap lai");
-            pp.nhap();
+            pp.nhap(input);
             result = add(pp);
         }
         System.out.println("Them phieu phat thanh cong");
