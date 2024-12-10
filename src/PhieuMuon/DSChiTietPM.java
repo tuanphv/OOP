@@ -14,14 +14,15 @@ import java.util.Map;
 
 public class DSChiTietPM {
 
-    private ChiTietPhieuMuon[] dsCTPM = new ChiTietPhieuMuon[0];
+    private static ChiTietPhieuMuon[] dsCTPM = new ChiTietPhieuMuon[0];
 
     public DSChiTietPM() {
     }
 
-    public DSChiTietPM(DSChiTietPM dsctpm) {
-        this.dsCTPM = dsctpm.dsCTPM;
+    public DSChiTietPM(ChiTietPhieuMuon[] ds) {
+        dsCTPM = ds;
     }
+
     // không có 2 mã sách giống nhau trong cùng 1 phiếu mượn
     public int indexOf(String maPM, String maSach) {
         for (int i = 0; i < dsCTPM.length; i++) {
@@ -39,7 +40,8 @@ public class DSChiTietPM {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(", ");
-                ChiTietPhieuMuon ctpm = new ChiTietPhieuMuon(data[0], data[1], Integer.parseInt(data[2]), data[3], data[4]);
+                ChiTietPhieuMuon ctpm = new ChiTietPhieuMuon(data[0], data[1], Integer.parseInt(data[2]), data[3],
+                        data[4]);
                 dsCTPM = Arrays.copyOf(dsCTPM, dsCTPM.length + 1);
                 dsCTPM[dsCTPM.length - 1] = ctpm;
             }
@@ -77,8 +79,7 @@ public class DSChiTietPM {
         if (index == -1) {
             dsCTPM = Arrays.copyOf(dsCTPM, dsCTPM.length + 1);
             dsCTPM[dsCTPM.length - 1] = ctpm;
-        }
-        else {
+        } else {
             System.out.println("Ban da muon sach nay roi");
         }
     }
@@ -120,7 +121,7 @@ public class DSChiTietPM {
             for (int i = 0; i < dsCTPM.length; i++) {
                 data[i] = dsCTPM[i].toArray();
             }
-            new ANSI("Danh sach chi tiet phieu muon", header, data).printTable();
+            new ANSI(header, data).printTable();
             ANSI.pause();
         }
     }
@@ -138,6 +139,30 @@ public class DSChiTietPM {
         return result;
     }
 
+    public void xuatKQ(ChiTietPhieuMuon[] result) {
+        if (result.length == 0) {
+            System.out.println("Khong co du lieu");
+        } else {
+            String[] header = { "Ma phieu muon", "Ma sach", "So luong", "Han phai tra", "Ngay khach tra" };
+            String[][] data = new String[result.length][5];
+            for (int i = 0; i < result.length; i++) {
+                data[i] = result[i].toArray();
+            }
+            new ANSI(header, data).printTable();
+        }
+    }
+
+    public ChiTietPhieuMuon[] timTheoMaPM(String maPM) {
+        ChiTietPhieuMuon[] result = new ChiTietPhieuMuon[0];
+        for (ChiTietPhieuMuon ctpm : dsCTPM) {
+            if (ctpm.getMaPM().contains(maPM)) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = ctpm;
+            }
+        }
+        return result;
+    }
+
     public void thongKeSachTheoNgay(String ngayCanXem) {
         try {
             Ngay ngayXem = new Ngay(ngayCanXem);
@@ -148,10 +173,10 @@ public class DSChiTietPM {
 
             DSPhieuMuon dspm = new DSPhieuMuon();
             dspm.docFile();
-            
+
             Map<String, Integer> thongKe = new HashMap<>();
             int tongSach = 0;
-            
+
             for (ChiTietPhieuMuon ctpm : dsCTPM) {
                 PhieuMuon pm = dspm.get(ctpm.getMaPM());
                 if (pm != null) {
@@ -167,14 +192,14 @@ public class DSChiTietPM {
                     }
                 }
             }
-            
+
             if (thongKe.isEmpty()) {
                 System.out.println("Khong co sach duoc muon trong ngay " + ngayCanXem);
                 return;
             }
 
             System.out.println("Thong ke sach muon trong ngay " + ngayCanXem + ":");
-            String[] header = {"Ma sach", "So luong muon"};
+            String[] header = { "Ma sach", "So luong muon" };
             String[][] data = new String[thongKe.size()][2];
             int i = 0;
             for (Map.Entry<String, Integer> entry : thongKe.entrySet()) {
@@ -192,10 +217,10 @@ public class DSChiTietPM {
     public void thongKeSachTheoThang(int thang, int nam) {
         DSPhieuMuon dspm = new DSPhieuMuon();
         dspm.docFile();
-        
+
         Map<String, Integer> thongKe = new HashMap<>();
         int tongSach = 0;
-        
+
         for (ChiTietPhieuMuon ctpm : dsCTPM) {
             PhieuMuon pm = dspm.get(ctpm.getMaPM());
             if (pm != null) {
@@ -207,14 +232,14 @@ public class DSChiTietPM {
                 }
             }
         }
-        
+
         if (thongKe.isEmpty()) {
             System.out.println("Khong co sach duoc muon trong thang " + thang + "/" + nam);
             return;
         }
 
         System.out.println("Thong ke sach muon trong thang " + thang + "/" + nam + ":");
-        String[] header = {"Ma sach", "So luong muon"};
+        String[] header = { "Ma sach", "So luong muon" };
         String[][] data = new String[thongKe.size()][2];
         int i = 0;
         for (Map.Entry<String, Integer> entry : thongKe.entrySet()) {
@@ -231,13 +256,13 @@ public class DSChiTietPM {
             System.out.println("Quy khong hop le. Vui long nhap tu 1-4");
             return;
         }
-        
+
         DSPhieuMuon dspm = new DSPhieuMuon();
         dspm.docFile();
-        
+
         Map<String, Integer> thongKe = new HashMap<>();
         int tongSach = 0;
-        
+
         for (ChiTietPhieuMuon ctpm : dsCTPM) {
             PhieuMuon pm = dspm.get(ctpm.getMaPM());
             if (pm != null) {
@@ -249,14 +274,14 @@ public class DSChiTietPM {
                 }
             }
         }
-        
+
         if (thongKe.isEmpty()) {
             System.out.println("Khong co sach duoc muon trong quy " + quy + "/" + nam);
             return;
         }
 
         System.out.println("Thong ke sach muon trong quy " + quy + "/" + nam + ":");
-        String[] header = {"Ma sach", "So luong muon"};
+        String[] header = { "Ma sach", "So luong muon" };
         String[][] data = new String[thongKe.size()][2];
         int i = 0;
         for (Map.Entry<String, Integer> entry : thongKe.entrySet()) {
@@ -271,10 +296,10 @@ public class DSChiTietPM {
     public void thongKeSachTheoNam(int nam) {
         DSPhieuMuon dspm = new DSPhieuMuon();
         dspm.docFile();
-        
+
         Map<String, Integer> thongKe = new HashMap<>();
         int tongSach = 0;
-        
+
         for (ChiTietPhieuMuon ctpm : dsCTPM) {
             PhieuMuon pm = dspm.get(ctpm.getMaPM());
             if (pm != null) {
@@ -286,14 +311,14 @@ public class DSChiTietPM {
                 }
             }
         }
-        
+
         if (thongKe.isEmpty()) {
             System.out.println("Khong co sach duoc muon trong nam " + nam);
             return;
         }
 
         System.out.println("Thong ke sach muon trong nam " + nam + ":");
-        String[] header = {"Ma sach", "So luong muon"};
+        String[] header = { "Ma sach", "So luong muon" };
         String[][] data = new String[thongKe.size()][2];
         int i = 0;
         for (Map.Entry<String, Integer> entry : thongKe.entrySet()) {

@@ -58,7 +58,7 @@ public class ANSI {
         }
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[i].length; j++) {
-                if (data[i][j].length() > columnWidths[j]) {
+                if (data[i][j] != null && data[i][j].length() > columnWidths[j]) {
                     columnWidths[j] = data[i][j].length();
                 }
             }
@@ -98,6 +98,9 @@ public class ANSI {
     }
 
     private String setLength(String text, int length, String alignment) {
+        if (text == null) {
+            text = " ".repeat(length);
+        }
         if (text.length() >= length) {
             return text;
         }

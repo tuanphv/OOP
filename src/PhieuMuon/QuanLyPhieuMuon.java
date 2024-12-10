@@ -121,10 +121,16 @@ public class QuanLyPhieuMuon {
                     dsChiTietPM.them(maPM);
                     break;
                 case 2:
-                    System.out.println("Chức năng đang phát triển.");
+                    System.out.print("Nhap ma phieu muon can xoa chi tiet: ");
+                    String maPMXoa = scanner.nextLine();
+                    System.out.print("Nhap ma sach can xoa: ");
+                    String maSach = scanner.nextLine();
+                    dsChiTietPM.xoa(maPMXoa, maSach);
                     break;
                 case 3:
-                    System.out.println("Chức năng đang phát triển.");
+                    System.out.println("Nhap ma phieu muon can xem chi tiet: ");
+                    String maPMXem = scanner.nextLine();
+                    dsChiTietPM.xuatKQ(dsChiTietPM.timTheoMaPM(maPMXem));
                     break;
                 case 4:
                     dsChiTietPM.xuat();

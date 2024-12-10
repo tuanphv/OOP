@@ -71,8 +71,7 @@ public class PhieuMuon {
         maDocGia = input.nextLine();
         ngayMuon = new Ngay().toString();
         System.out.println("Ngay lap phieu muon: " + ngayMuon);
-        System.out.print("Nhap so luong chi tiet: ");
-        int n = Validate.getNumber(input, maDocGia);
+        int n = Validate.getNumber(input, "Nhap so luong chi tiet phieu muon: ");
         DSChiTietPM dsChiTietPM = new DSChiTietPM();
         for (int i = 0; i < n; i++) {
             System.out.println("Nhap chi tiet thu " + (i + 1));
