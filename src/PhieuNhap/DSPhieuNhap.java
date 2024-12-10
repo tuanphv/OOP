@@ -1,17 +1,16 @@
 package PhieuNhap;
 
+import Interface.IList;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import Interface.IList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class DSPhieuNhap implements IList<PhieuNhap> {
     PhieuNhap[] dspn = new PhieuNhap[0];
@@ -250,8 +249,8 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
         }
     }
 
-    public void xuatKQTimKiem(PhieuNhap[] kq){
-        if(kq== null){
+    public void xuatKQTimKiem(PhieuNhap[] kq) {
+        if (kq == null) {
             System.out.println("Khong tim thay phieu nhap nao");
             return;
         }
@@ -263,6 +262,7 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
         }
     }
 
+    
     // public void menu(){
     // int input;
     // do{
