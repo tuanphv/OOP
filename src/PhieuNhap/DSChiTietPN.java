@@ -31,7 +31,7 @@ public class DSChiTietPN {
         ctpn.nhap(); //nhap so luong
         ctpn.setThanhTien(ctpn.getSoLuong(), ctpn.getDonGia());
         while (add(ctpn)== false){
-            System.out.println("Phieu nhap da co trong danh sach");
+            System.out.println("Phieu nhap da co trong danh sach. nhap lai");
             maPN= nhap.nextLine();
             maSach= nhap.nextLine();
             ctpn.setMaPN(maPN);

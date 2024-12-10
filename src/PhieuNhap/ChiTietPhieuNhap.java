@@ -33,12 +33,12 @@ public class ChiTietPhieuNhap {
     }
 
     public void nhap(){
-        Scanner nhap = new Scanner(System.in);
-        nhap.nextLine();
-        System.out.print("Nhap ma phieu nhap: ");
-        maPN = nhap.nextLine();
-        System.out.print("Nhap ma sach: ");
-        maSach = nhap.nextLine();
+        //Scanner nhap = new Scanner(System.in);
+        //nhap.nextLine();
+        // System.out.print("Nhap ma phieu nhap: ");
+        // maPN = nhap.nextLine();
+        // System.out.print("Nhap ma sach: ");
+        // maSach = nhap.nextLine();
         System.out.print("Nhap so luong: ");
         soLuong = Integer.parseInt(nhap.nextLine());    
         DSSach dsSach = new DSSach();
@@ -54,7 +54,7 @@ public class ChiTietPhieuNhap {
             donGia = sach.getDonGia();
         }
         setThanhTien(soLuong, donGia);
-        nhap.close();
+       // nhap.close();
     }
 
     public void xuat(){
