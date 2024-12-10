@@ -132,18 +132,17 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
     public void remove(String maPP) {
         int index = indexOf(maPP);
         if (index == -1) {
-            System.out.println("Không tìm thấy phiếu phạt cần xóa.");
+            System.out.println("Khong tim thay phieu phat can xoa");
         } else {
-            // Xóa chi tiết phiếu phạt liên quan
+            
             dsChiTietPP.remove(maPP);
-            System.out.println("Đã xóa các chi tiết phiếu phạt liên quan tới mã: " + maPP);
+            System.out.println("da xoa chi tiet phieu phat lien quan toi ma: " + maPP);
 
-            // Xóa phiếu phạt
             for (int i = index; i < dsPP.length - 1; i++) {
                 dsPP[i] = dsPP[i + 1];
             }
             dsPP = Arrays.copyOf(dsPP, dsPP.length - 1);
-            System.out.println("Đã xóa phiếu phạt có mã: " + maPP);
+            System.out.println("da xoa phieu phat co ma: " + maPP);
         }
     }
 

@@ -80,13 +80,13 @@ public class QuanLyPhieuPhat {
                 dsPhieuPhat.them();
             break;
             case 2:
-               System.out.println("Nhập mã phiếu phạt muốn xóa: ");
+               System.out.println("nhap ma phieu phat can xoa: ");
                String maPP = scanner.nextLine();
                if (dsPhieuPhat.get(maPP) != null) {
                dsPhieuPhat.remove(maPP);
-               System.out.println("Đã xóa phiếu phạt thành công.");
+               System.out.println("da xoa phieu phat thanh cong.");
                } else {
-               System.out.println("Không tìm thấy phiếu phạt này.");
+               System.out.println("khong tim thay phieu phat nay.");
                }
             break;
             case 3:
