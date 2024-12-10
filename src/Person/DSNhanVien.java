@@ -170,7 +170,7 @@ public class DSNhanVien implements IList<NhanVien> {
         } catch (IOException e) {
             System.out.println("Loi khi doc file: " + e.getMessage());
         } finally {
-            System.out.println("Da doc file xong");
+            System.out.println("Doc file NhanVien.txt thanh cong");
         }
     }
 
@@ -188,7 +188,7 @@ public class DSNhanVien implements IList<NhanVien> {
         } catch (IOException e) {
             System.out.println("Loi khi ghi file: " + e);
         } finally {
-            System.out.println("Da ghi file xong");
+            System.out.println("Ghi file NhanVien.txt thanh cong");
         }
     }
 

@@ -30,7 +30,7 @@ public class DSNhaXuatBan implements IList<NhaXuatBan> {
         } catch (Exception e) {
             System.out.println("Loi ghi file: " + e);
         } finally {
-            System.out.println("Ghi file thanh cong.");
+            System.out.println("Ghi file NXB.txt thanh cong.");
         }
 	}
 
@@ -73,7 +73,7 @@ public class DSNhaXuatBan implements IList<NhaXuatBan> {
         } catch (Exception e) {
             System.out.println("Loi doc file: " + e);
         } finally {
-            System.out.println("Doc file thanh cong.");
+            System.out.println("Doc file NXB.txt thanh cong.");
         }
 	}
 

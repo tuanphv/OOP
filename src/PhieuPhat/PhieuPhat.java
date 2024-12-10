@@ -89,7 +89,7 @@ public class PhieuPhat {
     }
 
     public String toString() {
-        return maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
+        return maPM + ", " + maPP + ", " + maDG + ", " + maNV + ", " + tongPhat;
     }
     
     public String[] toArray() {

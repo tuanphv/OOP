@@ -64,6 +64,8 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
             }
         } catch (IOException e) {
             System.out.println("Lỗi ghi file: " + e);
+        } finally {
+            System.out.println("Ghi file PhieuPhat.txt thanh cong.");
         }
     }
 
@@ -77,6 +79,8 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
             }
         } catch (IOException e) {
             System.out.println("Lỗi đọc file: " + e);
+        } finally {
+            System.out.println("Doc file PhieuPhat.txt thanh cong.");
         }
     }
 

@@ -74,6 +74,8 @@ public class DSDocGia implements IList<DocGia> {
             bw.close();
         } catch (Exception e) {
             System.out.println("Loi ghi file: " + e);
+        } finally {
+            System.out.println("Ghi file DocGia.txt thanh cong");
         }
 
     }

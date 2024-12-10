@@ -72,6 +72,8 @@ public class DSTacGia implements IList<TacGia>  {
             bw.close();
         } catch (Exception e) {
             System.out.println("Loi ghi file: " + e);
+        } finally {
+            System.out.println("Ghi file TacGia.txt thanh cong");
         }
 
     }

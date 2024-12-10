@@ -51,6 +51,8 @@ public class DSChiTietPP implements IList<ChiTietPhieuPhat> {
             }
         } catch (IOException e) {
             System.out.println("Lỗi ghi file: " + e);
+        } finally {
+            System.out.println("Ghi file ChiTietPhieuPhat.txt thanh cong.");
         }
     }
 
@@ -64,6 +66,8 @@ public class DSChiTietPP implements IList<ChiTietPhieuPhat> {
             }
         } catch (IOException e) {
             System.out.println("Lỗi đọc file: " + e);
+        } finally {
+            System.out.println("Doc file ChiTietPhieuPhat.txt thanh cong.");
         }
     }
 

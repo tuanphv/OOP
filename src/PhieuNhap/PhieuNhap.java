@@ -82,9 +82,8 @@ public class PhieuNhap {
         System.out.printf("%10s%20s%10s%10s%10s\n", maPN, ngayNhap, maNV, maNCC, tongTien);
     }
 
-    public static void main(String[] args) {
-        PhieuNhap pn = new PhieuNhap();
-        pn.nhap();
-        pn.xuat();
+    @Override 
+    public String toString(){
+        return maPN + ", " + ngayNhap + ", " + maNV + ", " + maNCC + ", " + tongTien;
     }
 }

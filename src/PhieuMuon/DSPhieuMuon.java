@@ -50,6 +50,8 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
             bw.close();
         } catch (Exception e) {
             System.out.println("Loi ghi file: " + e);
+        } finally {
+            System.out.println("Ghi file PhieuMuon.txt thanh cong");
         }
 
     }
@@ -135,8 +137,6 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
 
         }
     }
-    
-    
 
     // #endregion
     // #region Xoá
@@ -215,6 +215,5 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
         }
         return result;
     }
-   
-  
+
 }

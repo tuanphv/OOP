@@ -65,6 +65,8 @@ public class DSChiTietPM {
             writer.close();
         } catch (Exception e) {
             System.out.println("Loi ghi file: " + e);
+        } finally {
+            System.out.println("Ghi file ChiTietPhieuMuon.txt thanh cong");
         }
     }
 

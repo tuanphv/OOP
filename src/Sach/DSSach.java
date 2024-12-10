@@ -75,7 +75,7 @@ public class DSSach implements IList<Sach> {
         } catch (IOException e) {
             System.out.println("Loi ghi file " + e.getMessage());
         } finally {
-            System.out.println("Ghi file thanh cong");
+            System.out.println("Ghi file Sach.txt thanh cong");
         }
     }
     //#endregion

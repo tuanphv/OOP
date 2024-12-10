@@ -136,7 +136,7 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
         } catch (IOException e) {
             System.out.println("Loi khi ghi file: " + e);
         } finally {
-            System.out.println("Da ghi file xong");
+            System.out.println("Ghi file PhieuNhap.txt thanh cong");
         }
     }
 

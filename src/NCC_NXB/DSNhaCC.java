@@ -76,7 +76,7 @@ public class DSNhaCC implements IList<NhaCungCap> {
         } catch (IOException e) {
             System.out.println("Khong doc duoc file");
         } finally {
-            System.out.println("Doc file thanh cong");
+            System.out.println("Doc file NhaCungCap.txt thanh cong");
         }
     }
 
@@ -84,7 +84,7 @@ public class DSNhaCC implements IList<NhaCungCap> {
         try {
             FileWriter fw = new FileWriter("./lib/NhaCungCap.txt");
             BufferedWriter bw = new BufferedWriter(fw);
-            String line = nhap.nextLine();
+            String line;
             for(int i=0; i<dsncc.length; i++){
                 line= dsncc[i].toString();
                 bw.write(line);
@@ -94,7 +94,7 @@ public class DSNhaCC implements IList<NhaCungCap> {
         } catch (IOException e) {
             System.out.println("Khong ghi duoc file");
         } finally {
-            System.out.println("Ghi file thanh cong");
+            System.out.println("Ghi file NhaCungCap.txt thanh cong");
         }
     }
 
