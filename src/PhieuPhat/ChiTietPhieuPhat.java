@@ -50,12 +50,10 @@ public class ChiTietPhieuPhat {
     }
 
     public void nhap(String maPP) {
-        // từ danh sách chi tiết phiếu mượn lấy ra danh sách sách của phiếu mượn
         DSChiTietPM dsctpm = new DSChiTietPM();
         Sach[] sachs = dsctpm.getDSSach(maPP);
         Scanner scanner = new Scanner(System.in);
         this.maPP = maPP;
-        // kiểm tra sách có trong phiếu mượn hay không
         this.maSach = Validate.checkExist(scanner, "Nhap ma sach: ", "Ma sach khong ton tai", sachs, Sach::getMaSach);
         System.out.print("Nhập tiền phạt: ");
         this.tienPhat = Integer.parseInt(scanner.nextLine());
