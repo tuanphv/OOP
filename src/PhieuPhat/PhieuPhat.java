@@ -67,14 +67,6 @@ public class PhieuPhat {
     public void setMaPM(String maPM) {
         this.maPM = maPM;
     }
-    
-    // public int soNgayQuaHan(String hanTra, String ngayTra) {
-    //     Ngay hanTraNgay = new Ngay(hanTra);
-    //     Ngay ngayTraNgay = new Ngay(ngayTra);
-
-    //     int soNgay = ngayTraNgay.soNgayTreHan(hanTraNgay);
-    //     return Math.max(soNgay, 0);
-    // }
 
     public void nhap() {
         Scanner scanner = new Scanner(System.in); // Avoid closing the scanner
