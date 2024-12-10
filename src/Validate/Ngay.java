@@ -71,6 +71,9 @@ public class Ngay {
      *         return > 0 : this > ngay
      */
     public int compare(Ngay ngay) {
+        if (!this.isValidDate() || !ngay.isValidDate()) {
+            throw new IllegalArgumentException("Invalid date format");
+        }
         LocalDate date1 = LocalDate.of(this.year, this.month, this.date);
         LocalDate date2 = LocalDate.of(ngay.year, ngay.month, ngay.date);
         return date1.compareTo(date2);
