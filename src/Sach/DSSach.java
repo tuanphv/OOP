@@ -229,6 +229,28 @@ public class DSSach implements IList<Sach> {
         return list.length;
     }
 
+    public Sach[] timSachHocThuat() {
+        Sach[] result = new Sach[0];
+        for (Sach s : list) {
+            if (s instanceof SachHocThuat) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = s;
+            }
+        }
+        return result;
+    }
+
+    public Sach[] timSachGiaiTri() {
+        Sach[] result = new Sach[0];
+        for (Sach s : list) {
+            if (s instanceof SachGiaiTri) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = s;
+            }
+        }
+        return result;
+    }
+    
     public Sach[] timTheoMaTacGia(String maTacGia) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {

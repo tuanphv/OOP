@@ -1,10 +1,12 @@
 package Sach;
+
 import java.util.Scanner;
 import Format.ANSI;
 import Validate.Validate;
 
 public class QuanLySach {
     DSSach dsSach;
+
     public QuanLySach() {
         dsSach = new DSSach();
         if (dsSach.isEmpty()) {
@@ -16,15 +18,18 @@ public class QuanLySach {
         int chon = 0;
         do {
             System.out.println("");
-            new ANSI(new String[]{"Menu Quan ly sach".toUpperCase()},
-            new String[][]{
-                {"1. Them sach"},
-                {"2. Sua thong tin sach"},
-                {"3. Xoa sach"},
-                {"4. Tim kiem sach"},
-                {"5. Hien thi danh sach sach"},
-                {"6. Thoat"}}).printTable();
-            chon = Validate.getChoice(in, 1, 6);
+            new ANSI(new String[] { "Menu Quan ly sach".toUpperCase() },
+                    new String[][] {
+                            { "1. Them sach" },
+                            { "2. Sua thong tin sach" },
+                            { "3. Xoa sach" },
+                            { "4. Tim kiem sach" },
+                            { "5. Hien thi danh sach sach" },
+                            { "6. Hien thi sach hoc thuat" },
+                            { "7. Hien thi sach giai tri" },
+                            { "8. Thoat" } })
+                    .printTable();
+            chon = Validate.getChoice(in, 1, 8);
             switch (chon) {
                 case 1:
                     dsSach.them();
@@ -45,6 +50,12 @@ public class QuanLySach {
                 case 5:
                     dsSach.xuat();
                     break;
+                case 6:
+                    DSSach.xuatKQTimKiem(dsSach.timSachHocThuat());
+                    break;
+                case 7:
+                    DSSach.xuatKQTimKiem(dsSach.timSachGiaiTri());
+                    break;
                 default:
                     System.out.println("Da thoat quan ly sach");
                     return;
@@ -56,13 +67,14 @@ public class QuanLySach {
         int chonTim = 0;
         do {
             System.out.println("");
-            new ANSI(new String[]{"Chon cach tim kiem".toUpperCase()},
-            new String[][]{
-                {"1. Tim theo ma sach"},
-                {"2. Tim theo ten sach"},
-                {"3. Tim theo nam xuat ban"},
-                {"4. Tim theo khoang gia"},
-                {"5. Thoat"}}).printTable();
+            new ANSI(new String[] { "Chon cach tim kiem".toUpperCase() },
+                    new String[][] {
+                            { "1. Tim theo ma sach" },
+                            { "2. Tim theo ten sach" },
+                            { "3. Tim theo nam xuat ban" },
+                            { "4. Tim theo khoang gia" },
+                            { "5. Thoat" } })
+                    .printTable();
             chonTim = Validate.getChoice(in, 1, 5);
             switch (chonTim) {
                 case 1:
@@ -70,8 +82,10 @@ public class QuanLySach {
                     String maSachTim = in.nextLine();
                     DSSach ds1 = new DSSach();
                     Sach kq = ds1.get(maSachTim);
-                    if (kq!=null) kq.xuat();
-                    else System.out.println("Khong tim thay sach");
+                    if (kq != null)
+                        kq.xuat();
+                    else
+                        System.out.println("Khong tim thay sach");
                     break;
                 case 2:
                     System.out.print("Nhap ten sach can tim: ");

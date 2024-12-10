@@ -25,7 +25,7 @@ public class ChiTietPhieuPhat {
         this.tienPhat = s1.tienPhat;
     }
 
-    public String maPP() {
+    public String getMaPP() {
         return maPP;
     }
 
@@ -37,7 +37,7 @@ public class ChiTietPhieuPhat {
         return tienPhat;
     }
 
-    public void maPP(String maPP) {
+    public void setMaPP(String maPP) {
         this.maPP = maPP;
     }
 
@@ -49,17 +49,24 @@ public class ChiTietPhieuPhat {
         this.tienPhat = tienphat;
     }
 
-    public void nhap(String maPP) {
+    public void nhap(String maPP, Scanner scanner) {
         // từ danh sách chi tiết phiếu mượn lấy ra danh sách sách của phiếu mượn
-        DSChiTietPM dsctpm = new DSChiTietPM();
-        Sach[] sachs = dsctpm.getDSSach(maPP);
-        Scanner scanner = new Scanner(System.in);
+        // DSChiTietPM dsctpm = new DSChiTietPM();
+        // if (dsctpm.isEmpty()) {
+        //     dsctpm.docFile();
+        // }
+        // DSPhieuPhat dsPhieuPhat = new DSPhieuPhat();
+        // if (dsPhieuPhat.isEmpty()) {
+        //     dsPhieuPhat.docFile();
+        // }
+        // Sach[] sachs = dsctpm.getDSSach(dsPhieuPhat);
+        // Scanner scanner = new Scanner(System.in);
         this.maPP = maPP;
         // kiểm tra sách có trong phiếu mượn hay không
-        this.maSach = Validate.checkExist(scanner, "Nhap ma sach: ", "Ma sach khong ton tai", sachs, Sach::getMaSach);
-        System.out.print("Nhập tiền phạt: ");
+        System.out.print("Nhap ma sach: ");
+        this.maSach = scanner.nextLine();
+        System.out.print("Nhap tien phat: ");
         this.tienPhat = Integer.parseInt(scanner.nextLine());
-        scanner.close();
     }
 
     public void xuat() {

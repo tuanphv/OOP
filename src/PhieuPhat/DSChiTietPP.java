@@ -27,7 +27,7 @@ public class DSChiTietPP {
         dsCTPP = new ChiTietPhieuPhat[n];
         for (int i = 0; i < n; i++) {
             dsCTPP[i] = new ChiTietPhieuPhat();
-            dsCTPP[i].nhap(maPP);
+            dsCTPP[i].nhap(maPP, input);
             System.out.println("-------------------------");
         }
     }
@@ -39,6 +39,7 @@ public class DSChiTietPP {
             data[i] = dsCTPP[i].toArray();
         }
         new ANSI(header, data).printTable();
+        ANSI.pause();
     }
 
     public void ghiFile() {
@@ -75,7 +76,7 @@ public class DSChiTietPP {
 
     public ChiTietPhieuPhat get(String ma) {
         for (ChiTietPhieuPhat ctp : dsCTPP) {
-            if (ctp.maPP().equals(ma)) {
+            if (ctp.getMaPP().equals(ma)) {
                 return ctp;
             }
         }
@@ -84,7 +85,7 @@ public class DSChiTietPP {
 
     public boolean add(ChiTietPhieuPhat ctp) {
         int n = dsCTPP.length;
-        if (indexOf(ctp.maPP()) == -1) {
+        if (indexOf(ctp.getMaPP(), ctp.getMaSach()) == -1) {
             dsCTPP = Arrays.copyOf(dsCTPP, n + 1);
             dsCTPP[n] = ctp;
             return true;
@@ -94,23 +95,46 @@ public class DSChiTietPP {
 
     public int indexOf(String maPP) {
         for (int i = 0; i < dsCTPP.length; i++) {
-            if (dsCTPP[i].maPP().equals(maPP)) {
+            if (dsCTPP[i].getMaPP().equals(maPP)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public void remove(String maPP) {
-        int index = indexOf(maPP);
+    public int indexOf(String maPP, String maSach) {
+        for (int i = 0; i < dsCTPP.length; i++) {
+            if (dsCTPP[i].getMaPP().equals(maPP) && dsCTPP[i].getMaSach().equals(maSach)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void remove(String maPP, String maSach) {
+        int index = indexOf(maPP, maSach);
         if (index == -1) {
-            System.out.println("Không tìm thấy chi tiết phiếu phạt cần xóa");
+            System.out.println("Khong tim thay chi tiet phieu phat can xoa");
         } else {
             for (int i = index; i < dsCTPP.length - 1; i++) {
                 dsCTPP[i] = dsCTPP[i + 1];
             }
             dsCTPP = Arrays.copyOf(dsCTPP, dsCTPP.length - 1);
         }
+    }
+
+    public void remove(String maPP) {
+        do {
+            int index = indexOf(maPP);
+            if (index == -1) {
+                System.out.println("Khong tim thay phieu phat can xoa");
+                break;
+            }
+            for (int i = index; i < dsCTPP.length - 1; i++) {
+                dsCTPP[i] = dsCTPP[i + 1];
+            }
+            dsCTPP = Arrays.copyOf(dsCTPP, dsCTPP.length - 1);
+        } while (true);
     }
     
     public Map<String, Integer> thongkesachbiphat() {
@@ -131,5 +155,49 @@ public class DSChiTietPP {
             }
         }
         return result;
+    }
+
+    public ChiTietPhieuPhat[] timKiemMaPP(String maPP) {
+        ChiTietPhieuPhat[] result = new ChiTietPhieuPhat[0];
+        for (ChiTietPhieuPhat ctp : dsCTPP) {
+            if (ctp.getMaPP().equals(maPP)) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = ctp;
+            }
+        }
+        return result;
+    }
+
+    public void xuatKQ(ChiTietPhieuPhat[] ds) {
+        if (ds.length == 0) {
+            System.out.println("Khong tim thay ket qua.");
+            return;
+        }
+        String[] header = { "Ma Phieu Phat", "Ma Sach", "Tien Phat" };
+        String[][] data = new String[ds.length][];
+        for (int i = 0; i < ds.length; i++) {
+            data[i] = ds[i].toArray();
+        }
+        new ANSI(header, data).printTable();
+    }
+
+    public void them(String maPP) {
+        ChiTietPhieuPhat ctp = new ChiTietPhieuPhat();
+        ctp.nhap(maPP, input);
+        if (add(ctp)) {
+            System.out.println("Thêm chi tiết phiếu phạt thành công.");
+        } else {
+            System.out.println("Chi tiết phiếu phạt đã tồn tại.");
+        }
+    }
+
+    public void edit(String maPP, String maSach) {
+        int index = indexOf(maPP, maSach);
+        if (index != -1) {
+            dsCTPP[index].nhap(maPP, input);
+            System.out.println("Sửa thành công.");
+        } else {
+            System.out.println("Không tìm thấy mã chi tiết phiếu phạt.");
+        }
     }
 }
