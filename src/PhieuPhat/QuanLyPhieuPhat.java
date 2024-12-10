@@ -10,17 +10,14 @@ public class QuanLyPhieuPhat {
     private DSChiTietPP dsChiTietPP;
 
     public QuanLyPhieuPhat() {
-        DSChiTietPM dsChiTietPM = new DSChiTietPM();
-        dsChiTietPM.docFile();
-
         dsChiTietPP = new DSChiTietPP();
         if (dsChiTietPP.isEmpty()) {
             dsChiTietPP.docFile();
         }
 
-        dsChiTietPP = new DSChiTietPP();
-        if (dsChiTietPP.isEmpty()) {
-            dsChiTietPP.docFile();
+        dsPhieuPhat = new DSPhieuPhat();
+        if (dsPhieuPhat.isEmpty()) {
+            dsPhieuPhat.docFile();
         }
     }
 
@@ -28,7 +25,7 @@ public class QuanLyPhieuPhat {
         this.dsPhieuPhat = dsPhieuPhat;
         this.dsChiTietPP = dsChiTietPP;
     }
-
+    
     public void hienThiMenu(Scanner scanner) {
         do {
             new ANSI(new String[] { "Menu Quan ly phieu Phat".toUpperCase() },
