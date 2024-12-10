@@ -9,6 +9,13 @@
             "name": "QuanLyPhieuMuon",
             "request": "launch",
             "mainClass": "PhieuMuon.QuanLyPhieuMuon",
+            "projectName": "OOP_97a01d80"
+        },
+        {
+            "type": "java",
+            "name": "QuanLyPhieuMuon",
+            "request": "launch",
+            "mainClass": "PhieuMuon.QuanLyPhieuMuon",
             "projectName": "OOP_f763625a"
         },
         {

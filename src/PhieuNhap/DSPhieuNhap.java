@@ -197,8 +197,8 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
             }
             catch(DateTimeParseException e){
                 System.out.println("Loi ngay thang, nhap lai(dd/MM/yyyy): ");
-                from= nhap.nextLine();
-                to= nhap.nextLine();
+                System.out.println("Tu ngay: ");from= nhap.nextLine();
+                System.out.println("Den ngay: ");to= nhap.nextLine();
             }
         }
         for (int i = 0; i < solg; i++) {
