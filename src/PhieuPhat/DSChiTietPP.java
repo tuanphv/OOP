@@ -1,13 +1,14 @@
 package PhieuPhat;
 
 import Format.ANSI;
+import Interface.IList;
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class DSChiTietPP {
+public class DSChiTietPP implements IList<ChiTietPhieuPhat> {
     private static ChiTietPhieuPhat[] dsCTPP = new ChiTietPhieuPhat[0];
     private Scanner input = new Scanner(System.in);
 

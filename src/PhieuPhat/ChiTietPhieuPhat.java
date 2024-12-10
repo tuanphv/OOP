@@ -1,8 +1,5 @@
 package PhieuPhat;
 
-import PhieuMuon.DSChiTietPM;
-import Sach.Sach;
-import Validate.Validate;
 import java.util.Scanner;
 
 public class ChiTietPhieuPhat {
@@ -50,17 +47,6 @@ public class ChiTietPhieuPhat {
     }
 
     public void nhap(String maPP, Scanner scanner) {
-        // từ danh sách chi tiết phiếu mượn lấy ra danh sách sách của phiếu mượn
-        // DSChiTietPM dsctpm = new DSChiTietPM();
-        // if (dsctpm.isEmpty()) {
-        //     dsctpm.docFile();
-        // }
-        // DSPhieuPhat dsPhieuPhat = new DSPhieuPhat();
-        // if (dsPhieuPhat.isEmpty()) {
-        //     dsPhieuPhat.docFile();
-        // }
-        // Sach[] sachs = dsctpm.getDSSach(dsPhieuPhat);
-        // Scanner scanner = new Scanner(System.in);
         this.maPP = maPP;
         // kiểm tra sách có trong phiếu mượn hay không
         System.out.print("Nhap ma sach: ");

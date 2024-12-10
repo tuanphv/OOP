@@ -10,20 +10,17 @@ public class QuanLyPhieuPhat {
     private DSChiTietPP dsChiTietPP;
 
     public QuanLyPhieuPhat() {
-        // Initialize DSChiTietPM
         DSChiTietPM dsChiTietPM = new DSChiTietPM();
         dsChiTietPM.docFile();
 
-        // Initialize DSChiTietPP
         dsChiTietPP = new DSChiTietPP();
         if (dsChiTietPP.isEmpty()) {
             dsChiTietPP.docFile();
         }
 
-        // Create DSPhieuPhat with both dependencies
-        dsPhieuPhat = new DSPhieuPhat();
-        if (dsPhieuPhat.isEmpty()) {
-            dsPhieuPhat.docFile();
+        dsChiTietPP = new DSChiTietPP();
+        if (dsChiTietPP.isEmpty()) {
+            dsChiTietPP.docFile();
         }
     }
 

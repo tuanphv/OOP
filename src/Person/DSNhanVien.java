@@ -1,5 +1,8 @@
 package Person;
 
+import Format.ANSI;
+import Interface.IList;
+import Validate.Validate;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -7,10 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
-
-import Format.ANSI;
-import Interface.IList;
-import Validate.Validate;
 
 public class DSNhanVien implements IList<NhanVien> {
     private NhanVien[] dsnv = new NhanVien[0];
