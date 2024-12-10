@@ -159,9 +159,10 @@ private void menuThongKePhat(Scanner scanner) {
                         { "2. Thong ke nhan vien lap phieu phat" },
                         { "3. So tien phat trung binh" },
                         { "4. Tong tien phat" },
-                        { "5. Tro lai" }
+                        { "5. Thong ke sach bi phat" },    
+                        { "6. Tro lai" }
                 }).printTable();
-        int choice = Validate.getChoice(scanner, 1, 5); 
+        int choice = Validate.getChoice(scanner, 1, 6); 
         switch (choice) {
             case 1:
                 System.out.println("\nThong ke doc gia bi phat:");
@@ -179,7 +180,10 @@ private void menuThongKePhat(Scanner scanner) {
             case 4:
                 System.out.println("\nTong tien phat: " + dsPhieuPhat.thongKeTongTienPhat());
                 break;
-            case 5:
+                case 5:
+                System.out.println("Thong ke sach bi phat."+ dsChiTietPP.thongkesachbiphat());
+                return; 
+            case 6:
                 System.out.println("Quay lai menu chinh.");
                 return; 
             default:

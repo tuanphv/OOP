@@ -192,6 +192,7 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
 
         }
     }
+
     public Map<String, Integer> thongKeDocGiaBiPhat() {
         Map<String, Integer> thongKe = new HashMap<>();
         for (PhieuPhat pp : dsPP) {
@@ -202,12 +203,12 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
     }
 
     public Map<String, Integer> thongKeNhanVienLapPhieuPhat() {
-    Map<String, Integer> thongKe = new HashMap<>();
-    for (PhieuPhat pp : dsPP) {
-        String maNV = pp.getMaNV();
-        thongKe.put(maNV, thongKe.getOrDefault(maNV, 0) + 1);
-    }
-    return thongKe;
+        Map<String, Integer> thongKe = new HashMap<>();
+        for (PhieuPhat pp : dsPP) {
+            String maNV = pp.getMaNV();
+            thongKe.put(maNV, thongKe.getOrDefault(maNV, 0) + 1);
+        }
+        return thongKe;
     }
 
     public double thongKeSoTienPhatTrungBinh() {
@@ -220,14 +221,23 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         }
         return (double) tongTienPhat / dsPP.length;
     }
-      
+
     public int thongKeTongTienPhat() {
-    int tongTienPhat = 0;
-    for (PhieuPhat pp : dsPP) {
-        tongTienPhat += pp.getTongPhat();
+        int tongTienPhat = 0;
+        for (PhieuPhat pp : dsPP) {
+            tongTienPhat += pp.getTongPhat();
+        }
+        return tongTienPhat;
     }
-    return tongTienPhat;
-}
 
+    public void timkiemphieuphat() {
+        System.out.println("moi ban nhap ma phieu phat ban can tim: ");
+        String mapp = input.nextLine();
+        for (PhieuPhat pp : dsPP) {
+            if (mapp.equals(pp.getMaPP())) {
+                pp.xuat();
+            }
+        }
 
+    }
 }

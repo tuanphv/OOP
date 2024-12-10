@@ -3,6 +3,8 @@ package PhieuPhat;
 import Format.ANSI;
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class DSChiTietPP {
@@ -98,6 +100,7 @@ public class DSChiTietPP {
         }
         return -1;
     }
+
     public void remove(String maPP) {
         int index = indexOf(maPP);
         if (index == -1) {
@@ -109,7 +112,16 @@ public class DSChiTietPP {
             dsCTPP = Arrays.copyOf(dsCTPP, dsCTPP.length - 1);
         }
     }
-
+    
+    public Map<String, Integer> thongkesachbiphat() {
+        Map<String, Integer> thongke = new HashMap<>();
+        for (ChiTietPhieuPhat ctpp : dsCTPP) {
+            String maSach = ctpp.getMaSach();
+            thongke.put(maSach, thongke.getOrDefault(maSach, 0) + 1);
+        }
+        return thongke;
+    }
+    
     public ChiTietPhieuPhat[] timKiemMaSach(String maSach) {
         ChiTietPhieuPhat[] result = new ChiTietPhieuPhat[0];
         for (ChiTietPhieuPhat ctp : dsCTPP) {
