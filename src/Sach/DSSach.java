@@ -1,9 +1,11 @@
 package Sach;
+import Format.ANSI;
+import Interface.IList;
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
-import Interface.IList;
-import Format.ANSI;
 public class DSSach implements IList<Sach> {
     Scanner in = new Scanner(System.in);
     // thuộc tính static để có thể gọi từ bất kỳ đâu
@@ -229,6 +231,28 @@ public class DSSach implements IList<Sach> {
         return list.length;
     }
 
+    public Sach[] timSachHocThuat() {
+        Sach[] result = new Sach[0];
+        for (Sach s : list) {
+            if (s instanceof SachHocThuat) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = s;
+            }
+        }
+        return result;
+    }
+
+    public Sach[] timSachGiaiTri() {
+        Sach[] result = new Sach[0];
+        for (Sach s : list) {
+            if (s instanceof SachGiaiTri) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = s;
+            }
+        }
+        return result;
+    }
+    
     public Sach[] timTheoMaTacGia(String maTacGia) {
         Sach[] result = new Sach[0];
         for (Sach s : list) {
@@ -314,4 +338,19 @@ public class DSSach implements IList<Sach> {
         }
         return result;
     }
+
+    public Map<String, Integer> thongKeSachGT() {
+    Map<String, Integer> thongKe = new HashMap<>();
+    
+    for (Sach s : list) {
+        if (s instanceof SachGiaiTri) {
+            String tenSach = s.getTenSach(); 
+            int soLuong = s.getSoLuong();  
+            
+            thongKe.put(tenSach, thongKe.getOrDefault(tenSach, 0) + soLuong);
+        }
+    }
+    return thongKe;
+}
+
 }

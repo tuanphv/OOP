@@ -48,8 +48,8 @@ public class Menu {
         dsPhieuNhap.docFile();
         dsChiTietPN.docFile();
 
-       dsPhieuPhat.docFile();
-       dsChiTietPP.docFile();
+        dsPhieuPhat.docFile();
+        dsChiTietPP.docFile();
 
         dsDocGia.docFile();
         dsNhanVien.docFile();

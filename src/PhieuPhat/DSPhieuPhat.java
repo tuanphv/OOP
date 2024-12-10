@@ -2,7 +2,6 @@ package PhieuPhat;
 
 import Format.ANSI;
 import Interface.IList;
-import PhieuMuon.DSChiTietPM;
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,23 +11,12 @@ import java.util.Scanner;
 public class DSPhieuPhat implements IList<PhieuPhat> {
     private static PhieuPhat[] dsPP = new PhieuPhat[0];
     private Scanner input = new Scanner(System.in);
-    private DSChiTietPP dsChiTietPP;
-    private DSChiTietPM dsCTPM;
-
-    public DSPhieuPhat(DSChiTietPM dsChiTietPM) {
-        this.dsCTPM = dsChiTietPM;
-    }
 
     public DSPhieuPhat() {
     }
 
-    public DSPhieuPhat(DSChiTietPP dsChiTietPP) {
-        this.dsChiTietPP = dsChiTietPP;
-    }
-
-    public DSPhieuPhat(DSChiTietPP dsChiTietPP, DSChiTietPM dsChiTietPM) {
-        this.dsChiTietPP = dsChiTietPP;
-        this.dsCTPM = dsChiTietPM;
+    public DSPhieuPhat(PhieuPhat[] ds) {
+        dsPP = ds;
     }
 
     public PhieuPhat[] getList() {
@@ -93,7 +81,7 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
     }
 
     public boolean isEmpty() {
-        return dsPP.length == 0;
+        return dsPP == null || dsPP.length == 0;
     }
 
     public int size() {
@@ -134,7 +122,7 @@ public class DSPhieuPhat implements IList<PhieuPhat> {
         if (index == -1) {
             System.out.println("Khong tim thay phieu phat can xoa");
         } else {
-            
+            DSChiTietPP dsChiTietPP = new DSChiTietPP();
             dsChiTietPP.remove(maPP);
             System.out.println("da xoa chi tiet phieu phat lien quan toi ma: " + maPP);
 
