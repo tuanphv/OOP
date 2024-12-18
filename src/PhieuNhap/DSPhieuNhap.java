@@ -231,7 +231,7 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
     }
 
     public void tieude() {
-        System.out.printf("%10s%20s%10s%10s%10s\n", "Ma PN", "Ngay nhap", "MaNV", "MaNCC", "Tong Tien");
+        System.out.printf("%5s%10s%20s%10s%10s%10s\n","STT", "Ma PN", "Ngay nhap", "MaNV", "MaNCC", "Tong Tien");
     }
 
     public void hienthi() {
@@ -239,9 +239,7 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
         if (isEmpty())
             System.out.println("Danh sach rong");
         else {
-            System.out.println("----------THONG TIN TOAN BO PHIEU NHAP----------");
-            System.out.printf("%5s", "STT");
-            tieude();
+            
             for (int i = 0; i < solg; i++) {
                 System.out.printf("%5s", i);
                 dspn[i].xuat();

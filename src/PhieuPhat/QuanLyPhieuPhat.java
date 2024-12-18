@@ -1,7 +1,6 @@
 package PhieuPhat;
 
 import Format.ANSI;
-import PhieuMuon.DSChiTietPM;
 import Validate.Validate;
 import java.util.Scanner;
 
