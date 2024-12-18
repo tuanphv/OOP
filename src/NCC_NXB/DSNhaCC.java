@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Format.ANSI;
 import Interface.IList;
 
 public class DSNhaCC implements IList<NhaCungCap> {
@@ -142,23 +143,32 @@ public class DSNhaCC implements IList<NhaCungCap> {
         return temp;
     }
 
-    public void tieude() {
-        System.out.printf("%10s%20s%20s%15s\n", "Ma NCC", "Ten NCC", "Dia chi", "SDT");
-    }
-
     public void hienthi() {
         int solg = dsncc.length;
         if (isEmpty())
             System.out.println("Danh sach rong");
         else {
-            System.out.println("----------THONG TIN TOAN BO NHA CUNG CAP----------");
-            System.out.printf("%5s", "STT");
-            tieude();
+            String[] header = { "Ma NCC", "Ten NCC", "Dia chi", "So dien thoai"};
+            String[][] data = new String[solg][];
             for (int i = 0; i < solg; i++) {
-                System.out.printf("%5s", i);
-                dsncc[i].xuat();
+                data[i] = dsncc[i].toArray();
             }
+            new ANSI(header, data).printTable();
         }
+    }
+
+    public void xuatKQTimKiem(NhaCungCap[] kq) {
+        if (kq.length == 0) {
+            System.out.println("Khong tim thay kq");
+            return;
+        }
+        int solg= kq.length;
+        String[] header = { "Ma NCC", "Ten NCC", "Dia chi", "So dien thoai"};
+            String[][] data = new String[solg][];
+            for (int i = 0; i < solg; i++) {
+                data[i] = dsncc[i].toArray();
+            }
+            new ANSI(header, data).printTable();
     }
 
     public void suaNCC(NhaCungCap ncc) {
@@ -173,16 +183,18 @@ public class DSNhaCC implements IList<NhaCungCap> {
     public void menu() {
         int input;
         do {
-            System.out.println("----------QUAN LY NHA CUNG CAP----------");
-            System.out.println("1. Them nha cung cap");
-            System.out.println("2. Xoa nha cung cap");
-            System.out.println("3. Tim nha cung cap theo ma");
-            System.out.println("4. Tim nha cung cap theo ten");
-            System.out.println("5. Tim nha cung cap theo sdt");
-            System.out.println("6. Tim nha cung cap theo dia chi");
-            System.out.println("7. Sua thong tin nha cung cap");
-            System.out.println("8. Hien thi danh sach nha cung cap");
-            System.out.println("0. Thoat");
+            new ANSI(new String[]{"Menu Quan ly phieu nhap".toUpperCase()},
+            new String[][]{
+                {"1. Them nha cung cap"},
+                {"2. Xoa nha cung cap"},
+                {"3. Tim nha cung cap theo ma"},
+                {"4. Tim nha cung cap theo ten"},
+                {"5. Tim nha cung cap theo sdt"},
+                {"6. Tim nha cung cap theo dia chi"},
+                {"7. Sua thong tin nha cung cap"},
+                {"8. Hien thi danh sach nha cung cap"},
+                {"0. Thoat"}}).printTable();
+            System.out.print("Chon chuc nang: ");
             input = Integer.parseInt(nhap.nextLine());
             if (input == 1) {
                 System.out.print("Nhap so luong nha cung cap muon them: ");
@@ -207,40 +219,28 @@ public class DSNhaCC implements IList<NhaCungCap> {
                 String temp = nhap.nextLine();
                 NhaCungCap[] kq = timTheoMa(temp);
                 System.out.println("Co " + kq.length + " kq");
-                for (int i = 0; i < kq.length; i++) {
-                    tieude();
-                    kq[i].xuat();
-                }
+                xuatKQTimKiem(kq);
             }
             if (input == 4) {
                 System.out.println("Nhap ten nha cung cap muon tim: ");
                 String temp = nhap.nextLine();
                 NhaCungCap[] kq = timTheoTen(temp);
                 System.out.println("Co " + kq.length + " kq");
-                for (int i = 0; i < kq.length; i++) {
-                    tieude();
-                    kq[i].xuat();
-                }
+                xuatKQTimKiem(kq);
             }
             if (input == 5) {
                 System.out.println("Nhap sdt nha cung cap muon tim: ");
                 String temp = nhap.nextLine();
                 NhaCungCap[] kq = timTheoSdt(temp);
                 System.out.println("Co " + kq.length + " kq");
-                for (int i = 0; i < kq.length; i++) {
-                    tieude();
-                    kq[i].xuat();
-                }
+                xuatKQTimKiem(kq);
             }
             if (input == 6) {
                 System.out.println("Nhap dia chi nha cung cap muon tim: ");
                 String temp = nhap.nextLine();
                 NhaCungCap[] kq = timTheoDiaChi(temp);
                 System.out.println("Co " + kq.length + " kq");
-                for (int i = 0; i < kq.length; i++) {
-                    tieude();
-                    kq[i].xuat();
-                }
+                xuatKQTimKiem(kq);
             }
             if (input == 7) {
                 System.out.println("Nhap ma nha cung cap muon sua: ");

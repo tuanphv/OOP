@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Source_code_e02ca51a"
+        },
+        {
+            "type": "java",
             "name": "QuanLyPhieuMuon",
             "request": "launch",
             "mainClass": "PhieuMuon.QuanLyPhieuMuon",

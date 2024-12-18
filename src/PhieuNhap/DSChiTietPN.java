@@ -5,6 +5,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
+
+import Format.ANSI;
+
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -143,11 +146,12 @@ public class DSChiTietPN {
             System.out.println("Khong tim thay kq");
             return;
         }
-        tieude();
-        for (int i = 0; i < kq.length; i++) {
-            System.out.printf("%5d", i + 1);
-            kq[i].xuat();
-        }
+        String[] header = { "Ma Phieu Nhap", "Ma sach", "So luong", "Don gia", "Thanh tien" };
+            String[][] data = new String[kq.length][];
+            for (int i = 0; i < kq.length; i++) {
+                data[i] = kq[i].toArray();
+            }
+            new ANSI(header, data).printTable();
     }
 
     // public void setSolg(String maPN, String maSach, DSSach dssach){
@@ -229,10 +233,11 @@ public class DSChiTietPN {
     }
 
     public void hienthi() {
-        int solg = dsctpn.length;
-        tieude();
-        for (int i = 0; i < solg; i++)
-            System.out.printf("%5s%10s%10s%15s%10s%20s\n", i + 1, dsctpn[i].getMaPN(), dsctpn[i].getMaSach(),
-                    dsctpn[i].getDonGia(), dsctpn[i].getSoLuong(), dsctpn[i].getThanhTien());
+        String[] header = { "Ma Phieu Nhap", "Ma sach", "So luong", "Don gia", "Thanh tien" };
+            String[][] data = new String[dsctpn.length][];
+            for (int i = 0; i < dsctpn.length; i++) {
+                data[i] = dsctpn[i].toArray();
+            }
+            new ANSI(header, data).printTable();
     }
 }

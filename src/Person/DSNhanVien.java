@@ -136,16 +136,13 @@ public class DSNhanVien implements IList<NhanVien> {
     }
 
     public void hienthi() {
-        System.out.println("----------THONG TIN TOAN BO NHAN VIEN----------");
-        int solg = dsnv.length;
-        if (isEmpty())
-            System.out.println("Danh sach rong");
-        else {
+        int solg= dsnv.length;
+        String[] title = { "MaNV", "TenNV", "ChucVuNV", "SdtNV", "GioiTinh", "Luong" };
+            String[][] data = new String[solg][];
             for (int i = 0; i < solg; i++) {
-                System.out.printf("%5s", i+1);
-                dsnv[i].xuat();
+                data[i] = dsnv[i].toArray();
             }
-        }
+            new ANSI(title, data).printTable();
     }
 
     public boolean isEmpty() {

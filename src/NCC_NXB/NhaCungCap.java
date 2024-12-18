@@ -96,4 +96,7 @@ public class NhaCungCap {
     public String toString(){
         return maNCC + ", " + ten + ", " + diaChi+ ", " + sdt;
     }
+    public String[] toArray() {
+        return new String[] { maNCC, ten, diaChi, sdt };
+    }
 }

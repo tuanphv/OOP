@@ -86,4 +86,13 @@ public class PhieuNhap {
     public String toString(){
         return maPN + ", " + ngayNhap + ", " + maNV + ", " + maNCC + ", " + tongTien;
     }
+    public String[] toArray() {
+        return new String[] { 
+            maPN,       
+            ngayNhap,       
+            maNV,        
+            maNCC,
+            String.valueOf(tongTien)        
+        };
+    }
 }

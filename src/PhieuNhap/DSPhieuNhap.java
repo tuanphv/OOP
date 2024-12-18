@@ -12,6 +12,8 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Format.ANSI;
+
 public class DSPhieuNhap implements IList<PhieuNhap> {
     PhieuNhap[] dspn = new PhieuNhap[0];
     Scanner nhap = new Scanner(System.in);
@@ -230,20 +232,20 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
         return temp;
     }
 
-    public void tieude() {
-        System.out.printf("%5s%10s%20s%10s%10s%10s\n","STT", "Ma PN", "Ngay nhap", "MaNV", "MaNCC", "Tong Tien");
-    }
+    // public void tieude() {
+    //     System.out.printf("%5s%10s%20s%10s%10s%10s\n","STT", "Ma PN", "Ngay nhap", "MaNV", "MaNCC", "Tong Tien");
+    // }
 
     public void hienthi() {
-        int solg = dspn.length;
         if (isEmpty())
             System.out.println("Danh sach rong");
         else {
-            
-            for (int i = 0; i < solg; i++) {
-                System.out.printf("%5s", i);
-                dspn[i].xuat();
+            String[] header = { "Ma Phieu Nhap", "Ngay nhap", "Ma Nhan Vien", "Ma NCC", "Tong nhap" };
+            String[][] data = new String[dspn.length][];
+            for (int i = 0; i < dspn.length; i++) {
+                data[i] = dspn[i].toArray();
             }
+            new ANSI(header, data).printTable();
         }
     }
 
@@ -252,12 +254,12 @@ public class DSPhieuNhap implements IList<PhieuNhap> {
             System.out.println("Khong tim thay phieu nhap nao");
             return;
         }
-        tieude();
-        int solg = kq.length;
-        for (int i = 0; i < solg; i++) {
-            System.out.printf("%5s", i);
-            kq[i].xuat();
-        }
+        String[] header = { "Ma Phieu Nhap", "Ngay nhap", "Ma Nhan Vien", "Ma NCC", "Tong nhap" };
+            String[][] data = new String[kq.length][];
+            for (int i = 0; i < kq.length; i++) {
+                data[i] = kq[i].toArray();
+            }
+            new ANSI(header, data).printTable();
     }
 
     

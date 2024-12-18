@@ -109,4 +109,13 @@ public class ChiTietPhieuNhap {
     public String toString() {
         return maPN + ", " + maSach + ", " + soLuong + ", " + donGia + ", " + thanhTien;
     }
+    public String[] toArray() {
+        return new String[] { 
+            maPN,       
+            maSach,       
+            String.valueOf(soLuong),        
+            String.valueOf(donGia), 
+            String.valueOf(thanhTien)        
+        };
+    }
 }
