@@ -61,9 +61,10 @@ public class QuanLyPhieuMuon {
                             { "3. Xem thong tin phieu muon" },
                             { "4. Xem thong tin phieu muon cua khach hang" },
                             { "5. Xem tat ca phieu muon" },
-                            { "6. Tro lai" }
+                            { "6. Xem phieu muon trong khoang thoi gian" },
+                            { "7. Tro lai" }
                     }).printTable();
-            choice = Validate.getChoice(scanner, 1, 6);
+            choice = Validate.getChoice(scanner, 1, 7);
 
             switch (choice) {
                 case 1:
@@ -95,10 +96,15 @@ public class QuanLyPhieuMuon {
                     dsPhieuMuon.xuat();
                     break;
                 case 6:
+                    System.out.print("Nhap ngay bat dau (dd/MM/yyyy): ");
+                    String ngayBatDau = scanner.nextLine();
+                    System.out.print("Nhap ngay ket thuc (dd/MM/yyyy): ");
+                    String ngayKetThuc = scanner.nextLine();
+                    dsPhieuMuon.xuatKQ(dsPhieuMuon.timTrongKhoangTG(ngayBatDau, ngayKetThuc));
+                    break;
+                default:
                     System.out.println("Thoat Menu Quan ly phieu muon.");
                     return;
-                default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
             }
         } while (true);
     }

@@ -2,6 +2,8 @@ package PhieuMuon;
 
 import Format.ANSI;
 import Interface.IList;
+import Validate.Ngay;
+
 import java.io.*;
 import java.util.*;
 
@@ -38,6 +40,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
             data[i] = dspm[i].toArray();
         }
         new ANSI(header, data).printTable();
+        ANSI.pause();
     }
 
     public void ghiFile() {
@@ -164,6 +167,7 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
                 data[i] = result[i].toArray();
             }
             new ANSI(header, data).printTable();
+            ANSI.pause();
         }
     }
 
@@ -216,4 +220,15 @@ public class DSPhieuMuon implements IList<PhieuMuon> {
         return result;
     }
 
+    public PhieuMuon[] timTrongKhoangTG(String ngay1, String ngay2) {
+        PhieuMuon[] result = new PhieuMuon[0];
+        for (PhieuMuon phieu : dspm) {
+            if (new Ngay(phieu.getNgayMuon()).compare(new Ngay(ngay1)) >= 0 
+            && new Ngay(phieu.getNgayMuon()).compare(new Ngay(ngay2)) <= 0) {
+                result = Arrays.copyOf(result, result.length + 1);
+                result[result.length - 1] = phieu;
+            }
+        }
+        return result;
+    }
 }
